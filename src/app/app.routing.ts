@@ -1,3 +1,4 @@
+import { SetorComponent } from './views/setor/setor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -20,6 +21,13 @@ export const routes: Routes = [
     component: P404Component,
     data: {
       title: 'Page 404'
+    }
+  },
+  {
+    path: 'setor',
+    component: SetorComponent,
+    data: {
+      title: 'Setor'
     }
   },
   {
@@ -50,26 +58,13 @@ export const routes: Routes = [
       title: 'Home'
     },
     children: [
-      {
-        path: 'base',
-        loadChildren: () => import('./views/base/base.module').then(m => m.BaseModule)
-      },
-      {
-        path: 'charts',
-        loadChildren: () => import('./views/chartjs/chartjs.module').then(m => m.ChartJSModule)
-      },
+
+
       {
         path: 'dashboard',
         loadChildren: () => import('./views/dashboard/dashboard.module').then(m => m.DashboardModule)
       },
-      {
-        path: 'notifications',
-        loadChildren: () => import('./views/notifications/notifications.module').then(m => m.NotificationsModule)
-      },
-      {
-        path: 'theme',
-        loadChildren: () => import('./views/theme/theme.module').then(m => m.ThemeModule)
-      },
+
       {
         path: 'widgets',
         loadChildren: () => import('./views/widgets/widgets.module').then(m => m.WidgetsModule)
