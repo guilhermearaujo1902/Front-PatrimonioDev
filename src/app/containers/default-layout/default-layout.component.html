@@ -3,8 +3,7 @@
   [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/brand/logo.svg', width: 89, height: 25, alt: 'CoreUI Logo'}"
   [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'CoreUI Logo'}"
-  [sidebarToggler]="'lg'"
-  [asideMenuToggler]="'lg'">
+  [sidebarToggler]=false [asideMenuToggler]=false>
   <ul class="nav navbar-nav d-md-down-none">
     <li class="nav-item px-3">
       <a class="nav-link" href="#">Dashboard</a>
@@ -37,24 +36,25 @@
     <app-sidebar-nav [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
     <app-sidebar-minimizer></app-sidebar-minimizer>
   </app-sidebar>
-  <!-- Main content -->
   <main class="main">
-    <!-- Breadcrumb -->
-    <!-- breaking change 'cui-breadcrumb' -->
-    <cui-breadcrumb>
-      <!-- Breadcrumb Menu-->
-
-    </cui-breadcrumb>
-
     <div class="container-fluid">
+      <div class="col p-0">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"
+            *ngFor="let item of breadcrumbList; let i = index"
+            [class.active]="i===breadcrumbList.length-1">
+            <a [routerLink]="item.path" *ngIf="i!==breadcrumbList.length-1">
+              {{ item.name }}
+            </a>
+            <span *ngIf="i===breadcrumbList.length-1">{{ item.name }}</span>
+          </li>
+        </ol>
+      </div>
       <router-outlet></router-outlet>
     </div>
   </main>
-  <!-- <app-aside [fixed]="true" [display]="false" [ngClass]="'test'">
 
-  </app-aside> -->
 </div>
 <app-footer>
-  <!-- <span><a href="https://coreui.io">CoreUI</a> &copy; 2021 Patrimonio PS.</span>
-  <span class="ml-auto">Powered by <a href="https://coreui.io/angular">CoreUI for Angular</a></span> -->
+
 </app-footer>

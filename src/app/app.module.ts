@@ -1,3 +1,4 @@
+import { MenuService } from './services/menu.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -76,6 +77,7 @@ import { SetorComponent } from './views/setor/setor.component';
       useClass: HashLocationStrategy
     },
     IconSetService,
+    MenuService
   ],
   bootstrap: [ AppComponent ]
 })

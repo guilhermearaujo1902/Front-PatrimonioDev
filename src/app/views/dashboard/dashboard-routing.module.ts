@@ -1,3 +1,4 @@
+import { SetorComponent } from './../setor/setor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -9,6 +10,13 @@ const routes: Routes = [
     component: DashboardComponent,
     data: {
       title: 'Dashboard'
+    }
+  },
+  {
+    path: 'setor',
+    component: SetorComponent,
+    data: {
+      title: 'Setor'
     }
   }
 ];

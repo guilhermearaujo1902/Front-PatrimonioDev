@@ -16,5 +16,6 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     ButtonsModule.forRoot()
   ],
   declarations: [ DashboardComponent ]
+
 })
 export class DashboardModule { }
