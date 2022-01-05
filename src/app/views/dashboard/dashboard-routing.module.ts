@@ -1,3 +1,4 @@
+import { PermissaoComponent } from './../permissao/permissao.component';
 import { FabricanteComponent } from './../fabricante/fabricante.component';
 import { EmpresaComponent } from './../empresa/empresa.component';
 import { SetorComponent } from './../setor/setor.component';
@@ -33,6 +34,13 @@ const routes: Routes = [
     component: FabricanteComponent,
     data: {
       title: 'Fabricante'
+    }
+  },
+  {
+    path: 'permissao',
+    component: PermissaoComponent,
+    data: {
+      title: 'Permissao'
     }
   }
 ];

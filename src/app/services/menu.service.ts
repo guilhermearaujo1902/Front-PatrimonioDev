@@ -20,6 +20,11 @@ export class MenuService {
             name: 'empresa',
             path: './empresa',
           }
+          ,
+          {
+            name: 'permissao',
+            path: './permissao',
+          }
         ]
       },
     ];

@@ -20,6 +20,11 @@ export const navItems: INavData[] = [
     icon: 'fa fa-users'
   },
   {
+    name: 'Permissao',
+    url: '/dashboard/permissao',
+    icon: 'fa fa-users'
+  },
+  {
     name: 'Empresa',
     url: '/dashboard/empresa',
     icon: 'fa fa-building'

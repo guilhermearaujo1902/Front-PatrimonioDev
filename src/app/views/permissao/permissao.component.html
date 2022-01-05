@@ -1,0 +1,44 @@
+<div class="card rounded shadow-sm ml-3 mt-3 p-3" id="formulario">
+  <form [formGroup]="form">
+    <h1>Cadastrar Permissão</h1>
+    <hr>
+      <div class="p-3">
+          <!-- <p>Form value: {{form.value | json}}</p> -->
+          <!-- <p>Form status: {{form.status | json}}</p> -->
+          <div class="form-row">
+              <div class="form-group col-12 text-start">
+                  <label>Código da permissão</label>
+                  <input type="text" readonly class="form-control" name="codigoPermissao"  formControlName="codigoPermissao">
+              </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Descricao Permissão</label>
+                <input type="text" class="form-control" [ngClass]="cssValidator(f.descricaoPermissao)" name="descricaoPermissao" formControlName="descricaoPermissao" placeholder="Descrição da permissão" autocomplete="descricaoPermissao" required>
+                <div *ngIf="f.descricaoPermissao.errors?.required" class="invalid-feedback">A descrição é obrigatório</div>
+                <div *ngIf="f.descricaoPermissao.errors?.maxlength" class="invalid-feedback">A descrição pode ter no máximo 20 caracteres</div>
+                <div *ngIf="f.descricaoPermissao.errors?.minlength" class="invalid-feedback">A descrição pode ter no mínimo 3 caracteres</div>
+
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Ativo</label>
+                <select class="form-select form-control">
+                  <option selected value="1">Ativo</option>
+                  <option value="0">Desativado</option>
+                </select>
+            </div>
+          </div>
+          <div class="form-row pt-3">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+  </form>
+</div>

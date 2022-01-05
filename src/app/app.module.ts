@@ -43,6 +43,7 @@ import { ChartsModule } from 'ng2-charts';
 import { SetorComponent } from './views/setor/setor.component';
 import { EmpresaComponent } from './views/empresa/empresa.component';
 import { FabricanteComponent } from './views/fabricante/fabricante.component';
+import { PermissaoComponent } from './views/permissao/permissao.component';
 
 @NgModule({
   imports: [
@@ -73,7 +74,8 @@ import { FabricanteComponent } from './views/fabricante/fabricante.component';
     RegisterComponent,
     SetorComponent,
     EmpresaComponent,
-    FabricanteComponent
+    FabricanteComponent,
+    PermissaoComponent
   ],
   providers: [
     {
