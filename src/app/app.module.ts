@@ -41,6 +41,8 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ChartsModule } from 'ng2-charts';
 import { SetorComponent } from './views/setor/setor.component';
+import { EmpresaComponent } from './views/empresa/empresa.component';
+import { FabricanteComponent } from './views/fabricante/fabricante.component';
 
 @NgModule({
   imports: [
@@ -69,7 +71,9 @@ import { SetorComponent } from './views/setor/setor.component';
     P500Component,
     LoginComponent,
     RegisterComponent,
-    SetorComponent
+    SetorComponent,
+    EmpresaComponent,
+    FabricanteComponent
   ],
   providers: [
     {

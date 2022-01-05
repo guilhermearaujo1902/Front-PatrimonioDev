@@ -1,3 +1,5 @@
+import { FabricanteComponent } from './../fabricante/fabricante.component';
+import { EmpresaComponent } from './../empresa/empresa.component';
 import { SetorComponent } from './../setor/setor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -17,6 +19,20 @@ const routes: Routes = [
     component: SetorComponent,
     data: {
       title: 'Setor'
+    }
+  },
+  {
+    path: 'empresa',
+    component: EmpresaComponent,
+    data: {
+      title: 'Empresa'
+    }
+  },
+  {
+    path: 'fabricante',
+    component: FabricanteComponent,
+    data: {
+      title: 'Fabricante'
     }
   }
 ];

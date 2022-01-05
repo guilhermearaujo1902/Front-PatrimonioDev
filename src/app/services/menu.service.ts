@@ -15,6 +15,10 @@ export class MenuService {
           {
             name: 'setor',
             path: './setor',
+          },
+          {
+            name: 'empresa',
+            path: './empresa',
           }
         ]
       },

@@ -1,0 +1,57 @@
+<div class="card rounded shadow-sm ml-3 mt-3 p-3" id="formulario">
+  <form [formGroup]="form">
+    <h1>Cadastrar empresa</h1>
+    <hr>
+      <div class="p-3">
+          <!-- <p>Form value: {{form.value | json}}</p> -->
+          <!-- <p>Form status: {{form.status | json}}</p> -->
+          <div class="form-row">
+              <div class="form-group col-12 text-start">
+                  <label>Código da empresa</label>
+                  <input type="text" readonly class="form-control" name="codigoEmpresa"  formControlName="codigoEmpresa">
+              </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Nome Fantasia</label>
+                <input type="text" class="form-control" [ngClass]="cssValidator(f.nomeFantasia)" name="nomeFantasia" formControlName="nomeFantasia" placeholder="Nome Fantasia" autocomplete="nomeFantasia" required>
+                <div *ngIf="f.nomeFantasia.errors?.required" class="invalid-feedback">Nome fantasia é obrigatório</div>
+                <div *ngIf="f.nomeFantasia.errors?.maxlength" class="invalid-feedback">Nome fantasia pode ter no máximo 70 caracteres</div>
+                <div *ngIf="f.nomeFantasia.errors?.minlength" class="invalid-feedback">Nome fantasia pode ter no mínimo 10 caracteres</div>
+
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>CNPJ</label>
+                <input type="text" class="form-control" [ngClass]="cssValidator(f.cnpj)" name="cnpj" formControlName="cnpj" placeholder="CNPJ" autocomplete="cnpj" required>
+                <div *ngIf="f.cnpj.errors?.required" class="invalid-feedback">CNPJ é obrigatório</div>
+                <div *ngIf="f.cnpj.errors?.maxlength" class="invalid-feedback">CNPJ pode ter no máximo 18 caracteres</div>
+                <div *ngIf="f.cnpj.errors?.minlength" class="invalid-feedback">CNPJ pode ter no mínimo 18 caracteres</div>
+
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Razão Social</label>
+                <input type="text" class="form-control" [ngClass]="cssValidator(f.razaoSocial)" name="razaoSocial" formControlName="razaoSocial" placeholder="Razão Social" autocomplete="razaoSocial" required>
+                <div *ngIf="f.razaoSocial.errors?.required" class="invalid-feedback">Razão Social é obrigatório</div>
+                <div *ngIf="f.razaoSocial.errors?.maxlength" class="invalid-feedback">Razão Social pode ter no máximo 70 caracteres</div>
+                <div *ngIf="f.razaoSocial.errors?.minlength" class="invalid-feedback">Razão Social pode ter no mínimo 10 caracteres</div>
+
+            </div>
+          </div>
+
+          <div class="form-row pt-3">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+  </form>
+</div>
