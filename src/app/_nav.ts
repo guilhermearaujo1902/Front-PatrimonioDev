@@ -16,13 +16,25 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Setor',
-    url: '/dashboard/setor',
-    icon: 'fa fa-users'
+    url: '/t',
+    icon: 'fa fa-users',
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/setor',
+        icon: 'fa fa-plus'
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarSetor',
+        icon: 'fa fa-list'
+      }
+    ]
   },
   {
     name: 'Permissao',
     url: '/dashboard/permissao',
-    icon: 'fa fa-users'
+    icon: 'fa ',
   },
   {
     name: 'Empresa',

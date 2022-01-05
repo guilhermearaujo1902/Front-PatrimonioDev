@@ -44,6 +44,7 @@ import { SetorComponent } from './views/setor/setor.component';
 import { EmpresaComponent } from './views/empresa/empresa.component';
 import { FabricanteComponent } from './views/fabricante/fabricante.component';
 import { PermissaoComponent } from './views/permissao/permissao.component';
+import { ListarsetorComponent } from './views/setor/listarsetor/listarsetor.component';
 
 @NgModule({
   imports: [
@@ -75,7 +76,8 @@ import { PermissaoComponent } from './views/permissao/permissao.component';
     SetorComponent,
     EmpresaComponent,
     FabricanteComponent,
-    PermissaoComponent
+    PermissaoComponent,
+    ListarsetorComponent
   ],
   providers: [
     {

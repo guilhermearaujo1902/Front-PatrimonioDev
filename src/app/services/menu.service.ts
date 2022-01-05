@@ -13,8 +13,12 @@ export class MenuService {
         path: './dashboard',
         children: [
           {
-            name: 'setor',
+            name: 'Setor',
             path: './setor',
+          },
+          {
+            name: 'Listar Setor',
+            path: './listarSetor',
           },
           {
             name: 'empresa',
