@@ -45,6 +45,9 @@ import { EmpresaComponent } from './views/empresa/empresa.component';
 import { FabricanteComponent } from './views/fabricante/fabricante.component';
 import { PermissaoComponent } from './views/permissao/permissao.component';
 import { ListarsetorComponent } from './views/setor/listarsetor/listarsetor.component';
+import { ListarpermissaoComponent } from './views/permissao/listarpermissao/listarpermissao.component';
+import { ListarempresaComponent } from './views/empresa/listarempresa/listarempresa.component';
+import { ListarfabricanteComponent } from './views/fabricante/listarfabricante/listarfabricante.component';
 
 @NgModule({
   imports: [
@@ -77,7 +80,10 @@ import { ListarsetorComponent } from './views/setor/listarsetor/listarsetor.comp
     EmpresaComponent,
     FabricanteComponent,
     PermissaoComponent,
-    ListarsetorComponent
+    ListarsetorComponent,
+    ListarpermissaoComponent,
+    ListarempresaComponent,
+    ListarfabricanteComponent
   ],
   providers: [
     {

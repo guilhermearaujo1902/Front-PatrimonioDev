@@ -7,6 +7,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
+import { ListarpermissaoComponent } from '../permissao/listarpermissao/listarpermissao.component';
+import { ListarempresaComponent } from '../empresa/listarempresa/listarempresa.component';
+import { ListarfabricanteComponent } from '../fabricante/listarfabricante/listarfabricante.component';
 
 const routes: Routes = [
   {
@@ -45,12 +48,33 @@ const routes: Routes = [
     }
   },
   {
+    path: 'listarFabricante',
+    component: ListarfabricanteComponent,
+    data: {
+      title: 'listarFabricante'
+    }
+  },
+  {
     path: 'permissao',
     component: PermissaoComponent,
     data: {
       title: 'Permissao'
     }
-  }
+  },
+  {
+    path: 'listarPermissao',
+    component: ListarpermissaoComponent,
+    data: {
+      title: 'listarPermissao'
+    }
+  },
+  {
+    path: 'listarEmpresa',
+    component: ListarempresaComponent,
+    data: {
+      title: 'listarEmpresa'
+    }
+  },
 ];
 
 @NgModule({

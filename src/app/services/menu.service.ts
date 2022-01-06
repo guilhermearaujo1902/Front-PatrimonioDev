@@ -21,13 +21,28 @@ export class MenuService {
             path: './listarSetor',
           },
           {
-            name: 'empresa',
+            name: 'Empresa',
             path: './empresa',
-          }
-          ,
+          },
           {
-            name: 'permissao',
+            name: 'Listar Empresa',
+            path: './listarEmpresa',
+          },
+          {
+            name: 'Permissão',
             path: './permissao',
+          },
+          {
+            name: 'Listar Permissões',
+            path: './listarPermissao',
+          },
+          {
+            name: 'Fabricante',
+            path: './fabricante',
+          },
+          {
+            name: 'Listar Fabricante',
+            path: './listarFabricante',
           }
         ]
       },

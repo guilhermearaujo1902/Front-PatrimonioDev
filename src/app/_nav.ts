@@ -16,7 +16,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Setor',
-    url: '/t',
+    url: '/s',
     icon: 'fa fa-users',
     children: [
       {
@@ -32,19 +32,55 @@ export const navItems: INavData[] = [
     ]
   },
   {
-    name: 'Permissao',
-    url: '/dashboard/permissao',
-    icon: 'fa ',
+    name: 'Permissão',
+    url: '/se',
+    icon: 'fa fa-address-card',
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/permissao',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarPermissao',
+        icon: 'fa fa-list'
+      }
+    ]
   },
   {
     name: 'Empresa',
-    url: '/dashboard/empresa',
-    icon: 'fa fa-building'
+    url: '/sem',
+    icon: 'fa fa-building',
+    children: [
+      {
+        name: 'Empresa',
+        url: '/dashboard/empresa',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarEmpresa',
+        icon: 'fa fa-list'
+      }
+    ]
   },
   {
     name: 'Fabricante',
-    url: '/dashboard/fabricante',
-    icon: 'fa fa-archive'
+    url: '/semu',
+    icon: 'fa fa-archive',
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/fabricante',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarFabricante',
+        icon: 'fa fa-list'
+      }
+   ]
   },
   {
     name: 'Typography',
