@@ -1,0 +1,112 @@
+<div class="card rounded shadow-sm ml-3 mt-3 p-3" id="formulario">
+  <form [formGroup]="form">
+    <h1>Cadastrar Patrimônio</h1>
+    <hr>
+      <div class="p-3">
+          <!-- <p>Form value: {{form.value | json}}</p> -->
+          <!-- <p>Form status: {{form.status | json}}</p> -->
+          <div class="form-row">
+              <div class="form-group col-12 text-start">
+                  <label>Código patrimônio</label>
+                  <input type="text" readonly class="form-control" name="codigoPatrimonio"  formControlName="codigoPatrimonio">
+              </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Usuário</label>
+                <select class="form-select form-control">
+                  <option selected value="1">Ativo</option>
+                  <option value="0">Desativado</option>
+                </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Equipamento</label>
+                <select class="form-select form-control">
+                  <option selected value="1">Ativo</option>
+                  <option value="0">Desativado</option>
+                </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Modelo</label>
+                <input type="text" class="form-control" name="modelo"  placeholder="Modelo do equipamento" autocomplete="modelo">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Service tag</label>
+                <input type="text" class="form-control" name="serviceTag"  placeholder="Tag para identificação" autocomplete="serviceTag">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Armazenamento</label>
+                <input type="text" class="form-control" name="armazenamento"  placeholder="Ex: 500GB" autocomplete="armazenamento">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Processador</label>
+                <input type="text" class="form-control" name="processador"  placeholder="Ex: I7 6º GERAÇÃO" autocomplete="processador">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Placa de vídeo</label>
+                <input type="text" class="form-control" name="placaVideo" placeholder="Placa de vídeo" autocomplete="placaVideo">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>IP</label>
+                <input type="text" class="form-control" name="ip"  placeholder="IP" autocomplete="ip">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Equipamento</label>
+                <select class="form-select form-control">
+                  <option selected value="1">EM USO</option>
+                  <option value="2">DISPONÍVEL</option>
+                  <option value="3">DANIFICADO</option>
+                  <option value="4">MANUTENÇÃO</option>
+                </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>MAC</label>
+                <input type="text" class="form-control" name="mac"  placeholder="IP" autocomplete="mac">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Memória RAM</label>
+                <input type="text" class="form-control" name="memoriaRam"  placeholder="EX: 13GB 1333MHz" autocomplete="memoriaRam">
+            </div>
+          </div>
+
+          <div class="form-row pt-3">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+  </form>
+</div>
