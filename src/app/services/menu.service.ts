@@ -43,6 +43,10 @@ export class MenuService {
           {
             name: 'Listar Fabricante',
             path: './listarFabricante',
+          },
+          {
+            name: 'Patrimônio',
+            path: './patrimonio',
           }
         ]
       },

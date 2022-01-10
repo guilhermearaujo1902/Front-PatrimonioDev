@@ -1,3 +1,4 @@
+import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { ListarsetorComponent } from './../setor/listarsetor/listarsetor.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
 import { FabricanteComponent } from './../fabricante/fabricante.component';
@@ -24,6 +25,13 @@ const routes: Routes = [
     component: SetorComponent,
     data: {
       title: 'Setor'
+    }
+  },
+  {
+    path: 'patrimonio',
+    component: PatrimonioComponent,
+    data: {
+      title: 'patrimonio'
     }
   },
   {

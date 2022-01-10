@@ -83,6 +83,23 @@ export const navItems: INavData[] = [
    ]
   },
   {
+    name: 'Patrimônio',
+    url: '/semur',
+    icon: 'fa fa-th',
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/patrimonio',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarFabricante',
+        icon: 'fa fa-list'
+      }
+   ]
+  },
+  {
     name: 'Typography',
     url: '/theme/typography',
     icon: 'icon-pencil'
