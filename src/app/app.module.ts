@@ -49,6 +49,7 @@ import { ListarpermissaoComponent } from './views/permissao/listarpermissao/list
 import { ListarempresaComponent } from './views/empresa/listarempresa/listarempresa.component';
 import { ListarfabricanteComponent } from './views/fabricante/listarfabricante/listarfabricante.component';
 import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
+import { ListarpatrimonioComponent } from './views/patrimonio/listarpatrimonio/listarpatrimonio.component';
 
 @NgModule({
   imports: [
@@ -85,7 +86,8 @@ import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
     ListarpermissaoComponent,
     ListarempresaComponent,
     ListarfabricanteComponent,
-    PatrimonioComponent
+    PatrimonioComponent,
+    ListarpatrimonioComponent
   ],
   providers: [
     {

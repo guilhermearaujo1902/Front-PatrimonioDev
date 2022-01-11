@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard.component';
 import { ListarpermissaoComponent } from '../permissao/listarpermissao/listarpermissao.component';
 import { ListarempresaComponent } from '../empresa/listarempresa/listarempresa.component';
 import { ListarfabricanteComponent } from '../fabricante/listarfabricante/listarfabricante.component';
+import { ListarpatrimonioComponent } from '../patrimonio/listarpatrimonio/listarpatrimonio.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,13 @@ const routes: Routes = [
     component: PatrimonioComponent,
     data: {
       title: 'patrimonio'
+    }
+  },
+  {
+    path: 'listarPatrimonio',
+    component: ListarpatrimonioComponent,
+    data: {
+      title: 'listarPatrimonio'
     }
   },
   {

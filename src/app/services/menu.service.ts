@@ -47,6 +47,10 @@ export class MenuService {
           {
             name: 'Patrimônio',
             path: './patrimonio',
+          },
+          {
+            name: 'Listar Patrimônio',
+            path: './listarPatrimonio',
           }
         ]
       },
