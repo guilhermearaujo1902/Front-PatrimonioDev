@@ -1,1 +1,36 @@
-<p>perca works!</p>
+<div class="card rounded shadow-sm ml-3 mt-3 p-3" id="formulario">
+  <form [formGroup]="form">
+    <h1>Cadastrar Perca</h1>
+    <hr>
+      <div class="p-3">
+          <!-- <p>Form value: {{form.value | json}}</p> -->
+          <!-- <p>Form status: {{form.status | json}}</p> -->
+
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Código do Patrimônio</label>
+                <input type="text" readonly class="form-control" name="codigoPatrimonio"  formControlName="codigoPatrimonio">
+            </div>
+        </div>
+
+          <div class="form-row">
+            <div class="form-group col-12 text-start">
+                <label>Motivo da perca</label>
+                <textarea  [ngClass]="cssValidator(f.motivo)" formControlName="motivo" class="form-control" name="motivo" rows="5" cols="50" required></textarea>
+                <div *ngIf="f.motivo.errors?.required" class="invalid-feedback">O motivo é obrigatório</div>
+                <div *ngIf="f.motivo.errors?.maxlength" class="invalid-feedback">O motivo pode ter no máximo 300 caracteres</div>
+                <div *ngIf="f.motivo.errors?.minlength" class="invalid-feedback">O motivo pode ter no mínimo 30 caracteres</div>
+
+            </div>
+          </div>
+          <div class="form-row pt-3">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+              </div>
+            </div>
+          </div>
+      </div>
+  </form>
+</div>

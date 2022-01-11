@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-perca',
@@ -7,9 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PercaComponent implements OnInit {
 
-  constructor() { }
+  form!: FormGroup;
+
+  get f(): any {
+    return this.form.controls;
+  }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
+    this.validacao();
   }
 
+  private validacao(): void {
+    this.form = this.fb.group({
+      codigoSetor: [],
+      motivo: ['', [Validators.required, Validators.minLength(30), Validators.maxLength(300)]],
+    });
+  }
+
+  public cssValidator(campoForm: FormControl): any {
+    return {'is-invalid': campoForm.errors && campoForm.touched};
+  }
 }

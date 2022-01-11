@@ -12,6 +12,7 @@ import { ListarpermissaoComponent } from '../permissao/listarpermissao/listarper
 import { ListarempresaComponent } from '../empresa/listarempresa/listarempresa.component';
 import { ListarfabricanteComponent } from '../fabricante/listarfabricante/listarfabricante.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listarpatrimonio/listarpatrimonio.component';
+import { PercaComponent } from '../perca/perca.component';
 
 const routes: Routes = [
   {
@@ -89,6 +90,13 @@ const routes: Routes = [
     component: ListarempresaComponent,
     data: {
       title: 'listarEmpresa'
+    }
+  },
+  {
+    path: 'perca',
+    component: PercaComponent,
+    data: {
+      title: 'perca'
     }
   },
 ];

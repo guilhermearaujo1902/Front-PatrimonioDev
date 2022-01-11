@@ -51,6 +51,10 @@ export class MenuService {
           {
             name: 'Listar Patrimônio',
             path: './listarPatrimonio',
+          },
+          {
+            name: 'Perca',
+            path: './perca',
           }
         ]
       },
