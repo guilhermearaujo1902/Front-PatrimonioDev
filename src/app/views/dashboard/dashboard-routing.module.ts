@@ -1,3 +1,4 @@
+import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { ListarsetorComponent } from './../setor/listarsetor/listarsetor.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
@@ -97,6 +98,14 @@ const routes: Routes = [
     component: PercaComponent,
     data: {
       title: 'perca'
+    }
+  }
+  ,
+  {
+    path: 'widget',
+    component: WidgetsComponent,
+    data: {
+      title: 'widget'
     }
   },
 ];

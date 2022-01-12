@@ -21,6 +21,10 @@ import { P500Component } from './views/error/500.component';
 import { LoginComponent } from './views/login/login.component';
 import { RegisterComponent } from './views/register/register.component';
 
+import { CommonModule } from '@angular/common';
+import { ToastrModule } from 'ngx-toastr';
+
+
 const APP_CONTAINERS = [
   DefaultLayoutComponent
 ];
@@ -51,12 +55,14 @@ import { ListarfabricanteComponent } from './views/fabricante/listarfabricante/l
 import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
 import { ListarpatrimonioComponent } from './views/patrimonio/listarpatrimonio/listarpatrimonio.component';
 import { PercaComponent } from './views/perca/perca.component';
+import { SetorService } from './services/setor.service';
 
 @NgModule({
   imports: [
     FormsModule,
     ReactiveFormsModule,
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,
@@ -71,6 +77,7 @@ import { PercaComponent } from './views/perca/perca.component';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
+    ToastrModule.forRoot(),
   ],
   declarations: [
     AppComponent,
@@ -94,10 +101,12 @@ import { PercaComponent } from './views/perca/perca.component';
   providers: [
     {
       provide: LocationStrategy,
-      useClass: HashLocationStrategy
+      useClass: HashLocationStrategy,
     },
     IconSetService,
-    MenuService
+    MenuService,
+    SetorService
+
   ],
   bootstrap: [ AppComponent ]
 })

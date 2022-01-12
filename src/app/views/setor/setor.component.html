@@ -15,17 +15,17 @@
           <div class="form-row">
             <div class="form-group col-12 text-start">
                 <label>Nome do Setor</label>
-                <input type="text" class="form-control" [ngClass]="cssValidator(f.nomeSetor)" name="nomeSetor" formControlName="nomeSetor" placeholder="Nome do setor" autocomplete="nomeSetor" required>
-                <div *ngIf="f.nomeSetor.errors?.required" class="invalid-feedback">Nome do setor é obrigatório</div>
-                <div *ngIf="f.nomeSetor.errors?.maxlength" class="invalid-feedback">Nome do setor pode ter no máximo 50 caracteres</div>
-                <div *ngIf="f.nomeSetor.errors?.minlength" class="invalid-feedback">Nome do setor pode ter no mínimo 4 caracteres</div>
+                <input type="text" class="form-control" [ngClass]="cssValidator(f.nome)" name="nome" formControlName="nome" placeholder="Nome do setor" autocomplete="nome" required>
+                <div *ngIf="f.nome.errors?.required" class="invalid-feedback">Nome do setor é obrigatório</div>
+                <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Nome do setor pode ter no máximo 50 caracteres</div>
+                <div *ngIf="f.nome.errors?.minlength" class="invalid-feedback">Nome do setor pode ter no mínimo 4 caracteres</div>
 
             </div>
           </div>
           <div class="form-row pt-3">
             <div class="row">
               <div class="col">
-                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid" (click)="salvarAlteracao()">Cadastrar</button>
               </div>
             </div>
           </div>

@@ -7,15 +7,15 @@ import { take } from 'rxjs/operators';
 
 @Injectable()
 
-export class SetorServiceService {
+export class SetorService {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}/setor`;
+  baseUrl = `${GlobalVariavel.BASE_API_URL}setor`;
 
   constructor(private http: HttpClient) { }
 
-  public post(setorDto: SetorDto): Observable<SetorDto> {
+  public post(setor: SetorDto): Observable<SetorDto> {
     return this.http
-    .post<SetorDto>(this.baseUrl, setorDto)
+    .post<SetorDto>(this.baseUrl, {setor})
     .pipe(take(1));
   }
 
