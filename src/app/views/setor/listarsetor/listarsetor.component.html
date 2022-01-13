@@ -28,24 +28,16 @@
 
           </tr>
       </thead>
-      <tbody >
-          <tr style="cursor: pointer;">
-              <td>1</td>
-              <td>Produto</td>
-
-<!--
-              <td>{{item.id}}</td>
-              <td>{{item.tema}}</td>
-              <td class="d-none d-md-table-cell">{{item.local}}</td>
-              <td>{{item.dataEvento | DateTimeFormat}}</td>
-              <td class="d-none d-md-table-cell">{{item.quantidadePessoas}}</td>
-              <td class="d-none d-md-table-cell">{{item.lotes[0]?.nome}}</td> -->
+      <tbody *ngIf="setores && setores.length > 0" >
+          <tr *ngFor="let item of setores" style="cursor: pointer;">
+              <td>{{item.codigoSetor}}</td>
+              <td>{{item.nome}}</td>
               <td>
-                  <div class="btn-group">
-                      <button class="btn btn-danger btn-lg" tooltip="Excluir">
-                          <i class="fa fa-delete"></i> Deletar
-                      </button>
-                  </div>
+                <div class="btn-group">
+                  <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="AbrirModal($event, template, item.codigoSetor)">
+                      <i class="fa fa-delete"></i> Deletar
+                  </button>
+                </div>
               </td>
               <td>
                 <div class="btn-group">
@@ -56,19 +48,19 @@
               </td>
           </tr>
       </tbody>
-      <!-- <tfoot *ngIf="eventos.length == 0">
+      <tfoot *ngIf="setores.length == 0">
           <tr>
               <td colspan="8" class="text-center">
-                  <h4>Nenhum evento encontrado</h4>
+                  <h4>Nenhum há nenhum setor cadastrado</h4>
               </td>
           </tr>
-      </tfoot> -->
+      </tfoot>
   </table>
 </div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a deleção do evento de código {{eventoId}}?</p>
-    <button type="button" class="btn btn-default" >Sim</button>
-    <button type="button" class="btn btn-primary" >Não</button>
+    <p>Deseja confirmar a deleção do evento de código {{setorId}}?</p>
+    <button type="button" class="btn btn-default" (click)="Confirmar()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="Recusar()">Não</button>
   </div>
 </ng-template>

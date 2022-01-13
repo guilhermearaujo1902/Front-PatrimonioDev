@@ -56,6 +56,7 @@ import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
 import { ListarpatrimonioComponent } from './views/patrimonio/listarpatrimonio/listarpatrimonio.component';
 import { PercaComponent } from './views/perca/perca.component';
 import { SetorService } from './services/setor.service';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 @NgModule({
   imports: [
@@ -69,6 +70,7 @@ import { SetorService } from './services/setor.service';
     HttpClientModule,
     AppBreadcrumbModule.forRoot(),
     AppFooterModule,
+    ModalModule.forRoot(),
     AppHeaderModule,
     AppSidebarModule,
     PerfectScrollbarModule,

@@ -1,4 +1,4 @@
-import { SetorDto } from './../../models/SetorDto';
+import { SetorDto } from '../../models/Dtos/SetorDto';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { SetorService } from '../../services/setor.service';
