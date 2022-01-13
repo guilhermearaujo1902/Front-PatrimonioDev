@@ -79,7 +79,13 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ChartsModule,
     IconModule,
     IconSetModule.forRoot(),
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot(
+      { timeOut: 3000,
+        positionClass: 'toast-bottom-right',
+        preventDuplicates: true,
+        progressBar: true
+      }
+    )
   ],
   declarations: [
     AppComponent,
