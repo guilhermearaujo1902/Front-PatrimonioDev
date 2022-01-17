@@ -100,6 +100,23 @@ export const navItems: INavData[] = [
    ]
   },
   {
+    name: 'Equipamento',
+    url: '/semurl',
+    icon: 'fa fa-desktop',
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/equipamento',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarPatrimonio',
+        icon: 'fa fa-list'
+      }
+   ]
+  },
+  {
     name: 'Typography',
     url: '/theme/typography',
     icon: 'icon-pencil'

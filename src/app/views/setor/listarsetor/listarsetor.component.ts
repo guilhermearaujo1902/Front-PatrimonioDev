@@ -3,6 +3,7 @@ import { SetorService } from './../../../services/setor.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-listarsetor',
@@ -19,7 +20,11 @@ export class ListarsetorComponent implements OnInit {
 
   modalRef?: BsModalRef;
 
-  constructor(private setorService: SetorService, private modalService: BsModalService, private toastr: ToastrService) { }
+  constructor(
+    private setorService: SetorService,
+    private modalService: BsModalService,
+    private toastr: ToastrService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.ObterSetor();
@@ -62,17 +67,18 @@ export class ListarsetorComponent implements OnInit {
   public Confirmar(): void {
 
     this.modalRef?.hide();
-    // this.spinner.show();
+    this.spinner.show();
 
     this.setorService.deletarSetor(this.setorId).subscribe(
       (result: string) =>{
-
+        this.spinner.hide();
         this.toastr.success('Setor removido com sucesso!', 'Deletado');
         this.ObterSetor();
 
       },
       (error: any) =>{
-        this.toastr.error(`Houve um erro ao remover o setor. Mensagem: ${error}`, 'Erro!');
+        this.spinner.hide();
+        this.toastr.error(`Houve um erro ao remover o setor. Mensagem: ${error.message}`, 'Erro!');
       }
     );
   }

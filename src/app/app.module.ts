@@ -1,6 +1,6 @@
 import { MenuService } from './services/menu.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -57,6 +57,8 @@ import { ListarpatrimonioComponent } from './views/patrimonio/listarpatrimonio/l
 import { PercaComponent } from './views/perca/perca.component';
 import { SetorService } from './services/setor.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { EquipamentoComponent } from './views/equipamento/equipamento.component';
 
 @NgModule({
   imports: [
@@ -78,6 +80,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     TabsModule.forRoot(),
     ChartsModule,
     IconModule,
+    NgxSpinnerModule,
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
       { timeOut: 3000,
@@ -104,7 +107,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ListarfabricanteComponent,
     PatrimonioComponent,
     ListarpatrimonioComponent,
-    PercaComponent
+    PercaComponent,
+    EquipamentoComponent
   ],
   providers: [
     {
@@ -116,6 +120,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     SetorService
 
   ],
-  bootstrap: [ AppComponent ]
+  bootstrap: [ AppComponent ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

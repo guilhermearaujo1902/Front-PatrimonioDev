@@ -12,7 +12,7 @@
       <div>
           <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/setor">
               <i class="fa fa-plus-circle my-1"></i>
-              <b class="ml-1 d-none d-sm-block" > Novo</b>
+              <b class="ml-1 d-none d-sm-block"> Novo</b>
           </a>
       </div>
   </div>
@@ -51,7 +51,7 @@
       <tfoot *ngIf="setores.length == 0">
           <tr>
               <td colspan="8" class="text-center">
-                  <h4>Nenhum há nenhum setor cadastrado</h4>
+                  <h4>Não há nenhum setor cadastrado</h4>
               </td>
           </tr>
       </tfoot>
@@ -64,3 +64,4 @@
     <button type="button" class="btn btn-primary" (click)="Recusar()">Não</button>
   </div>
 </ng-template>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Removendo... </p></ngx-spinner>

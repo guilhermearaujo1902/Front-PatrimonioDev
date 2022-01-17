@@ -25,10 +25,12 @@
           <div class="form-row pt-3">
             <div class="row">
               <div class="col">
-                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid" (click)="salvarAlteracao()">Cadastrar</button>
+                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid" (click)="salvarAlteracao()">
+                  Cadastrar</button>
               </div>
             </div>
           </div>
       </div>
   </form>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>

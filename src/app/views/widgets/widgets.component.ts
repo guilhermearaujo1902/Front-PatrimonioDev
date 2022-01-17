@@ -3,7 +3,8 @@ import { getStyle } from '@coreui/coreui/dist/js/coreui-utilities';
 import { CustomTooltips } from '@coreui/coreui-plugin-chartjs-custom-tooltips';
 
 @Component({
-  templateUrl: 'widgets.component.html'
+  templateUrl: 'widgets.component.html',
+  styleUrls: ['widgets.component.scss']
 })
 export class WidgetsComponent {
 

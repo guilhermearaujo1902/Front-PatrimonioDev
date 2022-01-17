@@ -1,3 +1,4 @@
+import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { ListarsetorComponent } from './../setor/listarsetor/listarsetor.component';
@@ -18,7 +19,7 @@ import { PercaComponent } from '../perca/perca.component';
 const routes: Routes = [
   {
     path: '',
-    component: DashboardComponent,
+    component: WidgetsComponent,
     data: {
       title: 'Dashboard'
     }
@@ -98,6 +99,14 @@ const routes: Routes = [
     component: PercaComponent,
     data: {
       title: 'perca'
+    }
+  }
+  ,
+  {
+    path: 'equipamento',
+    component: EquipamentoComponent,
+    data: {
+      title: 'equipamento'
     }
   }
   ,
