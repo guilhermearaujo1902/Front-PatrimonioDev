@@ -21,8 +21,8 @@
       <thead>
           <tr>
 
-              <th>Código Setor</th>
-              <th>Nome Setor</th>
+              <th>Código Equipamento</th>
+              <th>Descrição</th>
               <th>Excluir</th>
               <th>Alterar</th>
 
@@ -51,7 +51,7 @@
       <tfoot *ngIf="setores.length == 0">
           <tr>
               <td colspan="8" class="text-center">
-                  <h4>Não há nenhum setor cadastrado</h4>
+                  <h4>Não há nenhum equipamento cadastrado</h4>
               </td>
           </tr>
       </tfoot>
@@ -59,7 +59,7 @@
 </div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a deleção do setor de código {{setorId}}?</p>
+    <p>Deseja confirmar a deleção do equipamento de código {{setorId}}?</p>
     <button type="button" class="btn btn-default" (click)="Confirmar()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="Recusar()">Não</button>
   </div>

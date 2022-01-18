@@ -59,6 +59,7 @@ import { SetorService } from './services/setor.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoComponent } from './views/equipamento/equipamento.component';
+import { ListarequipamentoComponent } from './views/equipamento/listarequipamento/listarequipamento.component';
 
 @NgModule({
   imports: [
@@ -108,7 +109,8 @@ import { EquipamentoComponent } from './views/equipamento/equipamento.component'
     PatrimonioComponent,
     ListarpatrimonioComponent,
     PercaComponent,
-    EquipamentoComponent
+    EquipamentoComponent,
+    ListarequipamentoComponent
   ],
   providers: [
     {
