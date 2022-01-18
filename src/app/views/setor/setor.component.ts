@@ -1,9 +1,9 @@
-import { SetorDto } from '../../models/Dtos/SetorDto';
+import { SetorDto } from '../../models/dtos/SetorDto';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-import { SetorService } from '../../services/setor.service';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { SetorService } from '../../services/setor/setor.service';
 
 @Component({
   selector: 'app-setor',

@@ -1,4 +1,4 @@
-import { MenuService } from './services/menu.service';
+import { MenuService } from './services/menu/menu.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
@@ -48,18 +48,18 @@ import { SetorComponent } from './views/setor/setor.component';
 import { EmpresaComponent } from './views/empresa/empresa.component';
 import { FabricanteComponent } from './views/fabricante/fabricante.component';
 import { PermissaoComponent } from './views/permissao/permissao.component';
-import { ListarsetorComponent } from './views/setor/listarsetor/listarsetor.component';
-import { ListarpermissaoComponent } from './views/permissao/listarpermissao/listarpermissao.component';
+import { ListarsetorComponent } from './views/setor/listagem-setor/listagem-setor.component';
+import { ListarpermissaoComponent } from './views/permissao/listagem-permissao/listagem-permissao.component';
 import { ListarempresaComponent } from './views/empresa/listarempresa/listarempresa.component';
-import { ListarfabricanteComponent } from './views/fabricante/listarfabricante/listarfabricante.component';
+import { ListarfabricanteComponent } from './views/fabricante/listarFabricante/listarFabricante.component';
 import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
-import { ListarpatrimonioComponent } from './views/patrimonio/listarpatrimonio/listarpatrimonio.component';
+import { ListarpatrimonioComponent } from './views/patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from './views/perca/perca.component';
-import { SetorService } from './services/setor.service';
+import { SetorService } from './services/setor/setor.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoComponent } from './views/equipamento/equipamento.component';
-import { ListarequipamentoComponent } from './views/equipamento/listarequipamento/listarequipamento.component';
+import { ListarequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
 
 @NgModule({
   imports: [

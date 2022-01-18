@@ -1,5 +1,5 @@
-import { Setor } from './../../../models/Setor';
-import { SetorService } from './../../../services/setor.service';
+import { Setor } from '../../../models/Setor';
+import { SetorService } from '../../../services/setor/setor.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
@@ -7,8 +7,8 @@ import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-listarsetor',
-  templateUrl: './listarsetor.component.html',
-  styleUrls: ['./listarsetor.component.scss']
+  templateUrl: './listagem-setor.component.html',
+  styleUrls: ['./listagem-setor.component.scss']
 })
 export class ListarsetorComponent implements OnInit {
 

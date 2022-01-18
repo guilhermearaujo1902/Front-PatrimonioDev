@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-listarpatrimonio',
-  templateUrl: './listarpatrimonio.component.html',
-  styleUrls: ['./listarpatrimonio.component.scss']
+  selector: 'app-listarPatrimonio',
+  templateUrl: './listagem-patrimonio.component.html',
+  styleUrls: ['./listagem-patrimonio.component.scss']
 })
 export class ListarpatrimonioComponent implements OnInit {
 

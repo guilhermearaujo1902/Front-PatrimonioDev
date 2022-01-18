@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuService } from '../../services/menu.service';
+import { MenuService } from '../../services/menu/menu.service';
 import { navItems } from '../../_nav';
 
 @Component({
@@ -34,7 +34,6 @@ export class DefaultLayoutComponent implements OnInit{
         this.breadcrumbList.length = 0;
 
         routerList = routerUrl.slice(1).split('/');
-        console.log("teste "+routerList);
         routerList.forEach((router, index) => {
 
           target = target.find(page => page.path.slice(2) === router);

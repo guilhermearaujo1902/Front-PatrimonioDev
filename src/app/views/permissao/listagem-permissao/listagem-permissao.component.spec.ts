@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListarpatrimonioComponent } from './listarpatrimonio.component';
+import { ListarpermissaoComponent } from './listagem-permissao.component';
 
-describe('ListarpatrimonioComponent', () => {
-  let component: ListarpatrimonioComponent;
-  let fixture: ComponentFixture<ListarpatrimonioComponent>;
+describe('ListarpermissaoComponent', () => {
+  let component: ListarpermissaoComponent;
+  let fixture: ComponentFixture<ListarpermissaoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListarpatrimonioComponent ]
+      declarations: [ ListarpermissaoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarpatrimonioComponent);
+    fixture = TestBed.createComponent(ListarpermissaoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

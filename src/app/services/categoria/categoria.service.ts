@@ -1,8 +1,8 @@
-import { Categoria } from './../models/Categoria';
+import { Categoria } from '../../models/Categoria';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { take } from 'rxjs/operators';
-import { GlobalVariavel } from '../../global';
+import { GlobalVariavel } from '../../../global';
 import { Observable } from 'rxjs';
 
 @Injectable({

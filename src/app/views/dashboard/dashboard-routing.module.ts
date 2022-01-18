@@ -1,7 +1,7 @@
 import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
-import { ListarsetorComponent } from './../setor/listarsetor/listarsetor.component';
+import { ListarsetorComponent } from '../setor/listagem-setor/listagem-setor.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
 import { FabricanteComponent } from './../fabricante/fabricante.component';
 import { EmpresaComponent } from './../empresa/empresa.component';
@@ -10,10 +10,10 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { DashboardComponent } from './dashboard.component';
-import { ListarpermissaoComponent } from '../permissao/listarpermissao/listarpermissao.component';
+import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
 import { ListarempresaComponent } from '../empresa/listarempresa/listarempresa.component';
-import { ListarfabricanteComponent } from '../fabricante/listarfabricante/listarfabricante.component';
-import { ListarpatrimonioComponent } from '../patrimonio/listarpatrimonio/listarpatrimonio.component';
+import { ListarfabricanteComponent } from '../fabricante/listarFabricante/listarFabricante.component';
+import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from '../perca/perca.component';
 
 const routes: Routes = [

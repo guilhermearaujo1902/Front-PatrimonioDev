@@ -1,4 +1,4 @@
-import { CategoriaService } from './../../services/categoria.service';
+import { CategoriaService } from '../../services/categoria/categoria.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupName, Validators } from '@angular/forms';
 import { Categoria } from '../../models/Categoria';

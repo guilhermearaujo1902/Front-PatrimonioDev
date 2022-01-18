@@ -1,10 +1,10 @@
-import { SetorDto } from '../models/Dtos/SetorDto';
+import { SetorDto } from '../../models/dtos/SetorDto';
 import { Injectable } from '@angular/core';
-import { GlobalVariavel } from '../../global';
+import { GlobalVariavel } from '../../../global';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Setor } from '../models/Setor';
+import { Setor } from '../../models/Setor';
 
 @Injectable()
 
