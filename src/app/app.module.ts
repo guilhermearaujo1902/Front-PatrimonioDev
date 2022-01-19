@@ -1,15 +1,15 @@
+import { WidgetsModule } from './views/widgets/widgets.module';
 import { MenuService } from './services/menu/menu.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
-
 
 import { AppComponent } from './app.component';
 
@@ -24,6 +24,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { CommonModule } from '@angular/common';
 import { ToastrModule } from 'ngx-toastr';
 
+import { ChartsModule } from 'ng2-charts';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -43,7 +44,6 @@ import { AppRoutingModule } from './app.routing';
 // Import 3rd party components
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TabsModule } from 'ngx-bootstrap/tabs';
-import { ChartsModule } from 'ng2-charts';
 import { SetorComponent } from './views/setor/setor.component';
 import { EmpresaComponent } from './views/empresa/empresa.component';
 import { FabricanteComponent } from './views/fabricante/fabricante.component';
@@ -76,12 +76,13 @@ import { UsuarioComponent } from './views/usuario/usuario.component';
     AppFooterModule,
     ModalModule.forRoot(),
     AppHeaderModule,
+    ChartsModule,
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
-    ChartsModule,
     IconModule,
+    WidgetsModule,
     NgxSpinnerModule,
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
