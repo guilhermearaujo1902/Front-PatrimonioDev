@@ -60,6 +60,11 @@ export class MenuService {
             name: 'Equipamento',
             path: './equipamento',
           }
+          ,
+          {
+            name: 'Usuário',
+            path: './usuario',
+          }
         ]
       },
     ];

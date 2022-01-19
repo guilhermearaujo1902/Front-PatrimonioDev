@@ -60,6 +60,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoComponent } from './views/equipamento/equipamento.component';
 import { ListarequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
+import { UsuarioComponent } from './views/usuario/usuario.component';
 
 @NgModule({
   imports: [
@@ -110,7 +111,8 @@ import { ListarequipamentoComponent } from './views/equipamento/listagem-equipam
     ListarpatrimonioComponent,
     PercaComponent,
     EquipamentoComponent,
-    ListarequipamentoComponent
+    ListarequipamentoComponent,
+    UsuarioComponent
   ],
   providers: [
     {

@@ -13,6 +13,7 @@ export class PercaComponent implements OnInit {
   get f(): any {
     return this.form.controls;
   }
+
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {

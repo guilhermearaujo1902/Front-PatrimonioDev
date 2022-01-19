@@ -1,3 +1,4 @@
+import { UsuarioComponent } from './../usuario/usuario.component';
 import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
@@ -107,6 +108,14 @@ const routes: Routes = [
     component: EquipamentoComponent,
     data: {
       title: 'equipamento'
+    }
+  }
+  ,
+  {
+    path: 'usuario',
+    component: UsuarioComponent,
+    data: {
+      title: 'usuario'
     }
   }
   ,

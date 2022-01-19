@@ -1,6 +1,6 @@
 <div class="card rounded shadow-sm ml-3 mt-3 p-3" id="formulario">
   <form [formGroup]="form">
-    <h1>Cadastrar Permissão</h1>
+    <h1>Cadastrar permissão</h1>
     <hr>
       <div class="p-3">
           <!-- <p>Form value: {{form.value | json}}</p> -->
@@ -36,6 +36,9 @@
             <div class="row">
               <div class="col">
                 <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
               </div>
             </div>
           </div>
