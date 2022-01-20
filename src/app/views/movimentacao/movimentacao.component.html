@@ -1,0 +1,66 @@
+<div class="card rounded shadow-sm ml-3 m-3 p-3" id="formulario">
+  <form [formGroup]="form">
+
+      <h1>Cadastrar movimentação</h1>
+      <hr>
+      <div class="p-3">
+        <!-- <p>Form value: {{form.value | json}}</p> -->
+        <!-- <p>Form status: {{form.status | json}}</p> -->
+        <div class="form-row">
+          <div class="form-group col-12 text-start">
+            <label>Código movimentação</label>
+            <input type="text" readonly class="form-control" name="codigoMovimentacao" formControlName="codigoMovimentacao">
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6 text-start">
+            <label>Usuário</label>
+            <select class="form-select form-control">
+              <option selected value="1">Adolfo</option>
+              <option value="0">Desativado</option>
+            </select>
+          </div>
+
+          <div class="form-group col-6 text-start">
+            <label>Patrimônio</label>
+            <select class="form-select form-control">
+              <option selected value="1">Dell G15</option>
+              <option value="0">Desativado</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-6 text-start">
+            <label>Data Apropriação</label>
+            <input type="date" class="form-control" formControlName="dataApropriacao" name="dataApropriacao" required>
+            <div *ngIf="f.dataApropriacao.errors?.required" class="invalid-feedback">Data de apropriação é obrigatório</div>
+          </div>
+
+          <div class="form-group col-6 text-start">
+            <label>Data Devolução</label>
+            <input type="date" class="form-control" name="dataDevolucao" >
+          </div>
+       </div>
+        <div class="form-row">
+          <div class="form-group col-12 text-start">
+              <label>Observação</label>
+              <textarea  class="form-control" name="observacao" rows="5" cols="50"></textarea>
+          </div>
+        </div>
+
+
+        <div class="form-row pt-3">
+          <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+            </div>
+            <div class="col">
+              <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  </form>
+</div>

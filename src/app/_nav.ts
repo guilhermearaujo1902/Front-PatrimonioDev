@@ -4,7 +4,7 @@ export const navItems: INavData[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
-    icon: 'icon-speedometer',
+    icon: 'icon-chart',
   },
   {
     name: 'Setor',
@@ -116,6 +116,23 @@ export const navItems: INavData[] = [
       {
         name: 'Cadastrar',
         url: '/dashboard/usuario',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarPatrimonio',
+        icon: 'fa fa-list'
+      }
+   ]
+  },
+  {
+    name: 'Movimentação',
+    url: '/semurl',
+    icon: 'fa fa-exchange',
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/movimentacao',
         icon: 'fa fa-plus',
       },
       {

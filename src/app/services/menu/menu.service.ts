@@ -64,6 +64,10 @@ export class MenuService {
           {
             name: 'Usuário',
             path: './usuario',
+          },
+          {
+            name: 'Movimentação',
+            path: './movimentacao',
           }
         ]
       },

@@ -54,13 +54,14 @@ import { ListarempresaComponent } from './views/empresa/listarempresa/listarempr
 import { ListarfabricanteComponent } from './views/fabricante/listarFabricante/listarFabricante.component';
 import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
 import { ListarpatrimonioComponent } from './views/patrimonio/listagem-patrimonio/listagem-patrimonio.component';
-import { PercaComponent } from './views/perca/perca.component';
 import { SetorService } from './services/setor/setor.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoComponent } from './views/equipamento/equipamento.component';
 import { ListarequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
+import { MovimentacaoComponent } from './views/movimentacao/movimentacao.component';
+import { PercaComponent } from './views/perca/perca.component';
 
 @NgModule({
   imports: [
@@ -113,7 +114,8 @@ import { UsuarioComponent } from './views/usuario/usuario.component';
     PercaComponent,
     EquipamentoComponent,
     ListarequipamentoComponent,
-    UsuarioComponent
+    UsuarioComponent,
+    MovimentacaoComponent
   ],
   providers: [
     {

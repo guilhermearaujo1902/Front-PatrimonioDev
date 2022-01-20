@@ -16,13 +16,16 @@ export class DefaultLayoutComponent implements OnInit{
   breadcrumbList: Array<any> = [];
 
   constructor(private _router: Router, private menuService: MenuService){}
+
   ngOnInit(): void {
     this.menu = this.menuService.obterMenu();
     this.ouvirRota();
   }
+
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
+
   ouvirRota() {
     let routerUrl: string, routerList: Array<any>, target: any;
 
@@ -31,16 +34,20 @@ export class DefaultLayoutComponent implements OnInit{
       if (routerUrl && typeof routerUrl === 'string') {
 
         target = this.menu;
-        this.breadcrumbList.length = 0;
 
+        this.breadcrumbList.length = 0;
         routerList = routerUrl.slice(1).split('/');
         routerList.forEach((router, index) => {
 
           target = target.find(page => page.path.slice(2) === router);
 
+          if (!target.name){
+              target.name = 'dashboard';
+              target.path = '/dashboard';
+          }
+
           this.breadcrumbList.push({
             name: target.name,
-
             path: (index === 0) ? target.path : `${this.breadcrumbList[index - 1].path}/${target.path.slice(2)}`
           });
 

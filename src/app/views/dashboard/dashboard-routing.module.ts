@@ -1,3 +1,4 @@
+import { MovimentacaoComponent } from './../movimentacao/movimentacao.component';
 import { UsuarioComponent } from './../usuario/usuario.component';
 import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
@@ -10,7 +11,6 @@ import { SetorComponent } from './../setor/setor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { DashboardComponent } from './dashboard.component';
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
 import { ListarempresaComponent } from '../empresa/listarempresa/listarempresa.component';
 import { ListarfabricanteComponent } from '../fabricante/listarFabricante/listarFabricante.component';
@@ -124,6 +124,14 @@ const routes: Routes = [
     component: WidgetsComponent,
     data: {
       title: 'widget'
+    }
+  },
+
+  {
+    path: 'movimentacao',
+    component: MovimentacaoComponent,
+    data: {
+      title: 'movimentacao'
     }
   },
 ];
