@@ -16,6 +16,7 @@ import { ListarempresaComponent } from '../empresa/listarempresa/listarempresa.c
 import { ListarfabricanteComponent } from '../fabricante/listarFabricante/listarFabricante.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from '../perca/perca.component';
+import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 
 const routes: Routes = [
   {
@@ -132,6 +133,13 @@ const routes: Routes = [
     component: MovimentacaoComponent,
     data: {
       title: 'movimentacao'
+    }
+  },
+  {
+    path: 'listarMovimentacao',
+    component: ListagemMovimentacaoComponent,
+    data: {
+      title: 'listarMovimentacao'
     }
   },
 ];

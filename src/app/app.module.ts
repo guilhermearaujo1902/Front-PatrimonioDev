@@ -62,6 +62,7 @@ import { ListarequipamentoComponent } from './views/equipamento/listagem-equipam
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import { MovimentacaoComponent } from './views/movimentacao/movimentacao.component';
 import { PercaComponent } from './views/perca/perca.component';
+import { ListagemMovimentacaoComponent } from './views/movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 
 @NgModule({
   imports: [
@@ -115,7 +116,8 @@ import { PercaComponent } from './views/perca/perca.component';
     EquipamentoComponent,
     ListarequipamentoComponent,
     UsuarioComponent,
-    MovimentacaoComponent
+    MovimentacaoComponent,
+    ListagemMovimentacaoComponent
   ],
   providers: [
     {

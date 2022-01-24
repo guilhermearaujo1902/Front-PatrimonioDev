@@ -11,5 +11,4 @@ export class ListarpatrimonioComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
