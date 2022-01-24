@@ -53,38 +53,34 @@
               <td class="d-none d-md-table-cell">{{item.lotes[0]?.nome}}</td> -->
         <td>
           <div class="btn-group">
-            <button class="btn btn-danger btn-lg" tooltip="Excluir">
-              <i class="fa fa-delete"></i> Deletar
+            <button class="btn btn-danger" tooltip="Excluir">
+              <i class="fa fa-delete"></i>Deletar
             </button>
           </div>
         </td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-warning btn-lg" tooltip="Alterar">
-              <i class="fa fa-delete"></i> Alterar
+            <button class="btn btn-warning" tooltip="Alterar">
+              <i class="fa fa-delete"></i>Alterar
             </button>
           </div>
         </td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-dark btn-lg" tooltip="Alterar">
-              <a routerLink="/dashboard/perca"><i class="fa fa-delete"></i> Declarar</a>
+            <button class="btn btn-dark" tooltip="Alterar">
+              <a routerLink="/dashboard/perca"><i class="fa fa-delete"></i>Declarar</a>
             </button>
           </div>
         </td>
-
-
-
         <td>
-
           <div class="btn-group">
-            <li class=" dropdown btn btn-danger btn-lg">
+            <li class="dropdown btn btn-danger">
               <a class="dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-expanded="false">
                 Ações
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Cadastrar</a>
-                <a class="dropdown-item" href="#">Listar</a>
+                <a class="dropdown-item" routerLink="/dashboard/movimentacao" href="#">Cadastrar</a>
+                <a class="dropdown-item" routerLink="/dashboard/listarMovimentacao" href="#">Listar</a>
               </div>
             </li>
           </div>

@@ -103,7 +103,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarPatrimonio',
+        url: '/dashboard/listarEquipamento',
         icon: 'fa fa-list'
       }
    ]
