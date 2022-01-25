@@ -89,7 +89,7 @@ import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/lista
     NgxSpinnerModule,
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
-      { timeOut: 3000,
+      { timeOut: 1700,
         positionClass: 'toast-bottom-right',
         preventDuplicates: true,
         progressBar: true

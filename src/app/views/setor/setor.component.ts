@@ -1,5 +1,4 @@
-import { ActivatedRoute } from '@angular/router';
-import { SetorDto } from '../../models/dtos/SetorDto';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
@@ -15,7 +14,6 @@ import { Setor } from '../../models/Setor';
 export class SetorComponent implements OnInit {
 
   form!: FormGroup;
-  // setorDto = {} as SetorDto;
   setor = {} as Setor;
   codigoSetor: number;
   estadoSalvar: string = 'post';
@@ -29,7 +27,8 @@ export class SetorComponent implements OnInit {
     private setorService: SetorService,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
-    private activateRouter: ActivatedRoute) { }
+    private activateRouter: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.validacao();
@@ -66,7 +65,13 @@ export class SetorComponent implements OnInit {
         this.spinner.hide();
         this.toaster.error(`Houve um erro durante o cadastro do setor. Mensagem: ${error.message}`, 'Erro!');
       },
-      () =>  this.spinner.hide()
+      () =>
+      {
+        this.spinner.hide()
+        setTimeout(() => {
+          this.router.navigate(['dashboard/listarSetor'])
+        }, 1700)
+      }
     );
   }
 
