@@ -24,13 +24,6 @@ export const routes: Routes = [
     }
   },
   {
-    path: 'setor',
-    component: SetorComponent,
-    data: {
-      title: 'Setor'
-    }
-  },
-  {
     path: '500',
     component: P500Component,
     data: {

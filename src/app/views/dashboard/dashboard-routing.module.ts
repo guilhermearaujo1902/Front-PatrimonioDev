@@ -1,3 +1,5 @@
+import { ListagemequipamentoComponent } from './../equipamento/listagem-equipamento/listagem-equipamento.component';
+import { ListagemUsuarioComponent } from './../usuario/listagem-usuario/listagem-usuario.component';
 import { MovimentacaoComponent } from './../movimentacao/movimentacao.component';
 import { UsuarioComponent } from './../usuario/usuario.component';
 import { EquipamentoComponent } from './../equipamento/equipamento.component';
@@ -6,17 +8,16 @@ import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { ListarsetorComponent } from '../setor/listagem-setor/listagem-setor.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
 import { FabricanteComponent } from './../fabricante/fabricante.component';
-import { EmpresaComponent } from './../empresa/empresa.component';
 import { SetorComponent } from './../setor/setor.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
-import { ListarempresaComponent } from '../empresa/listarempresa/listarempresa.component';
 import { ListarfabricanteComponent } from '../fabricante/listarFabricante/listarFabricante.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from '../perca/perca.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
+import { EmpresaRoutingModule } from '../empresa/empresa-routing.module';
 
 const routes: Routes = [
   {
@@ -55,13 +56,6 @@ const routes: Routes = [
     }
   },
   {
-    path: 'empresa',
-    component: EmpresaComponent,
-    data: {
-      title: 'Empresa'
-    }
-  },
-  {
     path: 'fabricante',
     component: FabricanteComponent,
     data: {
@@ -90,13 +84,6 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarEmpresa',
-    component: ListarempresaComponent,
-    data: {
-      title: 'listarEmpresa'
-    }
-  },
-  {
     path: 'perca',
     component: PercaComponent,
     data: {
@@ -110,13 +97,26 @@ const routes: Routes = [
     data: {
       title: 'equipamento'
     }
-  }
-  ,
+  },
+  {
+    path: 'listarEquipamento',
+    component: ListagemequipamentoComponent,
+    data: {
+      title: 'listarEquipamento'
+    }
+  },
   {
     path: 'usuario',
     component: UsuarioComponent,
     data: {
       title: 'usuario'
+    }
+  },
+  {
+    path: 'listarUsuario',
+    component: ListagemUsuarioComponent,
+    data: {
+      title: 'listarUsuario'
     }
   }
   ,
@@ -145,7 +145,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes)],
+  imports: [RouterModule.forChild(routes),EmpresaRoutingModule],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule {}

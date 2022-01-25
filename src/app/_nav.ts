@@ -120,7 +120,7 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarPatrimonio',
+        url: '/dashboard/listarUsuario',
         icon: 'fa fa-list'
       }
    ]

@@ -10,7 +10,7 @@ import { EquipamentoService } from '../../../services/equipamento/equipamento.se
   templateUrl: './listagem-equipamento.component.html',
   styleUrls: ['./listagem-equipamento.component.scss']
 })
-export class ListarequipamentoComponent implements OnInit {
+export class ListagemequipamentoComponent implements OnInit {
 
   public equipamentos: Equipamento[] = [];
   public equipamentosFiltrados: Equipamento[] = [];

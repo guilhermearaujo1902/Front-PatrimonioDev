@@ -26,7 +26,6 @@ export class SetorComponent implements OnInit {
 
   ngOnInit(): void {
     this.validacao();
-    this.spinner.hide();
   }
 
   private validacao(): void {

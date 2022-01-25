@@ -54,9 +54,9 @@
           <div class="form-group col-6 text-start">
               <label>Username</label>
               <input type="text" class="form-control" [ngClass]="cssValidator(f.username)" name="username" formControlName="username" placeholder="Nome do usuário" required>
-              <div *ngIf="f.nomeFabricante.errors?.required" class="invalid-feedback">Nome do fabricante é obrigatório</div>
-              <div *ngIf="f.nomeFabricante.errors?.maxlength" class="invalid-feedback">Nome do fabricante pode ter no máximo 60 caracteres</div>
-              <div *ngIf="f.nomeFabricante.errors?.minlength" class="invalid-feedback">Nome do fabricante pode ter no mínimo 2 caracteres</div>
+              <div *ngIf="f.username.errors?.required" class="invalid-feedback">Nome é obrigatório</div>
+              <div *ngIf="f.username.errors?.maxlength" class="invalid-feedback">Nome pode ter no máximo 60 caracteres</div>
+              <div *ngIf="f.username.errors?.minlength" class="invalid-feedback">Nome pode ter no mínimo 2 caracteres</div>
 
           </div>
           <div class="form-group col-6 text-start">
@@ -76,9 +76,7 @@
         </div>
         <div class="form-group col-6 text-start">
           <label>Repita a senha</label>
-          <input type="password" class="form-control" [ngClass]="cssValidator(f.repitirSenha)" name="email" formControlName="repitirSenha" placeholder="Repita a senha" required>
-          <div *ngIf="f.email.errors?.required" class="invalid-feedback">E-mail é obrigatório</div>
-          <div *ngIf="f.email.errors?.maxlength" class="invalid-feedback">E-mail pode ter no mínimo 10 caracteres</div>
+          <input type="password" class="form-control" name="repitirSenha"  placeholder="Repita a senha" required>
         </div>
 
         </div>

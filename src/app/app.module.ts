@@ -50,7 +50,7 @@ import { FabricanteComponent } from './views/fabricante/fabricante.component';
 import { PermissaoComponent } from './views/permissao/permissao.component';
 import { ListarsetorComponent } from './views/setor/listagem-setor/listagem-setor.component';
 import { ListarpermissaoComponent } from './views/permissao/listagem-permissao/listagem-permissao.component';
-import { ListarempresaComponent } from './views/empresa/listarempresa/listarempresa.component';
+import { ListagemEmpresaComponent } from './views/empresa/listagem-empresa/listagem-empresa.component';
 import { ListarfabricanteComponent } from './views/fabricante/listarFabricante/listarFabricante.component';
 import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
 import { ListarpatrimonioComponent } from './views/patrimonio/listagem-patrimonio/listagem-patrimonio.component';
@@ -58,11 +58,12 @@ import { SetorService } from './services/setor/setor.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { EquipamentoComponent } from './views/equipamento/equipamento.component';
-import { ListarequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
+import { ListagemequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import { MovimentacaoComponent } from './views/movimentacao/movimentacao.component';
 import { PercaComponent } from './views/perca/perca.component';
 import { ListagemMovimentacaoComponent } from './views/movimentacao/listagem-movimentacao/listagem-movimentacao.component';
+import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/listagem-usuario.component';
 
 @NgModule({
   imports: [
@@ -102,22 +103,24 @@ import { ListagemMovimentacaoComponent } from './views/movimentacao/listagem-mov
     P500Component,
     LoginComponent,
     RegisterComponent,
+    EquipamentoComponent,
     SetorComponent,
+    UsuarioComponent,
+    PercaComponent,
+    MovimentacaoComponent,
     EmpresaComponent,
+    PatrimonioComponent,
     FabricanteComponent,
     PermissaoComponent,
     ListarsetorComponent,
     ListarpermissaoComponent,
-    ListarempresaComponent,
+    ListagemEmpresaComponent,
     ListarfabricanteComponent,
-    PatrimonioComponent,
     ListarpatrimonioComponent,
-    PercaComponent,
-    EquipamentoComponent,
-    ListarequipamentoComponent,
-    UsuarioComponent,
-    MovimentacaoComponent,
-    ListagemMovimentacaoComponent
+    ListagemMovimentacaoComponent,
+    ListagemUsuarioComponent,
+    ListagemequipamentoComponent
+
   ],
   providers: [
     {
