@@ -1,21 +1,18 @@
 {
   "name": "@coreui/coreui-free-angular-admin-template",
   "version": "2.11.2",
-  "description": "CoreUI Free Angular 11 Admin Template",
+  "description": "PatrimonioPS",
   "author": {
-    "name": "Łukasz Holeczek",
-    "url": "http://holeczek.pl",
-    "github": "https://github.com/mrholek",
+    "name": "Adolfo Poiatti",
+    "github": "https://github.com/adolfosp/-Front-PatrimonioDev",
     "twitter": "https://twitter.com/lukaszholeczek"
   },
   "contributors": [
     {
-      "name": "Andrzej Kopański",
-      "url": "https://github.com/xidedix"
+      "name": "Adolfo Poiatti",
+      "url": "https://github.com/adolfosp"
     }
   ],
-  "homepage": "https://coreui.io/angular",
-  "copyright": "Copyright 2021 creativeLabs Łukasz Holeczek",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
