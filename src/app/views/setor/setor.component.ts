@@ -1,9 +1,11 @@
+import { ActivatedRoute } from '@angular/router';
 import { SetorDto } from '../../models/dtos/SetorDto';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SetorService } from '../../services/setor/setor.service';
+import { Setor } from '../../models/Setor';
 
 @Component({
   selector: 'app-setor',
@@ -13,7 +15,11 @@ import { SetorService } from '../../services/setor/setor.service';
 export class SetorComponent implements OnInit {
 
   form!: FormGroup;
-  setor = {} as SetorDto;
+  // setorDto = {} as SetorDto;
+  setor = {} as Setor;
+  codigoSetor: number;
+  estadoSalvar: string = 'post';
+
 
   get f(): any {
     return this.form.controls;
@@ -21,11 +27,13 @@ export class SetorComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private setorService: SetorService,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService) { }
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService,
+    private activateRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.validacao();
+    this.carregarSetor();
   }
 
   private validacao(): void {
@@ -39,18 +47,48 @@ export class SetorComponent implements OnInit {
     return {'is-invalid': campoForm.errors && campoForm.touched};
   }
 
+  public validarMetodo(): void {
+    if(this.codigoSetor > 0){
+
+    }
+
+  }
+
   public salvarAlteracao(): void {
     this.setor = {...this.form.value};
     this.spinner.show();
 
-    this.setorService.post(this.setor).subscribe(
-      () => this.toastr.success('Setor cadastrado com sucesso', 'Sucesso!'),
+    this.setor = (this.estadoSalvar === 'post') ? {...this.form.value} : {codigoSetor: this.setor.codigoSetor, ...this.form.value};
+
+    this.setorService[this.estadoSalvar](this.setor).subscribe(
+      () => this.toaster.success('Setor cadastrado com sucesso', 'Sucesso!'),
       (error: any) => {
         this.spinner.hide();
-        this.toastr.error(`Houve um erro durante o cadastro do setor. Mensagem: ${error.message}`, 'Erro!');
+        this.toaster.error(`Houve um erro durante o cadastro do setor. Mensagem: ${error.message}`, 'Erro!');
       },
       () =>  this.spinner.hide()
     );
   }
 
+  public carregarSetor() : void{
+    this.codigoSetor = +this.activateRouter.snapshot.paramMap.get('codigoSetor');
+
+     if(this.codigoSetor !== null && this.codigoSetor !== 0){
+      this.estadoSalvar = 'atualizarSetor';
+       this.spinner.show();
+
+       this.setorService.obterApenasUmSetor(this.codigoSetor).subscribe(
+         {
+           next: (setor: Setor) => {
+             this.setor = {...setor};
+             this.form.patchValue(this.setor);
+           },
+           error: (error: any) => {
+             this.toaster.error('Erro ao tentar carregar o evento', 'Erro!');
+             console.error(error);
+           }
+         }
+       ).add(() => this.spinner.hide());
+     }
+   }
 }

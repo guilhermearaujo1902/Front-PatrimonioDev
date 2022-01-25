@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Setor } from '../../../models/Setor';
 import { SetorService } from '../../../services/setor/setor.service';
 import { Component, OnInit, TemplateRef } from '@angular/core';
@@ -24,9 +25,11 @@ export class ListarsetorComponent implements OnInit {
     private setorService: SetorService,
     private modalService: BsModalService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    private router: Router) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.ObterSetor();
   }
 
@@ -59,7 +62,7 @@ export class ListarsetorComponent implements OnInit {
         this.setoresFiltrados = setores;
       },
       error: () => {},
-      complete: () => {}
+      complete: () => this.spinner.hide()
 
     });
   }
@@ -87,5 +90,7 @@ export class ListarsetorComponent implements OnInit {
     this.modalRef?.hide();
   }
 
-
+  public DetalheSetor(codigoSetor : number): void {
+    this.router.navigate([`dashboard/setor/${codigoSetor}`])
+  }
 }

@@ -41,7 +41,7 @@
               </td>
               <td>
                 <div class="btn-group">
-                  <button class="btn btn-warning btn-lg" tooltip="Alterar">
+                  <button class="btn btn-warning btn-lg" (click)="DetalheSetor(item.codigoSetor)" tooltip="Alterar">
                       <i class="fa fa-delete"></i> Alterar
                   </button>
               </div>
@@ -64,4 +64,4 @@
     <button type="button" class="btn btn-primary" (click)="Recusar()">Não</button>
   </div>
 </ng-template>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Removendo... </p></ngx-spinner>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>

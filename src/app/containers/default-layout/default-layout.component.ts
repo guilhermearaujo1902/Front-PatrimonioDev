@@ -26,7 +26,7 @@ export class DefaultLayoutComponent implements OnInit{
     this.sidebarMinimized = e;
   }
 
-  ouvirRota() {
+  ouvirRota(): void {
     let routerUrl: string, routerList: Array<any>, target: any;
 
     this._router.events.subscribe((router: any) => {
@@ -39,12 +39,12 @@ export class DefaultLayoutComponent implements OnInit{
         routerList = routerUrl.slice(1).split('/');
         routerList.forEach((router, index) => {
 
-          target = target.find(page => page.path.slice(2) === router);
+        if (target === undefined){
+            target.name = 'dashboard';
+            target.path = '/dashboard';
+        }
 
-          if (!target.name){
-              target.name = 'dashboard';
-              target.path = '/dashboard';
-          }
+          target = target.find(page => page.path.slice(2) === router);
 
           this.breadcrumbList.push({
             name: target.name,

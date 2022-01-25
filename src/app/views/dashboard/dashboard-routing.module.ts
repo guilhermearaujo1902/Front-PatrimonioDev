@@ -35,6 +35,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'setor/:codigoSetor',
+    component: SetorComponent,
+    data: {
+      title: 'Setor'
+    }
+  },
+  {
     path: 'patrimonio',
     component: PatrimonioComponent,
     data: {
