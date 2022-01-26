@@ -51,12 +51,12 @@ import { PermissaoComponent } from './views/permissao/permissao.component';
 import { ListarsetorComponent } from './views/setor/listagem-setor/listagem-setor.component';
 import { ListarpermissaoComponent } from './views/permissao/listagem-permissao/listagem-permissao.component';
 import { ListagemEmpresaComponent } from './views/empresa/listagem-empresa/listagem-empresa.component';
-import { ListarfabricanteComponent } from './views/fabricante/listarFabricante/listarFabricante.component';
+import { ListagemfabricanteComponent } from './views/fabricante/listagem-fabricante/listagem-fabricante.component';
 import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
 import { ListarpatrimonioComponent } from './views/patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { SetorService } from './services/setor/setor.service';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { NgxSpinnerModule } from "ngx-spinner";
+import { NgxSpinnerModule } from 'ngx-spinner';
 import { EquipamentoComponent } from './views/equipamento/equipamento.component';
 import { ListagemequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
@@ -115,7 +115,7 @@ import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/lista
     ListarsetorComponent,
     ListarpermissaoComponent,
     ListagemEmpresaComponent,
-    ListarfabricanteComponent,
+    ListagemfabricanteComponent,
     ListarpatrimonioComponent,
     ListagemMovimentacaoComponent,
     ListagemUsuarioComponent,

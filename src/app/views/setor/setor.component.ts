@@ -16,7 +16,7 @@ export class SetorComponent implements OnInit {
   form!: FormGroup;
   setor = {} as Setor;
   codigoSetor: number;
-  estadoSalvar: string = 'post';
+  estadoSalvar: string = 'cadastrarSetor';
 
 
   get f(): any {
@@ -46,18 +46,11 @@ export class SetorComponent implements OnInit {
     return {'is-invalid': campoForm.errors && campoForm.touched};
   }
 
-  public validarMetodo(): void {
-    if(this.codigoSetor > 0){
-
-    }
-
-  }
-
   public salvarAlteracao(): void {
     this.setor = {...this.form.value};
     this.spinner.show();
 
-    this.setor = (this.estadoSalvar === 'post') ? {...this.form.value} : {codigoSetor: this.setor.codigoSetor, ...this.form.value};
+    this.setor = (this.estadoSalvar === 'cadastrarSetor') ? {...this.form.value} : {codigoSetor: this.setor.codigoSetor, ...this.form.value};
 
     this.setorService[this.estadoSalvar](this.setor).subscribe(
       () => this.toaster.success('Setor cadastrado com sucesso', 'Sucesso!'),

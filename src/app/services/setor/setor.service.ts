@@ -1,4 +1,3 @@
-import { SetorDto } from '../../models/dtos/SetorDto';
 import { Injectable } from '@angular/core';
 import { GlobalVariavel } from '../../../global';
 import { HttpClient } from '@angular/common/http';
@@ -14,9 +13,9 @@ export class SetorService {
 
   constructor(private http: HttpClient) { }
 
-  public post(setor: SetorDto): Observable<SetorDto> {
+  public cadastrarSetor(setor: Setor): Observable<Setor> {
     return this.http
-    .post<SetorDto>(this.baseUrl, {setor})
+    .post<Setor>(this.baseUrl, {setor})
     .pipe(take(1));
   }
 
@@ -35,11 +34,9 @@ export class SetorService {
   }
 
   public atualizarSetor(setor: Setor): Observable<Setor>{
-    console.log("bateu no atualizar", JSON.stringify(setor));
     return this.http
     .put<Setor>(`${this.baseUrl}/${setor.codigoSetor}`, {setor})
     .pipe(take(1));
-
   }
 
 }

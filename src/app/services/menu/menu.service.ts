@@ -59,7 +59,12 @@ export class MenuService {
           {
             name: 'Equipamento',
             path: './equipamento',
+          },
+          {
+            name: 'Listar Equipamento',
+            path: './listarEquipamento',
           }
+
           ,
           {
             name: 'Usuário',

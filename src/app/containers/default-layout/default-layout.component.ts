@@ -39,10 +39,7 @@ export class DefaultLayoutComponent implements OnInit{
         routerList = routerUrl.slice(1).split('/');
         routerList.forEach((router, index) => {
 
-        if (target === undefined){
-            target.name = 'dashboard';
-            target.path = '/dashboard';
-        }
+
 
           target = target.find(page => page.path.slice(2) === router);
 

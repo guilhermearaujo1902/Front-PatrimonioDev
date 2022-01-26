@@ -13,7 +13,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
-import { ListarfabricanteComponent } from '../fabricante/listarFabricante/listarFabricante.component';
+import { ListagemfabricanteComponent } from '../fabricante/listagem-fabricante/listagem-fabricante.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from '../perca/perca.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
@@ -71,7 +71,7 @@ const routes: Routes = [
   },
   {
     path: 'listarFabricante',
-    component: ListarfabricanteComponent,
+    component: ListagemfabricanteComponent,
     data: {
       title: 'listarFabricante'
     }
