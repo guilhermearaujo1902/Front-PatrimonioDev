@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { GlobalVariavel } from '../../../global';
+import { GlobalVariavel } from '../../util/constants';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
