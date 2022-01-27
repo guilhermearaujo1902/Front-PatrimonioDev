@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
+import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 
 @Component({
   selector: 'app-setor',
@@ -13,7 +14,7 @@ import { Setor } from '../../models/Setor';
 })
 export class SetorComponent implements OnInit {
 
-  form!: FormGroup;
+  form!: FormGroupTypeSafe<Setor>;
   setor = {} as Setor;
   codigoSetor: number;
   estadoSalvar: string = 'cadastrarSetor';
@@ -23,12 +24,14 @@ export class SetorComponent implements OnInit {
     return this.form.controls;
   }
   constructor(
-    private fb: FormBuilder,
+    private fb: FormBuilderTypeSafe,
     private setorService: SetorService,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
     private activateRouter: ActivatedRoute,
-    private router: Router) { }
+    private router: Router) {
+
+     }
 
   ngOnInit(): void {
     this.validacao();
@@ -36,9 +39,9 @@ export class SetorComponent implements OnInit {
   }
 
   private validacao(): void {
-    this.form = this.fb.group({
-      codigoSetor: [],
-      nome: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]],
+    this.form = this.fb.group<Setor>({
+      codigoSetor: new FormControl(null),
+      nome: new FormControl(['', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]]),
     });
   }
 
