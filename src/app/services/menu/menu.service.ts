@@ -64,7 +64,6 @@ export class MenuService {
             name: 'Listar Equipamento',
             path: './listarEquipamento',
           }
-
           ,
           {
             name: 'Usuário',
@@ -73,6 +72,10 @@ export class MenuService {
           {
             name: 'Movimentação',
             path: './movimentacao',
+          },
+          {
+            name: 'Listar Movimentação',
+            path: './listarMovimentacao',
           }
         ]
       },

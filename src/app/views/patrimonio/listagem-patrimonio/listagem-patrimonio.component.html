@@ -11,7 +11,7 @@
     <div>
           <a class="d-flex btn btn-outline-primary" routerLink="/eventos/detalhe">
               <i class="fa fa-plus-circle my-1"></i>
-              <b class="ml-1 d-none d-sm-block"> Novo</b>
+              <b class="ml-1 d-none d-sm-block">Novo</b>
           </a>
       </div>
   </div>
@@ -67,8 +67,8 @@
         </td>
         <td>
           <div class="btn-group">
-            <button class="btn btn-dark" tooltip="Alterar">
-              <a routerLink="/dashboard/perca"><i class="fa fa-delete"></i>Declarar</a>
+            <button class="btn btn-dark" tooltip="Alterar" (click)="abrirModalPerca($event, declarar)">
+              <a><i class="fa fa-delete"></i>Declarar</a>
             </button>
           </div>
         </td>
@@ -102,4 +102,9 @@
     <button type="button" class="btn btn-default">Sim</button>
     <button type="button" class="btn btn-primary">Não</button>
   </div>
+</ng-template>
+
+<ng-template #declarar>
+  <button type="button" class="text-right pr-2 fechar-modal" (click)="recusar()"><i class="fa fa-close tamanho-fa"></i></button>
+  <app-perca></app-perca>
 </ng-template>
