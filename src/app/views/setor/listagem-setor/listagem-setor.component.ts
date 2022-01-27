@@ -30,7 +30,7 @@ export class ListarsetorComponent implements OnInit {
 
   ngOnInit(): void {
     this.spinner.show();
-    this.ObterSetor();
+    this.obterSetor();
   }
 
   public get filtroLista() {
@@ -49,13 +49,13 @@ export class ListarsetorComponent implements OnInit {
     );
   }
 
-  public AbrirModal(event: any, template: TemplateRef<any>, setorId: number): void {
+  public abrirModal(event: any, template: TemplateRef<any>, setorId: number): void {
     event.stopPropagation();
     this.setorId = setorId;
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
-  public ObterSetor(): void {
+  private obterSetor(): void {
     this.setorService.obterSetor().subscribe({
       next: (setores: Setor[]) => {
         this.setores = setores;
@@ -67,7 +67,7 @@ export class ListarsetorComponent implements OnInit {
     });
   }
 
-  public Confirmar(): void {
+  public confirmar(): void {
 
     this.modalRef?.hide();
     this.spinner.show();
@@ -76,7 +76,7 @@ export class ListarsetorComponent implements OnInit {
       (result: string) =>{
         this.spinner.hide();
         this.toastr.success('Setor removido com sucesso!', 'Deletado');
-        this.ObterSetor();
+        this.obterSetor();
 
       },
       (error: any) =>{
@@ -86,11 +86,11 @@ export class ListarsetorComponent implements OnInit {
     );
   }
 
-  public Recusar(): void {
+  public recusar(): void {
     this.modalRef?.hide();
   }
 
-  public DetalheSetor(codigoSetor : number): void {
+  public detalheSetor(codigoSetor : number): void {
     this.router.navigate([`dashboard/setor/${codigoSetor}`])
   }
 }

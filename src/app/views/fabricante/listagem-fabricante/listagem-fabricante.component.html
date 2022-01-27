@@ -6,11 +6,11 @@
               <div class="input-group-prepend">
                   <div class="input-group-text">Filtro: </div>
               </div>
-              <input type="text" placeholder="Buscar por nome" class="form-control" />
+              <input type="text" placeholder="Buscar por nome" class="form-control" [(ngModel)]="filtroLista" />
           </div>
       </div>
       <div>
-          <a class="d-flex btn btn-outline-primary" routerLink="/eventos/detalhe">
+          <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/fabricante">
               <i class="fa fa-plus-circle my-1"></i>
               <b class="ml-1 d-none d-sm-block"> Novo</b>
           </a>
@@ -28,21 +28,13 @@
 
           </tr>
       </thead>
-      <tbody >
-          <tr style="cursor: pointer;">
-              <td>1</td>
-              <td>DELL</td>
-
-<!--
-              <td>{{item.id}}</td>
-              <td>{{item.tema}}</td>
-              <td class="d-none d-md-table-cell">{{item.local}}</td>
-              <td>{{item.dataEvento | DateTimeFormat}}</td>
-              <td class="d-none d-md-table-cell">{{item.quantidadePessoas}}</td>
-              <td class="d-none d-md-table-cell">{{item.lotes[0]?.nome}}</td> -->
+      <tbody *ngIf="fabricantes && fabricantes.length > 0" >
+          <tr *ngFor="let item of fabricantesFiltrados" style="cursor: pointer;">
+              <td>{{item.codigoFabricante}}</td>
+              <td>{{item.nomeFabricante}}</td>
               <td>
                   <div class="btn-group">
-                      <button class="btn btn-danger btn-lg" tooltip="Excluir">
+                      <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="abrirModal($event, template, item.codigoFabricante)">
                           <i class="fa fa-delete"></i> Deletar
                       </button>
                   </div>
@@ -56,19 +48,20 @@
               </td>
           </tr>
       </tbody>
-      <!-- <tfoot *ngIf="eventos.length == 0">
+      <tfoot *ngIf="fabricantes.length == 0">
           <tr>
               <td colspan="8" class="text-center">
-                  <h4>Nenhum evento encontrado</h4>
+                  <h4>Nenhum há nenhum fabricante cadastrado</h4>
               </td>
           </tr>
-      </tfoot> -->
+      </tfoot>
   </table>
 </div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a deleção do evento de código {{eventoId}}?</p>
-    <button type="button" class="btn btn-default" >Sim</button>
-    <button type="button" class="btn btn-primary" >Não</button>
+    <p>Deseja confirmar a deleção do fabricante de código {{codigoFabricante}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
 </ng-template>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>

@@ -14,6 +14,8 @@ export class SetorService {
   constructor(private http: HttpClient) { }
 
   public cadastrarSetor(setor: Setor): Observable<Setor> {
+    console.log({setor})
+
     return this.http
     .post<Setor>(this.baseUrl, {setor})
     .pipe(take(1));

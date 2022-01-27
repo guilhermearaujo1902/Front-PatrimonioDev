@@ -1,3 +1,4 @@
+import { FabricanteService } from './services/fabricante/fabricante.service';
 import { WidgetsModule } from './views/widgets/widgets.module';
 import { MenuService } from './services/menu/menu.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -129,8 +130,8 @@ import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/lista
     },
     IconSetService,
     MenuService,
-    SetorService
-
+    SetorService,
+    FabricanteService
   ],
   bootstrap: [ AppComponent ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

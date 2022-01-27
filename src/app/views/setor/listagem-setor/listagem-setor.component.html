@@ -34,14 +34,14 @@
               <td>{{item.nome}}</td>
               <td>
                 <div class="btn-group">
-                  <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="AbrirModal($event, template, item.codigoSetor)">
+                  <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="abrirModal($event, template, item.codigoSetor)">
                       <i class="fa fa-delete"></i> Deletar
                   </button>
                 </div>
               </td>
               <td>
                 <div class="btn-group">
-                  <button class="btn btn-warning btn-lg" (click)="DetalheSetor(item.codigoSetor)" tooltip="Alterar">
+                  <button class="btn btn-warning btn-lg" (click)="detalheSetor(item.codigoSetor)" tooltip="Alterar">
                       <i class="fa fa-delete"></i> Alterar
                   </button>
               </div>
@@ -60,8 +60,8 @@
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Deseja confirmar a deleção do setor de código {{setorId}}?</p>
-    <button type="button" class="btn btn-default" (click)="Confirmar()">Sim</button>
-    <button type="button" class="btn btn-primary" (click)="Recusar()">Não</button>
+    <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
 </ng-template>
 <ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>

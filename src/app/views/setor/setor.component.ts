@@ -47,7 +47,6 @@ export class SetorComponent implements OnInit {
   }
 
   public salvarAlteracao(): void {
-    this.setor = {...this.form.value};
     this.spinner.show();
 
     this.setor = (this.estadoSalvar === 'cadastrarSetor') ? {...this.form.value} : {codigoSetor: this.setor.codigoSetor, ...this.form.value};
