@@ -7,7 +7,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import * as XLSX from 'xlsx';
-import configuracao from '../../../util/configuracao-tabela'
+import configuracaoTabela from '../../../util/configuracao-tabela'
 
 @Component({
   selector: 'app-listarsetor',
@@ -25,7 +25,6 @@ export class ListarsetorComponent implements OnInit {
   public linhas = 0;
 
   public setores: Setor[] = [];
-
   public setorId: number = 0;
 
   modalRef?: BsModalRef;
@@ -38,17 +37,13 @@ export class ListarsetorComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
+    this.spinner.show();
     this.obterSetor();
-    this.configuration = configuracao()
+    this.configuration = configuracaoTabela()
 
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
 
-    this.columns = [
-      { key: 'codigoSetor', title: 'Código' },
-      { key: 'nome', title: 'Nome' },
-      { key: '', title: '' },
-      { key: '', title: '' },
-    ];
+    this.columns = this.obterColunasDaTabela();
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, setorId: number): void {
@@ -63,12 +58,14 @@ export class ListarsetorComponent implements OnInit {
         this.data = setores;
       },
       error: () => {},
-      complete: () => this.configuration.isLoading = false
+      complete: () =>{
+        this.spinner.hide();
+        this.configuration.isLoading = false;
+      }
     });
   }
 
   public confirmar(): void {
-
     this.modalRef?.hide();
     this.spinner.show();
 
@@ -93,7 +90,7 @@ export class ListarsetorComponent implements OnInit {
     this.router.navigate([`dashboard/setor/${codigoSetor}`])
   }
 
-  onChange(event: Event): void {
+  public onChange(event: Event): void {
     this.table.apiEvent({
       type: API.onGlobalSearch,
       value: (event.target as HTMLInputElement).value,
@@ -102,17 +99,24 @@ export class ListarsetorComponent implements OnInit {
 
   public exportarParaExcel(): void {
      try {
-      /* generate worksheet */
       const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
 
-      /* generate workbook and add the worksheet */
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'Setores');
 
-      /* save to file */
       XLSX.writeFile(wb, 'setores.xlsx');
     } catch (err) {
-      console.error('export error', err);
+      this.toastr.error(`Não foi possível exportar a planilha. Mensagem: ${err}`,"Erro")
     }
   }
+
+  private obterColunasDaTabela(): any {
+    return [
+      { key: 'codigoSetor', title: 'Código' },
+      { key: 'nome', title: 'Nome' },
+      { key: '', title: '' },
+      { key: '', title: '' },
+    ];
+  }
+
 }
