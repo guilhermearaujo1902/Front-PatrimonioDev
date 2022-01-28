@@ -51,6 +51,7 @@
     "ng2-charts": "^3.0.0-rc.3",
     "ngx-bootstrap": "^6.2.0",
     "ngx-bootstrap-modal": "^2.0.1",
+    "ngx-easy-table": "^15.1.0",
     "ngx-perfect-scrollbar": "^10.1.0",
     "ngx-spinner": "^11.0.2",
     "ngx-toastr": "^12.1.0",
@@ -59,6 +60,7 @@
     "ts-helpers": "^1.1.2",
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
+    "xlsx": "^0.17.5",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {

@@ -1,3 +1,4 @@
+import { FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { FabricanteService } from './services/fabricante/fabricante.service';
 import { WidgetsModule } from './views/widgets/widgets.module';
 import { MenuService } from './services/menu/menu.service';
@@ -65,12 +66,13 @@ import { MovimentacaoComponent } from './views/movimentacao/movimentacao.compone
 import { PercaComponent } from './views/perca/perca.component';
 import { ListagemMovimentacaoComponent } from './views/movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/listagem-usuario.component';
+import { TableModule } from 'ngx-easy-table';
 
 @NgModule({
   imports: [
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule,
+    ReactiveFormsModule,
+    FormsModule,
     CommonModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -81,6 +83,7 @@ import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/lista
     ModalModule.forRoot(),
     AppHeaderModule,
     ChartsModule,
+    TableModule,
     AppSidebarModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
@@ -131,7 +134,8 @@ import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/lista
     IconSetService,
     MenuService,
     SetorService,
-    FabricanteService
+    FabricanteService,
+    FormBuilderTypeSafe
   ],
   bootstrap: [ AppComponent ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

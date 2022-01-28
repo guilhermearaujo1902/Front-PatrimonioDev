@@ -14,15 +14,17 @@ export class SetorService {
   constructor(private http: HttpClient) { }
 
   public cadastrarSetor(setor: Setor): Observable<Setor> {
-    console.log({setor})
-
     return this.http
     .post<Setor>(this.baseUrl, {setor})
     .pipe(take(1));
   }
 
   public obterSetor(): Observable<Setor[]> {
-    return this.http.get<Setor[]>(this.baseUrl).pipe(take(1));;
+    var resultado = this.http.get<Setor[]>(this.baseUrl).pipe(take(1));
+    console.log(resultado);
+
+    return resultado;
+
   }
 
   public obterApenasUmSetor(codigoSetor: number): Observable<Setor> {

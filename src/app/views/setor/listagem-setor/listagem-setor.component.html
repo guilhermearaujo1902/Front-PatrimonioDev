@@ -1,62 +1,52 @@
 
 <div class="card rounded shadow-sm p-3 m-5">
-  <div class="d-flex">
-      <div class="flex-fill pr-3">
-          <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                  <div class="input-group-text">Filtro: </div>
-              </div>
-              <input type="text" placeholder="Buscar por nome" class="form-control" [(ngModel)]="filtroLista" />
+  <div class="d-flex mb-1">
+    <div class="flex-fill pr-3">
+
+      <div class="input-group mb-2">
+          <div class="input-group-prepend">
+              <div class="input-group-text">Filtro: </div>
           </div>
+          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)"/>
       </div>
+     </div>
       <div>
           <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/setor">
               <i class="fa fa-plus-circle my-1"></i>
               <b class="ml-1 d-none d-sm-block"> Novo</b>
           </a>
       </div>
+      <div class="ml-1">
+        <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1" id="icone-excel"></i> Exportar para Excel</button>
+      </div>
   </div>
+  <ngx-table [configuration]="configuration"
+  [data]="data"
+  [columns]="columns"
+  [noResultsTemplate]="mensagemSemCadastro" #table>
+  <ng-template let-row>
+    <td>
+      <div class="font-small">{{ row.codigoSetor }}</div>
+    </td>
+    <td>
+      <span class="font-small">{{ row.nome }}</span>
+    </td>
+    <td>
+      <button class="btn btn-warning btn-lg" (click)="detalheSetor(row.codigoSetor)">
+        Alterar
+      </button>
+      </td>
+      <td>
+        <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoSetor)">
+          Deletar
+        </button>
+      </td>
 
-  <table class="table table-striped table-hover">
-      <thead>
-          <tr>
-
-              <th>Código Setor</th>
-              <th>Nome Setor</th>
-              <th>Excluir</th>
-              <th>Alterar</th>
-
-          </tr>
-      </thead>
-      <tbody *ngIf="setores && setores.length > 0" >
-          <tr *ngFor="let item of setoresFiltrados" style="cursor: pointer;">
-              <td>{{item.codigoSetor}}</td>
-              <td>{{item.nome}}</td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-danger btn-lg" tooltip="Excluir" (click)="abrirModal($event, template, item.codigoSetor)">
-                      <i class="fa fa-delete"></i> Deletar
-                  </button>
-                </div>
-              </td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning btn-lg" (click)="detalheSetor(item.codigoSetor)" tooltip="Alterar">
-                      <i class="fa fa-delete"></i> Alterar
-                  </button>
-              </div>
-              </td>
-          </tr>
-      </tbody>
-      <tfoot *ngIf="setores.length == 0">
-          <tr>
-              <td colspan="8" class="text-center">
-                  <h4>Não há nenhum setor cadastrado</h4>
-              </td>
-          </tr>
-      </tfoot>
-  </table>
+    </ng-template>
+  </ngx-table>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
+
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Deseja confirmar a deleção do setor de código {{setorId}}?</p>
@@ -64,4 +54,9 @@
     <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
 </ng-template>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
+<ng-template #mensagemSemCadastro>
+  <td [attr.colspan]="columns.length" class="no-results text-center">
+    <h4>Não há nenhum setor cadastrado</h4>
+  </td>
+</ng-template>
+
