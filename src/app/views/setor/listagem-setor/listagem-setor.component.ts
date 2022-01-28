@@ -5,8 +5,9 @@ import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } fr
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { API, APIDefinition, Columns, Config, DefaultConfig } from 'ngx-easy-table';
+import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import * as XLSX from 'xlsx';
+import configuracao from '../../../util/configuracao-tabela'
 
 @Component({
   selector: 'app-listarsetor',
@@ -37,15 +38,10 @@ export class ListarsetorComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.configuration = { ...DefaultConfig };
-    this.configuration.isLoading = true;
-    this.configuration.fixedColumnWidth = false;
-    this.configuration.resizeColumn = true;
-    this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
-
-
-
     this.obterSetor();
+    this.configuration = configuracao()
+
+    this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
 
     this.columns = [
       { key: 'codigoSetor', title: 'Código' },

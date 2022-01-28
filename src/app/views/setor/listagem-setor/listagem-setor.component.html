@@ -20,8 +20,9 @@
         <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1" id="icone-excel"></i> Exportar para Excel</button>
       </div>
   </div>
-  <ngx-table [configuration]="configuration"
+  <ngx-table
   [data]="data"
+  [configuration]="configuration"
   [columns]="columns"
   [noResultsTemplate]="mensagemSemCadastro"
   [summaryTemplate]="summaryTemplateRef"
@@ -64,6 +65,5 @@
 
 <ng-template #summaryTemplateRef let-total="total">
   <th>Total de registros: {{ total }}</th>
-  <th></th>
-  <th></th>
+
 </ng-template>
