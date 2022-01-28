@@ -23,7 +23,9 @@
   <ngx-table [configuration]="configuration"
   [data]="data"
   [columns]="columns"
-  [noResultsTemplate]="mensagemSemCadastro" #table>
+  [noResultsTemplate]="mensagemSemCadastro"
+  [summaryTemplate]="summaryTemplateRef"
+  #table>
   <ng-template let-row>
     <td>
       <div class="font-small">{{ row.codigoSetor }}</div>
@@ -60,3 +62,8 @@
   </td>
 </ng-template>
 
+<ng-template #summaryTemplateRef let-total="total">
+  <th>Total de registros: {{ total }}</th>
+  <th></th>
+  <th></th>
+</ng-template>

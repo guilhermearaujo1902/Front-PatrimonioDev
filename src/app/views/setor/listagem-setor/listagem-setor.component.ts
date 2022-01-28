@@ -21,6 +21,7 @@ export class ListarsetorComponent implements OnInit {
   public configuration: Config;
   public columns: Columns[];
   public data: Setor[] = [];
+  public linhas = 0;
 
   public setores: Setor[] = [];
 
@@ -38,6 +39,10 @@ export class ListarsetorComponent implements OnInit {
   ngOnInit(): void {
     this.configuration = { ...DefaultConfig };
     this.configuration.isLoading = true;
+    this.configuration.fixedColumnWidth = false;
+    this.configuration.resizeColumn = true;
+    this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
+
 
 
     this.obterSetor();
