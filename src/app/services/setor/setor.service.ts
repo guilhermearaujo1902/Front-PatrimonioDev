@@ -20,11 +20,7 @@ export class SetorService {
   }
 
   public obterSetor(): Observable<Setor[]> {
-    var resultado = this.http.get<Setor[]>(this.baseUrl).pipe(take(1));
-    console.log(resultado);
-
-    return resultado;
-
+    return this.http.get<Setor[]>(this.baseUrl).pipe(take(1));
   }
 
   public obterApenasUmSetor(codigoSetor: number): Observable<Setor> {

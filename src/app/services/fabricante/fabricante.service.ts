@@ -13,7 +13,6 @@ export class FabricanteService {
   baseUrl = `${GlobalVariavel.BASE_API_URL}fabricante`;
 
   public cadastrarFabricante(fabricante: Fabricante): Observable<Fabricante> {
-    console.log({fabricante})
     return this.http.post<Fabricante>(this.baseUrl, {fabricante}).pipe(take(1));
   }
 
@@ -24,6 +23,17 @@ export class FabricanteService {
   public deletarFabricante(codigoFabricante: number): Observable<any>{
     return this.http
     .delete(`${this.baseUrl}/${codigoFabricante}`)
+    .pipe(take(1));
+  }
+
+  public obterApenasUmFabricante(codigoFabricante: number): Observable<Fabricante> {
+    return this.http.get<Fabricante>(`${this.baseUrl}/${codigoFabricante}`).pipe(take(1));;
+  }
+
+  public atualizarFabricante(fabricante: Fabricante): Observable<Fabricante>{
+    debugger;
+    return this.http
+    .put<Fabricante>(`${this.baseUrl}/${fabricante.codigoFabricante}`, {fabricante})
     .pipe(take(1));
   }
 

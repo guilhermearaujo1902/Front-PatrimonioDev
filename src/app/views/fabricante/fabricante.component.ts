@@ -26,11 +26,12 @@ export class FabricanteComponent implements OnInit {
               private fabricanteService: FabricanteService,
               private toaster: ToastrService,
               private spinner: NgxSpinnerService,
-              private activateRouter: ActivatedRoute,
-              private router: Router) { }
+              private router: Router,
+              private activateRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.validacao();
+    this.carregarFabricante();
   }
 
   private validacao(): void {
@@ -46,17 +47,15 @@ export class FabricanteComponent implements OnInit {
 
   public salvarAlteracao(): void {
     this.spinner.show();
-
+    debugger;
     this.fabricante = (this.estadoSalvar === 'cadastrarFabricante') ? {...this.form.value} : {codigoFabricante: this.fabricante.codigoFabricante, ...this.form.value};
-    console.log(this.fabricante)
     this.fabricanteService[this.estadoSalvar](this.fabricante).subscribe(
       () => this.toaster.success('Fabricante cadastrado com sucesso', 'Sucesso!'),
       (error: any) => {
         this.spinner.hide();
         this.toaster.error(`Houve um erro durante o cadastro do fabricante. Mensagem: ${error.message}`, 'Erro!');
       },
-      () =>
-      {
+      () => {
         this.spinner.hide()
         setTimeout(() => {
           this.router.navigate(['dashboard/listarFabricante'])
@@ -64,5 +63,26 @@ export class FabricanteComponent implements OnInit {
       }
     );
   }
+
+  public carregarFabricante() : void{
+    this.codigoFabricante = +this.activateRouter.snapshot.paramMap.get('codigoFabricante');
+     if(this.codigoFabricante !== null && this.codigoFabricante !== 0){
+      this.estadoSalvar = 'atualizarFabricante';
+       this.spinner.show();
+
+       this.fabricanteService.obterApenasUmFabricante(this.codigoFabricante).subscribe(
+         {
+           next: (fabricante: Fabricante) => {
+             this.fabricante = {...fabricante};
+             this.form.patchValue(this.fabricante);
+           },
+           error: (error: any) => {
+             this.toaster.error('Erro ao tentar carregar o fabricante', 'Erro!');
+             console.error(error);
+           }
+         }
+       ).add(() => this.spinner.hide());
+     }
+    }
 
 }

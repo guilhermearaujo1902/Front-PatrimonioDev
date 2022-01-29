@@ -22,10 +22,12 @@
   </div>
   <ngx-table
   [data]="data"
-  [configuration]="configuration"
-  [columns]="columns"
+  [configuration]="configuracao"
+  [columns]="colunas"
   [noResultsTemplate]="mensagemSemCadastro"
   [summaryTemplate]="summaryTemplateRef"
+  [loadingTemplate]="loadingTemplate"
+
   #table>
   <ng-template let-row>
     <td>
@@ -58,12 +60,17 @@
   </div>
 </ng-template>
 <ng-template #mensagemSemCadastro>
-  <td [attr.colspan]="columns.length" class="no-results text-center">
+  <td [attr.colspan]="colunas.length" class="no-results text-center">
     <h4>Não há nenhum setor cadastrado</h4>
   </td>
 </ng-template>
 
 <ng-template #summaryTemplateRef let-total="total">
   <th>Total de registros: {{ total }}</th>
+</ng-template>
 
+<ng-template #loadingTemplate>
+  <td [attr.colspan]="colunas.length">
+    <div class="loader">Loading...</div>
+  </td>
 </ng-template>

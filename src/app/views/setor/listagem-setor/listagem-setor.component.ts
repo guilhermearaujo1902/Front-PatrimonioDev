@@ -19,8 +19,8 @@ import configuracaoTabela from '../../../util/configuracao-tabela'
 export class ListarsetorComponent implements OnInit {
   @ViewChild('table', { static: true }) table: APIDefinition;
 
-  public configuration: Config;
-  public columns: Columns[];
+  public configuracao: Config;
+  public colunas: Columns[];
   public data: Setor[] = [];
   public linhas = 0;
 
@@ -37,13 +37,12 @@ export class ListarsetorComponent implements OnInit {
     private router: Router) { }
 
   ngOnInit(): void {
-    this.spinner.show();
     this.obterSetor();
-    this.configuration = configuracaoTabela()
+    this.configuracao = configuracaoTabela()
 
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
 
-    this.columns = this.obterColunasDaTabela();
+    this.colunas = this.obterColunasDaTabela();
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, setorId: number): void {
@@ -53,16 +52,17 @@ export class ListarsetorComponent implements OnInit {
   }
 
   private obterSetor(): void {
+
     this.setorService.obterSetor().subscribe({
       next: (setores: Setor[]) => {
         this.data = setores;
       },
       error: () => {},
       complete: () =>{
-        this.spinner.hide();
-        this.configuration.isLoading = false;
+        this.configuracao.isLoading = false;
       }
     });
+
   }
 
   public confirmar(): void {

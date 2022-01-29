@@ -1,3 +1,4 @@
+import { UsuarioPerfilComponent } from './../usuario-perfil/usuario-perfil.component';
 import { ListagemequipamentoComponent } from './../equipamento/listagem-equipamento/listagem-equipamento.component';
 import { ListagemUsuarioComponent } from './../usuario/listagem-usuario/listagem-usuario.component';
 import { MovimentacaoComponent } from './../movimentacao/movimentacao.component';
@@ -9,7 +10,7 @@ import { ListarsetorComponent } from '../setor/listagem-setor/listagem-setor.com
 import { PermissaoComponent } from './../permissao/permissao.component';
 import { FabricanteComponent } from './../fabricante/fabricante.component';
 import { SetorComponent } from './../setor/setor.component';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
@@ -64,6 +65,13 @@ const routes: Routes = [
   },
   {
     path: 'fabricante',
+    component: FabricanteComponent,
+    data: {
+      title: 'Fabricante'
+    }
+  },
+  {
+    path: 'fabricante/:codigoFabricante',
     component: FabricanteComponent,
     data: {
       title: 'Fabricante'
@@ -149,6 +157,14 @@ const routes: Routes = [
       title: 'listarMovimentacao'
     }
   },
+  {
+    path: 'usuarioPerfil',
+    component: UsuarioPerfilComponent,
+    data: {
+      title: 'usuario-perfil'
+    }
+  },
+
 ];
 
 @NgModule({
