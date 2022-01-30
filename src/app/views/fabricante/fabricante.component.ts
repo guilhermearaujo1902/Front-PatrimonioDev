@@ -5,6 +5,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 
 @Component({
   selector: 'app-fabricante',
@@ -13,7 +14,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class FabricanteComponent implements OnInit {
 
-  form!: FormGroup;
+  form!: FormGroupTypeSafe<Fabricante>;
   fabricante = {} as Fabricante;
   codigoFabricante: number;
   estadoSalvar: string = 'cadastrarFabricante';
@@ -21,8 +22,9 @@ export class FabricanteComponent implements OnInit {
   get f(): any {
     return this.form.controls;
   }
+
   constructor(
-              private fb: FormBuilder,
+              private fb: FormBuilderTypeSafe,
               private fabricanteService: FabricanteService,
               private toaster: ToastrService,
               private spinner: NgxSpinnerService,
@@ -35,9 +37,9 @@ export class FabricanteComponent implements OnInit {
   }
 
   private validacao(): void {
-    this.form = this.fb.group({
-      codigoFabricante: [],
-      nomeFabricante: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]],
+    this.form = this.fb.group<Fabricante>({
+      codigoFabricante: new FormControl(null),
+      nomeFabricante: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]),
     });
   }
 
