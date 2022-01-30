@@ -15,6 +15,9 @@
               <b class="ml-1 d-none d-sm-block">Novo</b>
           </a>
       </div>
+      <div class="ml-1">
+        <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1" id="icone-excel"></i> Exportar para Excel</button>
+      </div>
   </div>
   <ngx-table
   [data]="data"
@@ -22,6 +25,8 @@
   [columns]="colunas"
   [noResultsTemplate]="mensagemSemCadastro"
   [summaryTemplate]="summaryTemplateRef"
+  [loadingTemplate]="loadingTemplate"
+
   #table>
   <ng-template let-row>
     <td>
@@ -61,5 +66,11 @@
 <ng-template #mensagemSemCadastro>
   <td [attr.colspan]="colunas.length" class="no-results text-center">
     <h4>Não há nenhum fabricante cadastrado</h4>
+  </td>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <td [attr.colspan]="colunas.length">
+    <div class="loader">Loading...</div>
   </td>
 </ng-template>

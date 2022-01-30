@@ -7,6 +7,7 @@ import { Fabricante } from '../../../models/Fabricante';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import configuracaoTabela from '../../../util/configuracao-tabela'
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-listarFabricante',
@@ -94,6 +95,19 @@ export class ListagemfabricanteComponent implements OnInit {
   public detalheFabricante(codigoFabricante: number): void {
     this.router.navigate([`dashboard/fabricante/${codigoFabricante}`])
   }
+
+  public exportarParaExcel(): void {
+    try {
+     const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
+
+     const wb: XLSX.WorkBook = XLSX.utils.book_new();
+     XLSX.utils.book_append_sheet(wb, ws, 'fabricantes');
+
+     XLSX.writeFile(wb, 'fabricantes.xlsx');
+   } catch (err) {
+     this.toaster.error(`Não foi possível exportar a planilha. Mensagem: ${err}`,"Erro")
+   }
+ }
 
   private obterColunasDaTabela(): any {
     return [
