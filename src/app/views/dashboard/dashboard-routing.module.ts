@@ -1,3 +1,4 @@
+import { SetorRoutingModule } from './../setor/setor-routing.module';
 import { UsuarioPerfilComponent } from './../usuario-perfil/usuario-perfil.component';
 import { ListagemequipamentoComponent } from './../equipamento/listagem-equipamento/listagem-equipamento.component';
 import { ListagemUsuarioComponent } from './../usuario/listagem-usuario/listagem-usuario.component';
@@ -19,6 +20,7 @@ import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/lis
 import { PercaComponent } from '../perca/perca.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { EmpresaRoutingModule } from '../empresa/empresa-routing.module';
+import { FabricanteRoutingModule } from '../fabricante/fabricante-routing.module';
 
 const routes: Routes = [
   {
@@ -26,20 +28,6 @@ const routes: Routes = [
     component: WidgetsComponent,
     data: {
       title: 'Dashboard'
-    }
-  },
-  {
-    path: 'setor',
-    component: SetorComponent,
-    data: {
-      title: 'Setor'
-    }
-  },
-  {
-    path: 'setor/:codigoSetor',
-    component: SetorComponent,
-    data: {
-      title: 'Setor'
     }
   },
   {
@@ -54,34 +42,6 @@ const routes: Routes = [
     component: ListarpatrimonioComponent,
     data: {
       title: 'listarPatrimonio'
-    }
-  },
-  {
-    path: 'listarSetor',
-    component: ListarsetorComponent,
-    data: {
-      title: 'listarSetor'
-    }
-  },
-  {
-    path: 'fabricante',
-    component: FabricanteComponent,
-    data: {
-      title: 'Fabricante'
-    }
-  },
-  {
-    path: 'fabricante/:codigoFabricante',
-    component: FabricanteComponent,
-    data: {
-      title: 'Fabricante'
-    }
-  },
-  {
-    path: 'listarFabricante',
-    component: ListagemfabricanteComponent,
-    data: {
-      title: 'listarFabricante'
     }
   },
   {
@@ -133,8 +93,7 @@ const routes: Routes = [
     data: {
       title: 'listarUsuario'
     }
-  }
-  ,
+  },
   {
     path: 'widget',
     component: WidgetsComponent,
@@ -142,7 +101,6 @@ const routes: Routes = [
       title: 'widget'
     }
   },
-
   {
     path: 'movimentacao',
     component: MovimentacaoComponent,
@@ -164,11 +122,14 @@ const routes: Routes = [
       title: 'usuario-perfil'
     }
   },
-
 ];
 
 @NgModule({
-  imports: [RouterModule.forChild(routes),EmpresaRoutingModule],
+  imports: [
+    RouterModule.forChild(routes),
+    EmpresaRoutingModule,
+    SetorRoutingModule,
+    FabricanteRoutingModule],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule {}
