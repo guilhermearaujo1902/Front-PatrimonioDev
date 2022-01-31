@@ -77,6 +77,11 @@ export class MenuService {
             name: 'Listar Movimentação',
             path: './listarMovimentacao',
           }
+          ,
+          {
+            name: 'Perfil',
+            path: './usuarioPerfil',
+          }
         ]
       },
     ];

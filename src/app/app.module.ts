@@ -67,7 +67,7 @@ import { PercaComponent } from './views/perca/perca.component';
 import { ListagemMovimentacaoComponent } from './views/movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/listagem-usuario.component';
 import { TableModule } from 'ngx-easy-table';
-import { UsuarioPerfilComponent } from './views/usuario-perfil/usuario-perfil.component';
+import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-perfil.component';
 
 @NgModule({
   imports: [

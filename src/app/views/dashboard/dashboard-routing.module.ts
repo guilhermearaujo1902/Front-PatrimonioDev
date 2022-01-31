@@ -1,5 +1,5 @@
 import { SetorRoutingModule } from './../setor/setor-routing.module';
-import { UsuarioPerfilComponent } from './../usuario-perfil/usuario-perfil.component';
+import { UsuarioPerfilComponent } from '../usuario/usuario-perfil/usuario-perfil.component';
 import { ListagemequipamentoComponent } from './../equipamento/listagem-equipamento/listagem-equipamento.component';
 import { ListagemUsuarioComponent } from './../usuario/listagem-usuario/listagem-usuario.component';
 import { MovimentacaoComponent } from './../movimentacao/movimentacao.component';
@@ -7,15 +7,11 @@ import { UsuarioComponent } from './../usuario/usuario.component';
 import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
-import { ListarsetorComponent } from '../setor/listagem-setor/listagem-setor.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
-import { FabricanteComponent } from './../fabricante/fabricante.component';
-import { SetorComponent } from './../setor/setor.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
-import { ListagemfabricanteComponent } from '../fabricante/listagem-fabricante/listagem-fabricante.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from '../perca/perca.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
