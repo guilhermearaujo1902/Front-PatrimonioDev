@@ -1,16 +1,13 @@
+import { UsuarioRoutingModule } from './../usuario/usuario-routing.module';
 import { SetorRoutingModule } from './../setor/setor-routing.module';
-import { UsuarioPerfilComponent } from '../usuario/usuario-perfil/usuario-perfil.component';
 import { ListagemequipamentoComponent } from './../equipamento/listagem-equipamento/listagem-equipamento.component';
-import { ListagemUsuarioComponent } from './../usuario/listagem-usuario/listagem-usuario.component';
 import { MovimentacaoComponent } from './../movimentacao/movimentacao.component';
-import { UsuarioComponent } from './../usuario/usuario.component';
 import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from '../perca/perca.component';
@@ -77,20 +74,6 @@ const routes: Routes = [
     }
   },
   {
-    path: 'usuario',
-    component: UsuarioComponent,
-    data: {
-      title: 'usuario'
-    }
-  },
-  {
-    path: 'listarUsuario',
-    component: ListagemUsuarioComponent,
-    data: {
-      title: 'listarUsuario'
-    }
-  },
-  {
     path: 'widget',
     component: WidgetsComponent,
     data: {
@@ -110,14 +93,7 @@ const routes: Routes = [
     data: {
       title: 'listarMovimentacao'
     }
-  },
-  {
-    path: 'usuarioPerfil',
-    component: UsuarioPerfilComponent,
-    data: {
-      title: 'usuario-perfil'
-    }
-  },
+  }
 ];
 
 @NgModule({
@@ -125,7 +101,8 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     EmpresaRoutingModule,
     SetorRoutingModule,
-    FabricanteRoutingModule],
+    FabricanteRoutingModule,
+    UsuarioRoutingModule],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule {}
