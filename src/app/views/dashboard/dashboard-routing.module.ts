@@ -14,6 +14,7 @@ import { PercaComponent } from '../perca/perca.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { EmpresaRoutingModule } from '../empresa/empresa-routing.module';
 import { FabricanteRoutingModule } from '../fabricante/fabricante-routing.module';
+import { FuncionarioRoutingModule } from '../funcionario/funcionario-routing.module';
 
 const routes: Routes = [
   {
@@ -102,7 +103,8 @@ const routes: Routes = [
     EmpresaRoutingModule,
     SetorRoutingModule,
     FabricanteRoutingModule,
-    UsuarioRoutingModule],
+    UsuarioRoutingModule,
+    FuncionarioRoutingModule],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule {}

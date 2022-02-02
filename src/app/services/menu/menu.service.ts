@@ -63,8 +63,7 @@ export class MenuService {
           {
             name: 'Listar Equipamento',
             path: './listarEquipamento',
-          }
-          ,
+          },
           {
             name: 'Usuário',
             path: './usuario',
@@ -76,11 +75,14 @@ export class MenuService {
           {
             name: 'Listar Movimentação',
             path: './listarMovimentacao',
-          }
-          ,
+          },
           {
             name: 'Perfil',
             path: './usuarioPerfil',
+          },
+          {
+            name: 'Funcionário',
+            path: './funcionario',
           }
         ]
       },

@@ -125,6 +125,23 @@ export const navItems: INavData[] = [
       }
    ]
   },
+  {
+    name: 'Funcionario',
+    url: '/semurl',
+    icon: 'fa fa-users',
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/funcionario',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarUsuario',
+        icon: 'fa fa-list'
+      }
+   ]
+  },
   // {
   //   name: 'Movimentação',
   //   url: '/semurl',

@@ -1,0 +1,69 @@
+<div class="card rounded shadow-sm m-3 p-3" id="formulario">
+  <form [formGroup]="form">
+    <h1>Cadastrar funcionário</h1>
+    <hr />
+    <div class="p-3">
+      <!-- <p>Form value: {{form.value | json}}</p> -->
+      <!-- <p>Form status: {{form.status | json}}</p> -->
+
+      <div class="form-row">
+        <div class="form-group col-12 text-start">
+          <label>Código do funcionário</label>
+          <input
+            type="text"
+            readonly
+            class="form-control"
+            name="codigoFuncionario"
+            formControlName="codigoFuncionario"
+          />
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group col-6 text-start">
+          <label>Nome do funcionário</label>
+          <input
+            type="text"
+            class="form-control"
+            [ngClass]="cssValidator(f.nomeFuncionario)"
+            name="nomeFuncionario"
+            formControlName="nomeFuncionario"
+            placeholder="Nome do funcionário"
+            required
+          />
+        </div>
+          <div class="form-group col-6 text-start">
+            <label>Situação</label>
+            <select class="form-select form-control" required>
+              <option selected value="1">Ativo</option>
+              <option value="2">Desativado</option>
+            </select>
+          </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-12 text-start">
+            <label>Observação</label>
+            <textarea  class="form-control" name="observacao" rows="5" cols="50"></textarea>
+        </div>
+      </div>
+      <div class="form-row pt-3">
+        <div class="row">
+          <div class="col">
+            <button
+              type="button"
+              class="btn btn-block btn-success btn-lg"
+              [disabled]="!form.valid"
+            >
+              Cadastrar
+            </button>
+          </div>
+          <div class="col">
+            <button type="button" class="btn btn-block btn-warning btn-lg">
+              Limpar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
