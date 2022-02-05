@@ -69,6 +69,7 @@ import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/lista
 import { TableModule } from 'ngx-easy-table';
 import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-perfil.component';
 import { FuncionarioComponent } from './views/funcionario/funcionario.component';
+import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
 
 @NgModule({
   imports: [
@@ -127,7 +128,8 @@ import { FuncionarioComponent } from './views/funcionario/funcionario.component'
     ListagemUsuarioComponent,
     ListagemequipamentoComponent,
     UsuarioPerfilComponent,
-    FuncionarioComponent
+    FuncionarioComponent,
+    ListagemFuncionarioComponent
 
   ],
   providers: [

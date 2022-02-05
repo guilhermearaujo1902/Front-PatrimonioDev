@@ -3,10 +3,6 @@
     <h1>Cadastrar usuário</h1>
     <hr>
       <div class="p-3">
-          <!-- <p>Form value: {{form.value | json}}</p> -->
-          <!-- <p>Form status: {{form.status | json}}</p> -->
-
-
         <div class="form-row">
             <div class="form-group col-12 text-start">
                 <label>Código do usuário</label>
@@ -17,8 +13,8 @@
         <div class="form-row">
           <div class="form-group col-12 text-start">
             <label>Setor</label>
-            <select class="form-select form-control" required>
-              <option selected value="1">Produto</option>
+            <select class="form-select form-control" formControlName="codigoSetor" required>
+              <option selected value="14">Produto</option>
               <option value="2">MONITOR</option>
               <option value="3">FONE</option>
               <option value="4">MOUSEPAD</option>
@@ -29,9 +25,21 @@
         <div class="form-row">
           <div class="form-group col-12 text-start">
             <label>Empresa</label>
-            <select class="form-select form-control" required>
-              <option selected value="1">Precisão</option>
+            <select class="form-select form-control" formControlName="codigoEmpresa" required>
+              <option selected value="2">Precisão</option>
               <option value="2">MONITOR</option>
+              <option value="3">FONE</option>
+              <option value="4">MOUSEPAD</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group col-12 text-start">
+            <label>Situação</label>
+            <select class="form-select form-control" formControlName="ativo" required>
+              <option selected [ngValue]="true">Ativo</option>
+              <option [ngValue]="false">Desativado</option>
               <option value="3">FONE</option>
               <option value="4">MOUSEPAD</option>
             </select>
@@ -41,7 +49,7 @@
         <div class="form-row mb-5">
           <div class="form-group col-12 text-start">
             <label>Permissão</label>
-            <select class="form-select form-control" required>
+            <select class="form-select form-control" formControlName="codigoUsuarioPermissao" required>
               <option selected value="1">Administrador</option>
               <option value="2">MONITOR</option>
               <option value="3">FONE</option>
@@ -53,10 +61,10 @@
         <div class="form-row mt-5">
           <div class="form-group col-6 text-start">
               <label>Username</label>
-              <input type="text" class="form-control" [ngClass]="cssValidator(f.username)" name="username" formControlName="username" placeholder="Nome do usuário" required>
-              <div *ngIf="f.username.errors?.required" class="invalid-feedback">Nome é obrigatório</div>
-              <div *ngIf="f.username.errors?.maxlength" class="invalid-feedback">Nome pode ter no máximo 60 caracteres</div>
-              <div *ngIf="f.username.errors?.minlength" class="invalid-feedback">Nome pode ter no mínimo 2 caracteres</div>
+              <input type="text" class="form-control" [ngClass]="cssValidator(f.nome)" name="nome" formControlName="nome" placeholder="Nome do usuário" required>
+              <div *ngIf="f.nome.errors?.required" class="invalid-feedback">Nome é obrigatório</div>
+              <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Nome pode ter no máximo 60 caracteres</div>
+              <div *ngIf="f.nome.errors?.minlength" class="invalid-feedback">Nome pode ter no mínimo 2 caracteres</div>
 
           </div>
           <div class="form-group col-6 text-start">
@@ -72,7 +80,8 @@
           <label>Senha</label>
           <input type="password" class="form-control" [ngClass]="cssValidator(f.senha)" name="senha" formControlName="senha" placeholder="Senha" required>
           <div *ngIf="f.senha.errors?.required" class="invalid-feedback">Senha é obrigatório</div>
-          <div *ngIf="f.senha.errors?.maxlength" class="invalid-feedback">Senha pode ter no mínimo 10 caracteres</div>
+          <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">Senha pode ter no mínimo 5 caracteres</div>
+          <div *ngIf="f.senha.errors?.maxlength" class="invalid-feedback">Senha pode ter no máximo 25 caracteres</div>
         </div>
         <div class="form-group col-6 text-start">
           <label>Repita a senha</label>
@@ -83,7 +92,7 @@
           <div class="form-row pt-3">
             <div class="row">
               <div class="col">
-                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid" (click)="salvarAlteracao()">Cadastrar</button>
               </div>
               <div class="col">
                 <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
@@ -93,4 +102,4 @@
         </div>
   </form>
 </div>
-
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>

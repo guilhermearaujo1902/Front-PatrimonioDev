@@ -2,8 +2,9 @@ export interface Usuario {
   codigoUsuario: number;
   codigoSetor: number;
   codigoEmpresa: number;
-  codigoPermissao: number;
-  username: string;
+  codigoUsuarioPermissao: number;
+  nome: string;
   email: string;
   senha: string;
+  ativo: boolean;
 }

@@ -1,3 +1,4 @@
+import { ListagemFuncionarioComponent } from './listagem-funcionario/listagem-funcionario.component';
 import { FuncionarioComponent } from './funcionario.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
@@ -9,6 +10,13 @@ const routes: Routes = [
     component: FuncionarioComponent,
     data: {
       title: 'Funcionário'
+    }
+  },
+  {
+    path: 'listarFuncionario',
+    component: ListagemFuncionarioComponent,
+    data: {
+      title: 'listarFuncionario'
     }
   }
 ]

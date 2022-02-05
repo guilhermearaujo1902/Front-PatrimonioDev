@@ -137,26 +137,9 @@ export const navItems: INavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarUsuario',
+        url: '/dashboard/listarFuncionario',
         icon: 'fa fa-list'
       }
    ]
-  },
-  // {
-  //   name: 'Movimentação',
-  //   url: '/semurl',
-  //   icon: 'fa fa-exchange',
-  //   children: [
-  //     {
-  //       name: 'Cadastrar',
-  //       url: '/dashboard/movimentacao',
-  //       icon: 'fa fa-plus',
-  //     },
-  //     {
-  //       name: 'Listar',
-  //       url: '/dashboard/listarMovimentacao',
-  //       icon: 'fa fa-list'
-  //     }
-  //  ]
-  // },
+  }
 ];
