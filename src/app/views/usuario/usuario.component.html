@@ -1,36 +1,37 @@
 <div class="card rounded shadow-sm m-3 p-3" id="formulario">
   <form [formGroup]="form">
     <h1>Cadastrar usuário</h1>
+    isValid: {{form.valid}}
+
     <hr>
       <div class="p-3">
         <div class="form-row">
             <div class="form-group col-12 text-start">
                 <label>Código do usuário</label>
-                <input type="text" readonly class="form-control" name="codigoUsuario"  formControlName="codigoUsuario">
+                <input type="text" readonly class="form-control" value="15" name="codigoUsuario"  formControlName="codigoUsuario">
             </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-12 text-start">
             <label>Setor</label>
-            <select class="form-select form-control" formControlName="codigoSetor" required>
-              <option selected value="14">Produto</option>
-              <option value="2">MONITOR</option>
-              <option value="3">FONE</option>
-              <option value="4">MOUSEPAD</option>
+            <select class="form-select form-control" [ngClass]="cssValidatorCampoSelecao(f.codigoSetor)" formControlName="codigoSetor" required>
+              <option value="" disabled>--Selecione um setor--</option>
+              <option *ngFor="let setor of setores" [value]="setor.codigoSetor">{{setor.nome}}</option>
             </select>
+            <div *ngIf="f.codigoSetor.errors?.required" class="invalid-feedback">Setor do usuário é obrigatório</div>
           </div>
+
         </div>
 
         <div class="form-row">
           <div class="form-group col-12 text-start">
             <label>Empresa</label>
-            <select class="form-select form-control" formControlName="codigoEmpresa" required>
-              <option selected value="2">Precisão</option>
-              <option value="2">MONITOR</option>
-              <option value="3">FONE</option>
-              <option value="4">MOUSEPAD</option>
+            <select class="form-select form-control" [ngClass]="cssValidatorCampoSelecao(f.codigoEmpresa)" formControlName="codigoEmpresa" required>
+              <option value="" disabled>--Selecione uma empresa--</option>
+              <option *ngFor="let empresa of empresas" selected [value]="empresa.codigoEmpresa">{{empresa.razaoSocial}}</option>
             </select>
+            <div *ngIf="f.codigoEmpresa.errors?.required" class="invalid-feedback">Empresa do usuário é obrigatório</div>
           </div>
         </div>
 
@@ -40,8 +41,6 @@
             <select class="form-select form-control" formControlName="ativo" required>
               <option selected [ngValue]="true">Ativo</option>
               <option [ngValue]="false">Desativado</option>
-              <option value="3">FONE</option>
-              <option value="4">MOUSEPAD</option>
             </select>
           </div>
         </div>
@@ -49,12 +48,11 @@
         <div class="form-row mb-5">
           <div class="form-group col-12 text-start">
             <label>Permissão</label>
-            <select class="form-select form-control" formControlName="codigoUsuarioPermissao" required>
-              <option selected value="1">Administrador</option>
-              <option value="2">MONITOR</option>
-              <option value="3">FONE</option>
-              <option value="4">MOUSEPAD</option>
+            <select class="form-select form-control" [ngClass]="cssValidatorCampoSelecao(f.codigoUsuarioPermissao)" formControlName="codigoUsuarioPermissao" required>
+              <option value="" disabled>--Selecione uma permissão--</option>
+              <option *ngFor="let permissao of permissoes" [value]="permissao.codigoUsuarioPermissao">{{permissao.descricaoPermissao}}</option>
             </select>
+            <div *ngIf="f.codigoUsuarioPermissao.errors?.required" class="invalid-feedback">Permissão do usuário é obrigatório</div>
           </div>
         </div>
         <hr>
@@ -95,7 +93,7 @@
                 <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid" (click)="salvarAlteracao()">Cadastrar</button>
               </div>
               <div class="col">
-                <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
+                <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">Limpar</button>
               </div>
             </div>
           </div>

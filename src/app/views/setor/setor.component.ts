@@ -84,8 +84,7 @@ export class SetorComponent implements OnInit {
              this.form.patchValue(this.setor);
            },
            error: (error: any) => {
-             this.toaster.error('Erro ao tentar carregar o evento', 'Erro!');
-             console.error(error);
+             this.toaster.error(`Houve um problema ao carregar o setor. Mensagem ${error.message}`, 'Erro!');
            }
          }
        ).add(() => this.spinner.hide());
