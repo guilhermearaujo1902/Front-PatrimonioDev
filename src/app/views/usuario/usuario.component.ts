@@ -100,7 +100,6 @@ export class UsuarioComponent implements OnInit {
   }
 
   private validacao(): void {
-    debugger;
     this.form = this.fb.group<Usuario>({
       codigoUsuario: new FormControl(this.limpandoCampo? this.form.get('codigoUsuario').value : '', []),
       codigoUsuarioPermissao: new FormControl('', [Validators.required]),

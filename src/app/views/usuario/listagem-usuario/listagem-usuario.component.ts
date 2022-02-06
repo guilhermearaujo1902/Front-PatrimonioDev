@@ -1,11 +1,12 @@
 import { UsuarioService } from './../../../services/usuario/usuario.service';
 import { Usuario } from './../../../models/Usuario';
 import { ToastrService } from 'ngx-toastr';
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import configuracaoTabela from '../../../util/configuracao-tabela';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-listagem-usuario',
@@ -23,10 +24,13 @@ export class ListagemUsuarioComponent implements OnInit {
   public linhas = 0;
 
   modalRef?: BsModalRef;
+  codigoUsuario: number;
 
   constructor(
     private toaster: ToastrService,
-    private usuarioService: UsuarioService) { }
+    private usuarioService: UsuarioService,
+    private spinner: NgxSpinnerService,
+    private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.obterUsuario();
@@ -58,7 +62,6 @@ export class ListagemUsuarioComponent implements OnInit {
         this.configuracao.isLoading = false;
       }
     });
-
   }
 
   public exportarParaExcel(): void {
@@ -79,5 +82,30 @@ export class ListagemUsuarioComponent implements OnInit {
       type: API.onGlobalSearch,
       value: (event.target as HTMLInputElement).value,
     });
+  }
+
+  public confirmar(): void {
+    this.modalRef.hide();
+    this.spinner.show();
+
+    this.usuarioService.desativarUsuario(this.codigoUsuario).subscribe(
+      () =>{
+        this.toaster.success('Usuário desativado com sucesso!', 'Desativado');
+        this.obterUsuario();
+      },
+      (error: any) =>{
+        this.toaster.error(`Houve um erro ao desativar o usuário. Mensagem: ${error.message}`, 'Erro!');
+      }
+    ).add(() => this.spinner.hide())
+  }
+
+  public abrirModal(event: any, template: TemplateRef<any>, codigoUsuario: number): void {
+    event.stopPropagation();
+    this.codigoUsuario = codigoUsuario;
+    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+  }
+
+  public recusar(): void {
+    this.modalRef.hide();
   }
 }

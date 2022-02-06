@@ -1,65 +1,88 @@
-
 <div class="card rounded shadow-sm p-3 m-5">
   <div class="d-flex">
-      <div class="flex-fill pr-3">
-          <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                  <div class="input-group-text">Filtro: </div>
-              </div>
-              <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)"/>
-          </div>
+    <div class="flex-fill pr-3">
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Filtro:</div>
+        </div>
+        <input
+          type="text"
+          placeholder="Buscar por registros"
+          class="form-control"
+          (input)="onChange($event)"
+        />
       </div>
-      <div>
-        <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/usuario">
-            <i class="fa fa-plus-circle my-1"></i>
-            <b class="ml-1 d-none d-sm-block"> Novo</b>
-        </a>
-      </div>
-      <div class="ml-1">
-        <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1" id="icone-excel"></i> Exportar para Excel</button>
-      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/usuario">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block"> Novo</b>
+      </a>
+    </div>
+    <div class="ml-1">
+      <button class="btn btn-success mb-1" (click)="exportarParaExcel()">
+        <i class="fa fa-file-excel-o my-1" id="icone-excel"></i> Exportar para
+        Excel
+      </button>
+    </div>
   </div>
 
   <ngx-table
-  [data]="data"
-  [configuration]="configuracao"
-  [columns]="colunas"
-  [noResultsTemplate]="mensagemSemCadastro"
-  [summaryTemplate]="summaryTemplateRef"
-  [loadingTemplate]="loadingTemplate"
-
-  #table>
-  <ng-template let-row>
-    <td>
-      <div class="font-small">{{ row.codigoUsuario }}</div>
-    </td>
-    <td>
-      <span class="font-small">{{ row.nome }}</span>
-    </td>
-    <td>
-      <span class="font-small">{{ row.email }}</span>
-    </td>
-    <td>
-      <button class="btn btn-warning btn-lg" (click)="detalheSetor(row.codigoUsuario)">
-        Alterar
-      </button>
+    [data]="data"
+    [configuration]="configuracao"
+    [columns]="colunas"
+    [noResultsTemplate]="mensagemSemCadastro"
+    [summaryTemplate]="summaryTemplateRef"
+    [loadingTemplate]="loadingTemplate"
+    #table
+  >
+    <ng-template let-row>
+      <td>
+        <div class="font-small">{{ row.codigoUsuario }}</div>
       </td>
       <td>
-        <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoUsuario)">
+        <span class="font-small">{{ row.nome }}</span>
+      </td>
+      <td>
+        <span class="font-small">{{ row.email }}</span>
+      </td>
+      <td>
+        <button
+          class="btn btn-warning btn-lg"
+          (click)="detalheSetor(row.codigoUsuario)"
+        >
+          Alterar
+        </button>
+      </td>
+      <td>
+        <button
+          class="btn btn-danger btn-lg"
+          (click)="abrirModal($event, template, row.codigoUsuario)"
+        >
           Deletar
         </button>
       </td>
-
     </ng-template>
   </ngx-table>
 </div>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-fade"
+  [fullScreen]="true"
+  ><p style="color: white">Buscando...</p></ngx-spinner
+>
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a deleção do usuário de código {{codigoUsuario}}?</p>
-    <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
-    <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
+    <p>Deseja confirmar a desativação do usuário de código {{ codigoUsuario }}?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()">
+      Sim
+    </button>
+    <button type="button" class="btn btn-primary" (click)="recusar()">
+      Não
+    </button>
   </div>
 </ng-template>
 <ng-template #mensagemSemCadastro>
