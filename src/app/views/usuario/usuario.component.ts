@@ -116,7 +116,7 @@ export class UsuarioComponent implements OnInit {
 
     this.spinner.show();
     this.usuario = (this.estadoSalvar === 'cadastrarUsuario') ? {...this.form.value} : {codigoUsuario: this.usuario.codigoUsuario, ...this.form.value};
-
+    debugger;
     this.usuarioService[this.estadoSalvar](this.usuario).subscribe(
       () => this.toaster.success('Usuário cadastrado com sucesso', 'Sucesso!'),
       (error: any) => {
@@ -136,7 +136,6 @@ export class UsuarioComponent implements OnInit {
 
   public carregarUsuario() : void{
     this.codigoUsuario = +this.activateRouter.snapshot.paramMap.get('codigoUsuario');
-
      if(this.codigoUsuario !== null && this.codigoUsuario !== 0){
       this.estadoSalvar = 'atualizarUsuario';
        this.spinner.show();

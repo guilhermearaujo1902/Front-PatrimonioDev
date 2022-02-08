@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UsuarioService } from './../../../services/usuario/usuario.service';
 import { Usuario } from './../../../models/Usuario';
 import { ToastrService } from 'ngx-toastr';
@@ -30,7 +31,8 @@ export class ListagemUsuarioComponent implements OnInit {
     private toaster: ToastrService,
     private usuarioService: UsuarioService,
     private spinner: NgxSpinnerService,
-    private modalService: BsModalService) { }
+    private modalService: BsModalService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.obterUsuario();
@@ -107,5 +109,9 @@ export class ListagemUsuarioComponent implements OnInit {
 
   public recusar(): void {
     this.modalRef.hide();
+  }
+
+  public detalheUsuario(codigoUsuario : number): void {
+    this.router.navigate([`dashboard/usuario/${codigoUsuario}`])
   }
 }

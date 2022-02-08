@@ -15,15 +15,16 @@ export class UsuarioService {
   constructor(private http: HttpClient) { }
 
   public cadastrarUsuario(usuario: Usuario): Observable<Usuario>{
-    return this.http.post<Usuario>(this.baseUrl, {usuario}).pipe(take(1));;
+    debugger;
+    return this.http.post<Usuario>(this.baseUrl, {usuario}).pipe(take(1));
   }
 
   public obterTodosUsuarios(): Observable<Usuario[]>{
-    return this.http.get<Usuario[]>(this.baseUrl).pipe(take(1));;
+    return this.http.get<Usuario[]>(this.baseUrl).pipe(take(1));
   }
 
   public obterApenasUmUsuario(codigoUsuario: number): Observable<Usuario>{
-    return this.http.get<Usuario>(`${this.baseUrl}/${codigoUsuario}`).pipe(take(1));;
+    return this.http.get<Usuario>(`${this.baseUrl}/${codigoUsuario}`).pipe(take(1));
   }
 
   public obterUsuarioPorLoginESenha(email: string, senha: string){
@@ -34,7 +35,7 @@ export class UsuarioService {
     return this.http.delete(`${this.baseUrl}/${codigoUsuario}`).pipe(take(1));
   }
 
-  public atualizarUsuario(codigoUsuario: number, usuario: Usuario){
-    return this.http.put(`${this.baseUrl}/${codigoUsuario}`,{usuario}).pipe(take(1));
+  public atualizarUsuario(usuario: Usuario){
+    return this.http.put(`${this.baseUrl}/${usuario.codigoUsuario}`,{usuario}).pipe(take(1));
   }
 }

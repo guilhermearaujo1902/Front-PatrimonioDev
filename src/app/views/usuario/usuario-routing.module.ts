@@ -20,6 +20,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'usuario/:codigoUsuario',
+    component: UsuarioComponent,
+    data: {
+      title: 'usuario'
+    }
+  },
+  {
     path: 'listarUsuario',
     component: ListagemUsuarioComponent,
     data: {

@@ -12,9 +12,9 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" name="username" [ngClass]="cssValidator(f.username)" formControlName="username" placeholder="Username" autocomplete="username" required>
-                  <div *ngIf="f.username.errors?.required" class="invalid-feedback">Username é obrigatório</div>
-                  <div *ngIf="f.username.errors?.maxlength" class="invalid-feedback">Username deve ter no máximo 50 caracteres</div>
+                  <input type="text" class="form-control" name="nome" [ngClass]="cssValidator(f.nome)" formControlName="nome" placeholder="Username" autocomplete="username" required>
+                  <div *ngIf="f.nome.errors?.required" class="invalid-feedback">Username é obrigatório</div>
+                  <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Username deve ter no máximo 50 caracteres</div>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="row">
                   <div class="col-8">
-                    <button type="button" class="btn btn-block btn-success" [disabled]="!form.valid">Cadastrar</button>
+                    <button type="button" class="btn btn-block btn-success" (click)="salvarAlteracao()" [disabled]="!form.valid">Cadastrar</button>
                   </div>
                   <div class="col-4">
                     <button type="button" routerLink="/login" class="btn btn-block btn-primary">Voltar</button>
