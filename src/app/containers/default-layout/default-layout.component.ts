@@ -9,6 +9,7 @@ import { navItems } from '../../_nav';
   templateUrl: './default-layout.component.html'
 })
 export class DefaultLayoutComponent implements OnInit{
+
   public sidebarMinimized = false;
   public navItems = navItems;
   name: string;
@@ -18,6 +19,7 @@ export class DefaultLayoutComponent implements OnInit{
   constructor(private _router: Router, private menuService: MenuService){}
 
   ngOnInit(): void {
+    debugger;
     this.menu = this.menuService.obterMenu();
     this.ouvirRota();
   }

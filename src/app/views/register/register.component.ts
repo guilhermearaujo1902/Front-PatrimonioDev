@@ -4,7 +4,7 @@ import { UsuarioService } from './../../services/usuario/usuario.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Usuario } from '../../models/Usuario';
 
 @Component({
@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
     this.form = this.fb.group<Usuario>({
       codigoUsuario: new FormControl(''),
       codigoUsuarioPermissao: new FormControl(1),
-      codigoEmpresa: new FormControl(''),
+      codigoEmpresa: new FormControl(1),
       codigoSetor: new FormControl(1),
       nome: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
       email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.email]),
@@ -63,7 +63,7 @@ export class RegisterComponent implements OnInit {
       {
         this.spinner.hide()
         setTimeout(() => {
-          this.router.navigate(['dashboard'])
+          this.router.navigate(['login'])
         }, 1000)
       }
     );
