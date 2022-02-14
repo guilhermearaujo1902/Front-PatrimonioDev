@@ -91,6 +91,14 @@ export class MenuService {
           {
             name: 'Listar Funcionário',
             path: './listarFuncionario',
+          },
+          {
+            name: 'Categoria',
+            path: './categoria',
+          },
+          {
+            name: 'Listar Categoria',
+            path: './listarCategoria',
           }
         ]
       },

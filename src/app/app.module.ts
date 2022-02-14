@@ -70,6 +70,12 @@ import { TableModule } from 'ngx-easy-table';
 import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-perfil.component';
 import { FuncionarioComponent } from './views/funcionario/funcionario.component';
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
+import { RoleGuardService } from './services/auth/role-guard.service';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem("jwt");
+}
 
 @NgModule({
   imports: [
@@ -101,7 +107,12 @@ import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funci
         preventDuplicates: true,
         progressBar: true
       }
-    )
+    ),
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+      }
+    })
   ],
   declarations: [
     AppComponent,
@@ -137,9 +148,11 @@ import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funci
       provide: LocationStrategy,
       useClass: HashLocationStrategy,
     },
+    RoleGuardService,
     IconSetService,
     MenuService,
     SetorService,
+    // JwtHelperService,
     FabricanteService,
     FormBuilderTypeSafe
   ],

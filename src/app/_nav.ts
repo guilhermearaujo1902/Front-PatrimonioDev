@@ -141,5 +141,22 @@ export const navItems: INavData[] = [
         icon: 'fa fa-list'
       }
    ]
+  },
+  {
+    name: 'Categoria Equipamento',
+    url: '/semurl',
+    icon: "fa fa-cubes",
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/categoria',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarCategoria',
+        icon: 'fa fa-list'
+      }
+   ]
   }
 ];

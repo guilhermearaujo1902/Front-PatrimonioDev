@@ -1,3 +1,5 @@
+import { ListagemCategoriaComponent } from './../categoria/listagem-categoria/listagem-categoria.component';
+import { CategoriaComponent } from './../categoria/categoria.component';
 import { UsuarioRoutingModule } from './../usuario/usuario-routing.module';
 import { SetorRoutingModule } from './../setor/setor-routing.module';
 import { ListagemequipamentoComponent } from './../equipamento/listagem-equipamento/listagem-equipamento.component';
@@ -6,7 +8,7 @@ import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
-import { NgModule, Component } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
@@ -15,6 +17,7 @@ import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-moviment
 import { EmpresaRoutingModule } from '../empresa/empresa-routing.module';
 import { FabricanteRoutingModule } from '../fabricante/fabricante-routing.module';
 import { FuncionarioRoutingModule } from '../funcionario/funcionario-routing.module';
+import { RoleGuardService } from '../../services/auth/role-guard.service';
 
 const routes: Routes = [
   {
@@ -27,8 +30,10 @@ const routes: Routes = [
   {
     path: 'patrimonio',
     component: PatrimonioComponent,
+    canActivate: [RoleGuardService],
     data: {
-      title: 'patrimonio'
+      title: 'patrimonio',
+      permissaoEsperada: 1
     }
   },
   {
@@ -93,6 +98,20 @@ const routes: Routes = [
     component: ListagemMovimentacaoComponent,
     data: {
       title: 'listarMovimentacao'
+    }
+  },
+  {
+    path: 'categoria',
+    component: CategoriaComponent,
+    data: {
+      title: 'categoria'
+    }
+  },
+  {
+    path: 'listarCategoria',
+    component: ListagemCategoriaComponent,
+    data: {
+      title: 'listarCategoria'
     }
   }
 ];

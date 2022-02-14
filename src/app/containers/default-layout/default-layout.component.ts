@@ -28,6 +28,11 @@ export class DefaultLayoutComponent implements OnInit{
     this.sidebarMinimized = e;
   }
 
+  public logOut(){
+    localStorage.removeItem("jwt");
+    this._router.navigate(["login"]);
+  }
+
   ouvirRota(): void {
     let routerUrl: string, routerList: Array<any>, target: any;
 
