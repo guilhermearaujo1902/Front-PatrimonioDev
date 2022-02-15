@@ -14,16 +14,23 @@
                       <span class="input-group-text"><i class="icon-user"></i></span>
                     </div>
                     <input type="text" class="form-control" placeholder="E-mail" [ngClass]="cssValidator(f.email)" formControlName="email" placeholder="E-mail" autocomplete="email" required>
+                    <div *ngIf="f.email.errors?.required" class="invalid-feedback">E-mail é obrigatório</div>
+                    <div *ngIf="f.email.errors?.minlength" class="invalid-feedback">E-mail pode ter no mínimo 10 caracteres</div>
+                    <div *ngIf="f.email.errors?.email" class="invalid-feedback">E-mail está inválido</div>
+
                   </div>
                   <div class="input-group mb-4">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
                     <input type="password" class="form-control" [ngClass]="cssValidator(f.senha)" formControlName="senha" placeholder="Senha" autocomplete="senha" required>
+                    <div *ngIf="f.senha.errors?.required" class="invalid-feedback">Senha é obrigatório</div>
+                    <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">Senha pode ter no mínimo 5 caracteres</div>
+
                   </div>
                   <div class="row">
                     <div class="col-6">
-                      <button type="button" (click)="validarCredenciais()" class="btn btn-primary px-4">Login</button>
+                      <button type="button" (click)="validarCredenciais()" [disabled]="!form.valid" class="btn btn-primary px-4">Login</button>
                     </div>
                     <!-- <div class="col-6 text-right">
                       <button type="button" class="btn btn-link px-0">Esqueceu sua senha?</button>
@@ -61,3 +68,4 @@
     </div>
   </main>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Validando Credenciais... </p></ngx-spinner>

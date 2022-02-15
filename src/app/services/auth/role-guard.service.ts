@@ -17,7 +17,7 @@ export class RoleGuardService implements CanActivate {
       !this.auth.usuarioEstaAutenticado() ||
       +tokenPayload.permissao !== permissaoEsperada
     ) {
-      this.router.navigate(['login']);
+      this.router.navigate(['403']);
       return false;
     }
     return true;

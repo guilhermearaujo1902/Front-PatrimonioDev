@@ -71,9 +71,11 @@ import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-p
 import { FuncionarioComponent } from './views/funcionario/funcionario.component';
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
 import { RoleGuardService } from './services/auth/role-guard.service';
-import { JwtModule } from '@auth0/angular-jwt';
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
+import { AuthGuard } from './services/auth/auth.guard';
 
 export function tokenGetter() {
+  debugger;
   return localStorage.getItem("jwt");
 }
 
@@ -108,12 +110,7 @@ export function tokenGetter() {
         progressBar: true
       }
     ),
-    JwtModule.forRoot({
-      config: {
-        tokenGetter: tokenGetter,
-      }
-    })
-  ],
+   ],
   declarations: [
     AppComponent,
     ...APP_CONTAINERS,
@@ -141,7 +138,6 @@ export function tokenGetter() {
     UsuarioPerfilComponent,
     FuncionarioComponent,
     ListagemFuncionarioComponent
-
   ],
   providers: [
     {
@@ -152,7 +148,8 @@ export function tokenGetter() {
     IconSetService,
     MenuService,
     SetorService,
-    // JwtHelperService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService,
     FabricanteService,
     FormBuilderTypeSafe
   ],

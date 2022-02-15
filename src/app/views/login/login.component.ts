@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -29,15 +30,19 @@ export class LoginComponent implements OnInit {
     private usuarioService: UsuarioService,
     private fb:FormBuilder,
     private toaster: ToastrService,
-    private router: Router) {
+    private router: Router,
+    private spinner: NgxSpinnerService) {
   }
 
   public validarCredenciais(): void {
 
+    this.removerToken();
+
+    this.spinner.show();
+
     let credenciais = {...this.form.value}
     this.usuarioService.obterUsuarioPorLoginESenha(credenciais.email, credenciais.senha).subscribe(
       (result: any) => {
-        debugger;
         this.usuario = {...result};
         const token = result.token;
         localStorage.setItem("jwt", token);
@@ -45,23 +50,24 @@ export class LoginComponent implements OnInit {
 
         if(Object.keys(this.usuario).length !== 0 ){
           this.router.navigate(['dashboard']);
-        }else
-        {
-          this.toaster.toastrConfig.timeOut = 5000;
-          this.toaster.info(`Não foi encontrado nenhum usuário cadastrado com esse e-mail e senha. Por favor, tente novamente`, "Não encontrado");
         }
       },
       (error: any) => {
-          this.toaster.error(`Houve um erro ao fazer login. Mensagem : ${error.message}`)
+        this.toaster.toastrConfig.timeOut = 5000;
+        this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)
       }
-    )
+    ).add(() => this.spinner.hide())
 
+  }
+
+  private removerToken(){
+    localStorage.removeItem("jwt");
   }
 
   public validarCamposFormulario(): void {
     this.form = this.fb.group({
-      email:  ['', [Validators.required]],
-      senha: ['', [Validators.required]],
+      email:  ['', [Validators.required, Validators.minLength(10),Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(5)]],
     });
   }
 

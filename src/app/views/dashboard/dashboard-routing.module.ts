@@ -1,3 +1,4 @@
+import { AuthGuard } from './../../services/auth/auth.guard';
 import { ListagemCategoriaComponent } from './../categoria/listagem-categoria/listagem-categoria.component';
 import { CategoriaComponent } from './../categoria/categoria.component';
 import { UsuarioRoutingModule } from './../usuario/usuario-routing.module';
@@ -9,7 +10,7 @@ import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { PercaComponent } from '../perca/perca.component';
@@ -23,6 +24,7 @@ const routes: Routes = [
   {
     path: '',
     component: WidgetsComponent,
+    canActivate: [AuthGuard],
     data: {
       title: 'Dashboard'
     }
@@ -30,7 +32,7 @@ const routes: Routes = [
   {
     path: 'patrimonio',
     component: PatrimonioComponent,
-    canActivate: [RoleGuardService],
+    canActivate: [AuthGuard,RoleGuardService],
     data: {
       title: 'patrimonio',
       permissaoEsperada: 1

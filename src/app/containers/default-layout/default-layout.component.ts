@@ -46,13 +46,11 @@ export class DefaultLayoutComponent implements OnInit{
         routerList = routerUrl.slice(1).split('/');
         routerList.forEach((router, index) => {
 
-
-
           target = target.find(page => page.path.slice(2) === router);
 
           this.breadcrumbList.push({
-            name: target.name,
-            path: (index === 0) ? target.path : `${this.breadcrumbList[index - 1].path}/${target.path.slice(2)}`
+            name: target?.name ,
+            path: (index === 0) ? target?.path : `${this.breadcrumbList[index - 1]?.path}/${target?.path.slice(2)}`
           });
 
           if (index + 1 !== routerList.length) {
