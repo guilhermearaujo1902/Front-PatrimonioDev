@@ -19,6 +19,7 @@ import { EmpresaRoutingModule } from '../empresa/empresa-routing.module';
 import { FabricanteRoutingModule } from '../fabricante/fabricante-routing.module';
 import { FuncionarioRoutingModule } from '../funcionario/funcionario-routing.module';
 import { RoleGuardService } from '../../services/auth/role-guard.service';
+import { Permissao } from '../../models/enums/permissao.enum';
 
 const routes: Routes = [
   {
@@ -32,10 +33,10 @@ const routes: Routes = [
   {
     path: 'patrimonio',
     component: PatrimonioComponent,
-    canActivate: [AuthGuard,RoleGuardService],
+    canActivate: [AuthGuard, RoleGuardService],
     data: {
       title: 'patrimonio',
-      permissaoEsperada: 1
+      permissaoEsperada: [Permissao.Administrador]
     }
   },
   {
@@ -49,14 +50,19 @@ const routes: Routes = [
     path: 'permissao',
     component: PermissaoComponent,
     data: {
-      title: 'Permissao'
+      title: 'Permissao',
+      permissaoEsperada: [Permissao.Administrador, Permissao.Gestor]
+
     }
   },
   {
     path: 'listarPermissao',
     component: ListarpermissaoComponent,
+    canActivate: [AuthGuard, RoleGuardService],
     data: {
-      title: 'listarPermissao'
+      title: 'listarPermissao',
+      permissaoEsperada: [Permissao.Administrador, Permissao.Gestor]
+
     }
   },
   {
