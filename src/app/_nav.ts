@@ -1,4 +1,5 @@
 import { INavData } from '@coreui/angular';
+import { Permissao } from './models/enums/permissao.enum';
 
 export const navItems: INavData[] = [
   {
@@ -10,6 +11,7 @@ export const navItems: INavData[] = [
     name: 'Setor',
     url: '/s',
     icon: 'fa fa-users',
+    permissaoEsperada: Permissao.Administrador,
     children: [
       {
         name: 'Cadastrar',
@@ -27,6 +29,7 @@ export const navItems: INavData[] = [
     name: 'Permissão',
     url: '/se',
     icon: 'fa fa-address-card',
+    permissaoEsperada: Permissao.Gestor,
     children: [
       {
         name: 'Cadastrar',
@@ -44,6 +47,7 @@ export const navItems: INavData[] = [
     name: 'Empresa',
     url: '/sem',
     icon: 'fa fa-building',
+    permissaoEsperada: Permissao.Administrador,
     children: [
       {
         name: 'Empresa',
@@ -61,6 +65,7 @@ export const navItems: INavData[] = [
     name: 'Fabricante',
     url: '/semu',
     icon: 'fa fa-archive',
+    permissaoEsperada: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -78,6 +83,7 @@ export const navItems: INavData[] = [
     name: 'Patrimônio',
     url: '/semur',
     icon: 'fa fa-th',
+    permissaoEsperada: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -95,6 +101,7 @@ export const navItems: INavData[] = [
     name: 'Equipamento',
     url: '/semurl',
     icon: 'fa fa-desktop',
+    permissaoEsperada: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -112,6 +119,7 @@ export const navItems: INavData[] = [
     name: 'Usuário',
     url: '/semurl',
     icon: 'fa fa-user',
+    permissaoEsperada: Permissao.Administrador,
     children: [
       {
         name: 'Cadastrar',
@@ -129,6 +137,7 @@ export const navItems: INavData[] = [
     name: 'Funcionario',
     url: '/semurl',
     icon: 'fa fa-users',
+    permissaoEsperada: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -146,6 +155,7 @@ export const navItems: INavData[] = [
     name: 'Categoria Equipamento',
     url: '/semurl',
     icon: "fa fa-cubes",
+    permissaoEsperada: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',

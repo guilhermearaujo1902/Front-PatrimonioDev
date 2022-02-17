@@ -1,20 +1,19 @@
+import { TokenService } from './../token/token.service';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Injectable } from '@angular/core';
-import decode from 'jwt-decode';
 import { AuthGuard } from './auth.guard';
 
 @Injectable()
 export class RoleGuardService implements CanActivate {
-  private readonly nomeCampoPermissao = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
 
-  constructor(private auth: AuthGuard, private router: Router) { }
+  constructor(private auth: AuthGuard, private router: Router, private token: TokenService) { }
+
   canActivate(route: ActivatedRouteSnapshot): boolean {
+
     const permissaoEsperada: number[] = route.data.permissaoEsperada;
+    const permissaoToken = this.token.obterPermissaoToken()
 
-    const token: string = localStorage.getItem('jwt');
-    const tokenPayload: any = decode(token);
-
-    const permissaoEncontrada = permissaoEsperada.find(x => x == +tokenPayload[this.nomeCampoPermissao]);
+    const permissaoEncontrada = permissaoEsperada.find(x => x == permissaoToken);
 
     debugger;
     if (!this.auth.usuarioEstaAutenticado() || permissaoEncontrada == undefined)

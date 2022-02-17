@@ -1,7 +1,10 @@
+import { TokenService } from './../../services/token/token.service';
+import { INavData } from '@coreui/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from '../../services/menu/menu.service';
 import { navItems } from '../../_nav';
+import { Permissao } from '../../models/enums/permissao.enum';
 
 @Component({
   selector: 'app-dashboard',
@@ -11,17 +14,56 @@ import { navItems } from '../../_nav';
 export class DefaultLayoutComponent implements OnInit{
 
   public sidebarMinimized = false;
-  public navItems = navItems;
+  public navItems = [];
+  public navItemsPermissao = [];
   name: string;
   menu: Array<any> = [];
   breadcrumbList: Array<any> = [];
 
-  constructor(private _router: Router, private menuService: MenuService){}
+  constructor(private _router: Router, private menuService: MenuService, private token: TokenService){}
 
   ngOnInit(): void {
     debugger;
     this.menu = this.menuService.obterMenu();
     this.ouvirRota();
+    this.obterMenusPermissaoUsuario();
+  }
+
+  private obterMenusPermissaoUsuario(): void {
+    const permissao = this.token.obterPermissaoToken();
+
+    switch (permissao) {
+
+      case Permissao.Gestor:
+
+        navItems.forEach(rota => {
+          if(rota.permissaoEsperada !== 1){
+            this.navItemsPermissao.push(rota)
+          }
+        });
+
+        this.navItems = this.navItemsPermissao;
+
+        break;
+
+      case Permissao.Usuario:
+
+        navItems.forEach(rota => {
+
+          if(rota.permissaoEsperada == 3){
+            this.navItemsPermissao.push(rota)
+          }
+
+        });
+
+        this.navItems = this.navItemsPermissao;
+
+        break;
+
+      default:
+        this.navItems = navItems;
+      break;
+    }
   }
 
   toggleMinimize(e) {
