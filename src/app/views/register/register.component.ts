@@ -1,3 +1,4 @@
+import { Config } from 'ngx-easy-table';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioService } from './../../services/usuario/usuario.service';
@@ -15,6 +16,7 @@ export class RegisterComponent implements OnInit {
 
   form!: FormGroupTypeSafe<Usuario>;
   usuario = {} as Usuario;
+  emailAuth?: any;
 
   public get f(): any {
     return this.form.controls;
@@ -25,10 +27,15 @@ export class RegisterComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private usuarioService: UsuarioService,
     private toaster: ToastrService,
-    private router: Router) { }
+    private router: Router) {
+      this.emailAuth = this.router.getCurrentNavigation()?.extras.queryParams.email;
+
+     }
 
   ngOnInit(): void {
+    debugger;
     this.validarCamposFormulario();
+
   }
 
   public validarCamposFormulario(): void {
@@ -38,7 +45,7 @@ export class RegisterComponent implements OnInit {
       codigoEmpresa: new FormControl(1),
       codigoSetor: new FormControl(1),
       nome: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
-      email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.email]),
+      email: new FormControl(this.emailAuth, [Validators.required, Validators.minLength(10), Validators.email]),
       senha: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       ativo: new FormControl(true, [])
     });
@@ -54,9 +61,10 @@ export class RegisterComponent implements OnInit {
     debugger;
     this.spinner.show();
     this.usuarioService.cadastrarUsuario(this.usuario).subscribe(
-      () => this.toaster.success('Usuário cadastrado com sucesso', 'Sucesso!'),
+      () => this.toaster.success('Usuário cadastrado com sucesso. Redirecionando para a tela de login', 'Sucesso!'),
       (error: any) => {
         this.spinner.hide();
+        this.toaster.toastrConfig.timeOut = 5000;
         this.toaster.error(`Houve um erro durante o cadastro do usuário. Mensagem: ${error.error.mensagem}`, 'Erro!');
       },
       () =>
@@ -64,7 +72,7 @@ export class RegisterComponent implements OnInit {
         this.spinner.hide()
         setTimeout(() => {
           this.router.navigate(['login'])
-        }, 1000)
+        }, 3000)
       }
     );
   }

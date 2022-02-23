@@ -12,7 +12,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" name="nome" [ngClass]="cssValidator(f.nome)" formControlName="nome" placeholder="Username" autocomplete="username" required>
+                  <input type="text" class="form-control" name="nome" [ngClass]="cssValidator(f.nome)" formControlName="nome" placeholder="Nome" autocomplete="Nome" required>
                   <div *ngIf="f.nome.errors?.required" class="invalid-feedback">Username é obrigatório</div>
                   <div *ngIf="f.nome.errors?.maxlength" class="invalid-feedback">Username deve ter no máximo 50 caracteres</div>
                 </div>
@@ -20,7 +20,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text">@</span>
                   </div>
-                  <input type="text" class="form-control" [ngClass]="cssValidator(f.email)" name="email" formControlName="email" placeholder="E-mail" autocomplete="email" required>
+                  <input type="text" class="form-control" [ngClass]="cssValidator(f.email)" name="email" formControlName="email" [readonly]="emailAuth" placeholder="E-mail" autocomplete="email" required>
                   <div *ngIf="f.email.errors?.required" class="invalid-feedback">E-mail é obrigatório</div>
 
                 </div>

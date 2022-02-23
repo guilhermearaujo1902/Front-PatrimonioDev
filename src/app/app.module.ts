@@ -1,32 +1,27 @@
+import { GoogleLoginProvider, SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
+
 import { FabricanteService } from './services/fabricante/fabricante.service';
-import { WidgetsModule } from './views/widgets/widgets.module';
 import { MenuService } from './services/menu/menu.service';
+
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
-import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
-
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
 
-import { AppComponent } from './app.component';
-
-// Import containers
-import { DefaultLayoutComponent } from './containers';
-
-import { P404Component } from './views/error/404.component';
-import { P500Component } from './views/error/500.component';
-import { LoginComponent } from './views/login/login.component';
-import { RegisterComponent } from './views/register/register.component';
-
-import { CommonModule } from '@angular/common';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { ToastrModule } from 'ngx-toastr';
-
 import { ChartsModule } from 'ng2-charts';
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { TableModule } from 'ngx-easy-table';
 
 const APP_CONTAINERS = [
   DefaultLayoutComponent
@@ -44,8 +39,6 @@ import {
 import { AppRoutingModule } from './app.routing';
 
 // Import 3rd party components
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
-import { TabsModule } from 'ngx-bootstrap/tabs';
 import { SetorComponent } from './views/setor/setor.component';
 import { EmpresaComponent } from './views/empresa/empresa.component';
 import { FabricanteComponent } from './views/fabricante/fabricante.component';
@@ -56,9 +49,16 @@ import { ListagemEmpresaComponent } from './views/empresa/listagem-empresa/lista
 import { ListagemfabricanteComponent } from './views/fabricante/listagem-fabricante/listagem-fabricante.component';
 import { PatrimonioComponent } from './views/patrimonio/patrimonio.component';
 import { ListarpatrimonioComponent } from './views/patrimonio/listagem-patrimonio/listagem-patrimonio.component';
+import { AppComponent } from './app.component';
+import { DefaultLayoutComponent } from './containers';
+import { WidgetsModule } from './views/widgets/widgets.module';
+import { P404Component } from './views/error/404.component';
+import { P500Component } from './views/error/500.component';
+import { LoginComponent } from './views/login/login.component';
+import { RegisterComponent } from './views/register/register.component';
 import { SetorService } from './services/setor/setor.service';
-import { ModalModule } from 'ngx-bootstrap/modal';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { RoleGuardService } from './services/auth/role-guard.service';
+
 import { EquipamentoComponent } from './views/equipamento/equipamento.component';
 import { ListagemequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
@@ -66,13 +66,9 @@ import { MovimentacaoComponent } from './views/movimentacao/movimentacao.compone
 import { PercaComponent } from './views/perca/perca.component';
 import { ListagemMovimentacaoComponent } from './views/movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/listagem-usuario.component';
-import { TableModule } from 'ngx-easy-table';
 import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-perfil.component';
 import { FuncionarioComponent } from './views/funcionario/funcionario.component';
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
-import { RoleGuardService } from './services/auth/role-guard.service';
-import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
-import { AuthGuard } from './services/auth/auth.guard';
 
 export function tokenGetter() {
   debugger;
@@ -81,6 +77,7 @@ export function tokenGetter() {
 
 @NgModule({
   imports: [
+    SocialLoginModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
@@ -141,17 +138,31 @@ export function tokenGetter() {
   ],
   providers: [
     {
-      provide: LocationStrategy,
-      useClass: HashLocationStrategy,
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              '564346763959-hflo72lodveg32gie4vtdnq1in82h7og.apps.googleusercontent.com'
+            )
+          }
+        ]
+      } as SocialAuthServiceConfig
     },
+    // {
+    //   provide: LocationStrategy,
+    //   useClass: HashLocationStrategy,
+    // },
     RoleGuardService,
     IconSetService,
     MenuService,
     SetorService,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService,
     FabricanteService,
-    FormBuilderTypeSafe
+    FormBuilderTypeSafe,
+    JwtHelperService,
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
   ],
   bootstrap: [ AppComponent ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

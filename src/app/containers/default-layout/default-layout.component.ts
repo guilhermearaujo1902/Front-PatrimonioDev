@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { MenuService } from '../../services/menu/menu.service';
 import { navItems } from '../../_nav';
 import { Permissao } from '../../models/enums/permissao.enum';
+import { SocialAuthService } from 'angularx-social-login';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,7 +21,11 @@ export class DefaultLayoutComponent implements OnInit{
   menu: Array<any> = [];
   breadcrumbList: Array<any> = [];
 
-  constructor(private _router: Router, private menuService: MenuService, private token: TokenService){}
+  constructor(
+    private _router: Router,
+    private menuService: MenuService,
+    private token: TokenService,
+    private authService: SocialAuthService){}
 
   ngOnInit(): void {
     debugger;
@@ -66,11 +71,16 @@ export class DefaultLayoutComponent implements OnInit{
     }
   }
 
+  private signOutAuth(): void {
+    this.authService.signOut(true);
+  }
+
   toggleMinimize(e) {
     this.sidebarMinimized = e;
   }
 
   public logOut(){
+    this.signOutAuth();
     localStorage.removeItem("jwt");
     this._router.navigate(["login"]);
   }

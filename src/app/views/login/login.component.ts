@@ -1,11 +1,13 @@
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { from } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Usuario } from '../../models/Usuario';
-import jwtDecode, * as jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-dashboard',
@@ -16,6 +18,9 @@ export class LoginComponent implements OnInit {
 
   usuario = {} as Usuario;
   form!: FormGroup
+
+  public ehAutenticacaoAuth: boolean;
+  public usuarioAuth: SocialUser | undefined;
 
 
   get f(): any {
@@ -31,33 +36,71 @@ export class LoginComponent implements OnInit {
     private fb:FormBuilder,
     private toaster: ToastrService,
     private router: Router,
-    private spinner: NgxSpinnerService) {
+    private spinner: NgxSpinnerService,
+    private authService: SocialAuthService) {
+    }
+
+  private googleLogIn(){
+    return from(this.authService.signIn(GoogleLoginProvider.PROVIDER_ID))
+  }
+
+  private signOutAuth(): void {
+    this.authService.signOut(true);
+  }
+
+  public logarComGoogle(){
+    this.signOutAuth();
+    this.googleLogIn().subscribe(
+      (result: any) => {
+        this.usuarioAuth = result
+      },
+      (error: any) =>{
+        this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error.message}`)
+      },
+      () => {
+        //TODO: Realizar tudo por post
+        this.realizarRequisicaoObterUsuario(this.usuarioAuth.email,"1e9g63", true)
+      }
+    );
+
   }
 
   public validarCredenciais(): void {
 
     this.removerToken();
-
     this.spinner.show();
 
     let credenciais = {...this.form.value}
-    this.usuarioService.obterUsuarioPorLoginESenha(credenciais.email, credenciais.senha).subscribe(
+    this.realizarRequisicaoObterUsuario(credenciais.email, credenciais.senha, false);
+  }
+
+  private realizarRequisicaoObterUsuario(email: string, senha: string, autenticacaoAuth: boolean): void{
+
+    this.ehAutenticacaoAuth = autenticacaoAuth;
+
+    this.usuarioService.obterUsuarioPorEmailESenha(email, senha, autenticacaoAuth).subscribe(
       (result: any) => {
+
         this.usuario = {...result};
-        const token = result.token;
-        localStorage.setItem("jwt", token);
-        let valor = jwtDecode(token);
+        localStorage.setItem("jwt", result.token);
 
         if(Object.keys(this.usuario).length !== 0 ){
           this.router.navigate(['dashboard']);
         }
       },
       (error: any) => {
+
         this.toaster.toastrConfig.timeOut = 5000;
-        this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)
+
+        if(error.status == 400 && this.ehAutenticacaoAuth){
+          this.router.navigate(["register"], {queryParams: {email: this.usuarioAuth.email}})
+          this.toaster.info(`Para continuar, informe as informações do formulário.`)
+
+        }else{
+          this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)
+        }
       }
     ).add(() => this.spinner.hide())
-
   }
 
   private removerToken(){
