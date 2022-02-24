@@ -1,4 +1,4 @@
-import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { from } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
@@ -22,7 +22,6 @@ export class LoginComponent implements OnInit {
   public ehAutenticacaoAuth: boolean;
   public usuarioAuth: SocialUser | undefined;
 
-
   get f(): any {
     return this.form.controls;
   }
@@ -44,25 +43,45 @@ export class LoginComponent implements OnInit {
     return from(this.authService.signIn(GoogleLoginProvider.PROVIDER_ID))
   }
 
-  private signOutAuth(): void {
-    this.authService.signOut(true);
+  private signInWithFB(){
+    return from(this.authService.signIn(FacebookLoginProvider.PROVIDER_ID));
   }
 
-  public logarComGoogle(){
-    this.signOutAuth();
-    this.googleLogIn().subscribe(
+  public logarComFacebook(){
+    debugger;
+    this.signInWithFB().subscribe(
       (result: any) => {
         this.usuarioAuth = result
       },
       (error: any) =>{
-        this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error.message}`)
+        debugger;
+
+        if(error.error !== "popup_closed_by_user")
+           this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error}`)
       },
       () => {
         //TODO: Realizar tudo por post
         this.realizarRequisicaoObterUsuario(this.usuarioAuth.email,"1e9g63", true)
       }
     );
+  }
 
+  public logarComGoogle(){
+
+    this.googleLogIn().subscribe(
+      (result: any) => {
+        this.usuarioAuth = result
+      },
+      (error: any) =>{
+
+        if(error.error !== "popup_closed_by_user")
+           this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error.error}`)
+      },
+      () => {
+        //TODO: Realizar tudo por post
+        this.realizarRequisicaoObterUsuario(this.usuarioAuth.email,"1e9g63", true)
+      }
+    );
   }
 
   public validarCredenciais(): void {
@@ -72,11 +91,13 @@ export class LoginComponent implements OnInit {
 
     let credenciais = {...this.form.value}
     this.realizarRequisicaoObterUsuario(credenciais.email, credenciais.senha, false);
+
   }
 
   private realizarRequisicaoObterUsuario(email: string, senha: string, autenticacaoAuth: boolean): void{
 
     this.ehAutenticacaoAuth = autenticacaoAuth;
+    this.spinner.show()
 
     this.usuarioService.obterUsuarioPorEmailESenha(email, senha, autenticacaoAuth).subscribe(
       (result: any) => {
@@ -94,7 +115,7 @@ export class LoginComponent implements OnInit {
 
         if(error.status == 400 && this.ehAutenticacaoAuth){
           this.router.navigate(["register"], {queryParams: {email: this.usuarioAuth.email}})
-          this.toaster.info(`Para continuar, informe as informações do formulário.`)
+          this.toaster.info(`Para continuar, é necessário preencher o formulário.`)
 
         }else{
           this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)

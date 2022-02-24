@@ -107,6 +107,7 @@ export class UsuarioComponent implements OnInit {
       codigoSetor: new FormControl('' ,[Validators.required]),
       nome: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
       email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.email]),
+      confirmeSenha: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       senha: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       ativo: new FormControl(true, [])
     });

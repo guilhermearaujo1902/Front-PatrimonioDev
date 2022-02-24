@@ -1,5 +1,4 @@
 import { TokenService } from './../../services/token/token.service';
-import { INavData } from '@coreui/angular';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuService } from '../../services/menu/menu.service';
@@ -12,6 +11,7 @@ import { SocialAuthService } from 'angularx-social-login';
   styleUrls: ['./default-layout.component.scss'],
   templateUrl: './default-layout.component.html'
 })
+
 export class DefaultLayoutComponent implements OnInit{
 
   public sidebarMinimized = false;
@@ -20,12 +20,18 @@ export class DefaultLayoutComponent implements OnInit{
   name: string;
   menu: Array<any> = [];
   breadcrumbList: Array<any> = [];
+  public estaLogadoAuth: boolean;
 
   constructor(
     private _router: Router,
     private menuService: MenuService,
     private token: TokenService,
-    private authService: SocialAuthService){}
+    private authService: SocialAuthService){
+      this.authService.authState.subscribe((user) => {
+        this.estaLogadoAuth = (user != null);
+      });
+
+    }
 
   ngOnInit(): void {
     debugger;
@@ -72,7 +78,10 @@ export class DefaultLayoutComponent implements OnInit{
   }
 
   private signOutAuth(): void {
-    this.authService.signOut(true);
+
+    if(this.estaLogadoAuth)
+      this.authService.signOut(true);
+
   }
 
   toggleMinimize(e) {
@@ -80,7 +89,9 @@ export class DefaultLayoutComponent implements OnInit{
   }
 
   public logOut(){
+
     this.signOutAuth();
+
     localStorage.removeItem("jwt");
     this._router.navigate(["login"]);
   }

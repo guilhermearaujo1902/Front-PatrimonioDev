@@ -1,4 +1,4 @@
-import { GoogleLoginProvider, SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
+import { GoogleLoginProvider, SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 
@@ -145,8 +145,13 @@ export function tokenGetter() {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '564346763959-hflo72lodveg32gie4vtdnq1in82h7og.apps.googleusercontent.com'
+              '226014073143-ml8ufg6nmtjsph9o67j6t30rjjljv821.apps.googleusercontent.com'
             )
+          },
+          ,
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('1110826919739685')
           }
         ]
       } as SocialAuthServiceConfig

@@ -6,5 +6,6 @@ export interface Usuario {
   nome: string;
   email: string;
   senha: string;
+  confirmeSenha: string;
   ativo: boolean;
 }
