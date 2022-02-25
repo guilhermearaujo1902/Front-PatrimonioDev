@@ -98,6 +98,7 @@ export class LoginComponent implements OnInit {
 
     this.ehAutenticacaoAuth = autenticacaoAuth;
     this.spinner.show()
+    debugger;
 
     this.usuarioService.obterUsuarioPorEmailESenha(email, senha, autenticacaoAuth).subscribe(
       (result: any) => {

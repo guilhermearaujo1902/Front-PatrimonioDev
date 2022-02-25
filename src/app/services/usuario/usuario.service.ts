@@ -16,7 +16,6 @@ export class UsuarioService {
   constructor(private api: ApiService) { }
 
   public cadastrarUsuario(usuario: Usuario): Observable<Usuario>{
-    debugger;
     return this.api.post<Usuario>(this.baseUrl, {usuario}).pipe(take(1));
   }
 
@@ -29,7 +28,6 @@ export class UsuarioService {
   }
 
   public obterUsuarioPorEmailESenha(email: string, senha: string, autenticacaoAuth: boolean){
-    debugger;
     return this.api.post<Usuario>(`${this.baseUrl}/${email}/${senha}`, autenticacaoAuth).pipe(take(1));
   }
 

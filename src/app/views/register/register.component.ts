@@ -30,9 +30,12 @@ export class RegisterComponent implements OnInit {
     private usuarioService: UsuarioService,
     private toaster: ToastrService,
     private router: Router) {
-      this.emailAuth = this.router.getCurrentNavigation()?.extras.queryParams.email;
+      debugger;
+      var emailURL = this.router.getCurrentNavigation().extras;
+      this.emailAuth = typeof emailURL.state == 'undefined'? "": emailURL.queryParams.email;
+    }
 
-     }
+
 
   ngOnInit(): void {
     this.validarCamposFormulario();

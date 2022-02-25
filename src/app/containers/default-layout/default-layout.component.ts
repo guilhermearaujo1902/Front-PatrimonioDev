@@ -34,7 +34,6 @@ export class DefaultLayoutComponent implements OnInit{
     }
 
   ngOnInit(): void {
-    debugger;
     this.menu = this.menuService.obterMenu();
     this.ouvirRota();
     this.obterMenusPermissaoUsuario();
@@ -78,6 +77,7 @@ export class DefaultLayoutComponent implements OnInit{
   }
 
   private signOutAuth(): void {
+    debugger;
 
     if(this.estaLogadoAuth)
       this.authService.signOut(true);
