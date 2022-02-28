@@ -22,6 +22,7 @@ export class SetorService  {
   }
 
   public obterSetor(): Observable<Setor[]> {
+    debugger;
     return this.api.get<Setor[]>(this.baseUrl).pipe(take(1));
   }
 

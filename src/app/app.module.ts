@@ -5,7 +5,7 @@ import { FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { FabricanteService } from './services/fabricante/fabricante.service';
 import { MenuService } from './services/menu/menu.service';
 
-import { CommonModule } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -156,10 +156,10 @@ export function tokenGetter() {
         ]
       } as SocialAuthServiceConfig
     },
-    // {
-    //   provide: LocationStrategy,
-    //   useClass: HashLocationStrategy,
-    // },
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy,
+    },
     RoleGuardService,
     IconSetService,
     MenuService,

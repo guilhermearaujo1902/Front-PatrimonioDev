@@ -40,7 +40,8 @@
             ],
             "allowedCommonJsDependencies": [
               "chart.js",
-              "classnames"
+              "classnames",
+              "xlsx"
             ]
           },
           "configurations": {

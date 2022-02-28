@@ -19,4 +19,8 @@ export class UsuarioPerfilService {
     return this.api.get<UsuarioPerfil>(`${this.baseUrl}/${codigoUsuario}`).pipe(take(1));
   }
 
+  public atualizarPerfilUsuario(perfil: UsuarioPerfil): Observable<number>{
+    return this.api.put<number>(`${this.baseUrl}`, {perfil});
+  }
+
 }

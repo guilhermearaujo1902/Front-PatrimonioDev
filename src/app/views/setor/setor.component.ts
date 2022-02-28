@@ -1,11 +1,13 @@
 import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
+
 import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
-import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 
 @Component({
   selector: 'app-setor',
@@ -18,7 +20,6 @@ export class SetorComponent implements OnInit {
   setor = {} as Setor;
   codigoSetor: number;
   estadoSalvar: string = 'cadastrarSetor';
-
 
   get f(): any {
     return this.form.controls;
@@ -36,6 +37,7 @@ export class SetorComponent implements OnInit {
   ngOnInit(): void {
     this.validacao();
     this.carregarSetor();
+
   }
 
   private validacao(): void {

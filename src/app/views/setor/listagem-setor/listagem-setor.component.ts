@@ -1,3 +1,4 @@
+import { TokenService } from './../../../services/token/token.service';
 import { Router } from '@angular/router';
 import { Setor } from '../../../models/Setor';
 import { SetorService } from '../../../services/setor/setor.service';
@@ -26,6 +27,7 @@ export class ListarsetorComponent implements OnInit {
 
   public setores: Setor[] = [];
   public setorId: number = 0;
+  public ehAdministrador = false;
 
   modalRef?: BsModalRef;
 
@@ -34,15 +36,18 @@ export class ListarsetorComponent implements OnInit {
     private modalService: BsModalService,
     private toastr: ToastrService,
     private spinner: NgxSpinnerService,
-    private router: Router) { }
+    private router: Router,
+    private token: TokenService) { }
 
   ngOnInit(): void {
+    debugger;
     this.obterSetor();
+    this.ehAdministrador = this.token.ehUsuarioAdministrador()
+
     this.configuracao = configuracaoTabela()
-
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
-
     this.colunas = this.obterColunasDaTabela();
+
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, setorId: number): void {

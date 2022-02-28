@@ -4,7 +4,7 @@ import { UsuarioPerfilService } from './../../../services/usuario-perfil/usuario
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../../services/token/token.service';
 import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -16,6 +16,7 @@ export class UsuarioPerfilComponent implements OnInit {
   private codigoUsuario: number;
   public nomeUsuario!: string;
   public form!: FormGroupTypeSafe<UsuarioPerfil>;
+  private usuarioPerfil = {} as UsuarioPerfil;
 
   constructor(
     private perfilService: UsuarioPerfilService,
@@ -50,13 +51,24 @@ export class UsuarioPerfilComponent implements OnInit {
 
       },
       (error: any) =>{
-        debugger;
+        this.toaster.error(`Houve um erro ao carregar o perfil. Mensagem: ${JSON.stringify(error)}`)
+      }
+    );
+  }
 
-        this.toaster.error(`Houve um erro ao carregar o perfil. Mensagem: ${error}`)
+  public salvarAlteracaoPerfil(): void{
+
+    this.usuarioPerfil = {...this.form.value};
+    debugger;
+    this.perfilService.atualizarPerfilUsuario(this.usuarioPerfil).subscribe(
+      () =>{
+        this.toaster.success(`Perfil atualizado com sucesso!`)
       },
-      ()=>{
-
-      })
+      (error: any) =>{
+        debugger;
+        this.toaster.error(`Houve um erro ao atualizar o perfil. Mensagem: ${error.message}`)
+      }
+    );
 
   }
 

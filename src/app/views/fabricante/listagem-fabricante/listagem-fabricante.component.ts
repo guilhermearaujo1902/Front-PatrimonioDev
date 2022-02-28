@@ -1,3 +1,4 @@
+import { TokenService } from './../../../services/token/token.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -12,7 +13,7 @@ import * as XLSX from 'xlsx';
 @Component({
   selector: 'app-listarFabricante',
   templateUrl: './listagem-fabricante.component.html',
-  styleUrls: ['./listagem-fabricante.component.scss'],
+  styleUrls: ['./listagem-fabricante.component.scss', '../../../../scss/style-listagem.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
@@ -26,6 +27,7 @@ export class ListagemfabricanteComponent implements OnInit {
   public fabricantes: Fabricante[] = [];
   public fabricantesFiltrados: Fabricante[] = [];
   public codigoFabricante: number;
+  public ehAdministrador = false;
 
   modalRef?: BsModalRef;
 
@@ -34,13 +36,16 @@ export class ListagemfabricanteComponent implements OnInit {
               private spinner: NgxSpinnerService,
               private modalService: BsModalService,
               private toaster: ToastrService,
-              private router: Router
-              ) { }
+              private router: Router,
+              private token: TokenService) { }
 
   ngOnInit(): void {
     this.configuracao = configuracaoTabela();
     this.colunas = this.obterColunasDaTabela();
+
     this.obterFabricante();
+    this.ehAdministrador = this.token.ehUsuarioAdministrador();
+
   }
 
   public obterFabricante(): void {

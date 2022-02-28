@@ -61,7 +61,7 @@
       </div>
     </div>
     <div class="card-footer cor-card-footer d-flex justify-content-end">
-        <button class="btn btn-success">
+        <button [disabled]="!form.valid" (click)="salvarAlteracaoPerfil()" class="btn btn-success">
           <span class="mr-1"></span>
           Salvar Alteração
         </button>
