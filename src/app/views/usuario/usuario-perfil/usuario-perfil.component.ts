@@ -1,3 +1,4 @@
+import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { UsuarioPerfil } from './../../../models/UsuarioPerfil';
 import { UsuarioPerfilService } from './../../../services/usuario-perfil/usuario-perfil.service';
@@ -17,12 +18,15 @@ export class UsuarioPerfilComponent implements OnInit {
   public nomeUsuario!: string;
   public form!: FormGroupTypeSafe<UsuarioPerfil>;
   private usuarioPerfil = {} as UsuarioPerfil;
+  public imagemUrl: string = 'assets/img/upload.png';
+  file: File;
 
   constructor(
     private perfilService: UsuarioPerfilService,
     private token: TokenService,
     private toaster: ToastrService,
-    private fb: FormBuilderTypeSafe) { }
+    private fb: FormBuilderTypeSafe,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit(): void {
     this.codigoUsuario = this.token.obterCodigoUsuarioToken();
@@ -38,7 +42,8 @@ export class UsuarioPerfilComponent implements OnInit {
       razaoSocial: new FormControl(null),
       descricaoPermissao: new FormControl(null),
       email: new FormControl(null),
-      senha: new FormControl(null)
+      senha: new FormControl(null),
+      imagemUrl: new FormControl("")
     });
   }
 
@@ -47,7 +52,8 @@ export class UsuarioPerfilComponent implements OnInit {
     this.perfilService.obterPerfilUsuario(this.codigoUsuario).subscribe(
       (result: UsuarioPerfil) => {
         this.form.patchValue(result);
-        this.nomeUsuario = result.nomeUsuario
+        this.nomeUsuario = result.nomeUsuario;
+        this.codigoUsuario = result.codigoUsuario;
 
       },
       (error: any) =>{
@@ -58,7 +64,10 @@ export class UsuarioPerfilComponent implements OnInit {
 
   public salvarAlteracaoPerfil(): void{
 
-    this.usuarioPerfil = {...this.form.value};
+    this.usuarioPerfil.senha = this.form.controls.senha.value;
+    this.usuarioPerfil.nomeUsuario = this.nomeUsuario;
+    this.usuarioPerfil.codigoUsuario = this.form.controls.codigoUsuario.value
+
     debugger;
     this.perfilService.atualizarPerfilUsuario(this.usuarioPerfil).subscribe(
       () =>{
@@ -70,6 +79,30 @@ export class UsuarioPerfilComponent implements OnInit {
       }
     );
 
+  }
+
+  onFileChange(env: any): void{
+    const reader = new FileReader();
+
+    reader.onload = (event: any) => this.imagemUrl = event.target.result;
+    this.file = env.target.files;
+    reader.readAsDataURL(this.file[0]);
+
+    this.uploadImagem();
+  }
+
+  private uploadImagem(): void{
+    this.spinner.show();
+    debugger;
+    this.perfilService.inserirImagem(this.codigoUsuario, this.file).subscribe(
+      () => {
+        this.carregarPerfilUsuario();
+        this.toaster.success("Imagem atualizada com sucesso", "Sucesso")
+      },
+      (error: any) => {
+        this.toaster.error(`Houve um problema ao subir a imagem: Mensagem ${error.message}`, "Erro")
+      }
+    ).add(() => this.spinner.hide());
   }
 
 }

@@ -11,6 +11,7 @@ export class ApiService implements IApi {
   private readonly options: any;
 
   constructor(private http: HttpClient) {
+    debugger;
     this.options = {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
@@ -35,6 +36,18 @@ export class ApiService implements IApi {
     return this.http.post<T>(url, data, {
       headers: {
        ...this.options.headers,
+      },
+      ...options
+     });
+  }
+
+  postImage<T>(url: string, data: any, options?: any): Observable<T> {
+    // @ts-ignore
+    return this.http.post<T>(url, data, {
+      headers: {
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("jwt")}`
+        }
       },
       ...options
      });

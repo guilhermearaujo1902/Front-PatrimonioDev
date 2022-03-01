@@ -23,4 +23,13 @@ export class UsuarioPerfilService {
     return this.api.put<number>(`${this.baseUrl}`, {perfil});
   }
 
+  public inserirImagem(codigoUsuario: number, file: File): Observable<UsuarioPerfil>{
+    debugger;
+    const arquivoUpload = file[0] as File;
+    const formData = new FormData();
+    formData.append('file', arquivoUpload);
+
+    return this.api.postImage<UsuarioPerfil>(`${this.baseUrl}/upload-imagem/${codigoUsuario}`, formData);
+  }
+
 }
