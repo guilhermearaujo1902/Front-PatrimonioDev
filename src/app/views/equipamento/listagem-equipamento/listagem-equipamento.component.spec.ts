@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ListarequipamentoComponent } from './listagem-equipamento.component';
+import { ListagemequipamentoComponent } from './listagem-equipamento.component';
 
 describe('ListarequipamentoComponent', () => {
-  let component: ListarequipamentoComponent;
-  let fixture: ComponentFixture<ListarequipamentoComponent>;
+  let component: ListagemequipamentoComponent;
+  let fixture: ComponentFixture<ListagemequipamentoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ListarequipamentoComponent ]
+      declarations: [ ListagemequipamentoComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ListarequipamentoComponent);
+    fixture = TestBed.createComponent(ListagemequipamentoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -23,3 +23,4 @@ describe('ListarequipamentoComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

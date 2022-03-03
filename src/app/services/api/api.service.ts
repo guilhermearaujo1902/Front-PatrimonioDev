@@ -44,10 +44,8 @@ export class ApiService implements IApi {
   postImage<T>(url: string, data: any, options?: any): Observable<T> {
     // @ts-ignore
     return this.http.post<T>(url, data, {
-      headers: {
         headers: {
           'Authorization': `Bearer ${localStorage.getItem("jwt")}`
-        }
       },
       ...options
      });

@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../../services/token/token.service';
 import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { FormControl } from '@angular/forms';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -55,6 +56,9 @@ export class UsuarioPerfilComponent implements OnInit {
         this.nomeUsuario = result.nomeUsuario;
         this.codigoUsuario = result.codigoUsuario;
 
+        if(result.imagemUrl !== ''){
+          this.imagemUrl = `${environment.apiUrl}Resources/Imagens/${result.imagemUrl}`;
+        }
       },
       (error: any) =>{
         this.toaster.error(`Houve um erro ao carregar o perfil. Mensagem: ${JSON.stringify(error)}`)

@@ -1,25 +1,50 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { UsuarioPerfilService } from './../../../services/usuario-perfil/usuario-perfil.service';
+import { TestBed } from "@angular/core/testing";
+import { HttpTestingController, HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { UsuarioPerfilComponent } from './usuario-perfil.component';
-
-describe('UsuarioPerfilComponent', () => {
-  let component: UsuarioPerfilComponent;
-  let fixture: ComponentFixture<UsuarioPerfilComponent>;
-
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ UsuarioPerfilComponent ]
-    })
-    .compileComponents();
-  });
+describe('HttpClient testing', () => {
+  let httpMock: HttpTestingController;
+  let usuarioService: UsuarioPerfilService;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(UsuarioPerfilComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
+      providers: [UsuarioPerfilService]
+    });
+
+    usuarioService = TestBed.inject(UsuarioPerfilService);
+    httpMock = TestBed.inject(HttpTestingController);
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('ObterPerfil', () => {
+
+    it('Should return an UsuarioPerfil', () => {
+
+      const perfilUsuarios = {
+        codigoUsuario: 2,
+        nomeUsuario: "adolfo agora vai",
+        nomeSetor: "SEM SETOR",
+        razaoSocial: "SEM EMPRESA",
+        descricaoPermissao: "Permissão básica",
+        email: "adolfo8799@gmail.com",
+        senha: "Alfabetazulu080799",
+        imagemUrl: "registered222646147.png"
+      }
+
+      usuarioService.obterPerfilUsuario(1).subscribe((perfil) => {
+
+      expect(perfil.codigoUsuario).toBe(2);
+      expect(perfil).toEqual(perfilUsuarios);
+
+      });
+
+      const request = httpMock.expectOne(`${usuarioService.baseUrl}/1`);
+
+      expect(request.request.method).toBe("GET");
+      request.flush(perfilUsuarios);
+      httpMock.verify();
+
+    });
   });
 });
+
