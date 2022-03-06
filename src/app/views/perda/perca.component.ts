@@ -7,7 +7,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
   styleUrls: ['./perca.component.scss']
 })
 export class PercaComponent implements OnInit {
-
+//TODO: renomear para perda
   form!: FormGroup;
 
   get f(): any {
