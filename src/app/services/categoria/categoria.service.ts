@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class CategoriaService {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}categoria`;
+  baseUrl = `${GlobalVariavel.BASE_API_URL}categorias`;
 
   constructor(private http: HttpClient) { }
 

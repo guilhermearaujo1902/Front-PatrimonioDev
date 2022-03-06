@@ -10,7 +10,7 @@ import { take } from 'rxjs/operators';
 })
 export class UsuarioPerfilService {
 
-  baseUrl: string = `${GlobalVariavel.BASE_API_URL}PerfilUsuario`
+  baseUrl: string = `${GlobalVariavel.BASE_API_URL}perfils`
 
   constructor(private api: ApiService) { }
 

@@ -10,7 +10,7 @@ import { GlobalVariavel } from '../../util/constants';
 })
 export class EmpresaService {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}empresa`;
+  baseUrl = `${GlobalVariavel.BASE_API_URL}empresas`;
 
   constructor(private http: HttpClient) { }
 

@@ -10,7 +10,7 @@ import { Setor } from '../../models/Setor';
 
 export class SetorService  {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}setor`;
+  baseUrl = `${GlobalVariavel.BASE_API_URL}setores`;
 
   constructor(private api: ApiService) {
   }

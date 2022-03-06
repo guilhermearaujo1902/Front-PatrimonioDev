@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IApi } from '../../models/interfaces/IApi';
 
@@ -9,6 +9,7 @@ import { IApi } from '../../models/interfaces/IApi';
 export class ApiService implements IApi {
 
   private readonly options: any;
+  private token: any = localStorage.getItem("jwt");
 
   constructor(private http: HttpClient) {
     debugger;
@@ -16,7 +17,7 @@ export class ApiService implements IApi {
       headers: {
         'Content-type': 'application/json; charset=utf-8',
         'Accept':'application/json',
-        'Authorization': `Bearer ${localStorage.getItem("jwt")}`
+        'Authorization': `Bearer ${this.token}`
       }
     }
   }

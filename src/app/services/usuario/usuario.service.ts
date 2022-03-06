@@ -11,7 +11,7 @@ import { ApiService } from '../api/api.service';
 })
 export class UsuarioService {
 
-  baseUrl: string = `${GlobalVariavel.BASE_API_URL}usuario`
+  baseUrl: string = `${GlobalVariavel.BASE_API_URL}usuarios`
 
   constructor(private api: ApiService) { }
 

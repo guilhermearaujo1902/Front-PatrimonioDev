@@ -9,7 +9,7 @@ import { GlobalVariavel } from '../../util/constants';
   providedIn: 'root'
 })
 export class PermissaoService {
-  baseUrl = `${GlobalVariavel.BASE_API_URL}usuariopermissao`;
+  baseUrl = `${GlobalVariavel.BASE_API_URL}permissoes`;
 
   constructor(private http: HttpClient) { }
 
