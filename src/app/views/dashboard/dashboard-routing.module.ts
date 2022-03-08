@@ -13,13 +13,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
-import { PercaComponent } from '../perca/perca.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { EmpresaRoutingModule } from '../empresa/empresa-routing.module';
 import { FabricanteRoutingModule } from '../fabricante/fabricante-routing.module';
 import { FuncionarioRoutingModule } from '../funcionario/funcionario-routing.module';
 import { RoleGuardService } from '../../services/auth/role-guard.service';
 import { Permissao } from '../../models/enums/permissao.enum';
+import { PercaComponent } from '../perda/perca.component';
 
 const routes: Routes = [
   {

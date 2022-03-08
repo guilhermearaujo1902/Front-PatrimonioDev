@@ -34,19 +34,20 @@
     [noResultsTemplate]="mensagemSemCadastro"
     [summaryTemplate]="summaryTemplateRef"
     [loadingTemplate]="loadingTemplate"
+    [detailsTemplate]="detailsTemplate"
     #table
   >
-    <ng-template let-row>
+    <ng-template let-row let-index="index">
       <td>
-        <div class="font-small">{{ row.codigoUsuario }}</div>
+        <div class="font-small ">{{ row.codigoUsuario }}</div>
       </td>
       <td>
-        <span class="font-small">{{ row.nome }}</span>
+        <span class="font-small ">{{ row.nome }}</span>
       </td>
-      <td>
+      <td *ngIf="!isMobile">
         <span class="font-small">{{ row.email }}</span>
       </td>
-      <td>
+      <td *ngIf="!isMobile">
         <button
           class="btn btn-warning btn-lg"
           (click)="detalheUsuario(row.codigoUsuario)"
@@ -54,7 +55,7 @@
           Alterar
         </button>
       </td>
-      <td>
+      <td *ngIf="!isMobile">
         <button
           class="btn btn-danger btn-lg"
           (click)="abrirModal($event, template, row.codigoUsuario)"
@@ -62,6 +63,16 @@
           Desativar
         </button>
       </td>
+      <td *ngIf="isMobile">
+        <button
+          class="btn btn-primary"
+          id="expandButton-{{ index }}"
+          (click)="onRowClickEvent($event, index)"
+        >
+          <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+          <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
+          Expandir
+        </button>
     </ng-template>
   </ngx-table>
 </div>
@@ -99,4 +110,22 @@
   <td [attr.colspan]="colunas.length">
     <div class="loader">Carregando...</div>
   </td>
+</ng-template>
+
+<ng-template #detailsTemplate let-row>
+  <div>
+    <p>{{ row.email }}</p>
+  </div>
+    <button
+      class="btn btn-warning btn-lg"
+      (click)="detalheUsuario(row.codigoUsuario)"
+    >
+      Alterar
+  </button>
+  <button
+  class="btn btn-danger btn-lg"
+  (click)="abrirModal($event, template, row.codigoUsuario)"
+>
+  Desativar
+</button>
 </ng-template>

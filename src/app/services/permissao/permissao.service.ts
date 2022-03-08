@@ -1,3 +1,4 @@
+import { ApiService } from './../api/api.service';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -11,10 +12,10 @@ import { GlobalVariavel } from '../../util/constants';
 export class PermissaoService {
   baseUrl = `${GlobalVariavel.BASE_API_URL}permissoes`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private api: ApiService) { }
 
   public obterPermissoes(): Observable<Permissao[]>{
-    return this.http.get<Permissao[]>(this.baseUrl).pipe(take(1));
+    return this.api.get<Permissao[]>(this.baseUrl).pipe(take(1));
   }
 
 }

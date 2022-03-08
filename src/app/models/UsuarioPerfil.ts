@@ -6,5 +6,6 @@ export interface UsuarioPerfil {
    descricaoPermissao: string;
    email: string;
    senha: string;
+   confirmeSenha: string;
    imagemUrl: string;
 }

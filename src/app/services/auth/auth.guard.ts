@@ -1,8 +1,6 @@
-import { ThisReceiver } from '@angular/compiler';
+import { TokenService } from './../token/token.service';
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { JwtHelperService } from '@auth0/angular-jwt';
-import { Observable } from 'rxjs';
+import { CanActivate, Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,18 +9,13 @@ export class AuthGuard implements CanActivate {
 
 
   constructor(
-    public jwtHelper: JwtHelperService,
+    private token: TokenService,
     private router: Router) {
-  }
-
-  public usuarioEstaAutenticado(){
-    const token: string = localStorage.getItem("jwt");
-    return !this.jwtHelper.isTokenExpired(token);
   }
 
   canActivate(): boolean{
     debugger;
-    if(!this.usuarioEstaAutenticado()){
+    if(!this.token.usuarioEstaAutenticado()){
       this.router.navigate(['login']);
       return false
     }

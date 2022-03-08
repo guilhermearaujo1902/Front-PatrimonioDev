@@ -1,12 +1,13 @@
 import { TokenService } from './../token/token.service';
-import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
 import { Injectable } from '@angular/core';
-import { AuthGuard } from './auth.guard';
 
 @Injectable()
 export class RoleGuardService implements CanActivate {
 
-  constructor(private auth: AuthGuard, private router: Router, private token: TokenService) { }
+  constructor(
+    private router: Router,
+    private token: TokenService) { }
 
   canActivate(route: ActivatedRouteSnapshot): boolean {
 
@@ -16,7 +17,7 @@ export class RoleGuardService implements CanActivate {
     const permissaoEncontrada = permissaoEsperada.find(x => x == permissaoToken);
 
     debugger;
-    if (!this.auth.usuarioEstaAutenticado() || permissaoEncontrada == undefined)
+    if (!this.token.usuarioEstaAutenticado() || permissaoEncontrada == undefined)
     {
       this.router.navigate(['403']);
       return false;

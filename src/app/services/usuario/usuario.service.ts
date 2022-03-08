@@ -1,5 +1,4 @@
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { GlobalVariavel } from '../../util/constants';
 import { Usuario } from '../../models/Usuario';
@@ -32,7 +31,8 @@ export class UsuarioService {
   }
 
   public desativarUsuario(codigoUsuario: number){
-    return this.api.delete(`${this.baseUrl}/${codigoUsuario}`).pipe(take(1));
+    debugger;
+    return this.api.delete<number>(`${this.baseUrl}/${codigoUsuario}`).pipe(take(1));
   }
 
   public atualizarUsuario(usuario: Usuario){

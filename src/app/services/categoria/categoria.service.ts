@@ -1,3 +1,4 @@
+import { ApiService } from './../api/api.service';
 import { Categoria } from '../../models/Categoria';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -12,9 +13,9 @@ export class CategoriaService {
 
   baseUrl = `${GlobalVariavel.BASE_API_URL}categorias`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private api: ApiService) { }
 
   public obterCategoria(): Observable<Categoria[]> {
-    return this.http.get<Categoria[]>(this.baseUrl).pipe(take(1));;
+    return this.api.get<Categoria[]>(this.baseUrl).pipe(take(1));;
   }
 }

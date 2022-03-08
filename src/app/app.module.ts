@@ -63,7 +63,7 @@ import { EquipamentoComponent } from './views/equipamento/equipamento.component'
 import { ListagemequipamentoComponent } from './views/equipamento/listagem-equipamento/listagem-equipamento.component';
 import { UsuarioComponent } from './views/usuario/usuario.component';
 import { MovimentacaoComponent } from './views/movimentacao/movimentacao.component';
-import { PercaComponent } from './views/perca/perca.component';
+import { PercaComponent } from './views/perda/perca.component';
 import { ListagemMovimentacaoComponent } from './views/movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/listagem-usuario.component';
 import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-perfil.component';

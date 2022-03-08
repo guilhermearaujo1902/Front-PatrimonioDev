@@ -1,5 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable, OnInit } from '@angular/core';
+import { EncryptDecryptService } from './../encrypt-decrypt/encrypt-decrypt.service';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IApi } from '../../models/interfaces/IApi';
 
@@ -9,16 +10,23 @@ import { IApi } from '../../models/interfaces/IApi';
 export class ApiService implements IApi {
 
   private readonly options: any;
-  private token: any = localStorage.getItem("jwt");
-
-  constructor(private http: HttpClient) {
+  private token: any = localStorage.getItem("valor");
+ //TODO: Passar para o service token
+  constructor(private http: HttpClient, private encriptar: EncryptDecryptService) {
     debugger;
+
+    if(typeof this.token == "undefined" || this.token == null){
+      this.token = "";
+    }
+
     this.options = {
-      headers: {
         'Content-type': 'application/json; charset=utf-8',
         'Accept':'application/json',
-        'Authorization': `Bearer ${this.token}`
-      }
+        'Authorization': `Bearer ${this.encriptar.decrypt(this.token)}`,
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Credentials': 'true'
+
     }
   }
 
@@ -26,7 +34,7 @@ export class ApiService implements IApi {
     // @ts-ignore
     return this.http.get<T>(url, {
       headers: {
-       ...this.options.headers,
+       ...this.options,
       },
       ...options
      });
@@ -36,7 +44,7 @@ export class ApiService implements IApi {
     // @ts-ignore
     return this.http.post<T>(url, data, {
       headers: {
-       ...this.options.headers,
+       ...this.options,
       },
       ...options
      });
@@ -46,7 +54,7 @@ export class ApiService implements IApi {
     // @ts-ignore
     return this.http.post<T>(url, data, {
         headers: {
-          'Authorization': `Bearer ${localStorage.getItem("jwt")}`
+          'Authorization': `Bearer ${this.encriptar.decrypt(localStorage.getItem('valor'))}`
       },
       ...options
      });
@@ -56,7 +64,7 @@ export class ApiService implements IApi {
        // @ts-ignore
        return this.http.put<T>(url, data, {
         headers: {
-         ...this.options.headers,
+         ...this.options,
         },
         ...options
        });
@@ -66,7 +74,7 @@ export class ApiService implements IApi {
     // @ts-ignore
     return this.http.delete<T>(url, {
       headers: {
-      ...this.options.headers,
+      ...this.options,
       },
       ...options
     });

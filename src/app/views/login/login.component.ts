@@ -1,3 +1,4 @@
+import { EncryptDecryptService } from './../../services/encrypt-decrypt/encrypt-decrypt.service';
 import { FacebookLoginProvider, GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
 import { from } from 'rxjs';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -36,7 +37,8 @@ export class LoginComponent implements OnInit {
     private toaster: ToastrService,
     private router: Router,
     private spinner: NgxSpinnerService,
-    private authService: SocialAuthService) {
+    private authService: SocialAuthService,
+    private encriptar: EncryptDecryptService) {
     }
 
   private googleLogIn(){
@@ -73,7 +75,7 @@ export class LoginComponent implements OnInit {
         this.usuarioAuth = result
       },
       (error: any) =>{
-
+          debugger;
         if(error.error !== "popup_closed_by_user")
            this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error.error}`)
       },
@@ -98,25 +100,30 @@ export class LoginComponent implements OnInit {
 
     this.ehAutenticacaoAuth = autenticacaoAuth;
     this.spinner.show()
-    debugger;
 
     this.usuarioService.obterUsuarioPorEmailESenha(email, senha, autenticacaoAuth).subscribe(
       (result: any) => {
-
+        //TODO: Passar para o token service
         this.usuario = {...result};
-        localStorage.setItem("jwt", result.token);
+        let valorToken = this.encriptar.encrypt(result.token);
+
+        localStorage.setItem('valor', valorToken);
 
         if(Object.keys(this.usuario).length !== 0 ){
           this.router.navigate(['dashboard']);
         }
       },
       (error: any) => {
+        debugger;
 
         this.toaster.toastrConfig.timeOut = 5000;
-
+        //TODO: criar classe para erros
         if(error.status == 400 && this.ehAutenticacaoAuth){
           this.router.navigate(["register"], {queryParams: {email: this.usuarioAuth.email}})
           this.toaster.info(`Para continuar, é necessário preencher o formulário.`)
+
+        }else if(error.message.includes("Http failure response for")){
+          this.toaster.error(`Houve um erro ao tentar conectar ao servidor.`)
 
         }else{
           this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)

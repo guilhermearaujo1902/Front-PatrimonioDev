@@ -1,3 +1,4 @@
+import { ApiService } from './../api/api.service';
 import { take } from 'rxjs/operators';
 import { Empresa } from './../../models/Empresa';
 import { Observable } from 'rxjs';
@@ -12,9 +13,9 @@ export class EmpresaService {
 
   baseUrl = `${GlobalVariavel.BASE_API_URL}empresas`;
 
-  constructor(private http: HttpClient) { }
+  constructor(private api: ApiService) { }
 
   public obterEmpresas(): Observable<Empresa[]>{
-    return this.http.get<Empresa[]>(this.baseUrl).pipe(take(1))
+    return this.api.get<Empresa[]>(this.baseUrl).pipe(take(1))
   }
 }

@@ -1,6 +1,5 @@
 import {DefaultConfig} from 'ngx-easy-table';
 
-
 export default function(){
   var configuracao  = { ...DefaultConfig }
 
@@ -8,6 +7,8 @@ export default function(){
   configuracao.columnReorder = false;
   configuracao.fixedColumnWidth = false;
   configuracao.resizeColumn = true;
+  configuracao.detailsTemplate = true;
+  configuracao.paginationRangeEnabled = false;
 
   return configuracao
 };

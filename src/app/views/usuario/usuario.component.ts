@@ -5,18 +5,19 @@ import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { AbstractControlOptions, FormControl, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
 import { EmpresaService } from '../../services/empresa/empresa-service.service';
 import { PermissaoService } from '../../services/permissao/permissao.service';
+import { ValidacaoCampo } from '../../helpers/validacaoCampoSenha';
 
 @Component({
   selector: 'app-usuario',
   templateUrl: './usuario.component.html',
-  styleUrls: ['./usuario.component.scss']
+  styleUrls: ['./usuario.component.scss', '../../../scss/style-base.scss']
 })
 export class UsuarioComponent implements OnInit {
 
@@ -100,6 +101,11 @@ export class UsuarioComponent implements OnInit {
   }
 
   private validacao(): void {
+
+    const formOptions: AbstractControlOptions = {
+      validators: ValidacaoCampo.MustMatch('senha','confirmeSenha')
+    };
+
     this.form = this.fb.group<Usuario>({
       codigoUsuario: new FormControl(this.limpandoCampo? this.form.get('codigoUsuario').value : '', []),
       codigoUsuarioPermissao: new FormControl('', [Validators.required]),
@@ -110,7 +116,7 @@ export class UsuarioComponent implements OnInit {
       confirmeSenha: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       senha: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       ativo: new FormControl(true, [])
-    });
+    }, formOptions);
   }
 
   public salvarAlteracao(): void {
