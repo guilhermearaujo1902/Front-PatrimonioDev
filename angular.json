@@ -41,7 +41,8 @@
             "allowedCommonJsDependencies": [
               "chart.js",
               "classnames",
-              "xlsx"
+              "xlsx",
+              "crypto-js"
             ]
           },
           "configurations": {

@@ -1,6 +1,6 @@
 import { AbstractControl, FormGroup } from '@angular/forms';
 
-export class ValidacaoCampo {
+export class ValidacaoCampoSenha {
   static MustMatch(controlName: string, matchingControlName: string): any {
       return (group: AbstractControl) => {
           const formGroup = group as FormGroup;

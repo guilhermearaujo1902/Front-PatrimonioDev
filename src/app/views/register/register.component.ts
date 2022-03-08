@@ -8,7 +8,7 @@ import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactiv
 
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from './../../services/usuario/usuario.service';
-import { ValidacaoCampo } from '../../helpers/validacaoCampoSenha';
+import { ValidacaoCampoSenha } from '../../helpers/ValidacaoCampoSenha';
 
 @Component({
   selector: 'app-dashboard',
@@ -46,7 +46,7 @@ export class RegisterComponent implements OnInit {
   public validarCamposFormulario(): void {
 
     const formOptions: AbstractControlOptions = {
-      validators: ValidacaoCampo.MustMatch('senha','confirmeSenha')
+      validators: ValidacaoCampoSenha.MustMatch('senha','confirmeSenha')
     };
 
     this.form = this.fb.group<Usuario>({

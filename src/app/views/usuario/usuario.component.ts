@@ -12,7 +12,7 @@ import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
 import { EmpresaService } from '../../services/empresa/empresa-service.service';
 import { PermissaoService } from '../../services/permissao/permissao.service';
-import { ValidacaoCampo } from '../../helpers/validacaoCampoSenha';
+import { ValidacaoCampoSenha } from '../../helpers/ValidacaoCampoSenha';
 
 @Component({
   selector: 'app-usuario',
@@ -103,7 +103,7 @@ export class UsuarioComponent implements OnInit {
   private validacao(): void {
 
     const formOptions: AbstractControlOptions = {
-      validators: ValidacaoCampo.MustMatch('senha','confirmeSenha')
+      validators: ValidacaoCampoSenha.MustMatch('senha','confirmeSenha')
     };
 
     this.form = this.fb.group<Usuario>({

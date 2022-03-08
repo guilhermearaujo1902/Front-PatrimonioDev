@@ -7,7 +7,7 @@ import { TokenService } from '../../../services/token/token.service';
 import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { AbstractControlOptions, FormControl, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
-import { ValidacaoCampo } from '../../../helpers/ValidacaoCampoSenha';
+import { ValidacaoCampoSenha } from '../../../helpers/ValidacaoCampoSenha';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -47,7 +47,7 @@ export class UsuarioPerfilComponent implements OnInit {
   private validacao(): void {
 
     const formOptions: AbstractControlOptions = {
-      validators: ValidacaoCampo.MustMatch('senha','confirmeSenha')
+      validators: ValidacaoCampoSenha.MustMatch('senha','confirmeSenha')
     };
 
     this.form = this.fb.group<UsuarioPerfil>({
