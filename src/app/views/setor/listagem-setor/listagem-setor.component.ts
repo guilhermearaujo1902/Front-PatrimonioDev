@@ -9,6 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import * as XLSX from 'xlsx';
 import configuracaoTabela from '../../../util/configuracao-tabela'
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-listarsetor',
@@ -34,7 +35,7 @@ export class ListarsetorComponent implements OnInit {
   constructor(
     private setorService: SetorService,
     private modalService: BsModalService,
-    private toastr: ToastrService,
+    private toaster: ToastrService,
     private spinner: NgxSpinnerService,
     private router: Router,
     private token: TokenService) { }
@@ -62,7 +63,10 @@ export class ListarsetorComponent implements OnInit {
       next: (setores: Setor[]) => {
         this.data = setores;
       },
-      error: () => {},
+      error: (error: any) => {
+        this.toaster.error(MensagemRequisicao.retornarMensagemTratada(error.statusText), 'Erro');
+
+      },
       complete: () =>{
         this.configuracao.isLoading = false;
       }
@@ -74,15 +78,18 @@ export class ListarsetorComponent implements OnInit {
     this.modalRef?.hide();
     this.spinner.show();
 
+    debugger;
     this.setorService.deletarSetor(this.setorId).subscribe(
       (result: string) =>{
         this.spinner.hide();
-        this.toastr.success('Setor removido com sucesso!', 'Deletado');
+        this.toaster.success('Setor removido com sucesso!', 'Deletado');
         this.obterSetor();
       },
       (error: any) =>{
+        debugger;
         this.spinner.hide();
-        this.toastr.error(`Houve um erro ao remover o setor. Mensagem: ${error.message}`, 'Erro!');
+        this.toaster.error(`Houve um erro ao remover o setor. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.statusText, error.error.mensagem)}`, 'Erro!');
+
       }
     );
   }
@@ -111,7 +118,7 @@ export class ListarsetorComponent implements OnInit {
 
       XLSX.writeFile(wb, 'setores.xlsx');
     } catch (err) {
-      this.toastr.error(`Não foi possível exportar a planilha. Mensagem: ${err}`,"Erro")
+      this.toaster.error(`Não foi possível exportar a planilha. Mensagem: ${err}`,"Erro")
     }
   }
 

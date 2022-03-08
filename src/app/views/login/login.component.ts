@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Usuario } from '../../models/Usuario';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-dashboard',
@@ -123,7 +124,7 @@ export class LoginComponent implements OnInit {
           this.toaster.info(`Para continuar, é necessário preencher o formulário.`)
 
         }else if(error.message.includes("Http failure response for")){
-          this.toaster.error(`Houve um erro ao tentar conectar ao servidor.`)
+          this.toaster.error(MensagemRequisicao.retornarMensagemTratada('Http failure response for'), 'Erro')
 
         }else{
           this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)
