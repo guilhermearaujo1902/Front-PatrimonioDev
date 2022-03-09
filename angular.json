@@ -8,6 +8,10 @@
       "sourceRoot": "src",
       "projectType": "application",
       "architect": {
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {}
+        },
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
@@ -42,7 +46,8 @@
               "chart.js",
               "classnames",
               "xlsx",
-              "crypto-js"
+              "crypto-js",
+              "ng2-charts"
             ]
           },
           "configurations": {
