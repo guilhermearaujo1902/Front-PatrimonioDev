@@ -1,4 +1,4 @@
-import { Permissao } from './../../models/Permissao';
+import { UsuarioPermissao } from '../../models/UsuarioPermissao';
 import { Empresa } from './../../models/Empresa';
 import { Usuario } from './../../models/Usuario';
 import { UsuarioService } from './../../services/usuario/usuario.service';
@@ -27,7 +27,7 @@ export class UsuarioComponent implements OnInit {
   estadoSalvar: string = 'cadastrarUsuario';
   setores: Setor[] = [];
   empresas: Empresa[] = [];
-  permissoes: Permissao[] = [];
+  permissoes: UsuarioPermissao[] = [];
   limpandoCampo: boolean = false;
 
 
@@ -83,7 +83,7 @@ export class UsuarioComponent implements OnInit {
 
   private carregarPermissao(): void {
     this.permissaoService.obterPermissoes().subscribe(
-      (permissoes: Permissao[]) => {
+      (permissoes: UsuarioPermissao[]) => {
         this.permissoes = permissoes
       },
       (error: any) => {

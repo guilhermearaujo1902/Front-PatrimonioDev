@@ -26,21 +26,33 @@
   [noResultsTemplate]="mensagemSemCadastro"
   [summaryTemplate]="summaryTemplateRef"
   [loadingTemplate]="loadingTemplate"
+  [detailsTemplate]="detailsTemplate"
 
   #table>
-  <ng-template let-row>
+  <ng-template let-row let-index="index">
     <td>
       <div class="font-small">{{ row.codigoFabricante }}</div>
     </td>
     <td>
       <span class="font-small">{{ row.nomeFabricante }}</span>
     </td>
-    <td>
+    <td *ngIf="isMobile">
+      <button
+        class="btn btn-primary"
+        id="expandButton-{{ index }}"
+        (click)="onRowClickEvent($event, index)"
+      >
+        <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+        <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
+        Expandir
+      </button>
+    </td>
+    <td *ngIf="!isMobile">
       <button class="btn btn-warning btn-lg" (click)="detalheFabricante(row.codigoFabricante)">
         Alterar
       </button>
       </td>
-      <td>
+      <td *ngIf="!isMobile">
         <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoFabricante)">
           Excluir
         </button>
@@ -73,4 +85,18 @@
   <td [attr.colspan]="colunas.length">
     <div class="loader">Loading...</div>
   </td>
+</ng-template>
+<ng-template #detailsTemplate let-row>
+  <button
+    class="btn btn-warning btn-lg"
+    (click)="detalheUsuario(row.codigoSetor)"
+  >
+    Alterar
+</button>
+<button
+class="btn btn-danger btn-lg"
+(click)="abrirModal($event, template, row.codigoSetor)"
+>
+Excluir
+</button>
 </ng-template>

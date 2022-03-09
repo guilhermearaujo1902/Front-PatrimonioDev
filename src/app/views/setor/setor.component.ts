@@ -8,11 +8,12 @@ import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactiv
 
 import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-setor',
   templateUrl: './setor.component.html',
-  styleUrls: ['./setor.component.scss']
+  styleUrls: ['./setor.component.scss','../../../scss/style-base.scss']
 })
 export class SetorComponent implements OnInit {
 
@@ -60,7 +61,7 @@ export class SetorComponent implements OnInit {
       () => this.toaster.success('Setor cadastrado com sucesso', 'Sucesso!'),
       (error: any) => {
         this.spinner.hide();
-        this.toaster.error(`Houve um erro durante o cadastro do setor. Mensagem: ${error.message}`, 'Erro!');
+        this.toaster.error(`Houve um problema ao carregar o setor. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
       },
       () =>
       {
@@ -72,7 +73,7 @@ export class SetorComponent implements OnInit {
     );
   }
 
-  public carregarSetor() : void{
+  private carregarSetor() : void{
     this.codigoSetor = +this.activateRouter.snapshot.paramMap.get('codigoSetor');
 
      if(this.codigoSetor !== null && this.codigoSetor !== 0){

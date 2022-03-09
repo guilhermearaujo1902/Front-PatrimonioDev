@@ -71,18 +71,20 @@ export class UsuarioPerfilComponent implements OnInit {
         this.nomeUsuario = result.nomeUsuario;
         this.codigoUsuario = result.codigoUsuario;
         this.form.controls.confirmeSenha.setValue(result.senha);
+        debugger;
 
-        this.tratarImagem(result.imagemUrl);
+        if(typeof result.imagemUrl == "undefined" || result.imagemUrl == null)
+          this.imagemUrl = '../../../../assets/img/sem-imagem.png';
+        else
+          this.imagemUrl = `${environment.apiUrl}Resources/Imagens/${result.imagemUrl}`;
+
+
 
       },
       (error: any) =>{
         this.toaster.error(`Houve um erro ao carregar o perfil. Mensagem: ${JSON.stringify(error)}`)
       }
     );
-  }
-
-  private tratarImagem(nomeImagem: string): void{
-    this.imagemUrl = `${environment.apiUrl}Resources/Imagens/${nomeImagem}`;
   }
 
   public salvarAlteracaoPerfil(): void{

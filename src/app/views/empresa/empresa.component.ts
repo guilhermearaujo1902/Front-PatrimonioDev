@@ -4,7 +4,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 @Component({
   selector: 'app-empresa',
   templateUrl: './empresa.component.html',
-  styleUrls: ['./empresa.component.scss']
+  styleUrls: ['./empresa.component.scss', '../../../scss/style-base.scss']
 })
 export class EmpresaComponent implements OnInit {
 

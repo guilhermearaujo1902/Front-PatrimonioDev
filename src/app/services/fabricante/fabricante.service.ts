@@ -14,6 +14,7 @@ export class FabricanteService {
   baseUrl = `${GlobalVariavel.BASE_API_URL}fabricantes`;
 
   public cadastrarFabricante(fabricante: Fabricante): Observable<Fabricante> {
+      debugger;
     return this.api.post<Fabricante>(this.baseUrl, {fabricante}).pipe(take(1));
   }
 

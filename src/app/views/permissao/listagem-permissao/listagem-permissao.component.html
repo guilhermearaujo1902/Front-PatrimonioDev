@@ -1,77 +1,106 @@
 
 <div class="card rounded shadow-sm p-3 m-5">
-  <div class="d-flex">
-      <div class="flex-fill pr-3">
-          <div class="input-group mb-2">
-              <div class="input-group-prepend">
-                  <div class="input-group-text">Filtro: </div>
-              </div>
-             <input type="text" placeholder="Buscar por descrição" class="form-control" />
+  <div class="d-flex mb-1">
+    <div class="flex-fill pr-3">
+
+      <div class="input-group mb-2">
+          <div class="input-group-prepend">
+              <div class="input-group-text">Filtro: </div>
           </div>
+          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)"/>
       </div>
+     </div>
       <div>
-          <a class="d-flex btn btn-outline-primary" routerLink="/eventos/detalhe">
+          <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/permissao">
               <i class="fa fa-plus-circle my-1"></i>
               <b class="ml-1 d-none d-sm-block"> Novo</b>
           </a>
       </div>
+      <div class="ml-1" *ngIf="ehAdministrador" >
+        <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1" id="icone-excel"></i> Exportar para Excel</button>
+      </div>
   </div>
+  <ngx-table
+  [data]="data"
+  [configuration]="configuracao"
+  [columns]="colunas"
+  [noResultsTemplate]="mensagemSemCadastro"
+  [summaryTemplate]="summaryTemplateRef"
+  [loadingTemplate]="loadingTemplate"
+  [detailsTemplate]="detailsTemplate"
 
-  <table class="table table-striped table-hover">
-      <thead>
-          <tr>
+  #table>
+  <ng-template let-row let-index="index">
+    <td>
+      <div class="font-small">{{ row.codigoUsuarioPermissao }}</div>
+    </td>
+    <td>
+      <span class="font-small">{{ row.descricaoPermissao }}</span>
+    </td>
+    <td *ngIf="!isMobile">
+      <span class="font-small">{{ row.ativo }}</span>
+    </td>
+    <td *ngIf="isMobile">
+      <button
+        class="btn btn-primary"
+        id="expandButton-{{ index }}"
+        (click)="onRowClickEvent($event, index)"
+      >
+        <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+        <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
+        Expandir
+      </button>
+    </td>
+    <td *ngIf="!isMobile">
+      <button class="btn btn-warning btn-lg" (click)="detalhePermissao(row.codigoUsuarioPermissao)">
+        Alterar
+      </button>
+      </td>
+    <td *ngIf="!isMobile">
+        <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoUsuarioPermissao)">
+          Desativar
+        </button>
+    </td>
 
-              <th>Código Permissão</th>
-              <th>Descrição</th>
-              <th>Ativo</th>
-              <th>Excluir</th>
-              <th>Alterar</th>
-
-          </tr>
-      </thead>
-      <tbody >
-          <tr style="cursor: pointer;">
-              <td>1</td>
-              <td>Administrador</td>
-              <td>SIM</td>
-
-
-<!--
-              <td>{{item.id}}</td>
-              <td>{{item.tema}}</td>
-              <td class="d-none d-md-table-cell">{{item.local}}</td>
-              <td>{{item.dataEvento | DateTimeFormat}}</td>
-              <td class="d-none d-md-table-cell">{{item.quantidadePessoas}}</td>
-              <td class="d-none d-md-table-cell">{{item.lotes[0]?.nome}}</td> -->
-              <td>
-                  <div class="btn-group">
-                      <button class="btn btn-danger btn-lg" tooltip="Excluir">
-                          <i class="fa fa-delete"></i> Excluir
-                      </button>
-                  </div>
-              </td>
-              <td>
-                <div class="btn-group">
-                  <button class="btn btn-warning btn-lg" tooltip="Alterar">
-                      <i class="fa fa-delete"></i> Alterar
-                  </button>
-              </div>
-              </td>
-          </tr>
-      </tbody>
-      <!-- <tfoot *ngIf="eventos.length == 0">
-          <tr>
-              <td colspan="8" class="text-center">
-                  <h4>Nenhum evento encontrado</h4>
-              </td>
-          </tr>
-      </tfoot> -->
-  </table>
+    </ng-template>
+  </ngx-table>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
+
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a deleção do evento de código {{eventoId}}?</p>
-    <button type="button" class="btn btn-default" >Sim</button>
-    <button type="button" class="btn btn-primary" >Não</button>
+    <p>Deseja confirmar a desativação da permissão de código {{permissaoId}}?</p>
+    <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
+    <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
+</ng-template>
+<ng-template #mensagemSemCadastro>
+  <td [attr.colspan]="colunas.length" class="no-results text-center">
+    <h4>Não há nenhuma permissão cadastrada</h4>
+  </td>
+</ng-template>
+
+<ng-template #summaryTemplateRef let-total="total">
+  <th>Total de registros: {{ total }}</th>
+</ng-template>
+
+<ng-template #loadingTemplate>
+  <td [attr.colspan]="colunas.length">
+    <div class="loader">Carregando...</div>
+  </td>
+</ng-template>
+
+<ng-template #detailsTemplate let-row>
+    <button
+      class="btn btn-warning btn-lg"
+      (click)="detalheUsuario(row.codigoUsuarioPermissao)"
+    >
+      Alterar
+  </button>
+  <button
+  class="btn btn-danger btn-lg"
+  (click)="abrirModal($event, template, row.codigoUsuarioPermissao)"
+>
+  Desativar
+</button>
 </ng-template>

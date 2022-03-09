@@ -130,7 +130,7 @@ export class ListagemUsuarioComponent implements OnInit {
      () =>{
        debugger;
         this.toaster.success('Usuário desativado com sucesso!', 'Desativado');
-        // this.obterUsuario();
+        this.obterUsuario();
      },
      (error) =>{
       debugger;

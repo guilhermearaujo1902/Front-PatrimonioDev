@@ -1,16 +1,17 @@
 import { FabricanteService } from './../../services/fabricante/fabricante.service';
 import { Fabricante } from './../../models/Fabricante';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-fabricante',
   templateUrl: './fabricante.component.html',
-  styleUrls: ['./fabricante.component.scss']
+  styleUrls: ['./fabricante.component.scss', '../../../scss/style-base.scss']
 })
 export class FabricanteComponent implements OnInit {
 
@@ -55,7 +56,7 @@ export class FabricanteComponent implements OnInit {
       () => this.toaster.success('Fabricante cadastrado com sucesso', 'Sucesso!'),
       (error: any) => {
         this.spinner.hide();
-        this.toaster.error(`Houve um erro durante o cadastro do fabricante. Mensagem: ${error.message}`, 'Erro!');
+        this.toaster.error(`Houve um erro durante o cadastro do fabricante. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
       },
       () => {
         this.spinner.hide()
@@ -79,7 +80,7 @@ export class FabricanteComponent implements OnInit {
              this.form.patchValue(this.fabricante);
            },
            error: (error: any) => {
-             this.toaster.error('Erro ao tentar carregar o fabricante', 'Erro!');
+             this.toaster.error(`Houve um erro ao tentar carregar o fabricante. Mensagem ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
              console.error(error);
            }
          }

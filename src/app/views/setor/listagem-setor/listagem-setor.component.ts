@@ -2,7 +2,7 @@ import { TokenService } from './../../../services/token/token.service';
 import { Router } from '@angular/router';
 import { Setor } from '../../../models/Setor';
 import { SetorService } from '../../../services/setor/setor.service';
-import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -24,7 +24,11 @@ export class ListarsetorComponent implements OnInit {
   public configuracao: Config;
   public colunas: Columns[];
   public data: Setor[] = [];
+
+  public dataFiltradaExcel: Setor[] = [];
   public linhas = 0;
+  public innerWidth: number;
+  public toggledRows = new Set<number>();
 
   public setores: Setor[] = [];
   public setorId: number = 0;
@@ -48,7 +52,12 @@ export class ListarsetorComponent implements OnInit {
     this.configuracao = configuracaoTabela()
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
     this.colunas = this.obterColunasDaTabela();
+    this.checkView();
 
+  }
+
+  get isMobile(): boolean {
+    return this.innerWidth <= 768;
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, setorId: number): void {
@@ -62,6 +71,8 @@ export class ListarsetorComponent implements OnInit {
     this.setorService.obterSetor().subscribe({
       next: (setores: Setor[]) => {
         this.data = setores;
+        this.dataFiltradaExcel = setores;
+
       },
       error: (error: any) => {
         this.toaster.error(MensagemRequisicao.retornarMensagemTratada(error.statusText), 'Erro');
@@ -80,7 +91,7 @@ export class ListarsetorComponent implements OnInit {
 
     debugger;
     this.setorService.deletarSetor(this.setorId).subscribe(
-      (result: string) =>{
+      () =>{
         this.spinner.hide();
         this.toaster.success('Setor removido com sucesso!', 'Deletado');
         this.obterSetor();
@@ -103,15 +114,26 @@ export class ListarsetorComponent implements OnInit {
   }
 
   public onChange(event: Event): void {
+    let valorDigitado = (event.target as HTMLInputElement).value;
+    this.filtrarSetores(valorDigitado);
+
     this.table.apiEvent({
       type: API.onGlobalSearch,
-      value: (event.target as HTMLInputElement).value,
+      value: valorDigitado,
     });
+  }
+
+  private filtrarSetores(valor: any): void{
+    this.dataFiltradaExcel = this.data.filter(
+      (usuario: Setor) =>
+       usuario.codigoSetor.toString().indexOf(valor) !== -1 ||
+       usuario.nome.toLocaleLowerCase().indexOf(valor) !== -1
+    );
   }
 
   public exportarParaExcel(): void {
      try {
-      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.data);
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.dataFiltradaExcel);
 
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(wb, ws, 'Setores');
@@ -131,4 +153,34 @@ export class ListarsetorComponent implements OnInit {
     ];
   }
 
+  private checkView(): void {
+    this.innerWidth = window.innerWidth;
+    if (this.isMobile) {
+      this.colunas = [
+        { key: 'codigoSetor', title: 'Código' },
+        { key: 'nome', title: 'Nome' },
+        { key: '', title: 'Expandir' },
+      ];
+    } else {
+      this.colunas = this.obterColunasDaTabela();
+    }
+  }
+
+  @HostListener('window:resize', [])
+  onResize(): void {
+    this.checkView();
+  }
+
+  onRowClickEvent($event: MouseEvent, index: number): void {
+    $event.preventDefault();
+    this.table.apiEvent({
+      type: API.toggleRowIndex,
+      value: index,
+    });
+    if (this.toggledRows.has(index)) {
+      this.toggledRows.delete(index);
+    } else {
+      this.toggledRows.add(index);
+    }
+  }
 }
