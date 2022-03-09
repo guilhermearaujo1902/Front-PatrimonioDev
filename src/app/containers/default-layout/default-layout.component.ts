@@ -91,8 +91,8 @@ export class DefaultLayoutComponent implements OnInit{
   public logOut(){
 
     this.signOutAuth();
-
-    localStorage.removeItem("jwt");
+    //TODO: JOGAR PARA CLASSE DE TOKEN
+    localStorage.removeItem('valor');
     this._router.navigate(["login"]);
   }
 
