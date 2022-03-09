@@ -57,7 +57,7 @@ const routes: Routes = [
     }
   },
   {
-    path: 'permissao:',
+    path: 'permissao/:codigoPermissao',
     component: PermissaoComponent,
     canActivate: [AuthGuard, RoleGuardService],
     data: {

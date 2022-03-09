@@ -30,4 +30,17 @@ export class PermissaoService {
     .pipe(take(1));
   }
 
+  public obterApenasUmaPermissao(permissaoId: number): Observable<any>{
+    return this.api
+    .get(`${this.baseUrl}/${permissaoId}`)
+    .pipe(take(1));
+  }
+
+  public atualizarPermissao(usuarioPermissao: UsuarioPermissao): Observable<UsuarioPermissao>{
+    debugger;
+    return this.api
+    .put<UsuarioPermissao>(`${this.baseUrl}/${usuarioPermissao.codigoUsuarioPermissao}`, {usuarioPermissao})
+    .pipe(take(1));
+  }
+
 }

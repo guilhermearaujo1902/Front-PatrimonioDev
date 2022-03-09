@@ -43,7 +43,7 @@ export class PermissaoComponent implements OnInit {
       this.estadoSalvar = 'atualizarPermissao';
        this.spinner.show();
 
-       this.permissaoService.obterApenasUmSetor(this.codigoUsuarioPermissao).subscribe(
+       this.permissaoService.obterApenasUmaPermissao(this.codigoUsuarioPermissao).subscribe(
          {
            next: (permissao: UsuarioPermissao) => {
              this.permissao = {...permissao};
