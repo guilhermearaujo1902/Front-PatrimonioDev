@@ -47,9 +47,9 @@ export class DefaultLayoutComponent implements OnInit{
       case Permissao.Gestor:
 
         navItems.forEach(rota => {
-          if(rota.permissaoEsperada !== 1){
-            this.navItemsPermissao.push(rota)
-          }
+          // if(rota.permissaoEsperada !== 1){
+          //   this.navItemsPermissao.push(rota)
+          // }
         });
 
         this.navItems = this.navItemsPermissao;
@@ -60,9 +60,9 @@ export class DefaultLayoutComponent implements OnInit{
 
         navItems.forEach(rota => {
 
-          if(rota.permissaoEsperada == 3){
-            this.navItemsPermissao.push(rota)
-          }
+          // if(rota.permissaoEsperada == 3){
+          //   this.navItemsPermissao.push(rota)
+          // }
 
         });
 
