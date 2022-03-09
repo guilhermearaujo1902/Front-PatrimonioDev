@@ -8,7 +8,7 @@ import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactiv
 
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from './../../services/usuario/usuario.service';
-import { ValidacaoCampoSenha } from '../../helpers/ValidacaoCampoSenha';
+import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenha';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,7 +32,6 @@ export class RegisterComponent implements OnInit {
     private router: Router) {
       debugger;
       var emailURL = this.router.getCurrentNavigation().extras;
-      // this.emailAuth = typeof emailURL.state == 'undefined'? "": emailURL.queryParams.email;
       this.emailAuth = emailURL.queryParams.email;
 
     }

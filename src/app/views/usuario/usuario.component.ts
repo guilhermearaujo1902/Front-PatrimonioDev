@@ -12,7 +12,7 @@ import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
 import { EmpresaService } from '../../services/empresa/empresa-service.service';
 import { PermissaoService } from '../../services/permissao/permissao.service';
-import { ValidacaoCampoSenha } from '../../helpers/ValidacaoCampoSenha';
+import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenha';
 
 @Component({
   selector: 'app-usuario',

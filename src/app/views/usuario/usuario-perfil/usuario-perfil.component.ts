@@ -7,7 +7,7 @@ import { TokenService } from '../../../services/token/token.service';
 import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { AbstractControlOptions, FormControl, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
-import { ValidacaoCampoSenha } from '../../../helpers/ValidacaoCampoSenha';
+import { ValidacaoCampoSenha } from '../../../helpers/ValidacaoSenha';
 
 @Component({
   selector: 'app-usuario-perfil',
