@@ -8,6 +8,7 @@ import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactiv
 import { AbstractControlOptions, FormControl, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 import { ValidacaoCampoSenha } from '../../../helpers/ValidacaoSenha';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-usuario-perfil',
@@ -82,7 +83,8 @@ export class UsuarioPerfilComponent implements OnInit {
 
       },
       (error: any) =>{
-        this.toaster.error(`Houve um erro ao carregar o perfil. Mensagem: ${JSON.stringify(error)}`)
+        debugger;
+        this.toaster.error(`Houve um erro ao carregar o perfil. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem)}`)
       }
     );
   }

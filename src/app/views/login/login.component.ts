@@ -9,7 +9,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Usuario } from '../../models/Usuario';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,6 +19,7 @@ export class LoginComponent implements OnInit {
 
   usuario = {} as Usuario;
   form!: FormGroup
+  public lembrarMe: boolean;
 
   public ehAutenticacaoAuth: boolean;
   public usuarioAuth: SocialUser | undefined;
@@ -30,6 +30,9 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validarCamposFormulario();
+
+    this.lembrarMe = false;
+    this.AutoLogin();
   }
 
   constructor(
@@ -110,6 +113,10 @@ export class LoginComponent implements OnInit {
 
         localStorage.setItem('valor', valorToken);
 
+        if(this.lembrarMe) {
+          localStorage.setItem('lembrarme', 'sim')
+        }
+
         if(Object.keys(this.usuario).length !== 0 ){
           this.router.navigate(['dashboard']);
         }
@@ -122,9 +129,6 @@ export class LoginComponent implements OnInit {
         if(error.status == 400 && this.ehAutenticacaoAuth){
           this.router.navigate(["register"], {queryParams: {email: this.usuarioAuth.email}})
           this.toaster.info(`Para continuar, é necessário preencher o formulário.`)
-
-        }else if(error.message.includes("Http failure response for")){
-          this.toaster.error(MensagemRequisicao.retornarMensagemTratada('Http failure response for'), 'Erro')
 
         }else{
           this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)
@@ -147,5 +151,15 @@ export class LoginComponent implements OnInit {
   public cssValidator(campoForm: FormControl): any {
     return {'is-invalid': campoForm.errors && campoForm.touched};
   }
+
+  private AutoLogin(){
+    debugger;
+    const token = localStorage.getItem('valor');
+    const lembrarMe = localStorage.getItem('lembrarme');
+
+    if (token && lembrarMe == 'sim') {
+      this.router.navigate(['dashboard']);
+    }
+   }
 
 }

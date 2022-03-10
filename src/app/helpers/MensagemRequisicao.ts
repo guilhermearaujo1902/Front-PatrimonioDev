@@ -15,6 +15,9 @@ export abstract class MensagemRequisicao {
       case mensagemServidorLowerCase.includes("erro interno no servidor. mensagem: value cannot be null."):
         return "Erro interno no servidor. Contate o suporte. Detalhe: Parâmetro nulo"
 
+      case mensagemServidorLowerCase.includes("não foi possível realizar a operação!"):
+        return mensagemServidor;
+
       default:
           return this.mensagemPadrao;
     }

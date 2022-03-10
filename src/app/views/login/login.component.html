@@ -19,27 +19,31 @@
                     <div *ngIf="f.email.errors?.email" class="invalid-feedback">E-mail está inválido</div>
 
                   </div>
-                  <div class="input-group mb-4">
+                  <div class="input-group mb-2">
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="icon-lock"></i></span>
                     </div>
                     <input type="password" class="form-control" [ngClass]="cssValidator(f.senha)" formControlName="senha" placeholder="Senha" autocomplete="senha" required>
                     <div *ngIf="f.senha.errors?.required" class="invalid-feedback">Senha é obrigatória</div>
                     <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">Senha pode ter no mínimo 5 caracteres</div>
-
                   </div>
                   <div class="row">
+                    <div class="form-check form-switch ml-3 mb-2 col-12">
+                      <input class="form-check-input" [ngModelOptions]="{standalone: true}" [(ngModel)]="lembrarMe" type="checkbox" id="flexSwitchCheckDefault">
+                      <label class="form-check-label" for="flexSwitchCheckDefault">Lembrar-me</label>
+                    </div>
                     <div class="col-6">
                       <button type="button" (click)="validarCredenciais()" [disabled]="!form.valid" class="btn btn-primary px-4">Login</button>
                     </div>
+
                   </div>
-                  <div class="row mt-5">
-                    <div class="col-6">
-                      <button class="btn" id="icon_face" (click)="logarComFacebook()"><i class="fa fa-facebook"></i></button>
+                  <div class="row mt-5 d-flex justify-content-around">
+                    <div>
+                      <button class="btn" id="icon_face" (click)="logarComFacebook()"><i class="fa fa-facebook"> acebook</i></button>
                     </div>
-                  <div class="col-6">
-                    <button class="btn" id="icon_google" (click)="logarComGoogle()"><i class="fa fa-google-plus"></i></button>
-                </div>
+                    <div>
+                      <button class="btn" id="icon_google" (click)="logarComGoogle()"><i class="fa fa-google-plus"> oogle</i></button>
+                    </div>
                   </div>
                 </form>
               </div>

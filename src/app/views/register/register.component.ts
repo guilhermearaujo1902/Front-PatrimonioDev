@@ -32,7 +32,7 @@ export class RegisterComponent implements OnInit {
     private router: Router) {
       debugger;
       var emailURL = this.router.getCurrentNavigation().extras;
-      this.emailAuth = emailURL.queryParams.email;
+      this.emailAuth = typeof emailURL.queryParams == "undefined"? "": emailURL.queryParams.email;
 
     }
 
