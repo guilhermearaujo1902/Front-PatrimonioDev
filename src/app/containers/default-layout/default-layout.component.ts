@@ -15,8 +15,8 @@ import { SocialAuthService } from 'angularx-social-login';
 export class DefaultLayoutComponent implements OnInit{
 
   public sidebarMinimized = false;
-  public navItems = [];
-  public navItemsPermissao: Array<any> = [];
+  public navItemsLayout = [];
+  public navItemsPermissao = [];
   name: string;
   menu: Array<any> = [];
   breadcrumbList: Array<any> = [];
@@ -47,13 +47,13 @@ export class DefaultLayoutComponent implements OnInit{
 
       case Permissao.Gestor:
         navItems.forEach(rota => {
-          if(rota.attributes.lastItem.permissaoUsuarioEsperada !== 1){
+          if(rota.permissaoDoUsuario !== 1){
             this.navItemsPermissao.push(rota)
           }
         });
         //TODO: VALIDAR ERRO
 
-        this.navItems = this.navItemsPermissao;
+        this.navItemsLayout = this.navItemsPermissao;
         debugger;
         break;
 
@@ -61,18 +61,17 @@ export class DefaultLayoutComponent implements OnInit{
 
         navItems.forEach(rota => {
 
-          if(rota.attributes.lastItem.permissaoUsuarioEsperada == 3){
+          if(rota.permissaoDoUsuario == 3){
             this.navItemsPermissao.push(rota)
           }
 
         });
 
-        this.navItems = this.navItemsPermissao;
-
+        this.navItemsLayout = this.navItemsPermissao;
         break;
 
       default:
-        this.navItems = navItems;
+        this.navItemsLayout = navItems;
       break;
     }
   }

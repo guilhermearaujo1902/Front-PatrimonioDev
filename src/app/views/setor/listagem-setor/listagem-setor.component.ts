@@ -2,7 +2,7 @@ import { TokenService } from './../../../services/token/token.service';
 import { Router } from '@angular/router';
 import { Setor } from '../../../models/Setor';
 import { SetorService } from '../../../services/setor/setor.service';
-import { ChangeDetectionStrategy, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -42,18 +42,20 @@ export class ListarsetorComponent implements OnInit {
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private token: TokenService) { }
+    private token: TokenService,
+    private detectorAlteracao: ChangeDetectorRef
+    ) {
+
+    }
 
   ngOnInit(): void {
     debugger;
-    this.obterSetor();
     this.ehAdministrador = this.token.ehUsuarioAdministrador()
-
+    this.obterSetor();
     this.configuracao = configuracaoTabela()
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
     this.colunas = this.obterColunasDaTabela();
     this.checkView();
-
   }
 
   get isMobile(): boolean {
@@ -68,10 +70,12 @@ export class ListarsetorComponent implements OnInit {
 
   private obterSetor(): void {
 
+    this.spinner.show();
+
     this.setorService.obterSetor().subscribe({
       next: (setores: Setor[]) => {
-        this.data = setores;
         this.dataFiltradaExcel = setores;
+        this.data = this.dataFiltradaExcel;
 
       },
       error: (error: any) => {
@@ -81,8 +85,10 @@ export class ListarsetorComponent implements OnInit {
       },
       complete: () =>{
         this.configuracao.isLoading = false;
+        this.detectorAlteracao.markForCheck();
+
       }
-    });
+    }).add(() => this.spinner.hide());
 
   }
 

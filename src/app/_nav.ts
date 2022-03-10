@@ -1,20 +1,18 @@
-import { INavData } from '@coreui/angular';
 import { Permissao } from './models/enums/permissao.enum';
+import { INewNavData } from './models/interfaces/INewNavData';
 
-export const navItems: INavData[] = [
+export const navItems: INewNavData[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
     icon: 'icon-chart',
-    attributes: [{permissaoUsuarioEsperada: Permissao.Usuario}],
+    permissaoDoUsuario: Permissao.Usuario,
   },
   {
     name: 'Setor',
     url: '/s',
     icon: 'fa fa-users',
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Administrador,}
-    ],
+    permissaoDoUsuario: Permissao.Administrador,
     children: [
       {
         name: 'Cadastrar',
@@ -32,8 +30,7 @@ export const navItems: INavData[] = [
     name: 'Permissão',
     url: '/se',
     icon: 'fa fa-address-card',
-    attributes: [
-    {permissaoUsuarioEsperada: Permissao.Gestor}],
+    permissaoDoUsuario: Permissao.Gestor,
     children: [
       {
         name: 'Cadastrar',
@@ -51,8 +48,7 @@ export const navItems: INavData[] = [
     name: 'Empresa',
     url: '/sem',
     icon: 'fa fa-building',
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Administrador}],
+    permissaoDoUsuario: Permissao.Administrador,
     children: [
       {
         name: 'Empresa',
@@ -70,8 +66,7 @@ export const navItems: INavData[] = [
     name: 'Fabricante',
     url: '/semu',
     icon: 'fa fa-archive',
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Usuario}],
+    permissaoDoUsuario: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -89,8 +84,7 @@ export const navItems: INavData[] = [
     name: 'Patrimônio',
     url: '/semur',
     icon: 'fa fa-th',
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Usuario}],
+    permissaoDoUsuario: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -108,8 +102,7 @@ export const navItems: INavData[] = [
     name: 'Equipamento',
     url: '/semurl',
     icon: 'fa fa-desktop',
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Usuario}],
+    permissaoDoUsuario: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -127,8 +120,7 @@ export const navItems: INavData[] = [
     name: 'Usuário',
     url: '/semurl',
     icon: 'fa fa-user',
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Administrador}],
+    permissaoDoUsuario: Permissao.Administrador,
     children: [
       {
         name: 'Cadastrar',
@@ -146,8 +138,7 @@ export const navItems: INavData[] = [
     name: 'Funcionario',
     url: '/semurl',
     icon: 'fa fa-users',
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Usuario}],
+    permissaoDoUsuario: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -165,8 +156,7 @@ export const navItems: INavData[] = [
     name: 'Categoria Equipamento',
     url: '/semurl',
     icon: "fa fa-cubes",
-    attributes: [
-      {permissaoUsuarioEsperada: Permissao.Usuario}],
+    permissaoDoUsuario: Permissao.Usuario,
     children: [
       {
         name: 'Cadastrar',
@@ -178,6 +168,6 @@ export const navItems: INavData[] = [
         url: '/dashboard/listarCategoria',
         icon: 'fa fa-list'
       }
-   ]
+     ]
   }
 ];
