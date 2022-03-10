@@ -16,7 +16,7 @@ export class DefaultLayoutComponent implements OnInit{
 
   public sidebarMinimized = false;
   public navItems = [];
-  public navItemsPermissao = [];
+  public navItemsPermissao: Array<any> = [];
   name: string;
   menu: Array<any> = [];
   breadcrumbList: Array<any> = [];
@@ -41,26 +41,27 @@ export class DefaultLayoutComponent implements OnInit{
 
   private obterMenusPermissaoUsuario(): void {
     const permissao = this.token.obterPermissaoToken();
+    debugger;
 
     switch (permissao) {
 
       case Permissao.Gestor:
-
         navItems.forEach(rota => {
-          if(rota.permissaoUsuarioEsperada !== 1){
+          if(rota.attributes.lastItem.permissaoUsuarioEsperada !== 1){
             this.navItemsPermissao.push(rota)
           }
         });
+        //TODO: VALIDAR ERRO
 
         this.navItems = this.navItemsPermissao;
-
+        debugger;
         break;
 
       case Permissao.Usuario:
 
         navItems.forEach(rota => {
 
-          if(rota.permissaoUsuarioEsperada == 3){
+          if(rota.attributes.lastItem.permissaoUsuarioEsperada == 3){
             this.navItemsPermissao.push(rota)
           }
 
