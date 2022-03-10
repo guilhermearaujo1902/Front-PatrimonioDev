@@ -101,7 +101,7 @@ export function tokenGetter() {
     NgxSpinnerModule,
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
-      { timeOut: 1700,
+      { timeOut: 2700,
         positionClass: 'toast-bottom-right',
         preventDuplicates: true,
         progressBar: true

@@ -75,7 +75,8 @@ export class ListarsetorComponent implements OnInit {
 
       },
       error: (error: any) => {
-        this.toaster.error(MensagemRequisicao.retornarMensagemTratada(error.statusText), 'Erro');
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](template.mensagemErro, 'Erro');
 
       },
       complete: () =>{

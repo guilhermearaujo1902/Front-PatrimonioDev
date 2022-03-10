@@ -79,7 +79,8 @@ export class PermissaoComponent implements OnInit {
       (error: any) => {
         debugger;
         this.spinner.hide();
-        this.toaster.error(`Houve um erro durante o cadastro da permissão. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem)}`, 'Erro!');
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro da permissão. Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {

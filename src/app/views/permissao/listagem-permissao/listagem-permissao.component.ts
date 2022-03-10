@@ -76,7 +76,9 @@ export class ListarpermissaoComponent implements OnInit {
 
       },
       error: (error: any) => {
-        this.toaster.error(MensagemRequisicao.retornarMensagemTratada(error.statusText), 'Erro');
+        debugger;
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](template.mensagemErro, 'Erro');
 
       },
       complete: () =>{
