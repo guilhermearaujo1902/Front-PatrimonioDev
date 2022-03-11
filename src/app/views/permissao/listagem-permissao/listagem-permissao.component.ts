@@ -1,5 +1,5 @@
 import { PermissaoService } from './../../../services/permissao/permissao.service';
-import { ChangeDetectionStrategy, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 import configuracaoTabela from '../../../util/configuracao-tabela';
@@ -24,14 +24,12 @@ export class ListarpermissaoComponent implements OnInit {
 
   public configuracao: Config;
   public colunas: Columns[];
-  public data: UsuarioPermissao[] = [];
-
-  public dataFiltradaExcel: UsuarioPermissao[] = [];
   public linhas = 0;
   public innerWidth: number;
   public toggledRows = new Set<number>();
 
-  public permissoes: UsuarioPermissao[] = [];
+  public data: UsuarioPermissao[] = [];
+  public dataFiltradaExcel: UsuarioPermissao[] = [];
   public permissaoId: number = 0;
   public ehAdministrador = false;
 
@@ -43,15 +41,18 @@ export class ListarpermissaoComponent implements OnInit {
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,
     private router: Router,
-    private token: TokenService) { }
+    private token: TokenService,
+    private detectorAlteracao: ChangeDetectorRef
+    ) { }
 
   ngOnInit(): void {
-    debugger;
-    this.obterPermissao();
+
+    this.obterPermissoes();
     this.ehAdministrador = this.token.ehUsuarioAdministrador()
 
     this.configuracao = configuracaoTabela()
     this.linhas = this.data.map((_) => _.codigoUsuarioPermissao).reduce((acc, cur) => cur + acc, 0);
+
     this.colunas = this.obterColunasDaTabela();
     this.checkView();
 
@@ -67,7 +68,9 @@ export class ListarpermissaoComponent implements OnInit {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
-  private obterPermissao(): void {
+  private obterPermissoes(): void {
+
+    this.spinner.show("buscando")
 
     this.permissaoService.obterPermissoes().subscribe({
       next: (permissoes: UsuarioPermissao[]) => {
@@ -76,36 +79,32 @@ export class ListarpermissaoComponent implements OnInit {
 
       },
       error: (error: any) => {
-        debugger;
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](template.mensagemErro, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as permissões. Mensagem ${template.mensagemErro}`, 'Erro');
 
       },
       complete: () =>{
-        this.configuracao.isLoading = false;
+        this.detectorAlteracao.markForCheck();
       }
-    });
+    }).add(() => this.spinner.hide("buscando"));
 
   }
 
   public confirmar(): void {
     this.modalRef?.hide();
-    this.spinner.show();
+    this.spinner.show("desativando");
 
     debugger;
     this.permissaoService.desativarPermissao(this.permissaoId).subscribe(
       () =>{
-        this.spinner.hide();
         this.toaster.success('Permissão desativada com sucesso!', 'Desativar');
-        this.obterPermissao();
+        this.obterPermissoes();
       },
       (error: any) =>{
-        debugger;
-        this.spinner.hide();
-        this.toaster.error(`Houve um erro ao desativar a permissão. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.statusText, error.error.mensagem)}`, 'Erro!');
-
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao desativar a permissão. Mensagem ${template.mensagemErro}`, 'Erro');
       }
-    );
+    ).add(()=> this.spinner.hide("desativando"));
   }
 
   public recusar(): void {

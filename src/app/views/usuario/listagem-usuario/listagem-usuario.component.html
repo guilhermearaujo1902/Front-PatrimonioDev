@@ -33,7 +33,6 @@
     [columns]="colunas"
     [noResultsTemplate]="mensagemSemCadastro"
     [summaryTemplate]="summaryTemplateRef"
-    [loadingTemplate]="loadingTemplate"
     [detailsTemplate]="detailsTemplate"
     #table
   >
@@ -77,15 +76,6 @@
     </ng-template>
   </ngx-table>
 </div>
-<ngx-spinner
-  bdColor="rgba(0, 0, 0, 0.8)"
-  size="medium"
-  color="#fff"
-  type="ball-spin-fade"
-  [fullScreen]="true"
-  ><p style="color: white">Buscando...</p></ngx-spinner
->
-
 <ng-template #template>
   <div class="modal-body text-center">
     <p>Deseja confirmar a desativação do usuário de código {{ codigoUsuario }}?</p>
@@ -107,12 +97,6 @@
   <th>Total de registros: {{ total }}</th>
 </ng-template>
 
-<ng-template #loadingTemplate>
-  <td [attr.colspan]="colunas.length">
-    <div class="loader">Carregando...</div>
-  </td>
-</ng-template>
-
 <ng-template #detailsTemplate let-row>
   <div>
     <p>{{ row.email }}</p>
@@ -130,3 +114,5 @@
   Desativar
 </button>
 </ng-template>
+<ngx-spinner name="buscando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
+<ngx-spinner name="desativando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Desativando... </p></ngx-spinner>

@@ -69,6 +69,7 @@ import { ListagemUsuarioComponent } from './views/usuario/listagem-usuario/lista
 import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-perfil.component';
 import { FuncionarioComponent } from './views/funcionario/funcionario.component';
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 export function tokenGetter() {
   debugger;
@@ -77,6 +78,7 @@ export function tokenGetter() {
 
 @NgModule({
   imports: [
+    NgxMaskModule.forRoot(),
     SocialLoginModule,
     BrowserModule,
     ReactiveFormsModule,
@@ -86,19 +88,19 @@ export function tokenGetter() {
     AppRoutingModule,
     AppAsideModule,
     HttpClientModule,
-    AppBreadcrumbModule.forRoot(),
     AppFooterModule,
-    ModalModule.forRoot(),
     AppHeaderModule,
     ChartsModule,
     TableModule,
     AppSidebarModule,
     PerfectScrollbarModule,
-    BsDropdownModule.forRoot(),
-    TabsModule.forRoot(),
     IconModule,
     WidgetsModule,
     NgxSpinnerModule,
+    ModalModule.forRoot(),
+    AppBreadcrumbModule.forRoot(),
+    BsDropdownModule.forRoot(),
+    TabsModule.forRoot(),
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
       { timeOut: 2700,
@@ -106,7 +108,7 @@ export function tokenGetter() {
         preventDuplicates: true,
         progressBar: true
       }
-    ),
+    )
    ],
   declarations: [
     AppComponent,

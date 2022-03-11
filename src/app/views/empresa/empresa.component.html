@@ -20,10 +20,10 @@
           <div class="form-row">
             <div class="form-group col-lg-6 col-sm-12 text-start">
                 <label>CNPJ</label>
-                <input type="text" class="form-control"  mask="(000) 000-0000" [ngClass]="cssValidator(f.cnpj)" name="cnpj" formControlName="cnpj" placeholder="CNPJ" autocomplete="cnpj" required>
+                <input type="text" class="form-control"  mask="00.000.000/0000-00" [ngClass]="cssValidator(f.cnpj)" name="cnpj" formControlName="cnpj" placeholder="CNPJ" autocomplete="cnpj" required>
                 <div *ngIf="f.cnpj.errors?.required" class="invalid-feedback">CNPJ é obrigatório</div>
-                <div *ngIf="f.cnpj.errors?.maxlength" class="invalid-feedback">CNPJ pode ter no máximo 18 caracteres</div>
-                <div *ngIf="f.cnpj.errors?.minlength" class="invalid-feedback">CNPJ pode ter no mínimo 18 caracteres</div>
+                <div *ngIf="f.cnpj.errors?.maxlength" class="invalid-feedback">CNPJ pode ter no máximo 14 números</div>
+                <div *ngIf="f.cnpj.errors?.minlength" class="invalid-feedback">CNPJ pode ter no mínimo 14 números</div>
             </div>
             <div class="form-group col-lg-6 col-sm-12 text-start">
               <label>Razão Social</label>
@@ -36,7 +36,7 @@
           <div class="form-row pt-3">
             <div class="row">
               <div class="col">
-                <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid">Cadastrar</button>
+                <button type="button" class="btn btn-block btn-success btn-lg" (click)="salvarAlteracao()" [disabled]="!form.valid">Cadastrar</button>
               </div>
               <div class="col">
                 <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
@@ -46,3 +46,4 @@
       </div>
   </form>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>

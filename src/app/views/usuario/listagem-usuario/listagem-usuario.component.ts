@@ -2,12 +2,13 @@ import { Router } from '@angular/router';
 import { UsuarioService } from './../../../services/usuario/usuario.service';
 import { Usuario } from './../../../models/Usuario';
 import { ToastrService } from 'ngx-toastr';
-import { ChangeDetectionStrategy, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import * as XLSX from 'xlsx';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import configuracaoTabela from '../../../util/configuracao-tabela';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-listagem-usuario',
@@ -21,11 +22,12 @@ export class ListagemUsuarioComponent implements OnInit {
 
   public configuracao: Config;
   public colunas: Columns[];
-  public data: Usuario[] = [];
-  public dataFiltradaExcel: Usuario[] = [];
   public linhas = 0;
   public innerWidth: number;
   public toggledRows = new Set<number>();
+
+  public data: Usuario[] = [];
+  public dataFiltradaExcel: Usuario[] = [];
 
   modalRef?: BsModalRef;
   codigoUsuario: number;
@@ -35,16 +37,17 @@ export class ListagemUsuarioComponent implements OnInit {
     private usuarioService: UsuarioService,
     private spinner: NgxSpinnerService,
     private modalService: BsModalService,
-    private router: Router) { }
+    private router: Router,
+    private detectorAlteracao: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+
     this.obterUsuario();
     this.configuracao = configuracaoTabela()
 
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
 
     this.colunas = this.obterColunasDaTabela();
-
     this.checkView();
 
   }
@@ -78,16 +81,21 @@ export class ListagemUsuarioComponent implements OnInit {
 
   private obterUsuario(): void {
 
+    this.spinner.show("buscando");
+
     this.usuarioService.obterTodosUsuarios().subscribe({
       next: (usuarios: Usuario[]) => {
         this.data = usuarios;
         this.dataFiltradaExcel = usuarios;
       },
-      error: () => {},
+      error: (error: any) => {
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos usuários. Mensagem: ${template.mensagemErro}`, 'Erro');
+      },
       complete: () =>{
-        this.configuracao.isLoading = false;
+        this.detectorAlteracao.markForCheck();
       }
-    });
+    }).add(() => this.spinner.hide("buscando"));
   }
 
   public exportarParaExcel(): void {
@@ -124,19 +132,18 @@ export class ListagemUsuarioComponent implements OnInit {
 
   public confirmar(): void {
     this.modalRef.hide();
-    this.spinner.show();
+    this.spinner.show("desativando");
 
     this.usuarioService.desativarUsuario(this.codigoUsuario).subscribe(
      () =>{
-       debugger;
         this.toaster.success('Usuário desativado com sucesso!', 'Desativado');
         this.obterUsuario();
      },
-     (error) =>{
-      debugger;
-      this.toaster.error(`Houve um erro ao desativar o usuário. Mensagem: ${error}`, 'Erro!');
+     (error: any) =>{
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao desativar o usuário. Mensagem: ${template.mensagemErro}`, 'Erro');
      }
-    ).add(() => this.spinner.hide())
+    ).add(() => this.spinner.hide("desativando"))
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, codigoUsuario: number): void {

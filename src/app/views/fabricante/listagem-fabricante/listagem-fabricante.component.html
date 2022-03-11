@@ -25,7 +25,6 @@
   [columns]="colunas"
   [noResultsTemplate]="mensagemSemCadastro"
   [summaryTemplate]="summaryTemplateRef"
-  [loadingTemplate]="loadingTemplate"
   [detailsTemplate]="detailsTemplate"
 
   #table>
@@ -69,8 +68,6 @@
   </div>
 </ng-template>
 
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
-
 <ng-template #summaryTemplateRef let-total="total">
   <th>Total de registros: {{ total }}</th>
 </ng-template>
@@ -78,12 +75,6 @@
 <ng-template #mensagemSemCadastro>
   <td [attr.colspan]="colunas.length" class="no-results text-center">
     <h4>Não há nenhum fabricante cadastrado</h4>
-  </td>
-</ng-template>
-
-<ng-template #loadingTemplate>
-  <td [attr.colspan]="colunas.length">
-    <div class="loader">Loading...</div>
   </td>
 </ng-template>
 <ng-template #detailsTemplate let-row>
@@ -100,3 +91,5 @@ class="btn btn-danger btn-lg"
 Excluir
 </button>
 </ng-template>
+<ngx-spinner name="buscando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
+<ngx-spinner name="excluindo" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Excluindo... </p></ngx-spinner>

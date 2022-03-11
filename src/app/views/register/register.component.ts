@@ -9,6 +9,7 @@ import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactiv
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from './../../services/usuario/usuario.service';
 import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenha';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-dashboard',
@@ -30,13 +31,10 @@ export class RegisterComponent implements OnInit {
     private usuarioService: UsuarioService,
     private toaster: ToastrService,
     private router: Router) {
-      debugger;
       var emailURL = this.router.getCurrentNavigation().extras;
       this.emailAuth = typeof emailURL.queryParams == "undefined"? "": emailURL.queryParams.email;
 
     }
-
-
 
   ngOnInit(): void {
     this.validarCamposFormulario();
@@ -50,7 +48,7 @@ export class RegisterComponent implements OnInit {
 
     this.form = this.fb.group<Usuario>({
       codigoUsuario: new FormControl(''),
-      codigoUsuarioPermissao: new FormControl(1),
+      codigoUsuarioPermissao: new FormControl(3),
       codigoEmpresa: new FormControl(1),
       codigoSetor: new FormControl(1),
       nome: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
@@ -73,19 +71,15 @@ export class RegisterComponent implements OnInit {
     this.usuarioService.cadastrarUsuario(this.usuario).subscribe(
       () => this.toaster.success('Usuário cadastrado com sucesso. Redirecionando para a tela de login', 'Sucesso!'),
       (error: any) => {
-
-        this.spinner.hide();
         this.toaster.toastrConfig.timeOut = 5000;
-        this.toaster.error(`Houve um erro durante o cadastro do usuário. Mensagem: ${error.error.mensagem}`, 'Erro!');
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro do usuário. Mensagem ${template.mensagemErro}`, 'Erro');
       },
       () => {
-
-        this.spinner.hide()
-
         setTimeout(() => {
           this.router.navigate(['login'])
         }, 5000)
       }
-    );
+    ).add(() => this.spinner.hide());
   }
 }

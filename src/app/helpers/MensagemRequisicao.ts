@@ -13,6 +13,10 @@ export abstract class MensagemRequisicao {
 
     switch (true) {
 
+      case mensagemServidorLowerCase.includes("a instrução insert conflitou com a restrição do foreign key"):
+        this.mensagemPadrao = "Erro interno no servidor. Contate o suporte. Detalhe: Conflito FK.";
+        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.error);
+
       case mensagemServidorLowerCase.includes("não é possível realizar essa operação com registro padrão."):
         this.mensagemPadrao = "Não é permitido realizar qualquer operação com registro padrão do sistema.";
         return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.info);
@@ -26,7 +30,7 @@ export abstract class MensagemRequisicao {
 
       case errorMessageLowerCase.includes("unknown error"):
       default:
-        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.info);
+        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.error);
     }
   }
 

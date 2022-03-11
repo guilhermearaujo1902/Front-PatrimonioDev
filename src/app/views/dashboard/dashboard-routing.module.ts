@@ -10,7 +10,7 @@ import { WidgetsComponent } from './../widgets/widgets.component';
 import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
 import { PermissaoComponent } from './../permissao/permissao.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule, CanActivate } from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
 import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';

@@ -10,7 +10,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
-import { EmpresaService } from '../../services/empresa/empresa-service.service';
+import { EmpresaService } from '../../services/empresa/empresa.service';
 import { PermissaoService } from '../../services/permissao/permissao.service';
 import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenha';
 
@@ -29,7 +29,6 @@ export class UsuarioComponent implements OnInit {
   empresas: Empresa[] = [];
   permissoes: UsuarioPermissao[] = [];
   limpandoCampo: boolean = false;
-
 
   get f(): any {
     return this.form.controls;
@@ -152,6 +151,7 @@ export class UsuarioComponent implements OnInit {
            next: (usuario: Usuario) => {
              this.usuario = {...usuario};
              this.form.patchValue(this.usuario);
+             this.form.controls.confirmeSenha.setValue(usuario.senha);
            },
            error: (error: any) => {
              this.toaster.error(`Houve um erro ao tentar carregar o usuário. Mensagem: ${error.message}`, 'Erro!');

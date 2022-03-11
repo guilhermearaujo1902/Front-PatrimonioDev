@@ -24,12 +24,11 @@ export class ListarsetorComponent implements OnInit {
   public configuracao: Config;
   public colunas: Columns[];
   public data: Setor[] = [];
-
-  public dataFiltradaExcel: Setor[] = [];
   public linhas = 0;
   public innerWidth: number;
   public toggledRows = new Set<number>();
 
+  public dataFiltradaExcel: Setor[] = [];
   public setores: Setor[] = [];
   public setorId: number = 0;
   public ehAdministrador = false;
@@ -49,11 +48,13 @@ export class ListarsetorComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    debugger;
+
     this.ehAdministrador = this.token.ehUsuarioAdministrador()
     this.obterSetor();
+
     this.configuracao = configuracaoTabela()
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
+
     this.colunas = this.obterColunasDaTabela();
     this.checkView();
   }
@@ -70,17 +71,17 @@ export class ListarsetorComponent implements OnInit {
 
   private obterSetor(): void {
 
-    this.spinner.show();
+    this.spinner.show("buscando");
 
     this.setorService.obterSetor().subscribe({
       next: (setores: Setor[]) => {
         this.dataFiltradaExcel = setores;
-        this.data = this.dataFiltradaExcel;
+        this.data = setores;
 
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](template.mensagemErro, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelo setores. Mensagem ${template.mensagemErro}`, 'Erro');
 
       },
       complete: () =>{
@@ -88,28 +89,25 @@ export class ListarsetorComponent implements OnInit {
         this.detectorAlteracao.markForCheck();
 
       }
-    }).add(() => this.spinner.hide());
+    }).add(() => this.spinner.hide("buscando"));
 
   }
 
   public confirmar(): void {
     this.modalRef?.hide();
-    this.spinner.show();
+    this.spinner.show("excluindo");
 
     debugger;
     this.setorService.deletarSetor(this.setorId).subscribe(
       () =>{
-        this.spinner.hide();
         this.toaster.success('Setor removido com sucesso!', 'Deletado');
         this.obterSetor();
       },
       (error: any) =>{
-        debugger;
-        this.spinner.hide();
         this.toaster.error(`Houve um erro ao remover o setor. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.statusText, error.error.mensagem)}`, 'Erro!');
-
       }
-    );
+    ).add(() => this.spinner.hide("excluindo"));
+
   }
 
   public recusar(): void {

@@ -1,3 +1,4 @@
+import { NgxMaskModule } from 'ngx-mask';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
@@ -11,7 +12,9 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     FormsModule,
     DashboardRoutingModule,
     BsDropdownModule,
-    ButtonsModule.forRoot()
+    ButtonsModule.forRoot(),
+    NgxMaskModule.forChild()
+
   ],
   declarations: [ DashboardComponent ]
 

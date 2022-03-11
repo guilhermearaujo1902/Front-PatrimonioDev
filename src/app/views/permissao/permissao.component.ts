@@ -77,18 +77,15 @@ export class PermissaoComponent implements OnInit {
     this.permissaoService[this.estadoSalvar](this.permissao).subscribe(
       () => this.toaster.success('Permissão cadastrada com sucesso', 'Sucesso!'),
       (error: any) => {
-        debugger;
-        this.spinner.hide();
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro da permissão. Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {
-        this.spinner.hide()
         setTimeout(() => {
           this.router.navigate(['dashboard/listarPermissao'])
         }, 1700)
       }
-    );
+    ).add(() => this.spinner.hide());
   }
 }

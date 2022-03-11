@@ -66,6 +66,8 @@ export class UsuarioPerfilComponent implements OnInit {
 
   private carregarPerfilUsuario(){
 
+    this.spinner.show("carregando");
+
     this.perfilService.obterPerfilUsuario(this.codigoUsuario).subscribe(
       (result: UsuarioPerfil) => {
         this.form.patchValue(result);
@@ -73,20 +75,20 @@ export class UsuarioPerfilComponent implements OnInit {
         this.codigoUsuario = result.codigoUsuario;
         this.form.controls.confirmeSenha.setValue(result.senha);
         debugger;
-
-        if(typeof result.imagemUrl == "undefined" || result.imagemUrl == null)
-          this.imagemUrl = '../../../../assets/img/sem-imagem.png';
-        else
-          this.imagemUrl = `${environment.apiUrl}Resources/Imagens/${result.imagemUrl}`;
-
-
-
+        this.tratarUrlImagem(result.imagemUrl);
       },
       (error: any) =>{
-        debugger;
-        this.toaster.error(`Houve um erro ao carregar o perfil. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem)}`)
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar o perfil. Mensagem: ${template.mensagemErro}`, 'Erro');
       }
-    );
+    ).add(() => this.spinner.hide("carregando"));
+  }
+
+  private tratarUrlImagem(url: string): void {
+    if(typeof url == "undefined" || url == null)
+      this.imagemUrl = '../../../../assets/img/sem-imagem.png';
+    else
+      this.imagemUrl = `${environment.apiUrl}Resources/Imagens/${url}`;
   }
 
   public salvarAlteracaoPerfil(): void{
@@ -100,7 +102,8 @@ export class UsuarioPerfilComponent implements OnInit {
         this.toaster.success(`Perfil atualizado com sucesso!`)
       },
       (error: any) =>{
-        this.toaster.error(`Houve um erro ao atualizar o perfil. Mensagem: ${error.message}`)
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao atualizar o perfil. Mensagem: ${template.mensagemErro}`, 'Erro');
       }
     );
 
@@ -118,7 +121,7 @@ export class UsuarioPerfilComponent implements OnInit {
 
   private uploadImagem(): void{
 
-    this.spinner.show();
+    this.spinner.show("upload");
 
     this.perfilService.inserirImagem(this.codigoUsuario, this.file).subscribe(
       () => {
@@ -126,9 +129,10 @@ export class UsuarioPerfilComponent implements OnInit {
         this.toaster.success("Imagem atualizada com sucesso", "Sucesso")
       },
       (error: any) => {
-        this.toaster.error(`Houve um problema ao subir a imagem: Mensagem ${error.message}`, "Erro")
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao subir a imagem: Mensagem: ${template.mensagemErro}`, 'Erro');
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide("upload"));
   }
 
 }

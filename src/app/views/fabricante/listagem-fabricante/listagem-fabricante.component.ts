@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { FabricanteService } from './../../../services/fabricante/fabricante.service';
-import { ChangeDetectionStrategy, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Fabricante } from '../../../models/Fabricante';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
@@ -43,9 +43,12 @@ export class ListagemfabricanteComponent implements OnInit {
               private modalService: BsModalService,
               private toaster: ToastrService,
               private router: Router,
-              private token: TokenService) { }
+              private token: TokenService,
+              private detectorAlteracao: ChangeDetectorRef
+              ) { }
 
   ngOnInit(): void {
+
     this.configuracao = configuracaoTabela();
     this.colunas = this.obterColunasDaTabela();
 
@@ -59,18 +62,21 @@ export class ListagemfabricanteComponent implements OnInit {
   }
 
   public obterFabricante(): void {
-    this.spinner.show();
+    this.spinner.show("buscando");
     this.fabricanteService.obterTodosFabricante().subscribe({
       next: (fabricantes: Fabricante[]) => {
         this.data = fabricantes;
         this.dataFiltradaExcel = fabricantes;
       },
-      error: () => {},
+      error: (error: any) => {
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos fabricantes. Mensagem ${template.mensagemErro}`, 'Erro');
+
+      },
       complete: () =>{
-        this.spinner.hide();
-        this.configuracao.isLoading = false;
+        this.detectorAlteracao.markForCheck();
       }
-    });
+    }).add(() => this.spinner.hide("buscando"));
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, codigoFabricante: number): void {
@@ -82,19 +88,18 @@ export class ListagemfabricanteComponent implements OnInit {
   public confirmar(): void {
 
     this.modalRef?.hide();
-    this.spinner.show();
+    this.spinner.show("excluindo");
 
     this.fabricanteService.deletarFabricante(this.codigoFabricante).subscribe(
       () =>{
-        this.spinner.hide();
-        this.toaster.success('Fabricante removido com sucesso!', 'Deletado');
+        this.toaster.success('Fabricante removido com sucesso!', 'Excluindo');
         this.obterFabricante();
       },
       (error: any) =>{
-        this.spinner.hide();
-        this.toaster.error(`Houve um erro ao remover o fabricante. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem)}`, 'Erro!');
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o fabricante. Mensagem ${template.mensagemErro}`, 'Erro');
       }
-    );
+    ).add(()=>this.spinner.hide("excluindo"));
   }
 
   public recusar(): void {
