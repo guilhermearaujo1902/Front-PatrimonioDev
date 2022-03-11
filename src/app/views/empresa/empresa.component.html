@@ -20,7 +20,7 @@
           <div class="form-row">
             <div class="form-group col-lg-6 col-sm-12 text-start">
                 <label>CNPJ</label>
-                <input type="text" class="form-control"  mask="00.000.000/0000-00" [ngClass]="cssValidator(f.cnpj)" name="cnpj" formControlName="cnpj" placeholder="CNPJ" autocomplete="cnpj" required>
+                <input type="text" class="form-control" mask="00.000.000/0000-00" [ngClass]="cssValidator(f.cnpj)" name="cnpj" formControlName="cnpj" placeholder="00.000.000/0000-00" autocomplete="cnpj" required>
                 <div *ngIf="f.cnpj.errors?.required" class="invalid-feedback">CNPJ é obrigatório</div>
                 <div *ngIf="f.cnpj.errors?.maxlength" class="invalid-feedback">CNPJ pode ter no máximo 14 números</div>
                 <div *ngIf="f.cnpj.errors?.minlength" class="invalid-feedback">CNPJ pode ter no mínimo 14 números</div>

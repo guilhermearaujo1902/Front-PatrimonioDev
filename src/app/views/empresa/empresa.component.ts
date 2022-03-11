@@ -39,7 +39,7 @@ export class EmpresaComponent implements OnInit {
     this.form = this.fb.group({
       codigoEmpresa: [],
       nomeFantasia: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]],
-      cnpj: ['', [Validators.required, Validators.minLength(14), Validators.maxLength(14)]],
+      cnpj: ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]],
       razaoSocial: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]],
 
     });

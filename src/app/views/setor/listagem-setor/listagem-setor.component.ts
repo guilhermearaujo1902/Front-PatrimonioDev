@@ -104,7 +104,8 @@ export class ListarsetorComponent implements OnInit {
         this.obterSetor();
       },
       (error: any) =>{
-        this.toaster.error(`Houve um erro ao remover o setor. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.statusText, error.error.mensagem)}`, 'Erro!');
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao remover o setor. Mensagem: ${template.mensagemErro}`, 'Erro');
       }
     ).add(() => this.spinner.hide("excluindo"));
 

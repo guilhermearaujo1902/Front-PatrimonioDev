@@ -78,7 +78,9 @@ export function tokenGetter() {
 
 @NgModule({
   imports: [
-    NgxMaskModule.forRoot(),
+    NgxMaskModule.forRoot({
+      dropSpecialCharacters: false
+    }),
     SocialLoginModule,
     BrowserModule,
     ReactiveFormsModule,
