@@ -127,6 +127,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'categoria/:codigoCategoria',
+    component: CategoriaComponent,
+    data: {
+      title: 'categoria'
+    }
+  },
+  {
     path: 'listarCategoria',
     component: ListagemCategoriaComponent,
     data: {

@@ -37,7 +37,7 @@ export class EquipamentoComponent implements OnInit {
   }
 
   private obterCategorias(): void {
-     this.categoriaService.obterCategoria().subscribe({
+     this.categoriaService.obterTodasCategoria().subscribe({
       next: (categoria: Categoria[]) => {
         console.log(JSON.stringify(categoria))
         this.categoria = categoria;

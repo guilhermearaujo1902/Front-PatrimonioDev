@@ -1,3 +1,5 @@
+import { ListagemCategoriaComponent } from './views/categoria/listagem-categoria/listagem-categoria.component';
+import { CategoriaComponent } from './views/categoria/categoria.component';
 import { GoogleLoginProvider, SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
 import { JwtHelperService, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
@@ -118,6 +120,7 @@ export function tokenGetter() {
     P404Component,
     P500Component,
     LoginComponent,
+    CategoriaComponent,
     RegisterComponent,
     EquipamentoComponent,
     SetorComponent,
@@ -128,6 +131,7 @@ export function tokenGetter() {
     PatrimonioComponent,
     FabricanteComponent,
     PermissaoComponent,
+    ListagemCategoriaComponent,
     ListarsetorComponent,
     ListarpermissaoComponent,
     ListagemEmpresaComponent,

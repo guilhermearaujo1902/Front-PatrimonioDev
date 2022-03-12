@@ -26,7 +26,7 @@ export abstract class MensagemRequisicao {
 
       case mensagemServidorLowerCase.includes("erro interno no servidor. mensagem: value cannot be null."):
         this.mensagemPadrao = "Erro interno no servidor. Contate o suporte. Detalhe: Parâmetro nulo.";
-        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.info);
+        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.error);
 
       case errorMessageLowerCase.includes("unknown error"):
       default:

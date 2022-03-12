@@ -26,7 +26,6 @@ export class ListagemfabricanteComponent implements OnInit {
   public data: Fabricante[] = [];
 
   public fabricantes: Fabricante[] = [];
-  public fabricantesFiltrados: Fabricante[] = [];
   public codigoFabricante: number;
   public ehAdministrador = false;
 
@@ -118,9 +117,9 @@ export class ListagemfabricanteComponent implements OnInit {
 
   private filtrarFabricantes(valor: any): void{
     this.dataFiltradaExcel = this.data.filter(
-      (usuario: Fabricante) =>
-       usuario.codigoFabricante.toString().indexOf(valor) !== -1 ||
-       usuario.nomeFabricante.toLocaleLowerCase().indexOf(valor) !== -1
+      (fabricante: Fabricante) =>
+       fabricante.codigoFabricante.toString().indexOf(valor) !== -1 ||
+       fabricante.nomeFabricante.toLocaleLowerCase().indexOf(valor) !== -1
     );
   }
 

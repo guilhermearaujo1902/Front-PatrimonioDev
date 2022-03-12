@@ -12,8 +12,8 @@
                 <label>Nome Fantasia</label>
                 <input type="text" class="form-control" [ngClass]="cssValidator(f.nomeFantasia)" name="nomeFantasia" formControlName="nomeFantasia" placeholder="Nome Fantasia" autocomplete="nomeFantasia" required>
                 <div *ngIf="f.nomeFantasia.errors?.required" class="invalid-feedback">Nome fantasia é obrigatório</div>
-                <div *ngIf="f.nomeFantasia.errors?.maxlength" class="invalid-feedback">Nome fantasia pode ter no máximo 70 caracteres</div>
-                <div *ngIf="f.nomeFantasia.errors?.minlength" class="invalid-feedback">Nome fantasia pode ter no mínimo 10 caracteres</div>
+                <div *ngIf="f.nomeFantasia.errors?.maxlength" class="invalid-feedback">Nome fantasia pode ter no máximo 70 letras</div>
+                <div *ngIf="f.nomeFantasia.errors?.minlength" class="invalid-feedback">Nome fantasia pode ter no mínimo 10 letras</div>
               </div>
           </div>
 
@@ -29,8 +29,8 @@
               <label>Razão Social</label>
               <input type="text" class="form-control" [ngClass]="cssValidator(f.razaoSocial)" name="razaoSocial" formControlName="razaoSocial" placeholder="Razão Social" autocomplete="razaoSocial" required>
               <div *ngIf="f.razaoSocial.errors?.required" class="invalid-feedback">Razão Social é obrigatório</div>
-              <div *ngIf="f.razaoSocial.errors?.maxlength" class="invalid-feedback">Razão Social pode ter no máximo 70 caracteres</div>
-              <div *ngIf="f.razaoSocial.errors?.minlength" class="invalid-feedback">Razão Social pode ter no mínimo 10 caracteres</div>
+              <div *ngIf="f.razaoSocial.errors?.maxlength" class="invalid-feedback">Razão Social pode ter no máximo 70 letras</div>
+              <div *ngIf="f.razaoSocial.errors?.minlength" class="invalid-feedback">Razão Social pode ter no mínimo 10 letras</div>
             </div>
           </div>
           <div class="form-row pt-3">

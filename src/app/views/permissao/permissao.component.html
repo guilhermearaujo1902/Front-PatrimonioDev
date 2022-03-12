@@ -15,8 +15,8 @@
               <label>Descrição</label>
               <input type="text" class="form-control" [ngClass]="cssValidator(f.descricaoPermissao)" name="descricaoPermissao" formControlName="descricaoPermissao" placeholder="Descrição da permissão" autocomplete="descricaoPermissao" required>
               <div *ngIf="f.descricaoPermissao.errors?.required" class="invalid-feedback">A descrição é obrigatório</div>
-              <div *ngIf="f.descricaoPermissao.errors?.maxlength" class="invalid-feedback">A descrição pode ter no máximo 20 caracteres</div>
-              <div *ngIf="f.descricaoPermissao.errors?.minlength" class="invalid-feedback">A descrição pode ter no mínimo 3 caracteres</div>
+              <div *ngIf="f.descricaoPermissao.errors?.maxlength" class="invalid-feedback">A descrição pode ter no máximo 20 letras</div>
+              <div *ngIf="f.descricaoPermissao.errors?.minlength" class="invalid-feedback">A descrição pode ter no mínimo 3 letras</div>
             </div>
             <div class="form-group col-lg-6 col-sm-12 text-start">
                 <label>Ativo</label>
