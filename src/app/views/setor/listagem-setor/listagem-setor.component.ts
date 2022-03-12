@@ -131,9 +131,9 @@ export class ListarsetorComponent implements OnInit {
 
   private filtrarSetores(valor: any): void{
     this.dataFiltradaExcel = this.data.filter(
-      (usuario: Setor) =>
-       usuario.codigoSetor.toString().indexOf(valor) !== -1 ||
-       usuario.nome.toLocaleLowerCase().indexOf(valor) !== -1
+      (setor: Setor) =>
+       setor.codigoSetor.toString().indexOf(valor) !== -1 ||
+       setor.nome.toLocaleLowerCase().indexOf(valor) !== -1
     );
   }
 

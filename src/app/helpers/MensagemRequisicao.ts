@@ -13,6 +13,10 @@ export abstract class MensagemRequisicao {
 
     switch (true) {
 
+      case mensagemServidorLowerCase.includes("object reference not set to an instance of an object"):
+        this.mensagemPadrao = "Erro interno no servidor. Contate o suporte. Detalhe: Referência de objeto nula.";
+        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.error);
+
       case mensagemServidorLowerCase.includes("a instrução insert conflitou com a restrição do foreign key"):
         this.mensagemPadrao = "Erro interno no servidor. Contate o suporte. Detalhe: Conflito FK.";
         return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.error);

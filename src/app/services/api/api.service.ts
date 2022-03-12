@@ -20,14 +20,10 @@ export class ApiService implements IApi {
     }
 
     this.options = {
-        'Content-type': 'application/json; charset=utf-8',
+        'Content-type': 'application/json',
         'Accept':'application/json',
         'Authorization': `Bearer ${this.encriptar.decrypt(this.token)}`,
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Headers': '*',
-        'Access-Control-Allow-Credentials': 'true'
-
-    }
+     }
   }
 
   get<T>(url: string, options?: any): Observable<T> {

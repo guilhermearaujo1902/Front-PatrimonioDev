@@ -49,22 +49,24 @@ export class FabricanteComponent implements OnInit {
   }
 
   public salvarAlteracao(): void {
+
     this.spinner.show();
-    debugger;
+
     this.fabricante = (this.estadoSalvar === 'cadastrarFabricante') ? {...this.form.value} : {codigoFabricante: this.fabricante.codigoFabricante, ...this.form.value};
+
     this.fabricanteService[this.estadoSalvar](this.fabricante).subscribe(
       () => this.toaster.success('Fabricante cadastrado com sucesso', 'Sucesso!'),
       (error: any) => {
-        this.spinner.hide();
-        this.toaster.error(`Houve um erro durante o cadastro do fabricante. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro do fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () => {
-        this.spinner.hide()
+
         setTimeout(() => {
           this.router.navigate(['dashboard/listarFabricante'])
         }, 1700)
       }
-    );
+    ).add(() => this.spinner.hide());
   }
 
   public carregarFabricante() : void{
@@ -80,8 +82,8 @@ export class FabricanteComponent implements OnInit {
              this.form.patchValue(this.fabricante);
            },
            error: (error: any) => {
-             this.toaster.error(`Houve um erro ao tentar carregar o fabricante. Mensagem ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
-             console.error(error);
+            let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+            this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
            }
          }
        ).add(() => this.spinner.hide());

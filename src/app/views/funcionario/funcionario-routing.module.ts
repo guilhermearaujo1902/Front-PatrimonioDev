@@ -13,6 +13,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'funcionario/:codigoFuncionario',
+    component: FuncionarioComponent,
+    data: {
+      title: 'Funcionário'
+    }
+  },
+  {
     path: 'listarFuncionario',
     component: ListagemFuncionarioComponent,
     data: {

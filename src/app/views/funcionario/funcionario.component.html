@@ -1,11 +1,7 @@
 <div class="card rounded shadow-sm m-3 p-3" id="formulario">
   <form [formGroup]="form">
-    <h1>Cadastrar funcionário</h1>
-    <hr />
+    <h1 class="col-4 col-lg-3 texto-destaque">Funcionário</h1>
     <div class="p-3">
-      <!-- <p>Form value: {{form.value | json}}</p> -->
-      <!-- <p>Form status: {{form.status | json}}</p> -->
-
       <div class="form-row">
         <div class="form-group col-12 text-start">
           <label>Código do funcionário</label>
@@ -31,19 +27,23 @@
             placeholder="Nome do funcionário"
             required
           />
+          <div *ngIf="f.nomeFuncionario.errors?.required" class="invalid-feedback">O nome do funcionário é obrigatório</div>
+          <div *ngIf="f.nomeFuncionario.errors?.maxlength" class="invalid-feedback">O nome do funcionário pode ter no máximo 100 letras</div>
+          <div *ngIf="f.nomeFuncionario.errors?.minlength" class="invalid-feedback">O nome do funcionário pode ter no mínimo 10 letras</div>
         </div>
           <div class="form-group col-6 text-start">
             <label>Situação</label>
-            <select class="form-select form-control" required>
-              <option selected value="1">Ativo</option>
-              <option value="2">Desativado</option>
+<!-- TODO: VERIFICAR MELHOR FORMA DE FAZER. WARNING ANGULAR -->
+            <select formControlName="ativo"  class="form-select form-control" required>
+              <option selected [ngValue]="true">Ativo</option>
+              <option [ngValue]="false">Desativado</option>
             </select>
           </div>
       </div>
       <div class="form-row">
         <div class="form-group col-12 text-start">
             <label>Observação</label>
-            <textarea  class="form-control" name="observacao" rows="5" cols="50"></textarea>
+            <textarea formControlName="observacao" class="form-control" name="observacao" rows="5" cols="50"></textarea>
         </div>
       </div>
       <div class="form-row pt-3">
@@ -52,7 +52,7 @@
             <button
               type="button"
               class="btn btn-block btn-success btn-lg"
-              [disabled]="!form.valid"
+              [disabled]="!form.valid" (click)="salvarAlteracao()"
             >
               Cadastrar
             </button>
@@ -67,3 +67,4 @@
     </div>
   </form>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>
