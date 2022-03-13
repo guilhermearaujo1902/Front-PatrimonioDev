@@ -31,9 +31,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.validarCamposFormulario();
-
-    this.lembrarMe = false;
-    this.AutoLogin();
+    this.atribuirValorLembrarMe();
+    this.autoLogin();
   }
 
   constructor(
@@ -44,17 +43,21 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private authService: SocialAuthService,
     private encriptar: EncryptDecryptService) {
-      debugger;
-      this.lembrarMe = this.obterValorLembrarMe();
   }
 
-  private obterValorLembrarMe(): boolean{
+  private atribuirValorLembrarMe(): void{
     debugger;
     let valor: string = localStorage.getItem('lembrarme');
+    this.lembrarMe = valor == 'sim';
+  }
 
-    if(valor == 'sim') return true;
-    return false;
-
+  private criarLocalStorageLembrarMe(valorLembrarMe: boolean): void {
+    if(valorLembrarMe) {
+      localStorage.setItem('lembrarme', 'sim');
+    }else{
+      debugger;
+      localStorage.setItem('lembrarme', 'nao')
+    }
   }
 
   private googleLogIn(){
@@ -121,13 +124,10 @@ export class LoginComponent implements OnInit {
       (result: any) => {
         //TODO: Passar para o token service
         this.usuario = {...result};
-        let valorToken = this.encriptar.encrypt(result.token);
+        localStorage.setItem('valor', this.encriptar.encrypt(result.token));
+        debugger;
 
-        localStorage.setItem('valor', valorToken);
-
-        if(this.lembrarMe) {
-          localStorage.setItem('lembrarme', 'sim')
-        }
+        this.criarLocalStorageLembrarMe(this.lembrarMe)
 
         if(Object.keys(this.usuario).length !== 0 ){
           this.router.navigate(['dashboard']);
@@ -151,7 +151,7 @@ export class LoginComponent implements OnInit {
   }
 
   private removerToken(){
-    localStorage.removeItem("jwt");
+    localStorage.removeItem('valor');
   }
 
   public validarCamposFormulario(): void {
@@ -165,8 +165,7 @@ export class LoginComponent implements OnInit {
     return {'is-invalid': campoForm.errors && campoForm.touched};
   }
 
-  private AutoLogin(){
-    debugger;
+  private autoLogin(){
     const token = localStorage.getItem('valor');
     const lembrarMe = localStorage.getItem('lembrarme');
 

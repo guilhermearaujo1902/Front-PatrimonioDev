@@ -40,6 +40,7 @@ export class UsuarioPerfilComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    debugger;
     this.codigoUsuario = this.token.obterCodigoUsuarioToken();
     this.validacao();
     this.carregarPerfilUsuario();

@@ -14,8 +14,7 @@ export class ApiService implements IApi {
   constructor(private http: HttpClient, private encriptar: EncryptDecryptService, private token: TokenService) {
 
     this.options = {
-        'Content-type': 'application/json',
-        'Authorization': `Bearer ${this.token.obterTokenDescriptografado()}`,
+        'Content-type': 'application/json'
      }
   }
 
@@ -24,6 +23,8 @@ export class ApiService implements IApi {
     return this.http.get<T>(url, {
       headers: {
        ...this.options,
+       'Authorization': `Bearer ${this.token.obterTokenDescriptografado()}`,
+
       },
       ...options
      });
@@ -34,6 +35,7 @@ export class ApiService implements IApi {
     return this.http.post<T>(url, data, {
       headers: {
        ...this.options,
+       'Authorization': `Bearer ${this.token.obterTokenDescriptografado()}`,
       },
       ...options
      });
@@ -43,8 +45,8 @@ export class ApiService implements IApi {
     // @ts-ignore
     return this.http.post<T>(url, data, {
         headers: {
-          'Authorization': `Bearer ${this.encriptar.decrypt(localStorage.getItem('valor'))}`
-      },
+          'Authorization': `Bearer ${this.token.obterTokenDescriptografado()}`,
+        },
       ...options
      });
   }
@@ -54,6 +56,7 @@ export class ApiService implements IApi {
        return this.http.put<T>(url, data, {
         headers: {
          ...this.options,
+         'Authorization': `Bearer ${this.token.obterTokenDescriptografado()}`,
         },
         ...options
        });
@@ -64,6 +67,7 @@ export class ApiService implements IApi {
     return this.http.delete<T>(url, {
       headers: {
       ...this.options,
+      'Authorization': `Bearer ${this.token.obterTokenDescriptografado()}`,
       },
       ...options
     });
