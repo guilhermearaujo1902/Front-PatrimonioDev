@@ -9,6 +9,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 
 import { UsuarioService } from './../../services/usuario/usuario.service';
 import { Usuario } from '../../models/Usuario';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-dashboard',
@@ -63,7 +64,7 @@ export class LoginComponent implements OnInit {
         debugger;
 
         if(error.error !== "popup_closed_by_user")
-           this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error}`)
+           this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error.error}`)
       },
       () => {
         //TODO: Realizar tudo por post
@@ -131,7 +132,8 @@ export class LoginComponent implements OnInit {
           this.toaster.info(`Para continuar, é necessário preencher o formulário.`)
 
         }else{
-          this.toaster.info(`Houve um erro ao fazer login. Mensagem : ${error.error.mensagem}`)
+          let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+          this.toaster[template.tipoMensagem](`Houve um erro ao fazer login. Mensagem: ${template.mensagemErro}`, 'Erro!');
         }
       }
     ).add(() => this.spinner.hide())

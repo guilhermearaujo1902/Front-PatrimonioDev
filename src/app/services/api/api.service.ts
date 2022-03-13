@@ -1,28 +1,21 @@
+import { TokenService } from './../token/token.service';
 import { EncryptDecryptService } from './../encrypt-decrypt/encrypt-decrypt.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IApi } from '../../models/interfaces/IApi';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class ApiService implements IApi {
 
   private readonly options: any;
-  private token: any = localStorage.getItem("valor");
- //TODO: Passar para o service token
-  constructor(private http: HttpClient, private encriptar: EncryptDecryptService) {
-    debugger;
 
-    if(typeof this.token == "undefined" || this.token == null){
-      this.token = "";
-    }
+ //TODO: Passar para o service token
+  constructor(private http: HttpClient, private encriptar: EncryptDecryptService, private token: TokenService) {
 
     this.options = {
         'Content-type': 'application/json',
-        'Accept':'application/json',
-        'Authorization': `Bearer ${this.encriptar.decrypt(this.token)}`,
+        'Authorization': `Bearer ${this.token.obterTokenDescriptografado()}`,
      }
   }
 

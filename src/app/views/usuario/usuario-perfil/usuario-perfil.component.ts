@@ -21,7 +21,7 @@ export class UsuarioPerfilComponent implements OnInit {
   public nomeUsuario: string;
   public form!: FormGroupTypeSafe<UsuarioPerfil>;
   private usuarioPerfil = {} as UsuarioPerfil;
-  public imagemUrl: string = 'assets/img/upload.png';
+  public imagemUrl: string = 'assets/img/sem-imagem.png';
   file: File;
 
   constructor(
@@ -87,7 +87,7 @@ export class UsuarioPerfilComponent implements OnInit {
   private tratarUrlImagem(url: string): void {
     debugger;
     if(typeof url == "undefined" || url == null)
-      this.imagemUrl = '../../../../assets/img/sem-imagem.png';
+      this.imagemUrl = 'assets/img/sem-imagem.png';
     else
       this.imagemUrl = `${environment.apiUrl}Resources/Imagens/${url}`;
   }

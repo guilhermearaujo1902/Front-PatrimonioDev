@@ -1,3 +1,4 @@
+import { ApiService } from './services/api/api.service';
 import { ListagemCategoriaComponent } from './views/categoria/listagem-categoria/listagem-categoria.component';
 import { CategoriaComponent } from './views/categoria/categoria.component';
 import { GoogleLoginProvider, SocialLoginModule, SocialAuthServiceConfig, FacebookLoginProvider } from 'angularx-social-login';
@@ -172,6 +173,7 @@ export function tokenGetter() {
     IconSetService,
     MenuService,
     SetorService,
+    ApiService,
     FabricanteService,
     FormBuilderTypeSafe,
     JwtHelperService,

@@ -60,17 +60,16 @@ export class SetorComponent implements OnInit {
     this.setorService[this.estadoSalvar](this.setor).subscribe(
       () => this.toaster.success('Setor cadastrado com sucesso', 'Sucesso!'),
       (error: any) => {
-        this.spinner.hide();
-        this.toaster.error(`Houve um problema ao carregar o setor. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um problema ao carregar o setor. Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {
-        this.spinner.hide()
         setTimeout(() => {
           this.router.navigate(['dashboard/listarSetor'])
         }, 1700)
       }
-    );
+    ).add(() => this.spinner.hide());
   }
 
   private carregarSetor() : void{

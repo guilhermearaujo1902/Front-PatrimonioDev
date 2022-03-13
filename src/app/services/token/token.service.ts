@@ -17,6 +17,12 @@ export class TokenService {
      public jwtHelper: JwtHelperService){
   }
 
+  public obterTokenDescriptografado(): string {
+    debugger;
+    const token: string = localStorage.getItem('valor');
+    return this.encriptar.decrypt(token);
+  }
+
   public obterPermissaoToken(): number {
     const token: string = localStorage.getItem('valor');
     return +decode(this.encriptar.decrypt(token))[this.nomeCampoPermissao]
