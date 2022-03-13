@@ -14,7 +14,7 @@ const routes: Routes = [
     canActivate: [AuthGuard,RoleGuardService],
     data: {
       title: 'usuario-perfil',
-      permissaoEsperada: [Permissao.Administrador]
+      permissaoEsperada: [Permissao.Administrador, Permissao.Gestor, Permissao.Usuario]
 
     }
   },

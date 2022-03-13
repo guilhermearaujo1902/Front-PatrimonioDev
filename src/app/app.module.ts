@@ -143,7 +143,7 @@ export function tokenGetter() {
     UsuarioPerfilComponent,
     FuncionarioComponent,
     ListagemFuncionarioComponent
-  ],
+   ],
   providers: [
     {
       provide: 'SocialAuthServiceConfig',

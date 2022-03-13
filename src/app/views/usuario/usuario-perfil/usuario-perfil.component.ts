@@ -85,6 +85,7 @@ export class UsuarioPerfilComponent implements OnInit {
   }
 
   private tratarUrlImagem(url: string): void {
+    debugger;
     if(typeof url == "undefined" || url == null)
       this.imagemUrl = '../../../../assets/img/sem-imagem.png';
     else
@@ -117,6 +118,11 @@ export class UsuarioPerfilComponent implements OnInit {
     reader.readAsDataURL(this.file[0]);
 
     this.uploadImagem();
+  }
+
+  public handleMissingImage(event: Event) {
+    debugger;
+    (event.target as HTMLImageElement).style.display = 'none';
   }
 
   private uploadImagem(): void{

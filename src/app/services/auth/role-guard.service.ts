@@ -12,6 +12,7 @@ export class RoleGuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): boolean {
 
     const permissaoEsperada: number[] = route.data.permissaoEsperada;
+    debugger;
     const permissaoToken = this.token.obterPermissaoToken()
 
     const permissaoEncontrada = permissaoEsperada.find(x => x == permissaoToken);

@@ -9,8 +9,9 @@
           <div class="d-flex align-self-center pt-3" >
             <a>
               <img
-              [src]="imagemUrl"
-               width="120" height="120" class="rounded-circle" (click)="file.click()">
+              [src]="this.imagemUrl"
+               width="120" height="120"
+               class="rounded-circle" (click)="file.click()">
             </a>
           </div>
           <div class="card-body">
@@ -41,15 +42,15 @@
             <label>Empresa</label>
             <input readonly type="text" formControlName="razaoSocial" class="form-control"/>
           </div>
-          <div class="form-group col-6">
-            <label>Permissão</label>
-            <input readonly type="text" formControlName="descricaoPermissao" class="form-control"/>
-          </div>
         </div>
         <div class="form-row">
           <div class="form-group col-sm-6">
             <label>E-mail</label>
             <input readonly type="text" formControlName="email" class="form-control" />
+          </div>
+          <div class="form-group col-6">
+            <label>Permissão</label>
+            <input readonly type="text" formControlName="descricaoPermissao" class="form-control"/>
           </div>
         </div>
         <div>
