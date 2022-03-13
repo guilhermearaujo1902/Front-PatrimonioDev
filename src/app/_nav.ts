@@ -9,22 +9,8 @@ export const navItems: INewNavData[] = [
     permissaoDoUsuario: Permissao.Usuario,
   },
   {
-    name: 'Setor',
-    url: '/s',
-    icon: 'fa fa-users',
-    permissaoDoUsuario: Permissao.Administrador,
-    children: [
-      {
-        name: 'Cadastrar',
-        url: '/dashboard/setor',
-        icon: 'fa fa-plus'
-      },
-      {
-        name: 'Listar',
-        url: '/dashboard/listarSetor',
-        icon: 'fa fa-list'
-      }
-    ]
+    name: 'Usuário',
+    title: true
   },
   {
     name: 'Permissão',
@@ -45,6 +31,42 @@ export const navItems: INewNavData[] = [
     ]
   },
   {
+    name: 'Usuário',
+    url: '/semurl',
+    icon: 'fa fa-user',
+    permissaoDoUsuario: Permissao.Administrador,
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/usuario',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarUsuario',
+        icon: 'fa fa-list'
+      }
+   ]
+  },
+  {
+    name: 'Funcionario',
+    url: '/semurl',
+    icon: 'fa fa-users',
+    permissaoDoUsuario: Permissao.Usuario,
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/funcionario',
+        icon: 'fa fa-plus',
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarFuncionario',
+        icon: 'fa fa-list'
+      }
+   ]
+  },
+  {
     name: 'Empresa',
     url: '/sem',
     icon: 'fa fa-building',
@@ -58,6 +80,28 @@ export const navItems: INewNavData[] = [
       {
         name: 'Listar',
         url: '/dashboard/listarEmpresa',
+        icon: 'fa fa-list'
+      }
+    ]
+  },
+  {
+    name: 'Equipamento',
+    title: true
+  },
+  {
+    name: 'Setor',
+    url: '/s',
+    icon: 'fa fa-users',
+    permissaoDoUsuario: Permissao.Administrador,
+    children: [
+      {
+        name: 'Cadastrar',
+        url: '/dashboard/setor',
+        icon: 'fa fa-plus'
+      },
+      {
+        name: 'Listar',
+        url: '/dashboard/listarSetor',
         icon: 'fa fa-list'
       }
     ]
@@ -112,42 +156,6 @@ export const navItems: INewNavData[] = [
       {
         name: 'Listar',
         url: '/dashboard/listarEquipamento',
-        icon: 'fa fa-list'
-      }
-   ]
-  },
-  {
-    name: 'Usuário',
-    url: '/semurl',
-    icon: 'fa fa-user',
-    permissaoDoUsuario: Permissao.Administrador,
-    children: [
-      {
-        name: 'Cadastrar',
-        url: '/dashboard/usuario',
-        icon: 'fa fa-plus',
-      },
-      {
-        name: 'Listar',
-        url: '/dashboard/listarUsuario',
-        icon: 'fa fa-list'
-      }
-   ]
-  },
-  {
-    name: 'Funcionario',
-    url: '/semurl',
-    icon: 'fa fa-users',
-    permissaoDoUsuario: Permissao.Usuario,
-    children: [
-      {
-        name: 'Cadastrar',
-        url: '/dashboard/funcionario',
-        icon: 'fa fa-plus',
-      },
-      {
-        name: 'Listar',
-        url: '/dashboard/listarFuncionario',
         icon: 'fa fa-list'
       }
    ]

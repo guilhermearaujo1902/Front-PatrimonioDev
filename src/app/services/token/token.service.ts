@@ -19,7 +19,15 @@ export class TokenService {
 
   public obterTokenDescriptografado(): string {
     debugger;
+    return this.retornarTokenTratado();
+  }
+
+  private retornarTokenTratado(): string{
     const token: string = localStorage.getItem('valor');
+
+    if(typeof token == 'undefined' || token == null)
+      return '';
+
     return this.encriptar.decrypt(token);
   }
 

@@ -44,7 +44,18 @@ export class LoginComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private authService: SocialAuthService,
     private encriptar: EncryptDecryptService) {
-    }
+      debugger;
+      this.lembrarMe = this.obterValorLembrarMe();
+  }
+
+  private obterValorLembrarMe(): boolean{
+    debugger;
+    let valor: string = localStorage.getItem('lembrarme');
+
+    if(valor == 'sim') return true;
+    return false;
+
+  }
 
   private googleLogIn(){
     return from(this.authService.signIn(GoogleLoginProvider.PROVIDER_ID))
