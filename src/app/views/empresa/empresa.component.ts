@@ -63,7 +63,6 @@ export class EmpresaComponent implements OnInit {
       },
       () =>
       {
-        this.spinner.hide()
         setTimeout(() => {
           this.router.navigate(['dashboard/listarEmpresa'])
         }, 1700)

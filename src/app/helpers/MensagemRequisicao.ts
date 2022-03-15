@@ -13,6 +13,10 @@ export abstract class MensagemRequisicao {
 
     switch (true) {
 
+      case mensagemServidorLowerCase.includes("não foi encontrado usuário com as credencias informadas"):
+        this.mensagemPadrao = "Não foi encontrado usuário com as credencias informadas";
+        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.info);
+
       case mensagemServidorLowerCase.includes("object reference not set to an instance of an object"):
         this.mensagemPadrao = "Erro interno no servidor. Contate o suporte. Detalhe: Referência de objeto nula.";
         return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.error);
