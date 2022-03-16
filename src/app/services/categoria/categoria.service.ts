@@ -19,7 +19,7 @@ export class CategoriaService {
     return this.api.post<Categoria>(this.baseUrl, {categoria}).pipe(take(1));
   }
 
-  public obterTodasCategoria(): Observable<Categoria[]> {
+  public obterTodasCategorias(): Observable<Categoria[]> {
     return this.api.get<Categoria[]>(this.baseUrl).pipe(take(1));
   }
 

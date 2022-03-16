@@ -13,7 +13,7 @@ import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-dashboard',
-  styleUrls: ['./login.component.scss'],
+  styleUrls: ['./login.component.scss','../../../scss/style-base.scss'],
   templateUrl: 'login.component.html'
 })
 export class LoginComponent implements OnInit {

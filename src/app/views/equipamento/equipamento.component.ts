@@ -1,3 +1,4 @@
+import { CategoriaService } from './../../services/categoria/categoria.service';
 import { FabricanteService } from './../../services/fabricante/fabricante.service';
 import { Fabricante } from './../../models/Fabricante';
 import { Categoria } from './../../models/Categoria';
@@ -23,6 +24,7 @@ export class EquipamentoComponent implements OnInit {
   private estadoSalvar = 'cadastrarEquipamento';
   private codigoEquipamento: number;
   public fabricantes: Fabricante[] = [];
+  public categorias: Categoria[] = [];
 
   get f(): any {
     return this.form.controls;
@@ -34,11 +36,13 @@ export class EquipamentoComponent implements OnInit {
     private router: Router,
     private equipamentoService: EquipamentoService,
     private fabricanteService: FabricanteService,
+    private categoriaService: CategoriaService,
     private activateRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.validacao();
     this.carregarFabricantes();
+    this.carregarCategorias();
     this.carregarEquipamento();
   }
 
@@ -50,16 +54,30 @@ export class EquipamentoComponent implements OnInit {
       },
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um problema ao carregar o fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`Houve um problema ao carregar os fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>{}
+    );
+  }
 
-    )}
+  private carregarCategorias(): void {
+
+    this.categoriaService.obterTodasCategorias().subscribe(
+      (result: Categoria[]) => {
+        this.categorias = result;
+      },
+      (error: any) => {
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um problema ao carregar as categorias. Mensagem: ${template.mensagemErro}`, 'Erro!');
+      },
+      () =>{}
+    );
+  }
 
   private validacao(): void {
     this.form = this.fb.group<Equipamento>({
       codigoEquipamento: new FormControl(),
-      descricao: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
+      tipoEquipamento: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
       codigoFabricante: new FormControl('' ,[Validators.required]),
       codigoCategoria: new FormControl('' ,[Validators.required])
     });

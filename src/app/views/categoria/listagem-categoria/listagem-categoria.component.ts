@@ -62,7 +62,7 @@ export class ListagemCategoriaComponent implements OnInit {
 
   public obterCategorias(): void {
     this.spinner.show("buscando");
-    this.categoriaService.obterTodasCategoria().subscribe({
+    this.categoriaService.obterTodasCategorias().subscribe({
       next: (categorias: Categoria[]) => {
         this.data = categorias;
         this.dataFiltradaExcel = categorias;

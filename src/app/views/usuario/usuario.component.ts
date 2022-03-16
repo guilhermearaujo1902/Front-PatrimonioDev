@@ -50,7 +50,15 @@ export class UsuarioComponent implements OnInit {
       this.carregarSetor();
       this.carregarEmpresa();
       this.carregarPermissao();
+      this.controlarVisibilidadeCampoAtivo();
 
+  }
+  private controlarVisibilidadeCampoAtivo(): void{
+
+    if(this.estadoSalvar == 'cadastrarUsuario')
+       this.form.controls.ativo.disable()
+    else
+      this.form.controls.ativo.enable()
   }
 
   private carregarSetor(): void {
@@ -114,7 +122,7 @@ export class UsuarioComponent implements OnInit {
       email: new FormControl('', [Validators.required, Validators.minLength(10), Validators.email]),
       confirmeSenha: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
       senha: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(25)]),
-      ativo: new FormControl(true, [])
+      ativo: new FormControl(true)
     }, formOptions);
   }
 

@@ -10,7 +10,9 @@ export const navItems: INewNavData[] = [
   },
   {
     name: 'Usuário',
-    title: true
+    title: true,
+    permissaoDoUsuario: Permissao.Usuario,
+
   },
   {
     name: 'Permissão',
@@ -49,7 +51,7 @@ export const navItems: INewNavData[] = [
    ]
   },
   {
-    name: 'Funcionario',
+    name: 'Funcionário',
     url: '/semurl',
     icon: 'fa fa-users',
     permissaoDoUsuario: Permissao.Usuario,
@@ -73,7 +75,7 @@ export const navItems: INewNavData[] = [
     permissaoDoUsuario: Permissao.Administrador,
     children: [
       {
-        name: 'Empresa',
+        name: 'Cadastrar',
         url: '/dashboard/empresa',
         icon: 'fa fa-plus',
       },
@@ -86,7 +88,9 @@ export const navItems: INewNavData[] = [
   },
   {
     name: 'Equipamento',
-    title: true
+    title: true,
+    permissaoDoUsuario: Permissao.Usuario,
+
   },
   {
     name: 'Setor',

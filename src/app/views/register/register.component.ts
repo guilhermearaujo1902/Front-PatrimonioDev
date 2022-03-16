@@ -13,6 +13,7 @@ import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-dashboard',
+  styleUrls: ['../../../scss/style-base.scss'],
   templateUrl: 'register.component.html'
 })
 export class RegisterComponent implements OnInit {

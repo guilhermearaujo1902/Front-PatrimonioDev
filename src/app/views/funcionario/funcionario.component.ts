@@ -37,13 +37,15 @@ export class FuncionarioComponent implements OnInit {
   ngOnInit(): void {
     this.validacao();
     this.carregarFuncionario();
-    debugger;
+    this.controlarVisibilidadeCampoAtivo();
+  }
+
+  private controlarVisibilidadeCampoAtivo(): void{
+
     if(this.estadoSalvar == 'cadastrarFuncionario')
-      this.form.controls.ativo.disable()
+       this.form.controls.ativo.disable()
     else
-     this.form.controls.ativo.enable()
-
-
+      this.form.controls.ativo.enable()
   }
 
   private validacao(): void {

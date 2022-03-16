@@ -34,6 +34,15 @@ export class PermissaoComponent implements OnInit {
   ngOnInit(): void {
     this.validacao();
     this.carregarPermissao();
+    this.controlarVisibilidadeCampoAtivo();
+  }
+
+  private controlarVisibilidadeCampoAtivo(): void{
+
+    if(this.estadoSalvar == 'cadastrarPermissao')
+       this.form.controls.ativo.disable()
+    else
+      this.form.controls.ativo.enable()
   }
 
   public carregarPermissao() : void{

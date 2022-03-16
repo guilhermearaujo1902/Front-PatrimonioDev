@@ -1,6 +1,6 @@
 export interface Equipamento{
   codigoEquipamento: number;
-  descricao: string;
+  tipoEquipamento: string;
   codigoFabricante: number;
   codigoCategoria: number;
 }
