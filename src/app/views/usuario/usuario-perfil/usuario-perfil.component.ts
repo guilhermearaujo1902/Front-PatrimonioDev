@@ -54,7 +54,7 @@ export class UsuarioPerfilComponent implements OnInit {
 
     this.form = this.fb.group<UsuarioPerfil>({
       codigoUsuario: new FormControl(null),
-      nomeUsuario: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(25)]),
+      nomeUsuario: new FormControl(''),
       nomeSetor: new FormControl(null),
       razaoSocial: new FormControl(null),
       descricaoPermissao: new FormControl(null),

@@ -33,8 +33,9 @@ export class EquipamentoService {
   }
 
   public atualizarEquipamento(equipamento: Equipamento): Observable<Equipamento>{
+    debugger;
     return this.api
-    .put<Equipamento>(`${this.baseUrl}/${equipamento.codigoEquipamento}`, {equipamento})
+    .put<Equipamento>(`${this.baseUrl}/${equipamento.codigoTipoEquipamento}`, {equipamento})
     .pipe(take(1));
   }
 

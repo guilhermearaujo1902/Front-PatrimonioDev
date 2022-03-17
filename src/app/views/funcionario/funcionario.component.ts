@@ -19,6 +19,7 @@ export class FuncionarioComponent implements OnInit {
   funcionario = {} as Funcionario;
   codigoFuncionario: number;
   estadoSalvar: string = 'cadastrarFuncionario';
+  private limpandoCampo: boolean = false;
 
   get f(): any {
     return this.form.controls;
@@ -40,6 +41,11 @@ export class FuncionarioComponent implements OnInit {
     this.controlarVisibilidadeCampoAtivo();
   }
 
+  public limparCampos(): void{
+    this.limpandoCampo = true;
+    this.validacao();
+  }
+
   private controlarVisibilidadeCampoAtivo(): void{
 
     if(this.estadoSalvar == 'cadastrarFuncionario')
@@ -50,7 +56,7 @@ export class FuncionarioComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Funcionario>({
-      codigoFuncionario: new FormControl(null),
+      codigoFuncionario: new FormControl(this.limpandoCampo? this.form.get('codigoFuncionario').value : '', []),
       nomeFuncionario: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
       ativo: new FormControl(true),
       observacao: new FormControl(''),

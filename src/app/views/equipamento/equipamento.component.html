@@ -5,7 +5,7 @@
           <div class="form-row">
               <div class="form-group col-lg-6 col-sm-12 text-start">
                   <label>Código do Equipamento</label>
-                  <input type="text" readonly class="form-control" name="codigoEquipamento"  formControlName="codigoEquipamento">
+                  <input type="text" readonly class="form-control" name="codigoTipoEquipamento"  formControlName="codigoTipoEquipamento">
               </div>
               <div class="form-group col-lg-6 col-sm-12 text-start">
                 <label>Descrição</label>
@@ -29,6 +29,9 @@
                     {{ categoria.descricao }}
                   </option>
                 </select>
+                <div *ngIf="f.codigoFabricante.errors?.required" class="invalid-feedback">
+                  Categoria é obrigatório
+                </div>
               </div>
               <div class="form-group col-lg-6 col-sm-12 text-start">
                 <label>Fabricante</label>
@@ -54,7 +57,7 @@
                 <button type="button" class="btn btn-block btn-success btn-lg" (click)="salvarAlteracao()" [disabled]="!form.valid">Cadastrar</button>
               </div>
               <div class="col">
-                <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
+                <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">Limpar</button>
               </div>
             </div>
           </div>

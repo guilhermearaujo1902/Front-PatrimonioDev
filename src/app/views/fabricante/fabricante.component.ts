@@ -19,6 +19,7 @@ export class FabricanteComponent implements OnInit {
   fabricante = {} as Fabricante;
   codigoFabricante: number;
   estadoSalvar: string = 'cadastrarFabricante';
+  private limpandoCampo: boolean = false;
 
   get f(): any {
     return this.form.controls;
@@ -39,9 +40,14 @@ export class FabricanteComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Fabricante>({
-      codigoFabricante: new FormControl(null),
+      codigoFabricante: new FormControl(this.limpandoCampo? this.form.get('codigoFabricante').value : '', []),
       nomeFabricante: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]),
     });
+  }
+
+  public limparCampos(): void{
+    this.limpandoCampo = true;
+    this.validacao();
   }
 
   public cssValidator(campoForm: FormControl): any {

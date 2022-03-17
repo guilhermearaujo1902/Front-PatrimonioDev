@@ -19,6 +19,7 @@ export class PermissaoComponent implements OnInit {
   permissao = {} as UsuarioPermissao;
   codigoUsuarioPermissao: number;
   estadoSalvar: string = 'cadastrarPermissao';
+  private limpandoCampo: boolean = false;
 
   get f(): any {
     return this.form.controls;
@@ -35,6 +36,11 @@ export class PermissaoComponent implements OnInit {
     this.validacao();
     this.carregarPermissao();
     this.controlarVisibilidadeCampoAtivo();
+  }
+
+  public limparCampos(): void{
+    this.limpandoCampo = true;
+    this.validacao();
   }
 
   private controlarVisibilidadeCampoAtivo(): void{
@@ -68,7 +74,7 @@ export class PermissaoComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<UsuarioPermissao>({
-      codigoUsuarioPermissao: new FormControl(null),
+      codigoUsuarioPermissao: new FormControl(this.limpandoCampo? this.form.get('codigoUsuarioPermissao').value : '', []),
       descricaoPermissao: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       ativo: new FormControl(true),
     });

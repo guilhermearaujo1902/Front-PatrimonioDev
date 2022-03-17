@@ -21,6 +21,7 @@ export class SetorComponent implements OnInit {
   setor = {} as Setor;
   codigoSetor: number;
   estadoSalvar: string = 'cadastrarSetor';
+  private limpandoCampo: boolean = false;
 
   get f(): any {
     return this.form.controls;
@@ -43,13 +44,18 @@ export class SetorComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Setor>({
-      codigoSetor: new FormControl(null),
+      codigoSetor: new FormControl(this.limpandoCampo? this.form.get('codigoSetor').value : '', []),
       nome: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(50)]),
     });
   }
 
   public cssValidator(campoForm: FormControl): any {
     return {'is-invalid': campoForm.errors && campoForm.touched};
+  }
+
+  public limparCampos(): void{
+    this.limpandoCampo = true;
+    this.validacao();
   }
 
   public salvarAlteracao(): void {

@@ -23,7 +23,7 @@
                   Cadastrar</button>
               </div>
               <div class="col">
-                <button type="reset" [disabled]="estadoSalvar == 'atualizarSetor' " class="btn btn-block btn-warning btn-lg">Limpar</button>
+                <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">Limpar</button>
               </div>
             </div>
           </div>

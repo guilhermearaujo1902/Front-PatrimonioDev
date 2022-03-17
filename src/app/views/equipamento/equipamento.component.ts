@@ -25,6 +25,7 @@ export class EquipamentoComponent implements OnInit {
   private codigoEquipamento: number;
   public fabricantes: Fabricante[] = [];
   public categorias: Categoria[] = [];
+  private limpandoCampo: boolean = false;
 
   get f(): any {
     return this.form.controls;
@@ -44,6 +45,11 @@ export class EquipamentoComponent implements OnInit {
     this.carregarFabricantes();
     this.carregarCategorias();
     this.carregarEquipamento();
+  }
+
+  public limparCampos(): void{
+    this.limpandoCampo = true;
+    this.validacao();
   }
 
   private carregarFabricantes(): void {
@@ -76,10 +82,12 @@ export class EquipamentoComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Equipamento>({
-      codigoEquipamento: new FormControl(),
-      tipoEquipamento: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
+      codigoTipoEquipamento: new FormControl(this.limpandoCampo? this.form.get('codigoTipoEquipamento').value : '', [],),
+      tipoEquipamento: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]),
       codigoFabricante: new FormControl('' ,[Validators.required]),
-      codigoCategoria: new FormControl('' ,[Validators.required])
+      codigoCategoria: new FormControl('' ,[Validators.required]),
+      nomeFabricante: new FormControl(''),
+      nomeCategoria: new FormControl('')
     });
   }
 
@@ -95,7 +103,7 @@ export class EquipamentoComponent implements OnInit {
 
     this.spinner.show();
 
-    this.equipamento = (this.estadoSalvar === 'cadastrarEquipamento') ? {...this.form.value} : {codigoEquipamento: this.equipamento.codigoEquipamento, ...this.form.value};
+    this.equipamento = (this.estadoSalvar === 'cadastrarEquipamento') ? {...this.form.value} : {codigoTipoEquipamento: this.equipamento.codigoTipoEquipamento, ...this.form.value};
 
     this.equipamentoService[this.estadoSalvar](this.equipamento).subscribe(
       () => this.toaster.success('Equipamento cadastrada com sucesso', 'Sucesso!'),

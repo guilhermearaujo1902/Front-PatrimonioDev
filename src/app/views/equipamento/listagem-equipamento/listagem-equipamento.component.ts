@@ -1,49 +1,66 @@
 import { Equipamento } from '../../../models/Equipamento';
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { EquipamentoService } from '../../../services/equipamento/equipamento.service';
+import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
+import * as XLSX from 'xlsx';
+import { Router } from '@angular/router';
+import { TokenService } from '../../../services/token/token.service';
+import configuracaoTabela from '../../../util/configuracao-tabela';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-listarEquipamento',
   templateUrl: './listagem-equipamento.component.html',
-  styleUrls: ['./listagem-equipamento.component.scss']
+  styleUrls: ['./listagem-equipamento.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class ListagemequipamentoComponent implements OnInit {
 
-  public equipamentos: Equipamento[] = [];
-  public equipamentosFiltrados: Equipamento[] = [];
 
+  @ViewChild('table', { static: true }) table: APIDefinition;
+
+  public configuracao: Config;
+  public colunas: Columns[];
+  public linhas = 0;
+  public innerWidth: number;
+  public toggledRows = new Set<number>();
+
+  public data: Equipamento[] = [];
+  public dataFiltradaExcel: Equipamento[] = [];
   public equipamentoId: number = 0;
-  private _filtroListado: string = '';
+  public ehAdministrador = false;
 
   modalRef?: BsModalRef;
 
   constructor(
     private equipamentoService: EquipamentoService,
     private modalService: BsModalService,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService) { }
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private token: TokenService,
+    private detectorAlteracao: ChangeDetectorRef
+    ) { }
 
   ngOnInit(): void {
+
     this.obterEquipamentos();
+    this.ehAdministrador = this.token.ehUsuarioAdministrador()
+
+    this.configuracao = configuracaoTabela()
+    this.linhas = this.data.map((_) => _.codigoTipoEquipamento).reduce((acc, cur) => cur + acc, 0);
+
+    this.colunas = this.obterColunasDaTabela();
+    this.checkView();
+
   }
 
-  public get filtroLista() {
-    return this._filtroListado;
-  }
-
-  public set filtroLista(value: string) {
-    this._filtroListado = value;
-    this.equipamentosFiltrados = this.filtroLista ? this.filtrarEquipamentos(this.filtroLista) : this.equipamentos;
-  }
-
-  public filtrarEquipamentos(filtrarPor: string): Equipamento[] {
-    filtrarPor = filtrarPor.toLocaleLowerCase();
-    return this.equipamentos.filter(
-      (equipamento: any) => equipamento.descricao.toLocaleLowerCase().indexOf(filtrarPor) !== -1
-    );
+  get isMobile(): boolean {
+    return this.innerWidth <= 768;
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, equipamentoId: number): void {
@@ -52,39 +69,126 @@ export class ListagemequipamentoComponent implements OnInit {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
-  public obterEquipamentos(): void {
-    // this.setorService.obterSetor().subscribe({
-    //   next: (equipamentos: Equipamento[]) => {
-    //     this.equipamentos = equipamentos;
-    //     this.equipamentosFiltrados = equipamentos;
-    //   },
-    //   error: () => {},
-    //   complete: () => {}
+  private obterEquipamentos(): void {
 
-    // });
+    this.spinner.show("buscando")
+
+    this.equipamentoService.obterTodosEquipamentos().subscribe({
+      next: (equipamento: Equipamento[]) => {
+        this.data = equipamento;
+        this.dataFiltradaExcel = equipamento;
+
+      },
+      error: (error: any) => {
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar os equipamentos. Mensagem ${template.mensagemErro}`, 'Erro');
+
+      },
+      complete: () =>{
+        this.detectorAlteracao.markForCheck();
+      }
+    }).add(() => this.spinner.hide("buscando"));
+
   }
 
-  public Confirmar(): void {
+  public confirmar(): void {
+    this.modalRef?.hide();
+    this.spinner.show("excluindo");
 
-    // this.modalRef?.hide();
-    // this.spinner.show();
-
-    // this.setorService.deletarSetor(this.equipamentoId).subscribe(
-    //   (result: string) =>{
-    //     this.spinner.hide();
-    //     this.toastr.success('Equipamento removido com sucesso!', 'Deletado');
-    //     this.obterEquipamentos();
-
-    //   },
-    //   (error: any) =>{
-    //     this.spinner.hide();
-    //     this.toastr.error(`Houve um erro ao remover o equipamentp. Mensagem: ${error.message}`, 'Erro!');
-    //   }
-    // );
+    debugger;
+    this.equipamentoService.deletarEquipamento(this.equipamentoId).subscribe(
+      () =>{
+        this.toaster.success('Equipamento excluído com sucesso!', 'Exclusão');
+        this.obterEquipamentos();
+      },
+      (error: any) =>{
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o equipamento. Mensagem ${template.mensagemErro}`, 'Erro');
+      }
+    ).add(()=> this.spinner.hide("excluindo"));
   }
 
   public recusar(): void {
     this.modalRef?.hide();
+  }
+
+  public detalheEquipamento(codigoEquipamento : number): void {
+    this.router.navigate([`dashboard/equipamento/${codigoEquipamento}`])
+  }
+
+  public onChange(event: Event): void {
+    let valorDigitado = (event.target as HTMLInputElement).value;
+    this.filtrarEquipamentos(valorDigitado);
+
+    this.table.apiEvent({
+      type: API.onGlobalSearch,
+      value: valorDigitado,
+    });
+  }
+
+  private filtrarEquipamentos(valor: any): void{
+    this.dataFiltradaExcel = this.data.filter(
+      (equipamento: Equipamento) =>
+       equipamento.codigoTipoEquipamento.toString().indexOf(valor) !== -1 ||
+       equipamento.tipoEquipamento.toLocaleLowerCase().indexOf(valor) !== -1 ||
+       equipamento.nomeFabricante.toLocaleLowerCase().indexOf(valor) !== -1 ||
+       equipamento.nomeCategoria.toLocaleLowerCase().indexOf(valor) !== -1
+    );
+  }
+
+  public exportarParaExcel(): void {
+     try {
+      const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.dataFiltradaExcel);
+
+      const wb: XLSX.WorkBook = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(wb, ws, 'Equipamentos');
+
+      XLSX.writeFile(wb, 'equipamentos.xlsx');
+    } catch (err) {
+      this.toaster.error(`Não foi possível exportar a planilha. Mensagem: ${err}`,"Erro")
+    }
+  }
+
+  private obterColunasDaTabela(): any {
+    return [
+      { key: 'codigoTipoEquipamento', title: 'Código' },
+      { key: 'tipoEquipamento', title: 'Descrição' },
+      { key: 'nomeFabricante', title: 'Fabricante' },
+      { key: 'nomeFabricante', title: 'Categoria' },
+      { key: '', title: '' },
+      { key: '', title: '' },
+    ];
+  }
+
+  private checkView(): void {
+    this.innerWidth = window.innerWidth;
+    if (this.isMobile) {
+      this.colunas = [
+        { key: 'codigoTipoEquipamento', title: 'Código' },
+        { key: 'tipoEquipamento', title: 'Descrição' },
+        { key: '', title: 'Expandir' },
+      ];
+    } else {
+      this.colunas = this.obterColunasDaTabela();
+    }
+  }
+
+  @HostListener('window:resize', [])
+  onResize(): void {
+    this.checkView();
+  }
+
+  onRowClickEvent($event: MouseEvent, index: number): void {
+    $event.preventDefault();
+    this.table.apiEvent({
+      type: API.toggleRowIndex,
+      value: index,
+    });
+    if (this.toggledRows.has(index)) {
+      this.toggledRows.delete(index);
+    } else {
+      this.toggledRows.add(index);
+    }
   }
 
 

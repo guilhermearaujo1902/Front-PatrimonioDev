@@ -1,3 +1,4 @@
+import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { EmpresaService } from '../../services/empresa/empresa.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
@@ -14,16 +15,17 @@ import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 })
 export class EmpresaComponent implements OnInit {
 
-  form!: FormGroup;
+  form!: FormGroupTypeSafe<Empresa>;
   private empresa = {} as Empresa;
   private estadoSalvar = "cadastrarEmpresa";
   private codigoEmpresa: number;
+  private limpandoCampo: boolean = false;
 
   get f(): any {
     return this.form.controls;
   }
   constructor(
-    private fb: FormBuilder,
+    private fb: FormBuilderTypeSafe,
     private spinner: NgxSpinnerService,
     private toaster: ToastrService,
     private router: Router,
@@ -35,12 +37,17 @@ export class EmpresaComponent implements OnInit {
     this.carregarEmpresa();
   }
 
+  public limparCampos(): void{
+    this.limpandoCampo = true;
+    this.validacao();
+  }
+
   private validacao(): void {
-    this.form = this.fb.group({
-      codigoEmpresa: [],
-      nomeFantasia: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]],
-      cnpj: ['', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]],
-      razaoSocial: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]],
+    this.form = this.fb.group<Empresa>({
+      codigoEmpresa: new FormControl(this.limpandoCampo? this.form.get('codigoEmpresa').value : '', []),
+      nomeFantasia: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
+      cnpj: new FormControl('', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]),
+      razaoSocial: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
 
     });
   }

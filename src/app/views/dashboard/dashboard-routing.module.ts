@@ -92,6 +92,13 @@ const routes: Routes = [
     }
   },
   {
+    path: 'equipamento/:codigoEquipamento',
+    component: EquipamentoComponent,
+    data: {
+      title: 'equipamento'
+    }
+  },
+  {
     path: 'listarEquipamento',
     component: ListagemequipamentoComponent,
     data: {

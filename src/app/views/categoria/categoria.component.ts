@@ -20,6 +20,7 @@ export class CategoriaComponent implements OnInit {
   private categoria = {} as Categoria;
   private estadoSalvar = "cadastrarCategoria";
   private codigoCategoria: number;
+  private limpandoCampo: boolean = false;
 
   get f(): any {
     return this.form.controls;
@@ -37,9 +38,14 @@ export class CategoriaComponent implements OnInit {
     this.carregarCategoria();
   }
 
+  public limparCampos(): void{
+    this.limpandoCampo = true;
+    this.validacao();
+  }
+
   private validacao(): void {
     this.form = this.fb.group<Categoria>({
-      codigoCategoria: new FormControl(),
+      codigoCategoria: new FormControl(this.limpandoCampo? this.form.get('codigoCategoria').value : '', [],),
       descricao: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)])
 
     });
