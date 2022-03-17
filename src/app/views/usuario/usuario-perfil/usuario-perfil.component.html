@@ -29,7 +29,7 @@
           <hr/>
           <div class="form-group col-12">
             <label>Nome</label>
-            <input type="text" placeholder="Digite seu nome no sistema" [ngClass]="cssValidator(f.nomeUsuario)" [ngModelOptions]="{standalone: true}" [(ngModel)]="nomeUsuario" class="form-control"/>
+            <input type="text" maxlength="25" minlength="5" placeholder="Digite seu nome no sistema" [ngClass]="cssValidator(f.nomeUsuario)" [ngModelOptions]="{standalone: true}" [(ngModel)]="nomeUsuario" class="form-control"/>
             <div *ngIf="f.nomeUsuario.errors?.required" class="invalid-feedback">Nome é obrigatório</div>
             <div *ngIf="f.nomeUsuario.errors?.minlength" class="invalid-feedback">Nome deve ter no mínimo 4 caracteres</div>
             <div *ngIf="f.nomeUsuario.errors?.maxlength" class="invalid-feedback">Nome deve ter no máximo 50 caracteres</div>
