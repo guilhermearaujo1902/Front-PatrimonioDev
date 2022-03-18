@@ -10,8 +10,12 @@ export abstract class MensagemRequisicao {
     let errorMessageLowerCase = errorMessage.toLowerCase();
     mensagemServidor = this.validarMensagemServidor(mensagemServidor);
     let mensagemServidorLowerCase = mensagemServidor.toLowerCase();
-
+    debugger;
     switch (true) {
+
+      case mensagemServidorLowerCase.includes("a instrução delete conflitou com a restrição do reference"):
+        this.mensagemPadrao = "Não é possível excluir esse registro, pois o mesmo possui relacionamento com outros registros. Detalhe: Conflito FK.";
+        return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.info);
 
       case mensagemServidorLowerCase.includes("não foi encontrado usuário com as credencias informadas"):
         this.mensagemPadrao = "Não foi encontrado usuário com as credencias informadas";

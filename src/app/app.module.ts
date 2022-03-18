@@ -108,7 +108,7 @@ export function tokenGetter() {
     TabsModule.forRoot(),
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
-      { timeOut: 2700,
+      { timeOut: 4000,
         positionClass: 'toast-bottom-right',
         preventDuplicates: true,
         progressBar: true

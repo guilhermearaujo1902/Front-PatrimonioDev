@@ -30,6 +30,7 @@ export class EquipamentoComponent implements OnInit {
   get f(): any {
     return this.form.controls;
   }
+
   constructor(
     private fb: FormBuilderTypeSafe,
     private spinner: NgxSpinnerService,
@@ -82,7 +83,7 @@ export class EquipamentoComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Equipamento>({
-      codigoTipoEquipamento: new FormControl(this.limpandoCampo? this.form.get('codigoTipoEquipamento').value : '', [],),
+      codigoTipoEquipamento: new FormControl(this.limpandoCampo? this.form.get('codigoTipoEquipamento').value : 0, [],),
       tipoEquipamento: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]),
       codigoFabricante: new FormControl('' ,[Validators.required]),
       codigoCategoria: new FormControl('' ,[Validators.required]),

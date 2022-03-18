@@ -20,6 +20,7 @@ export class CategoriaService {
   }
 
   public obterTodasCategorias(): Observable<Categoria[]> {
+    debugger;
     return this.api.get<Categoria[]>(this.baseUrl).pipe(take(1));
   }
 

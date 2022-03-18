@@ -36,9 +36,15 @@ export class TokenService {
     return +decode(this.encriptar.decrypt(token))[this.nomeCampoPermissao]
   }
 
+  public obterNomeUsuarioToken(): number {
+    const token: string = localStorage.getItem('valor');
+    debugger;
+    return decode(this.encriptar.decrypt(token))['nomeUsuario']
+  }
+
   public obterCodigoUsuarioToken(): number {
     const token: string = localStorage.getItem('valor');
-    return +decode(this.encriptar.decrypt(token))["codigoUsuario"]
+    return +decode(this.encriptar.decrypt(token))['codigoUsuario']
   }
 
   public ehUsuarioAdministrador(): boolean{

@@ -15,10 +15,13 @@ export class EquipamentoService {
   baseUrl = `${GlobalVariavel.BASE_API_URL}equipamentos`;
 
   public cadastrarEquipamento(equipamento: Equipamento): Observable<Equipamento> {
+    debugger;
     return this.api.post<Equipamento>(this.baseUrl, {equipamento}).pipe(take(1));
   }
 
   public obterTodosEquipamentos(): Observable<Equipamento[]> {
+    debugger;
+
     return this.api.get<Equipamento[]>(this.baseUrl).pipe(take(1));
   }
 
