@@ -73,17 +73,30 @@ import { UsuarioPerfilComponent } from './views/usuario/usuario-perfil/usuario-p
 import { FuncionarioComponent } from './views/funcionario/funcionario.component';
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
 
-export function tokenGetter() {
-  debugger;
-  return localStorage.getItem("jwt");
-}
+
+const customCurrencyMaskConfig = {
+  align: "left",
+  allowNegative: false,
+  allowZero: true,
+  decimal: ",",
+  precision: 2,
+  suffix: "",
+  prefix: "R$ ",
+  thousands: ".",
+  nullable: true,
+  min: null,
+  max: null,
+  inputMode: CurrencyMaskInputMode.FINANCIAL
+};
 
 @NgModule({
   imports: [
     NgxMaskModule.forRoot({
       dropSpecialCharacters: false
     }),
+    NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
     SocialLoginModule,
     BrowserModule,
     ReactiveFormsModule,

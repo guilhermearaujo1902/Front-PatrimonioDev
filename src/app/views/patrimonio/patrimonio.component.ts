@@ -8,8 +8,9 @@ import { FuncionarioService } from './../../services/funcionario/funcionario.ser
 import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { Funcionario } from './../../models/Funcionario';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { InformacaoAdicional } from '../../models/InformacaoAdicional';
 
 @Component({
   selector: 'app-patrimonio',
@@ -19,6 +20,8 @@ import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 export class PatrimonioComponent implements OnInit {
 
   form = {} as FormGroupTypeSafe<Patrimonio>;
+  formAdicional = {} as FormGroupTypeSafe<InformacaoAdicional>;
+
   public funcionarios: Funcionario[] = [];
   public equipamentos: Equipamento[] = [];
   public chaveSituacaoEquipamento: any
@@ -27,6 +30,10 @@ export class PatrimonioComponent implements OnInit {
 
   get f(): any {
     return this.form.controls;
+  }
+
+  get fa(): any {
+    return this.formAdicional.controls;
   }
 
   constructor(private fb: FormBuilderTypeSafe,
@@ -39,7 +46,8 @@ export class PatrimonioComponent implements OnInit {
     }
 
   ngOnInit(): void {
-    this.validarCampos();
+    this.validarCamposPatrimonio();
+    this.validarCamposInformacaoAdicional();
     this.obterFuncionarios();
     this.obterEquipamentos();
   }
@@ -72,7 +80,7 @@ export class PatrimonioComponent implements OnInit {
     );
   }
 
-  public validarCampos(): void {
+  private validarCamposPatrimonio(): void {
     this.form = this.fb.group<Patrimonio>({
       codigoPatrimonio: new FormControl(this.limpandoCampo? this.form.get('codigoPatrimonio').value : '', []),
       codigoEquipamento: new FormControl('', [Validators.required]),
@@ -89,6 +97,17 @@ export class PatrimonioComponent implements OnInit {
       serviceTag: new FormControl(),
       situacaoEquipamento: new FormControl()
 
+    });
+  }
+
+  private validarCamposInformacaoAdicional(): void{
+    this.formAdicional = this.fb.group<InformacaoAdicional>({
+      codigoInformacaoAdicional: new FormControl(this.limpandoCampo? this.form.get('codigoInformacaoAdicional').value : '', []),
+      versaoWindows: new FormControl(),
+      antivirus: new FormControl(),
+      dataCompra: new FormControl(),
+      dataExpiracaoGarantia: new FormControl(),
+      valorPago: new FormControl('', [Validators.required]),
     });
   }
 
