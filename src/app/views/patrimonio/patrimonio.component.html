@@ -31,15 +31,15 @@
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Equipamento</label>
           <select class="form-select form-control"
-            formControlName="codigoEquipamento"
-            [ngClass]="cssValidatorCampoSelecao(f.codigoEquipamento)" required>
+            formControlName="codigoTipoEquipamento"
+            [ngClass]="cssValidatorCampoSelecao(f.codigoTipoEquipamento)" required>
             <option value="" disabled>--Selecione um equipamento--</option>
             <option *ngFor="let equipamento of equipamentos"
               [value]="equipamento.codigoTipoEquipamento">
               {{ equipamento.tipoEquipamento }}
             </option>
           </select>
-          <div *ngIf="f.codigoEquipamento.errors?.required"
+          <div *ngIf="f.codigoTipoEquipamento.errors?.required"
             class="invalid-feedback">
             Equipamento é obrigatório
           </div>
@@ -109,7 +109,7 @@
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Situação Equipamento</label>
-          <select class="form-select form-control">
+          <select class="form-select form-control" formControlName="situacaoEquipamento">
             <option *ngFor="let name of chaveSituacaoEquipamento"
               [value]="name"> {{situacaoEquipamento[name]}}
             </option>
@@ -177,7 +177,7 @@
         <div class="row">
           <div class="col">
             <button type="button" class="btn btn-block btn-success btn-lg"
-              [disabled]="!form.valid && !formAdicional.valid">Cadastrar</button>
+              [disabled]="!form.valid" (click)="salvarAlteracao()">Cadastrar</button>
           </div>
           <div class="col">
             <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
@@ -187,3 +187,4 @@
     </div>
   </form>
 </div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>

@@ -2,7 +2,7 @@ import { TipoMensagem } from './../models/enums/tipo-mensagem.enum';
 import { TemplateMensagemRequisicao } from "../models/helpers/TemplateMensagemRequisicao";
 
 export abstract class MensagemRequisicao {
-
+//TODO: VALIDAR PARA CORTAR MENSAGEM MUITO GRANDE QUE RETORNA DO SERVIDOR
   private static mensagemPadrao: string  = "Não foi possível conectar-se ao servidor.";
 
   public static retornarMensagemTratada(errorMessage: string, mensagemServidor?: string): TemplateMensagemRequisicao {
@@ -33,12 +33,12 @@ export abstract class MensagemRequisicao {
         this.mensagemPadrao = "Não é permitido realizar qualquer operação com registro padrão do sistema.";
         return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.info);
 
-      case mensagemServidorLowerCase.includes("não foi possível realizar a operação!"):
-        return new TemplateMensagemRequisicao(mensagemServidor, TipoMensagem.error);
-
-      case mensagemServidorLowerCase.includes("erro interno no servidor. mensagem: value cannot be null."):
+      case mensagemServidorLowerCase.includes("não é possível inserir o valor null na coluna"):
         this.mensagemPadrao = "Erro interno no servidor. Contate o suporte. Detalhe: Parâmetro nulo.";
         return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.error);
+
+      case mensagemServidorLowerCase.includes("não foi possível realizar a operação!"):
+        return new TemplateMensagemRequisicao(mensagemServidor, TipoMensagem.error);
 
       case errorMessageLowerCase.includes("unknown error"):
       default:

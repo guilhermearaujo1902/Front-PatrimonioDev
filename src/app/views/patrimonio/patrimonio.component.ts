@@ -1,3 +1,5 @@
+import { PatrimonioService } from './../../services/patrimonio/patrimonio.service';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { TokenService } from './../../services/token/token.service';
 import { Patrimonio } from './../../models/Patrimonio';
 import { SituacaoEquipamento } from './../../models/enums/situacao-equipamento.enum';
@@ -8,9 +10,10 @@ import { FuncionarioService } from './../../services/funcionario/funcionario.ser
 import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { Funcionario } from './../../models/Funcionario';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 import { InformacaoAdicional } from '../../models/InformacaoAdicional';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patrimonio',
@@ -24,9 +27,11 @@ export class PatrimonioComponent implements OnInit {
 
   public funcionarios: Funcionario[] = [];
   public equipamentos: Equipamento[] = [];
+  public patrimonio: Patrimonio = {} as Patrimonio;
   public chaveSituacaoEquipamento: any
   public situacaoEquipamento = SituacaoEquipamento;
   private limpandoCampo: boolean = false;
+  private estadoSalvar: string = 'cadastrarPatrimonio'
 
   get f(): any {
     return this.form.controls;
@@ -39,11 +44,37 @@ export class PatrimonioComponent implements OnInit {
   constructor(private fb: FormBuilderTypeSafe,
     private funcionario: FuncionarioService,
     private equipamento: EquipamentoService,
+    private patrimonioService: PatrimonioService,
     private toaster: ToastrService,
-    private token: TokenService) {
+    private token: TokenService,
+    private spinner: NgxSpinnerService,
+    private router: Router)
+    {
       debugger;
       this.chaveSituacaoEquipamento = Object.keys(this.situacaoEquipamento).filter(Number);
     }
+
+    public salvarAlteracao(): void {
+      this.spinner.show();
+      debugger;
+      this.patrimonio = (this.estadoSalvar === 'cadastrarPatrimonio') ? {...this.form.value} : {codigoPatrimonio: this.patrimonio.codigoPatrimonio, ...this.form.value};
+      this.patrimonio.situacaoEquipamento = +this.form.controls.situacaoEquipamento.value;
+
+      this.patrimonioService[this.estadoSalvar](this.patrimonio).subscribe(
+        () => this.toaster.success('Patrimônio cadastrado com sucesso', 'Sucesso!'),
+        (error: any) => {
+          debugger;
+          let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+          this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro do patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        },
+        () => {
+          setTimeout(() => {
+            this.router.navigate(['dashboard/listarPatrimonio'])
+          }, 1700)
+        }
+      ).add(() => this.spinner.hide());
+    }
+
 
   ngOnInit(): void {
     this.validarCamposPatrimonio();
@@ -82,20 +113,22 @@ export class PatrimonioComponent implements OnInit {
 
   private validarCamposPatrimonio(): void {
     this.form = this.fb.group<Patrimonio>({
-      codigoPatrimonio: new FormControl(this.limpandoCampo? this.form.get('codigoPatrimonio').value : '', []),
-      codigoEquipamento: new FormControl('', [Validators.required]),
+      codigoPatrimonio: new FormControl(this.limpandoCampo? this.form.get('codigoPatrimonio').value : 0, []),
+      codigoTipoEquipamento: new FormControl('', [Validators.required]),
+      tipoEquipamento: new FormControl(''),
       codigoFuncionario: new FormControl('', [Validators.required]),
+      nomeFuncionario: new FormControl(''),
       codigoUsuario: new FormControl(this.token.obterCodigoUsuarioToken()),
       nomeUsuario: new FormControl(this.token.obterNomeUsuarioToken()),
-      armazenamento: new FormControl(),
-      ip: new FormControl(),
-      mac: new FormControl(),
-      memoriaRam: new FormControl(),
-      modelo: new FormControl(),
-      placaVideo: new FormControl(),
-      processador: new FormControl(),
-      serviceTag: new FormControl(),
-      situacaoEquipamento: new FormControl()
+      armazenamento: new FormControl(''),
+      ip: new FormControl(''),
+      mac: new FormControl(''),
+      memoriaRam: new FormControl(''),
+      modelo: new FormControl(''),
+      placaVideo: new FormControl(''),
+      processador: new FormControl(''),
+      serviceTag: new FormControl(''),
+      situacaoEquipamento: new FormControl(+SituacaoEquipamento.Disponível)
 
     });
   }

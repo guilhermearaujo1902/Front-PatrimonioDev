@@ -74,6 +74,7 @@ import { FuncionarioComponent } from './views/funcionario/funcionario.component'
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
+import { EnumDisplayPipe } from './pipe/enum-situacaoEquipamento-display.pipe';
 
 
 const customCurrencyMaskConfig = {
@@ -129,6 +130,7 @@ const customCurrencyMaskConfig = {
     )
    ],
   declarations: [
+    EnumDisplayPipe,
     AppComponent,
     ...APP_CONTAINERS,
     P404Component,
@@ -156,7 +158,8 @@ const customCurrencyMaskConfig = {
     ListagemequipamentoComponent,
     UsuarioPerfilComponent,
     FuncionarioComponent,
-    ListagemFuncionarioComponent
+    ListagemFuncionarioComponent,
+    EnumDisplayPipe
    ],
   providers: [
     {
