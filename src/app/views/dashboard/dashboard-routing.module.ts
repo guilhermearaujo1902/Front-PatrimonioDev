@@ -40,6 +40,15 @@ const routes: Routes = [
     }
   },
   {
+    path: 'patrimonio/:codigoPatrimonio',
+    component: PatrimonioComponent,
+    canActivate: [AuthGuard, RoleGuardService],
+    data: {
+      title: 'patrimonio',
+      permissaoEsperada: [Permissao.Administrador]
+    }
+  },
+  {
     path: 'listarPatrimonio',
     component: ListarpatrimonioComponent,
     data: {

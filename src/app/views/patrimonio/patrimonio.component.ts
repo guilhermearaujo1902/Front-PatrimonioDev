@@ -13,7 +13,7 @@ import { Funcionario } from './../../models/Funcionario';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-patrimonio',
@@ -33,6 +33,7 @@ export class PatrimonioComponent implements OnInit {
   public situacaoEquipamento = SituacaoEquipamento;
   private limpandoCampo: boolean = false;
   private estadoSalvar: string = 'cadastrarPatrimonio'
+  private codigoPatrimonio: number;
 
   get f(): any {
     return this.form.controls;
@@ -49,7 +50,8 @@ export class PatrimonioComponent implements OnInit {
     private toaster: ToastrService,
     private token: TokenService,
     private spinner: NgxSpinnerService,
-    private router: Router)
+    private router: Router,
+    private activatedRoute: ActivatedRoute)
     {
       debugger;
       this.chaveSituacaoEquipamento = Object.keys(this.situacaoEquipamento).filter(Number);
@@ -57,7 +59,7 @@ export class PatrimonioComponent implements OnInit {
 
     public salvarAlteracao(): void {
       this.spinner.show();
-      debugger;
+
       this.patrimonio = (this.estadoSalvar === 'cadastrarPatrimonio') ? {...this.form.value} : {codigoPatrimonio: this.patrimonio.codigoPatrimonio, ...this.form.value};
       this.patrimonio.situacaoEquipamento = +this.form.controls.situacaoEquipamento.value;
 
@@ -82,9 +84,34 @@ export class PatrimonioComponent implements OnInit {
   ngOnInit(): void {
     this.validarCamposPatrimonio();
     this.validarCamposInformacaoAdicional();
+    this.carregarPatrimonio();
     this.obterFuncionarios();
     this.obterEquipamentos();
   }
+
+  public carregarPatrimonio() : void{
+
+    this.codigoPatrimonio = +this.activatedRoute.snapshot.paramMap.get('codigoPatrimonio');
+
+     if(this.codigoPatrimonio !== null && this.codigoPatrimonio !== 0){
+
+      this.estadoSalvar = 'atualizarPatrimonio';
+      this.spinner.show();
+
+      this.patrimonioService.obterPatrimonioEInformacaoAdicional(this.codigoPatrimonio).subscribe(listaDeResposta =>{
+
+        this.form.patchValue(listaDeResposta[0]);
+        this.formAdicional.patchValue(listaDeResposta[1]);
+       },
+       (error: any) => {
+
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro!');
+
+      }).add(() => this.spinner.hide());
+    }
+  }
+
 
   private obterEquipamentos(): void {
     this.equipamento.obterTodosEquipamentos().subscribe(

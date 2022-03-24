@@ -1,6 +1,6 @@
 import { InformacaoAdicional } from './../../models/InformacaoAdicional';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Patrimonio } from '../../models/Patrimonio';
 import { GlobalVariavel } from '../../util/constants';
@@ -32,10 +32,14 @@ export class PatrimonioService {
     .pipe(take(1));
   }
 
-  public obterApenasUmPatrimonio(patrimonioId: number): Observable<any>{
+  public obterApenasUmPatrimonio(patrimonioId: number): any{
     return this.api
     .get(`${this.baseUrl}/${patrimonioId}`)
     .pipe(take(1));
+  }
+
+  public obterInformacaoAdicional(codigoPatrimonio: number): any{
+    return this.api.get<InformacaoAdicional[]>(`${GlobalVariavel.BASE_API_URL}informacoes/${codigoPatrimonio}`).pipe(take(1));
   }
 
   public atualizarPatrimonio(patrimonio: Patrimonio): Observable<Patrimonio>{
@@ -43,6 +47,14 @@ export class PatrimonioService {
     return this.api
     .put<Patrimonio>(`${this.baseUrl}/${patrimonio.codigoPatrimonio}`, {patrimonio})
     .pipe(take(1));
+  }
+
+  public obterPatrimonioEInformacaoAdicional(codigoPatrimonio: number): Observable<any[]> {
+    let respostaPatrimonio = this.obterApenasUmPatrimonio(codigoPatrimonio);
+    let respostaInformacaoAdicional = this.obterInformacaoAdicional(codigoPatrimonio);
+
+    return forkJoin([respostaPatrimonio, respostaInformacaoAdicional]);
+
   }
 
 }
