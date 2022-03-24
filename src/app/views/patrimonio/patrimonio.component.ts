@@ -1,3 +1,4 @@
+import { InformacaoAdicional } from './../../models/InformacaoAdicional';
 import { PatrimonioService } from './../../services/patrimonio/patrimonio.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TokenService } from './../../services/token/token.service';
@@ -12,7 +13,6 @@ import { Funcionario } from './../../models/Funcionario';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
-import { InformacaoAdicional } from '../../models/InformacaoAdicional';
 import { Router } from '@angular/router';
 
 @Component({
@@ -28,6 +28,7 @@ export class PatrimonioComponent implements OnInit {
   public funcionarios: Funcionario[] = [];
   public equipamentos: Equipamento[] = [];
   public patrimonio: Patrimonio = {} as Patrimonio;
+  public informacaoAdicional: InformacaoAdicional = {} as InformacaoAdicional;
   public chaveSituacaoEquipamento: any
   public situacaoEquipamento = SituacaoEquipamento;
   private limpandoCampo: boolean = false;
@@ -60,7 +61,9 @@ export class PatrimonioComponent implements OnInit {
       this.patrimonio = (this.estadoSalvar === 'cadastrarPatrimonio') ? {...this.form.value} : {codigoPatrimonio: this.patrimonio.codigoPatrimonio, ...this.form.value};
       this.patrimonio.situacaoEquipamento = +this.form.controls.situacaoEquipamento.value;
 
-      this.patrimonioService[this.estadoSalvar](this.patrimonio).subscribe(
+      this.informacaoAdicional = (this.estadoSalvar === 'cadastrarPatrimonio') ? {...this.formAdicional.value} : {codigoInformacaoAdicional: this.informacaoAdicional.codigoInformacaoAdicional, ...this.formAdicional.value};
+
+      this.patrimonioService[this.estadoSalvar](this.patrimonio, this.informacaoAdicional).subscribe(
         () => this.toaster.success('Patrimônio cadastrado com sucesso', 'Sucesso!'),
         (error: any) => {
           debugger;
@@ -135,17 +138,21 @@ export class PatrimonioComponent implements OnInit {
 
   private validarCamposInformacaoAdicional(): void{
     this.formAdicional = this.fb.group<InformacaoAdicional>({
-      codigoInformacaoAdicional: new FormControl(this.limpandoCampo? this.form.get('codigoInformacaoAdicional').value : '', []),
-      versaoWindows: new FormControl(),
-      antivirus: new FormControl(),
-      dataCompra: new FormControl(),
-      dataExpiracaoGarantia: new FormControl(),
+      codigoInformacaoAdicional: new FormControl(this.limpandoCampo? this.form.get('codigoInformacaoAdicional').value : 0, []),
+      versaoWindows: new FormControl(''),
+      antivirus: new FormControl(''),
+      dataCompra: new FormControl(new Date(
+        Date.now()
+     ).toISOString()),
+      dataExpiracaoGarantia: new FormControl(new Date(
+        Date.now()
+     ).toISOString()),
       valorPago: new FormControl('', [Validators.required]),
     });
   }
 
   public cssValidator(campoForm: FormControl): any {
-    return {'is-invalid': campoForm.errors && campoForm.touched};
+    return {'is-invalid': campoForm.errors};
   }
 
   public cssValidatorCampoSelecao(campoForm: FormControl): any {

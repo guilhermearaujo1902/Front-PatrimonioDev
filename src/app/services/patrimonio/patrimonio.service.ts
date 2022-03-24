@@ -1,3 +1,4 @@
+import { InformacaoAdicional } from './../../models/InformacaoAdicional';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
@@ -18,10 +19,10 @@ export class PatrimonioService {
     return this.api.get<Patrimonio[]>(this.baseUrl).pipe(take(1));
   }
 
-  public cadastrarPatrimonio(patrimonio: Patrimonio): Observable<Patrimonio> {
+  public cadastrarPatrimonio(patrimonio: Patrimonio, informacaoAdicional: InformacaoAdicional): Observable<Patrimonio> {
     debugger;
     return this.api
-    .post<Patrimonio>(this.baseUrl, {patrimonio: patrimonio})
+    .post<Patrimonio>(this.baseUrl, {patrimonio: patrimonio, informacaoAdicional: informacaoAdicional})
     .pipe(take(1));
   }
 
