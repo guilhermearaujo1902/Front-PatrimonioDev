@@ -74,7 +74,7 @@ export class PermissaoComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<UsuarioPermissao>({
-      codigoUsuarioPermissao: new FormControl(this.limpandoCampo? this.form.get('codigoUsuarioPermissao').value : '', []),
+      codigoUsuarioPermissao: new FormControl(this.limpandoCampo? this.form.get('codigoUsuarioPermissao').value : 0, []),
       descricaoPermissao: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(20)]),
       ativo: new FormControl(true),
     });

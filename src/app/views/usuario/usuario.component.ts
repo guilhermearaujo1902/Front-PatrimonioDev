@@ -114,7 +114,7 @@ export class UsuarioComponent implements OnInit {
     };
 
     this.form = this.fb.group<Usuario>({
-      codigoUsuario: new FormControl(this.limpandoCampo? this.form.get('codigoUsuario').value : '', []),
+      codigoUsuario: new FormControl(this.limpandoCampo? this.form.get('codigoUsuario').value : 0, []),
       codigoUsuarioPermissao: new FormControl('', [Validators.required]),
       codigoEmpresa: new FormControl('' ,[Validators.required]),
       codigoSetor: new FormControl('' ,[Validators.required]),

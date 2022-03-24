@@ -40,7 +40,7 @@ export class FabricanteComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Fabricante>({
-      codigoFabricante: new FormControl(this.limpandoCampo? this.form.get('codigoFabricante').value : '', []),
+      codigoFabricante: new FormControl(this.limpandoCampo? this.form.get('codigoFabricante').value : 0, []),
       nomeFabricante: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(60)]),
     });
   }

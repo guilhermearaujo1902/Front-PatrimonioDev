@@ -56,7 +56,7 @@ export class FuncionarioComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Funcionario>({
-      codigoFuncionario: new FormControl(this.limpandoCampo? this.form.get('codigoFuncionario').value : '', []),
+      codigoFuncionario: new FormControl(this.limpandoCampo? this.form.get('codigoFuncionario').value : 0, []),
       nomeFuncionario: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(100)]),
       ativo: new FormControl(true),
       observacao: new FormControl(''),

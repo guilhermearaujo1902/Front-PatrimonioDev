@@ -44,7 +44,7 @@ export class EmpresaComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Empresa>({
-      codigoEmpresa: new FormControl(this.limpandoCampo? this.form.get('codigoEmpresa').value : '', []),
+      codigoEmpresa: new FormControl(this.limpandoCampo? this.form.get('codigoEmpresa').value : 0, []),
       nomeFantasia: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
       cnpj: new FormControl('', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]),
       razaoSocial: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
