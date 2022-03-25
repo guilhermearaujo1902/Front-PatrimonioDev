@@ -1,8 +1,8 @@
 export interface InformacaoAdicional {
   codigoInformacaoAdicional: number;
   valorPago: number;
-  dataCompra: Date;
-  dataExpiracaoGarantia: Date;
+  dataCompra: string;
+  dataExpiracaoGarantia: string;
   antivirus: string;
   versaoWindows: string;
 }

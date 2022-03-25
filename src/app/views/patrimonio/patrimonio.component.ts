@@ -64,11 +64,10 @@ export class PatrimonioComponent implements OnInit {
       this.patrimonio.situacaoEquipamento = +this.form.controls.situacaoEquipamento.value;
 
       this.informacaoAdicional = (this.estadoSalvar === 'cadastrarPatrimonio') ? {...this.formAdicional.value} : {codigoInformacaoAdicional: this.informacaoAdicional.codigoInformacaoAdicional, ...this.formAdicional.value};
-
+      debugger;
       this.patrimonioService[this.estadoSalvar](this.patrimonio, this.informacaoAdicional).subscribe(
         () => this.toaster.success('Patrimônio cadastrado com sucesso', 'Sucesso!'),
         (error: any) => {
-          debugger;
           let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
           this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro do patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro!');
         },
@@ -99,9 +98,9 @@ export class PatrimonioComponent implements OnInit {
       this.spinner.show();
 
       this.patrimonioService.obterPatrimonioEInformacaoAdicional(this.codigoPatrimonio).subscribe(listaDeResposta =>{
-
         this.form.patchValue(listaDeResposta[0]);
         this.formAdicional.patchValue(listaDeResposta[1]);
+
        },
        (error: any) => {
 

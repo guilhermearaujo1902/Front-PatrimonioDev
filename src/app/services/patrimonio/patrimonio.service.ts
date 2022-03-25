@@ -42,10 +42,10 @@ export class PatrimonioService {
     return this.api.get<InformacaoAdicional[]>(`${GlobalVariavel.BASE_API_URL}informacoes/${codigoPatrimonio}`).pipe(take(1));
   }
 
-  public atualizarPatrimonio(patrimonio: Patrimonio): Observable<Patrimonio>{
+  public atualizarPatrimonio(patrimonio: Patrimonio, informacaoAdicional: InformacaoAdicional): Observable<Patrimonio>{
     debugger;
     return this.api
-    .put<Patrimonio>(`${this.baseUrl}/${patrimonio.codigoPatrimonio}`, {patrimonio})
+    .put<Patrimonio>(`${this.baseUrl}/${patrimonio.codigoPatrimonio}`, {patrimonio: patrimonio, informacaoAdicional: informacaoAdicional})
     .pipe(take(1));
   }
 
