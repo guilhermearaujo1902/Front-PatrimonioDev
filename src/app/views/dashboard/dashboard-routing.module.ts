@@ -19,7 +19,7 @@ import { FabricanteRoutingModule } from '../fabricante/fabricante-routing.module
 import { FuncionarioRoutingModule } from '../funcionario/funcionario-routing.module';
 import { RoleGuardService } from '../../services/auth/role-guard.service';
 import { Permissao } from '../../models/enums/permissao.enum';
-import { PercaComponent } from '../perda/perca.component';
+import { PerdaComponent } from '../perda/perda.component';
 
 const routes: Routes = [
   {
@@ -86,10 +86,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'perca',
-    component: PercaComponent,
+    path: 'perda',
+    component: PerdaComponent,
     data: {
-      title: 'perca'
+      title: 'perda'
     }
   }
   ,

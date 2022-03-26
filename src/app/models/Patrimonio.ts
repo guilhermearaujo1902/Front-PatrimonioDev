@@ -1,4 +1,3 @@
-import { SituacaoEquipamento } from "./enums/situacao-equipamento.enum";
 
 export interface Patrimonio {
   codigoPatrimonio: number;
@@ -12,9 +11,8 @@ export interface Patrimonio {
   serviceTag: string;
   armazenamento: string;
   processador: string;
-  placaVideo: string;
-  ip: string;
+  placaDeVideo: string;
   situacaoEquipamento: number,
   mac: string,
-  memoriaRam: string,
+  memoriaRAM: string,
 }

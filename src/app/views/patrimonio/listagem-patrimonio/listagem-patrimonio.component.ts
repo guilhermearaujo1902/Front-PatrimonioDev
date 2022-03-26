@@ -1,4 +1,3 @@
-import { SituacaoEquipamento } from './../../../models/enums/situacao-equipamento.enum';
 import { PatrimonioService } from './../../../services/patrimonio/patrimonio.service';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -62,7 +61,7 @@ export class ListarpatrimonioComponent implements OnInit {
   }
 
   get isMobile(): boolean {
-    return this.innerWidth <= 768;
+    return this.innerWidth <= 1200;
   }
 
   public abrirModal(event: any, template: TemplateRef<any>, patrimonioId: number): void {
@@ -165,6 +164,7 @@ export class ListarpatrimonioComponent implements OnInit {
       { key: 'modelo', title: 'Modelo' },
       { key: '', title: '' },
       { key: '', title: '' },
+      { key: '', title: '' },
     ];
   }
 
@@ -172,8 +172,8 @@ export class ListarpatrimonioComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.colunas = [
-        { key: 'codigoFuncionario', title: 'Código' },
-        { key: 'nomeFuncionario', title: 'Nome' },
+        { key: 'nomeFuncionario', title: 'Funcionário' },
+        { key: 'tipoEquipamento', title: 'Equipamento' },
         { key: '', title: 'Expandir' },
       ];
     } else {

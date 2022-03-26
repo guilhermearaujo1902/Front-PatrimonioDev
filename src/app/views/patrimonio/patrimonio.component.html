@@ -55,8 +55,8 @@
         </div>
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Memória RAM</label>
-          <input type="text" class="form-control" name="memoriaRam"
-            formControlName="memoriaRam"
+          <input type="text" class="form-control" name="memoriaRAM"
+            formControlName="memoriaRAM"
             placeholder="EX: 13GB 1333MHz">
         </div>
       </div>
@@ -95,14 +95,14 @@
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Placa de vídeo</label>
-          <input type="text" class="form-control" name="placaVideo"
-            formControlName="placaVideo"
+          <input type="text" class="form-control" name="placaDeVideo"
+            formControlName="placaDeVideo"
             placeholder="Placa de vídeo">
         </div>
         <div class="form-group col-lg-6 col-sm-12 text-start">
-          <label>IP</label>
-          <input type="text" class="form-control" name="ip" placeholder="IP"
-            formControlName="ip">
+          <label>MAC</label>
+          <input type="text" class="form-control" name="mac"
+            formControlName="mac" placeholder="MAC">
         </div>
       </div>
 
@@ -114,11 +114,6 @@
               [value]="name"> {{situacaoEquipamento[name]}}
             </option>
           </select>
-        </div>
-        <div class="form-group col-lg-6 col-sm-12 text-start">
-          <label>MAC</label>
-          <input type="text" class="form-control" name="mac"
-            formControlName="mac" placeholder="MAC">
         </div>
       </div>
 
@@ -180,7 +175,7 @@
               [disabled]="!form.valid && !formAdicional.valid" (click)="salvarAlteracao()">Cadastrar</button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-block btn-warning btn-lg">Limpar</button>
+            <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">Limpar</button>
           </div>
         </div>
       </div>

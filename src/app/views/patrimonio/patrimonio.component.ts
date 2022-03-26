@@ -44,6 +44,7 @@ export class PatrimonioComponent implements OnInit {
   }
 
   constructor(private fb: FormBuilderTypeSafe,
+    private fbe: FormBuilderTypeSafe,
     private funcionario: FuncionarioService,
     private equipamento: EquipamentoService,
     private patrimonioService: PatrimonioService,
@@ -79,6 +80,11 @@ export class PatrimonioComponent implements OnInit {
       ).add(() => this.spinner.hide());
     }
 
+    public limparCampos(): void{
+      this.limpandoCampo = true;
+      this.validarCamposPatrimonio();
+      this.validarCamposInformacaoAdicional();
+    }
 
   ngOnInit(): void {
     this.validarCamposPatrimonio();
@@ -150,11 +156,10 @@ export class PatrimonioComponent implements OnInit {
       codigoUsuario: new FormControl(this.token.obterCodigoUsuarioToken()),
       nomeUsuario: new FormControl(this.token.obterNomeUsuarioToken()),
       armazenamento: new FormControl(''),
-      ip: new FormControl(''),
       mac: new FormControl(''),
-      memoriaRam: new FormControl(''),
+      memoriaRAM: new FormControl(''),
       modelo: new FormControl(''),
-      placaVideo: new FormControl(''),
+      placaDeVideo: new FormControl(''),
       processador: new FormControl(''),
       serviceTag: new FormControl(''),
       situacaoEquipamento: new FormControl(+SituacaoEquipamento.Disponível)
@@ -163,8 +168,9 @@ export class PatrimonioComponent implements OnInit {
   }
 
   private validarCamposInformacaoAdicional(): void{
-    this.formAdicional = this.fb.group<InformacaoAdicional>({
-      codigoInformacaoAdicional: new FormControl(this.limpandoCampo? this.form.get('codigoInformacaoAdicional').value : 0, []),
+    debugger;
+    this.formAdicional = this.fbe.group<InformacaoAdicional>({
+      codigoInformacaoAdicional: new FormControl(this.limpandoCampo? this.formAdicional.get('codigoInformacaoAdicional').value : 0, []),
       versaoWindows: new FormControl(''),
       antivirus: new FormControl(''),
       dataCompra: new FormControl(new Date(

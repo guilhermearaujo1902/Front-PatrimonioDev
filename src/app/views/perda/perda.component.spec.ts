@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PercaComponent } from './perca.component';
+import { PerdaComponent } from './perda.component';
 
 describe('PercaComponent', () => {
-  let component: PercaComponent;
-  let fixture: ComponentFixture<PercaComponent>;
+  let component: PerdaComponent;
+  let fixture: ComponentFixture<PerdaComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PercaComponent ]
+      declarations: [ PerdaComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PercaComponent);
+    fixture = TestBed.createComponent(PerdaComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

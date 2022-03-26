@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-perca',
-  templateUrl: './perca.component.html',
-  styleUrls: ['./perca.component.scss']
+  selector: 'app-perda',
+  templateUrl: './perda.component.html',
+  styleUrls: ['./perda.component.scss','../../../scss/style-base.scss']
 })
-export class PercaComponent implements OnInit {
-//TODO: renomear para perda
+export class PerdaComponent implements OnInit {
   form!: FormGroup;
 
   get f(): any {
