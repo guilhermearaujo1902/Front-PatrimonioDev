@@ -75,6 +75,8 @@ import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funci
 import { NgxMaskModule } from 'ngx-mask';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
 import { EnumDisplayPipe } from './pipe/enum-situacaoEquipamento-display.pipe';
+import { CanvasTagComponent } from './views/canvas-tag/canvas-tag.component';
+import { QRCodeModule } from 'angularx-qrcode';
 
 
 const customCurrencyMaskConfig = {
@@ -99,6 +101,7 @@ const customCurrencyMaskConfig = {
     }),
     NgxCurrencyModule.forRoot(customCurrencyMaskConfig),
     SocialLoginModule,
+    QRCodeModule,
     BrowserModule,
     ReactiveFormsModule,
     FormsModule,
@@ -159,7 +162,8 @@ const customCurrencyMaskConfig = {
     UsuarioPerfilComponent,
     FuncionarioComponent,
     ListagemFuncionarioComponent,
-    EnumDisplayPipe
+    EnumDisplayPipe,
+    CanvasTagComponent
    ],
   providers: [
     {

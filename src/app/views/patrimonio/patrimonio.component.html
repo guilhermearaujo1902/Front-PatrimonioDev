@@ -1,6 +1,13 @@
 <div class="card rounded shadow-sm ml-3 m-3 p-3" id="formulario">
   <form [formGroup]="form">
-    <h1 class="col-4 col-lg-3"><span class="texto-destaque">Patrimônio</span></h1>
+    <div class="form-row">
+      <div class="form-group col-sm-12 col-lg-8 text-start">
+        <h1><span class="texto-destaque">Patrimônio</span></h1>
+      </div>
+    </div>
+
+    <app-canvas codigoPatrimonio="{{codigoPatrimonio}}" serviceTag="{{serviceTag}}"></app-canvas>
+
     <div class="p-3">
       <div class="form-row">
         <div class="form-group col-12 text-start">

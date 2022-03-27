@@ -1,0 +1,11 @@
+<div class="form-group col-sm-12 col-lg-4 text-start">
+  <a id="download" download="triangle.png">
+    <button type="button" class="btn btn-lg" (click)="downloadQrCode()">Gerar Etiqueta</button>
+  </a>
+
+</div>
+<div id="qr-code-imagem">
+  <qrcode [qrdata]="'https://www.youtube.com/watch?v=v-aWrKiced4'"
+    [elementType]="'img'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+</div>
+<canvas #canvas></canvas>

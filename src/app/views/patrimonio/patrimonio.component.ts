@@ -33,7 +33,9 @@ export class PatrimonioComponent implements OnInit {
   public situacaoEquipamento = SituacaoEquipamento;
   private limpandoCampo: boolean = false;
   private estadoSalvar: string = 'cadastrarPatrimonio'
-  private codigoPatrimonio: number;
+
+  public codigoPatrimonio: number;
+  public serviceTag: any;
 
   get f(): any {
     return this.form.controls;
@@ -57,6 +59,7 @@ export class PatrimonioComponent implements OnInit {
       debugger;
       this.chaveSituacaoEquipamento = Object.keys(this.situacaoEquipamento).filter(Number);
     }
+
 
     public salvarAlteracao(): void {
       this.spinner.show();
@@ -104,7 +107,9 @@ export class PatrimonioComponent implements OnInit {
       this.spinner.show();
 
       this.patrimonioService.obterPatrimonioEInformacaoAdicional(this.codigoPatrimonio).subscribe(listaDeResposta =>{
+        debugger;
         this.form.patchValue(listaDeResposta[0]);
+        this.serviceTag = listaDeResposta[0].serviceTag;
         this.formAdicional.patchValue(listaDeResposta[1]);
 
        },
