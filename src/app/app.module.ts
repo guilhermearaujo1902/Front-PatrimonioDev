@@ -8,7 +8,7 @@ import { FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { FabricanteService } from './services/fabricante/fabricante.service';
 import { MenuService } from './services/menu/menu.service';
 
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -187,7 +187,7 @@ const customCurrencyMaskConfig = {
     },
     {
       provide: LocationStrategy,
-      useClass: HashLocationStrategy,
+      useClass: PathLocationStrategy,
     },
     RoleGuardService,
     IconSetService,
