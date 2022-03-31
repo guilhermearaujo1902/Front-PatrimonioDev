@@ -13,6 +13,7 @@ import { Setor } from '../../models/Setor';
 import { EmpresaService } from '../../services/empresa/empresa.service';
 import { PermissaoService } from '../../services/permissao/permissao.service';
 import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenha';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
 
 @Component({
   selector: 'app-usuario',
@@ -128,31 +129,32 @@ export class UsuarioComponent implements OnInit {
 
   public salvarAlteracao(): void {
 
-    this.spinner.show();
+    let atualizando = this.estadoSalvar == 'atualizarUsuario';
+    let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
+
+    this.spinner.show(nomeAcaoRealizada);
+
     this.usuario = (this.estadoSalvar === 'cadastrarUsuario') ? {...this.form.value} : {codigoUsuario: this.usuario.codigoUsuario, ...this.form.value};
     debugger;
     this.usuarioService[this.estadoSalvar](this.usuario).subscribe(
-      () => this.toaster.success('Usuário cadastrado com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Usuário ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
-        this.spinner.hide();
-
-        this.toaster.error(`Houve um erro durante o cadastro do usuário. Mensagem: ${error.error.mensagem}`, 'Erro!');
-      },
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"usuário", ['o','do'])} Mensagem: ${template.mensagemErro}`, 'Erro!');      },
       () =>
       {
-        this.spinner.hide()
         setTimeout(() => {
           this.router.navigate(['dashboard/listarUsuario'])
         }, 1700)
       }
-    );
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
   public carregarUsuario() : void{
     this.codigoUsuario = +this.activateRouter.snapshot.paramMap.get('codigoUsuario');
      if(this.codigoUsuario !== null && this.codigoUsuario !== 0){
       this.estadoSalvar = 'atualizarUsuario';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.usuarioService.obterApenasUmUsuario(this.codigoUsuario).subscribe(
          {
@@ -165,7 +167,7 @@ export class UsuarioComponent implements OnInit {
              this.toaster.error(`Houve um erro ao tentar carregar o usuário. Mensagem: ${error.message}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
    }
 }

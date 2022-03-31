@@ -18,7 +18,7 @@ export class CategoriaComponent implements OnInit {
 
   form!: FormGroupTypeSafe<Categoria>;
   private categoria = {} as Categoria;
-  private estadoSalvar = "cadastrarCategoria";
+  public estadoSalvar = "cadastrarCategoria";
   private codigoCategoria: number;
   private limpandoCampo: boolean = false;
 
@@ -57,34 +57,36 @@ export class CategoriaComponent implements OnInit {
 
   public salvarAlteracao(): void {
 
-    this.spinner.show();
+    let atualizando = this.estadoSalvar == 'atualizarCategoria';
+    let nomeAcaoRealizada = atualizando? 'atualizada': 'cadastrada';
+
+    this.spinner.show(nomeAcaoRealizada);
 
     this.categoria = (this.estadoSalvar === 'cadastrarCategoria') ? {...this.form.value} : {codigoCategoria: this.categoria.codigoCategoria, ...this.form.value};
 
     this.categoriaService[this.estadoSalvar](this.categoria).subscribe(
-      () => this.toaster.success('Categoria cadastrada com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Categoria ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um problema ao cadastrar a categoria. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"categoria", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {
-        this.spinner.hide()
         setTimeout(() => {
           this.router.navigate(['dashboard/listarCategoria'])
         }, 1700)
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
   private carregarCategoria() : void{
-    debugger;
+
     this.codigoCategoria = +this.activateRouter.snapshot.paramMap.get('codigoCategoria');
 
-     if(this.codigoCategoria !== null && this.codigoCategoria !== 0){
+    if(this.codigoCategoria !== null && this.codigoCategoria !== 0){
 
       this.estadoSalvar = 'atualizarCategoria';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.categoriaService.obterApenasUmaCategoria(this.codigoCategoria).subscribe(
          {
@@ -99,7 +101,7 @@ export class CategoriaComponent implements OnInit {
             this.toaster[template.tipoMensagem](`Houve um problema ao carregar a categoria. Mensagem: ${template.mensagemErro}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
    }
 

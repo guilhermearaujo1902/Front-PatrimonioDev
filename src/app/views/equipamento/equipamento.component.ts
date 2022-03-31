@@ -21,7 +21,7 @@ export class EquipamentoComponent implements OnInit {
 
   form!: FormGroupTypeSafe<Equipamento>;
   private equipamento = {} as Equipamento;
-  private estadoSalvar = 'cadastrarEquipamento';
+  public estadoSalvar = 'cadastrarEquipamento';
   private codigoEquipamento: number;
   public fabricantes: Fabricante[] = [];
   public categorias: Categoria[] = [];
@@ -101,16 +101,18 @@ export class EquipamentoComponent implements OnInit {
   }
 
   public salvarAlteracao(): void {
+    let atualizando = this.estadoSalvar == 'atualizarEquipamento';
+    let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
 
-    this.spinner.show();
+    this.spinner.show(nomeAcaoRealizada);
 
     this.equipamento = (this.estadoSalvar === 'cadastrarEquipamento') ? {...this.form.value} : {codigoTipoEquipamento: this.equipamento.codigoTipoEquipamento, ...this.form.value};
 
     this.equipamentoService[this.estadoSalvar](this.equipamento).subscribe(
-      () => this.toaster.success('Equipamento cadastrada com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Equipamento ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um problema ao cadastrar o equipamento. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"equipamento", ['o','do'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {
@@ -118,7 +120,7 @@ export class EquipamentoComponent implements OnInit {
           this.router.navigate(['dashboard/listarEquipamento'])
         }, 1700)
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
   private carregarEquipamento() : void{
@@ -127,7 +129,7 @@ export class EquipamentoComponent implements OnInit {
      if(this.codigoEquipamento !== null && this.codigoEquipamento !== 0){
 
       this.estadoSalvar = 'atualizarEquipamento';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.equipamentoService.obterApenasUmEquipamento(this.codigoEquipamento).subscribe(
          {
@@ -140,7 +142,7 @@ export class EquipamentoComponent implements OnInit {
             this.toaster[template.tipoMensagem](`Houve um problema ao carregar o equipamento. Mensagem: ${template.mensagemErro}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
    }
 

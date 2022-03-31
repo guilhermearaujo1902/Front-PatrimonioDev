@@ -52,4 +52,8 @@ export abstract class MensagemRequisicao {
     else
       return mensagem;
   }
+
+  public static retornarMensagemDeErroAoRealizarOperacao(acao: string, entidade: string, conectivo: string[]): string{
+    return `Houve um erro durante ${conectivo[0]} ${acao} ${conectivo[1]} ${entidade}.`.replace('atualizado','atualizar').replace('cadastrado','cadastro').replace('cadastrada','cadastro')
+  }
 }

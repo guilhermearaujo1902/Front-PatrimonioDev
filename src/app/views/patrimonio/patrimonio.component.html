@@ -1,13 +1,13 @@
 <div class="card rounded shadow-sm ml-3 m-3 p-3" id="formulario">
   <form [formGroup]="form">
     <div class="form-row">
-      <div class="form-group col-sm-12 col-lg-8 text-start">
+      <div class="form-group col-sm-12 col-md-8 col-lg-8 text-start">
         <h1><span class="texto-destaque">Patrimônio</span></h1>
       </div>
+      <div *ngIf="+form.controls.codigoPatrimonio.value != 0" class="form-group col-sm-12 col-md-4 col-lg-4 text-start">
+        <app-canvas codigoPatrimonio="{{codigoPatrimonio}}" serviceTag="{{serviceTag}}"></app-canvas>
+      </div>
     </div>
-
-    <app-canvas codigoPatrimonio="{{codigoPatrimonio}}" serviceTag="{{serviceTag}}"></app-canvas>
-
     <div class="p-3">
       <div class="form-row">
         <div class="form-group col-12 text-start">
@@ -179,7 +179,7 @@
         <div class="row">
           <div class="col">
             <button type="button" class="btn btn-block btn-success btn-lg"
-              [disabled]="!form.valid && !formAdicional.valid" (click)="salvarAlteracao()">Cadastrar</button>
+              [disabled]="!form.valid || !formAdicional.valid" (click)="salvarAlteracao()">{{this.estadoSalvar == 'cadastrarPatrimonio'?'Cadastrar':'Atualizar'}}</button>
           </div>
           <div class="col">
             <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">Limpar</button>
@@ -189,4 +189,6 @@
     </div>
   </form>
 </div>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>
+<ngx-spinner name="cadastrado" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>
+<ngx-spinner name="atualizado" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Atualizando... </p></ngx-spinner>
+<ngx-spinner name="carregando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Carregando... </p></ngx-spinner>

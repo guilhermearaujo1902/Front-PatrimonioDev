@@ -18,7 +18,7 @@ export class FabricanteComponent implements OnInit {
   form!: FormGroupTypeSafe<Fabricante>;
   fabricante = {} as Fabricante;
   codigoFabricante: number;
-  estadoSalvar: string = 'cadastrarFabricante';
+  public estadoSalvar: string = 'cadastrarFabricante';
   private limpandoCampo: boolean = false;
 
   get f(): any {
@@ -55,16 +55,18 @@ export class FabricanteComponent implements OnInit {
   }
 
   public salvarAlteracao(): void {
+    let atualizando = this.estadoSalvar == 'atualizarFabricante';
+    let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
 
-    this.spinner.show();
+    this.spinner.show(nomeAcaoRealizada);
 
     this.fabricante = (this.estadoSalvar === 'cadastrarFabricante') ? {...this.form.value} : {codigoFabricante: this.fabricante.codigoFabricante, ...this.form.value};
 
     this.fabricanteService[this.estadoSalvar](this.fabricante).subscribe(
-      () => this.toaster.success('Fabricante cadastrado com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Fabricante ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro do fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"fabricante", ['o','do'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () => {
 
@@ -72,14 +74,14 @@ export class FabricanteComponent implements OnInit {
           this.router.navigate(['dashboard/listarFabricante'])
         }, 1700)
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
   public carregarFabricante() : void{
     this.codigoFabricante = +this.activateRouter.snapshot.paramMap.get('codigoFabricante');
      if(this.codigoFabricante !== null && this.codigoFabricante !== 0){
       this.estadoSalvar = 'atualizarFabricante';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.fabricanteService.obterApenasUmFabricante(this.codigoFabricante).subscribe(
          {
@@ -92,7 +94,7 @@ export class FabricanteComponent implements OnInit {
             this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
     }
 

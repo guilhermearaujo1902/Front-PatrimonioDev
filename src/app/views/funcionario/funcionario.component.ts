@@ -18,7 +18,7 @@ export class FuncionarioComponent implements OnInit {
   form!: FormGroupTypeSafe<Funcionario>;
   funcionario = {} as Funcionario;
   codigoFuncionario: number;
-  estadoSalvar: string = 'cadastrarFuncionario';
+  public estadoSalvar: string = 'cadastrarFuncionario';
   private limpandoCampo: boolean = false;
 
   get f(): any {
@@ -69,23 +69,26 @@ export class FuncionarioComponent implements OnInit {
   }
 
   public salvarAlteracao(): void {
-    this.spinner.show();
+    let atualizando = this.estadoSalvar == 'atualizarFuncionario';
+    let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
+
+    this.spinner.show(nomeAcaoRealizada);
 
     this.funcionario = (this.estadoSalvar === 'cadastrarFuncionario') ? {...this.form.value} : {codigoFuncionario: this.funcionario.codigoFuncionario, ...this.form.value};
 
     this.funcionarioService[this.estadoSalvar](this.funcionario).subscribe(
-      () => this.toaster.success('Funcionário cadastrado com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Funcionário ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         debugger;
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro do funcionário. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"funcionário", ['o','do'])}. Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () => {
         setTimeout(() => {
           this.router.navigate(['dashboard/listarFuncionario'])
         }, 1700)
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
   public carregarFuncionario() : void{
@@ -94,7 +97,7 @@ export class FuncionarioComponent implements OnInit {
 
      if(this.codigoFuncionario !== null && this.codigoFuncionario !== 0){
       this.estadoSalvar = 'atualizarFuncionario';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.funcionarioService.obterApenasUmFuncionario(this.codigoFuncionario).subscribe(
          {
@@ -107,7 +110,7 @@ export class FuncionarioComponent implements OnInit {
             this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o funcionário. Mensagem: ${template.mensagemErro}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
     }
 

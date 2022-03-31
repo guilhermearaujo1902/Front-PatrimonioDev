@@ -17,7 +17,7 @@ export class EmpresaComponent implements OnInit {
 
   form!: FormGroupTypeSafe<Empresa>;
   private empresa = {} as Empresa;
-  private estadoSalvar = "cadastrarEmpresa";
+  public estadoSalvar = 'cadastrarEmpresa';
   private codigoEmpresa: number;
   private limpandoCampo: boolean = false;
 
@@ -58,15 +58,18 @@ export class EmpresaComponent implements OnInit {
 
   public salvarAlteracao(): void {
 
-    this.spinner.show();
+    let atualizando = this.estadoSalvar == 'atualizarEmpresa';
+    let nomeAcaoRealizada = atualizando? 'atualizada': 'cadastrada';
+
+    this.spinner.show(nomeAcaoRealizada);
 
     this.empresa = (this.estadoSalvar === 'cadastrarEmpresa') ? {...this.form.value} : {codigoEmpresa: this.empresa.codigoEmpresa, ...this.form.value};
 
     this.empresaService[this.estadoSalvar](this.empresa).subscribe(
-      () => this.toaster.success('Empresa cadastrada com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Empresa ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um problema ao cadastrar a empresa. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"empresa", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {
@@ -74,7 +77,7 @@ export class EmpresaComponent implements OnInit {
           this.router.navigate(['dashboard/listarEmpresa'])
         }, 1700)
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
   private carregarEmpresa() : void{
@@ -83,7 +86,7 @@ export class EmpresaComponent implements OnInit {
      if(this.codigoEmpresa !== null && this.codigoEmpresa !== 0){
 
       this.estadoSalvar = 'atualizarEmpresa';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.empresaService.obterApenasUmaEmpresa(this.codigoEmpresa).subscribe(
          {
@@ -96,7 +99,7 @@ export class EmpresaComponent implements OnInit {
             this.toaster[template.tipoMensagem](`Houve um problema ao carregar a empresa. Mensagem: ${template.mensagemErro}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
    }
 

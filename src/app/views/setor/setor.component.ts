@@ -59,15 +59,19 @@ export class SetorComponent implements OnInit {
   }
 
   public salvarAlteracao(): void {
-    this.spinner.show();
+
+    let atualizando = this.estadoSalvar == 'atualizarSetor';
+    let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
+
+    this.spinner.show(nomeAcaoRealizada);
 
     this.setor = (this.estadoSalvar === 'cadastrarSetor') ? {...this.form.value} : {codigoSetor: this.setor.codigoSetor, ...this.form.value};
 
     this.setorService[this.estadoSalvar](this.setor).subscribe(
-      () => this.toaster.success('Setor cadastrado com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Setor ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um problema ao carregar o setor. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"setor", ['o','do'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {
@@ -75,7 +79,7 @@ export class SetorComponent implements OnInit {
           this.router.navigate(['dashboard/listarSetor'])
         }, 1700)
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
   private carregarSetor() : void{
@@ -83,7 +87,7 @@ export class SetorComponent implements OnInit {
 
      if(this.codigoSetor !== null && this.codigoSetor !== 0){
       this.estadoSalvar = 'atualizarSetor';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.setorService.obterApenasUmSetor(this.codigoSetor).subscribe(
          {
@@ -95,7 +99,7 @@ export class SetorComponent implements OnInit {
              this.toaster.error(`Houve um problema ao carregar o setor. Mensagem ${error.message}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
    }
 }

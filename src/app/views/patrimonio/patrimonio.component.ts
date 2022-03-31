@@ -32,7 +32,7 @@ export class PatrimonioComponent implements OnInit {
   public chaveSituacaoEquipamento: any
   public situacaoEquipamento = SituacaoEquipamento;
   private limpandoCampo: boolean = false;
-  private estadoSalvar: string = 'cadastrarPatrimonio'
+  public estadoSalvar: string = 'cadastrarPatrimonio'
 
   public codigoPatrimonio: any;
   public serviceTag: any;
@@ -60,25 +60,29 @@ export class PatrimonioComponent implements OnInit {
     }
 
     public salvarAlteracao(): void {
-      this.spinner.show();
+      debugger;
+      let atualizando = this.estadoSalvar == 'atualizarPatrimonio';
+      let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
+
+      this.spinner.show(nomeAcaoRealizada);
 
       this.patrimonio = (this.estadoSalvar === 'cadastrarPatrimonio') ? {...this.form.value} : {codigoPatrimonio: this.patrimonio.codigoPatrimonio, ...this.form.value};
       this.patrimonio.situacaoEquipamento = +this.form.controls.situacaoEquipamento.value;
 
       this.informacaoAdicional = (this.estadoSalvar === 'cadastrarPatrimonio') ? {...this.formAdicional.value} : {codigoInformacaoAdicional: this.informacaoAdicional.codigoInformacaoAdicional, ...this.formAdicional.value};
-      debugger;
       this.patrimonioService[this.estadoSalvar](this.patrimonio, this.informacaoAdicional).subscribe(
-        () => this.toaster.success('Patrimônio cadastrado com sucesso', 'Sucesso!'),
+        () => this.toaster.success(`Patrimônio ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
         (error: any) => {
+          debugger;
           let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-          this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro do patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro!');
+          this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"patrimônio", ['o','do'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
         },
         () => {
           setTimeout(() => {
             this.router.navigate(['dashboard/listarPatrimonio'])
           }, 1700)
         }
-      ).add(() => this.spinner.hide());
+      ).add(() => this.spinner.hide(nomeAcaoRealizada));
     }
 
     public limparCampos(): void{
@@ -97,11 +101,12 @@ export class PatrimonioComponent implements OnInit {
 
   public carregarPatrimonio() : void{
     this.activatedRoute.queryParams.subscribe(parametro => {this.codigoPatrimonio = parametro.codigoPatrimonio, this.serviceTag = parametro.serviceTag} );
+
     debugger;
-    if(this.codigoPatrimonio !== null && this.codigoPatrimonio !== 0){
+    if(this.codigoPatrimonio !== null && this.codigoPatrimonio !== 0 && typeof this.codigoPatrimonio != 'undefined'){
 
       this.estadoSalvar = 'atualizarPatrimonio';
-      this.spinner.show();
+      this.spinner.show('carregando');
 
       this.patrimonioService.obterPatrimonioEInformacaoAdicional(this.codigoPatrimonio).subscribe(listaDeResposta =>{
         debugger;
@@ -115,7 +120,7 @@ export class PatrimonioComponent implements OnInit {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro!');
 
-      }).add(() => this.spinner.hide());
+      }).add(() => this.spinner.hide('carregando'));
     }
   }
 

@@ -56,7 +56,7 @@ export class PermissaoComponent implements OnInit {
 
      if(this.codigoUsuarioPermissao !== null && this.codigoUsuarioPermissao !== 0){
       this.estadoSalvar = 'atualizarPermissao';
-       this.spinner.show();
+       this.spinner.show('carregando');
 
        this.permissaoService.obterApenasUmaPermissao(this.codigoUsuarioPermissao).subscribe(
          {
@@ -68,7 +68,7 @@ export class PermissaoComponent implements OnInit {
              this.toaster.error(`Houve um problema ao carregar a permissão. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
            }
          }
-       ).add(() => this.spinner.hide());
+       ).add(() => this.spinner.hide('carregando'));
      }
    }
 
@@ -85,15 +85,19 @@ export class PermissaoComponent implements OnInit {
   }
 
   public salvarAlteracao(): void {
-    this.spinner.show();
+
+    let atualizando = this.estadoSalvar == 'atualizarPatrimonio';
+    let nomeAcaoRealizada = atualizando? 'atualizada': 'cadastrada';
+
+    this.spinner.show(nomeAcaoRealizada);
 
     this.permissao = (this.estadoSalvar === 'cadastrarPermissao') ? {...this.form.value} : {codigoUsuarioPermissao: this.permissao.codigoUsuarioPermissao, ...this.form.value};
 
     this.permissaoService[this.estadoSalvar](this.permissao).subscribe(
-      () => this.toaster.success('Permissão cadastrada com sucesso', 'Sucesso!'),
+      () => this.toaster.success(`Permissão ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro durante o cadastro da permissão. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"permissão", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
       () =>
       {
@@ -101,6 +105,6 @@ export class PermissaoComponent implements OnInit {
           this.router.navigate(['dashboard/listarPermissao'])
         }, 1700)
       }
-    ).add(() => this.spinner.hide());
+    ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 }
