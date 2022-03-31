@@ -1,9 +1,9 @@
 import { Equipamento } from './../../models/Equipamento';
 import { Injectable } from '@angular/core';
-import { GlobalVariavel } from '../../util/constants';
 import { ApiService } from '../api/api.service';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +12,13 @@ export class EquipamentoService {
 
   constructor(private api: ApiService) { }
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}equipamentos`;
+  baseUrl = `${environment.apiUrl}equipamentos`;
 
   public cadastrarEquipamento(equipamento: Equipamento): Observable<Equipamento> {
-    debugger;
     return this.api.post<Equipamento>(this.baseUrl, {equipamento}).pipe(take(1));
   }
 
   public obterTodosEquipamentos(): Observable<Equipamento[]> {
-    debugger;
-
     return this.api.get<Equipamento[]>(this.baseUrl).pipe(take(1));
   }
 

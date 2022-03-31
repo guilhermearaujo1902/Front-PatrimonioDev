@@ -1,16 +1,16 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { GlobalVariavel } from '../../util/constants';
 import { ApiService } from '../api/api.service';
 import { UsuarioPerfil } from '../../models/UsuarioPerfil';
 import { take } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioPerfilService {
 
-  baseUrl: string = `${GlobalVariavel.BASE_API_URL}perfils`
+  baseUrl: string = `${environment.apiUrl}perfils`
 
   constructor(private api: ApiService) { }
 

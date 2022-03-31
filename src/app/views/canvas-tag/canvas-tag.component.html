@@ -1,11 +1,11 @@
 <div class="form-group col-sm-12 col-lg-4 text-start">
-  <a id="download" download="triangle.png">
+  <a id="download" download="qrcode.png">
     <button type="button" class="btn btn-lg" (click)="downloadQrCode()">Gerar Etiqueta</button>
   </a>
 
 </div>
 <div id="qr-code-imagem">
   <qrcode [qrdata]="url"
-    [elementType]="'img'" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
+    [elementType]="'img'" colorDark="#fff" [scale]="4" colorLight="#009AE0" [width]="256" [errorCorrectionLevel]="'M'"></qrcode>
 </div>
 <canvas #canvas></canvas>

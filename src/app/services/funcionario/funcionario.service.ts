@@ -1,16 +1,16 @@
 import { Funcionario } from './../../models/Funcionario';
 import { Injectable } from '@angular/core';
-import { GlobalVariavel } from '../../util/constants';
 import { ApiService } from '../api/api.service';
 import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FuncionarioService {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}funcionarios`;
+  baseUrl = `${environment.apiUrl}funcionarios`;
 
   constructor(private api: ApiService) { }
 

@@ -3,13 +3,13 @@ import { take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { UsuarioPermissao } from '../../models/UsuarioPermissao';
-import { GlobalVariavel } from '../../util/constants';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PermissaoService {
-  baseUrl = `${GlobalVariavel.BASE_API_URL}permissoes`;
+  baseUrl = `${environment.apiUrl}permissoes`;
 
   constructor(private api: ApiService) { }
 

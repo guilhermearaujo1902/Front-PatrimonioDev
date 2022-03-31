@@ -1,16 +1,15 @@
 import { ApiService } from './../api/api.service';
 import { Injectable } from '@angular/core';
-import { GlobalVariavel } from '../../util/constants';
-import { HttpBackend, HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Setor } from '../../models/Setor';
+import { environment } from '../../../environments/environment';
 
 @Injectable()
 
 export class SetorService  {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}setores`;
+  baseUrl = `${environment.apiUrl}setores`;
 
   constructor(private api: ApiService) {
   }

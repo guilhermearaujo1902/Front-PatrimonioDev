@@ -2,16 +2,15 @@ import { ApiService } from '../api/api.service';
 import { take } from 'rxjs/operators';
 import { Empresa } from '../../models/Empresa';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { GlobalVariavel } from '../../util/constants';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EmpresaService {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}empresas`;
+  baseUrl = `${environment.apiUrl}empresas`;
 
   constructor(private api: ApiService) { }
 

@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { forkJoin, Observable } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { Patrimonio } from '../../models/Patrimonio';
-import { GlobalVariavel } from '../../util/constants';
 import { ApiService } from '../api/api.service';
 import { environment } from '../../../environments/environment';
 
@@ -12,7 +11,7 @@ import { environment } from '../../../environments/environment';
 })
 export class PatrimonioService {
 
-  baseUrl = `${environment.apiUrl}api/patrimonios`;
+  baseUrl = `${environment.apiUrl}patrimonios`;
 
   constructor(private api: ApiService) { }
 
@@ -40,7 +39,7 @@ export class PatrimonioService {
   }
 
   public obterInformacaoAdicional(codigoPatrimonio: number): any{
-    return this.api.get<InformacaoAdicional[]>(`${GlobalVariavel.BASE_API_URL}informacoes/${codigoPatrimonio}`).pipe(take(1));
+    return this.api.get<InformacaoAdicional[]>(`${environment.apiUrl}informacoes/${codigoPatrimonio}`).pipe(take(1));
   }
 
   public atualizarPatrimonio(patrimonio: Patrimonio, informacaoAdicional: InformacaoAdicional): Observable<Patrimonio>{

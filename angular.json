@@ -47,7 +47,8 @@
               "classnames",
               "xlsx",
               "crypto-js",
-              "ng2-charts"
+              "ng2-charts",
+              "qrcode"
             ]
           },
           "configurations": {
