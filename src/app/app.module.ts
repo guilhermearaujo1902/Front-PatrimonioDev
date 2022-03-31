@@ -187,7 +187,7 @@ const customCurrencyMaskConfig = {
     },
     {
       provide: LocationStrategy,
-      useClass: PathLocationStrategy,
+      useClass: HashLocationStrategy,
     },
     RoleGuardService,
     IconSetService,

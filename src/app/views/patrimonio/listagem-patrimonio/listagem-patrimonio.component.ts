@@ -43,10 +43,7 @@ export class ListarpatrimonioComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private token: TokenService,
-    private detectorAlteracao: ChangeDetectorRef
-    ) {
-
-    }
+    private detectorAlteracao: ChangeDetectorRef) {}
 
   ngOnInit(): void {
 
@@ -116,8 +113,8 @@ export class ListarpatrimonioComponent implements OnInit {
     this.modalRef?.hide();
   }
 
-  public detalhePatrimonio(codigoPatrimonio : number): void {
-    this.router.navigate([`dashboard/patrimonio/${codigoPatrimonio}`])
+  public detalhePatrimonio(codigoPatrimonio : number, serviceTag: string): void {
+    this.router.navigate([`dashboard/patrimonio`],{queryParams : {codigoPatrimonio, serviceTag}})
   }
 
   public onChange(event: Event): void {

@@ -10,7 +10,7 @@ import { ApiService } from '../api/api.service';
 })
 export class UsuarioService {
 
-  baseUrl: string = `https://patrimoniodev20220329112334.azurewebsites.net/api/usuarios`
+  baseUrl: string = `${GlobalVariavel.BASE_API_URL}usuarios`
 
   constructor(private api: ApiService) { }
 

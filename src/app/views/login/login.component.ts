@@ -72,6 +72,7 @@ export class LoginComponent implements OnInit {
     debugger;
     this.signInWithFB().subscribe(
       (result: any) => {
+        debugger;
         this.usuarioAuth = result
       },
       (error: any) =>{

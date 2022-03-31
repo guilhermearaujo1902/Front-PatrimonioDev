@@ -41,7 +41,6 @@ export class DefaultLayoutComponent implements OnInit{
 
   private obterMenusPermissaoUsuario(): void {
     const permissao = this.token.obterPermissaoToken();
-    debugger;
 
     switch (permissao) {
 
@@ -54,7 +53,6 @@ export class DefaultLayoutComponent implements OnInit{
         //TODO: VALIDAR ERRO
 
         this.navItemsLayout = this.navItemsPermissao;
-        debugger;
         break;
 
       case Permissao.Usuario:
@@ -77,7 +75,6 @@ export class DefaultLayoutComponent implements OnInit{
   }
 
   private signOutAuth(): void {
-    debugger;
 
     if(this.estaLogadoAuth)
       this.authService.signOut(true);

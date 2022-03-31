@@ -18,7 +18,6 @@ export class TokenService {
   }
 
   public obterTokenDescriptografado(): string {
-    debugger;
     return this.retornarTokenTratado();
   }
 
@@ -38,7 +37,6 @@ export class TokenService {
 
   public obterNomeUsuarioToken(): number {
     const token: string = localStorage.getItem('valor');
-    debugger;
     return decode(this.encriptar.decrypt(token))['nomeUsuario']
   }
 
@@ -48,7 +46,6 @@ export class TokenService {
   }
 
   public ehUsuarioAdministrador(): boolean{
-    debugger;
     let permissaoAdministrador = Permissao.Administrador;
     return +this.obterPermissaoToken() == permissaoAdministrador
   }

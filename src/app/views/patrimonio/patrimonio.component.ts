@@ -34,7 +34,7 @@ export class PatrimonioComponent implements OnInit {
   private limpandoCampo: boolean = false;
   private estadoSalvar: string = 'cadastrarPatrimonio'
 
-  public codigoPatrimonio: number;
+  public codigoPatrimonio: any;
   public serviceTag: any;
 
   get f(): any {
@@ -56,10 +56,8 @@ export class PatrimonioComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute)
     {
-      debugger;
       this.chaveSituacaoEquipamento = Object.keys(this.situacaoEquipamento).filter(Number);
     }
-
 
     public salvarAlteracao(): void {
       this.spinner.show();
@@ -98,10 +96,9 @@ export class PatrimonioComponent implements OnInit {
   }
 
   public carregarPatrimonio() : void{
-
-    this.codigoPatrimonio = +this.activatedRoute.snapshot.paramMap.get('codigoPatrimonio');
-
-     if(this.codigoPatrimonio !== null && this.codigoPatrimonio !== 0){
+    this.activatedRoute.queryParams.subscribe(parametro => {this.codigoPatrimonio = parametro.codigoPatrimonio, this.serviceTag = parametro.serviceTag} );
+    debugger;
+    if(this.codigoPatrimonio !== null && this.codigoPatrimonio !== 0){
 
       this.estadoSalvar = 'atualizarPatrimonio';
       this.spinner.show();

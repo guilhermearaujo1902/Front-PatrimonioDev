@@ -5,13 +5,14 @@ import { take } from 'rxjs/operators';
 import { Patrimonio } from '../../models/Patrimonio';
 import { GlobalVariavel } from '../../util/constants';
 import { ApiService } from '../api/api.service';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PatrimonioService {
 
-  baseUrl = `${GlobalVariavel.BASE_API_URL}patrimonios`;
+  baseUrl = `${environment.apiUrl}api/patrimonios`;
 
   constructor(private api: ApiService) { }
 

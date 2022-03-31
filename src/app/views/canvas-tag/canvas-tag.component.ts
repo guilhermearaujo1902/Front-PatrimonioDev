@@ -1,5 +1,6 @@
 import { CanvasImagem } from './../../models/CanvasImagem';
-import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-canvas',
@@ -8,12 +9,17 @@ import { AfterViewInit, Component, ElementRef, Input, ViewChild } from '@angular
 })
 export class CanvasTagComponent implements AfterViewInit {
 
+debugger;
+  constructor(private detectorAlteracao: ChangeDetectorRef) {
+  }
 @ViewChild('canvas') public canvas: ElementRef;
 
 @Input() public width = 630;
 @Input() public height = 300;
+
 @Input('codigoPatrimonio') codigoPatrimonio: string;
 @Input('serviceTag') serviceTag: string;
+@Input('url') url: string;
 
 private cx: CanvasRenderingContext2D;
 
@@ -37,7 +43,7 @@ public ngAfterViewInit() {
   canvasEl.height = this.height;
 
   this.cx.font = '20px "Roboto"';
-  this.cx.fillText(`PATRIMÔNIO PS`, 10, 200);
+  this.cx.fillText(`PATRIMÔNIO PS`, 50, 200);
   this.cx.fillText(`SERVICE TAG: ${this.serviceTag}`, 330,210);
 
   var imagem = new Image();
@@ -48,7 +54,7 @@ public ngAfterViewInit() {
   var imagemPatrimonio = new Image();
   imagemPatrimonio.src = '../../../assets/img/patrimonio-texto.png'
   var imagemPatrimonioPropriedades = new CanvasImagem(imagemPatrimonio,330,10,150,20);
-
+  debugger;
   imagemPatrimonio.onload= (() => this.desenharImagem(imagemPatrimonioPropriedades))
   setTimeout(() => {
     debugger
@@ -59,7 +65,10 @@ public ngAfterViewInit() {
     var imagemPropriedadesQr = new CanvasImagem(imagemQr,335,50,140,130);
     imagemQr.onload= (() => this.desenharImagem(imagemPropriedadesQr))
 
-  }, 100);
+  }, 700);
+  this.url = `${environment.apiUrl}api/patrimonios?codigoPatrimonio=${this.codigoPatrimonio}&serviceTag=${this.serviceTag}`
+  this.detectorAlteracao.detectChanges();
+
 
 
 }
