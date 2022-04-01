@@ -168,7 +168,7 @@ export class PatrimonioComponent implements OnInit {
       modelo: new FormControl(''),
       placaDeVideo: new FormControl(''),
       processador: new FormControl(''),
-      serviceTag: new FormControl(''),
+      serviceTag: new FormControl('', [Validators.required, Validators.minLength(4), Validators.maxLength(20)]),
       situacaoEquipamento: new FormControl(+SituacaoEquipamento.Disponível)
 
     });

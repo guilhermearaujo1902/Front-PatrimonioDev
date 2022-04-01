@@ -43,7 +43,7 @@ export class ListarpatrimonioComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private token: TokenService,
-    private detectorAlteracao: ChangeDetectorRef) {}
+    private detectorAlteracao: ChangeDetectorRef) { }
 
   ngOnInit(): void {
 
@@ -64,7 +64,7 @@ export class ListarpatrimonioComponent implements OnInit {
   public abrirModal(event: any, template: TemplateRef<any>, patrimonioId: number): void {
     event.stopPropagation();
     this.patrimonioId = patrimonioId;
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   private obterPatrimonios(): void {
@@ -82,7 +82,7 @@ export class ListarpatrimonioComponent implements OnInit {
         this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos patrimônios. Mensagem ${template.mensagemErro}`, 'Erro');
 
       },
-      complete: () =>{
+      complete: () => {
         this.configuracao.isLoading = false;
         this.detectorAlteracao.markForCheck();
 
@@ -97,11 +97,11 @@ export class ListarpatrimonioComponent implements OnInit {
 
     debugger;
     this.patrimonioService.excluirPatrimonio(this.patrimonioId).subscribe(
-      () =>{
+      () => {
         this.toaster.success('Patrimônio excluído com sucesso!', 'Deletado');
         this.obterPatrimonios();
       },
-      (error: any) =>{
+      (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`Houve um erro ao excluir o patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro');
       }
@@ -113,8 +113,8 @@ export class ListarpatrimonioComponent implements OnInit {
     this.modalRef?.hide();
   }
 
-  public detalhePatrimonio(codigoPatrimonio : number, serviceTag: string): void {
-    this.router.navigate([`dashboard/patrimonio`],{queryParams : {codigoPatrimonio, serviceTag}})
+  public detalhePatrimonio(codigoPatrimonio: number, serviceTag: string): void {
+    this.router.navigate([`dashboard/patrimonio`], { queryParams: { codigoPatrimonio, serviceTag } })
   }
 
   public onChange(event: Event): void {
@@ -127,20 +127,20 @@ export class ListarpatrimonioComponent implements OnInit {
     });
   }
 
-  private filtrarPatrimonios(valor: any): void{
+  private filtrarPatrimonios(valor: any): void {
     this.dataFiltradaExcel = this.data.filter(
       (patrimonios: Patrimonio) =>
-       patrimonios.codigoPatrimonio.toString().indexOf(valor) !== -1 ||
-       patrimonios.codigoTipoEquipamento.toString().toLocaleLowerCase().indexOf(valor) !== -1 ||
-       patrimonios.situacaoEquipamento.toString().toLocaleLowerCase().indexOf(valor) !== -1 ||
-       patrimonios.modelo.toString().toLocaleLowerCase().indexOf(valor) !== -1 ||
-       patrimonios.nomeFuncionario.toLocaleLowerCase().indexOf(valor) !== -1
+        patrimonios.codigoPatrimonio.toString().indexOf(valor) !== -1 ||
+        patrimonios.codigoTipoEquipamento.toString().toLocaleLowerCase().indexOf(valor) !== -1 ||
+        patrimonios.situacaoEquipamento.toString().toLocaleLowerCase().indexOf(valor) !== -1 ||
+        patrimonios.modelo.toString().toLocaleLowerCase().indexOf(valor) !== -1 ||
+        patrimonios.nomeFuncionario.toLocaleLowerCase().indexOf(valor) !== -1
 
     );
   }
 
   public exportarParaExcel(): void {
-     try {
+    try {
       const ws: XLSX.WorkSheet = XLSX.utils.json_to_sheet(this.dataFiltradaExcel);
 
       const wb: XLSX.WorkBook = XLSX.utils.book_new();
@@ -148,7 +148,7 @@ export class ListarpatrimonioComponent implements OnInit {
 
       XLSX.writeFile(wb, 'patrimonios.xlsx');
     } catch (err) {
-      this.toaster.error(`Não foi possível exportar a planilha. Mensagem: ${err}`,"Erro")
+      this.toaster.error(`Não foi possível exportar a planilha. Mensagem: ${err}`, "Erro")
     }
   }
 

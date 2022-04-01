@@ -90,7 +90,7 @@ export class UsuarioPerfilComponent implements OnInit {
     if(typeof url == "undefined" || url == null)
       this.imagemUrl = 'assets/img/sem-imagem.png';
     else
-      this.imagemUrl = `${environment.apiUrl}Resources/Imagens/${url}`;
+      this.imagemUrl = `${environment.apiUrlImage}/${url}`;
   }
 
   public salvarAlteracaoPerfil(): void{

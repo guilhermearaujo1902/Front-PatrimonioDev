@@ -12,42 +12,35 @@
       <div class="form-row">
         <div class="form-group col-12 text-start">
           <label>Código patrimônio</label>
-          <input type="text" readonly class="form-control"
-            name="codigoPatrimonio" formControlName="codigoPatrimonio">
+          <input type="text" readonly class="form-control" name="codigoPatrimonio" formControlName="codigoPatrimonio">
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Funcionário</label>
-          <select class="form-select form-control"
-            formControlName="codigoFuncionario"
+          <select class="form-select form-control" formControlName="codigoFuncionario"
             [ngClass]="cssValidatorCampoSelecao(f.codigoFuncionario)" required>
             <option value="" disabled>--Selecione um funcionário--</option>
-            <option *ngFor="let funcionario of funcionarios"
-              [value]="funcionario.codigoFuncionario">
+            <option *ngFor="let funcionario of funcionarios" [value]="funcionario.codigoFuncionario">
               {{ funcionario.nomeFuncionario }}
             </option>
           </select>
-          <div *ngIf="f.codigoFuncionario.errors?.required"
-            class="invalid-feedback">
+          <div *ngIf="f.codigoFuncionario.errors?.required" class="invalid-feedback">
             Funcionário é obrigatório
           </div>
         </div>
 
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Equipamento</label>
-          <select class="form-select form-control"
-            formControlName="codigoTipoEquipamento"
+          <select class="form-select form-control" formControlName="codigoTipoEquipamento"
             [ngClass]="cssValidatorCampoSelecao(f.codigoTipoEquipamento)" required>
             <option value="" disabled>--Selecione um equipamento--</option>
-            <option *ngFor="let equipamento of equipamentos"
-              [value]="equipamento.codigoTipoEquipamento">
+            <option *ngFor="let equipamento of equipamentos" [value]="equipamento.codigoTipoEquipamento">
               {{ equipamento.tipoEquipamento }}
             </option>
           </select>
-          <div *ngIf="f.codigoTipoEquipamento.errors?.required"
-            class="invalid-feedback">
+          <div *ngIf="f.codigoTipoEquipamento.errors?.required" class="invalid-feedback">
             Equipamento é obrigatório
           </div>
         </div>
@@ -55,15 +48,12 @@
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Usuário</label>
-          <input type="hidden" class="form-control" name="codigoUsuario"
-            formControlName="codigoUsuario" readonly>
-          <input type="text" class="form-control" name="nomeUsuario"
-            formControlName="nomeUsuario" readonly>
+          <input type="hidden" class="form-control" name="codigoUsuario" formControlName="codigoUsuario" readonly>
+          <input type="text" class="form-control" name="nomeUsuario" formControlName="nomeUsuario" readonly>
         </div>
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Memória RAM</label>
-          <input type="text" class="form-control" name="memoriaRAM"
-            formControlName="memoriaRAM"
+          <input type="text" class="form-control" name="memoriaRAM" formControlName="memoriaRAM"
             placeholder="EX: 13GB 1333MHz">
         </div>
       </div>
@@ -71,30 +61,35 @@
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Modelo</label>
-          <input type="text" class="form-control" name="modelo"
-            formControlName="modelo"
+          <input type="text" class="form-control" name="modelo" formControlName="modelo"
             placeholder="Modelo do equipamento">
         </div>
 
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Service tag</label>
-          <input type="text" class="form-control" name="serviceTag"
-            formControlName="serviceTag"
+          <input type="text" [ngClass]="cssValidator(f.serviceTag)" class="form-control" name="serviceTag" formControlName="serviceTag"
             placeholder="Tag para identificação">
+            <div *ngIf="f.serviceTag.errors?.required" class="invalid-feedback">
+              ServiceTag é obrigatória
+            </div>
+            <div *ngIf="f.serviceTag.errors?.maxlength" class="invalid-feedback">
+              A service tag pode ter no máximo 20 letras
+            </div>
+            <div *ngIf="f.serviceTag.errors?.minlength" class="invalid-feedback">
+              A service tag pode ter no mínimo 4 letras
+            </div>
         </div>
       </div>
 
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Armazenamento</label>
-          <input type="text" class="form-control" name="armazenamento"
-            formControlName="armazenamento"
+          <input type="text" class="form-control" name="armazenamento" formControlName="armazenamento"
             placeholder="Ex: 500GB">
         </div>
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Processador</label>
-          <input type="text" class="form-control" name="processador"
-            formControlName="processador"
+          <input type="text" class="form-control" name="processador" formControlName="processador"
             placeholder="Ex: I7 6º GERAÇÃO">
         </div>
       </div>
@@ -102,14 +97,12 @@
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Placa de vídeo</label>
-          <input type="text" class="form-control" name="placaDeVideo"
-            formControlName="placaDeVideo"
+          <input type="text" class="form-control" name="placaDeVideo" formControlName="placaDeVideo"
             placeholder="Placa de vídeo">
         </div>
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>MAC</label>
-          <input type="text" class="form-control" name="mac"
-            formControlName="mac" placeholder="MAC">
+          <input type="text" class="form-control" name="mac" formControlName="mac" placeholder="MAC">
         </div>
       </div>
 
@@ -117,8 +110,7 @@
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Situação Equipamento</label>
           <select class="form-select form-control" formControlName="situacaoEquipamento">
-            <option *ngFor="let name of chaveSituacaoEquipamento"
-              [value]="name"> {{situacaoEquipamento[name]}}
+            <option *ngFor="let name of chaveSituacaoEquipamento" [value]="name"> {{situacaoEquipamento[name]}}
             </option>
           </select>
         </div>
@@ -129,25 +121,18 @@
           Adicionais</span></h3>
       <form [formGroup]="formAdicional">
         <div class="form-row">
-          <input type="hidden" formControlName="codigoInformacaoAdicional"
-            class="form-control">
+          <input type="hidden" formControlName="codigoInformacaoAdicional" class="form-control">
           <div class="form-group col-6 text-start">
             <label>Valor Pago</label>
-            <input type="text"
-            [ngClass]="cssValidator(fa.valorPago)"
-            formControlName="valorPago"
-            currencyMask
-              class="form-control"
-              name="valorPago" placeholder="R$ 0,00">
-            <div *ngIf="fa.valorPago.errors?.required"
-              class="invalid-feedback">
+            <input type="text" [ngClass]="cssValidator(fa.valorPago)" formControlName="valorPago" currencyMask
+              class="form-control" name="valorPago" placeholder="R$ 0,00">
+            <div *ngIf="fa.valorPago.errors?.required" class="invalid-feedback">
               O valor pago é obrigatório
             </div>
           </div>
           <div class="form-group col-6 text-start">
             <label>Data Compra</label>
-            <input type="date" formControlName="dataCompra" class="form-control"
-              name="dataCompra">
+            <input type="date" formControlName="dataCompra" class="form-control" name="dataCompra">
           </div>
         </div>
 
@@ -159,19 +144,16 @@
           </div>
           <div class="form-group col-6 text-start">
             <label>Antivirus</label>
-            <input type="text" formControlName="antivirus" class="form-control"
-              name="antivirus"
-              placeholder="Ex: Avast" autocomplete="antivirus">
+            <input type="text" formControlName="antivirus" class="form-control" name="antivirus" placeholder="Ex: Avast"
+              autocomplete="antivirus">
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-group col-6 text-start">
             <label>Versão Windows</label>
-            <input type="text" formControlName="versaoWindows"
-              class="form-control" name="versaoWindows"
-              placeholder="Ex: Windows Server"
-              autocomplete="versaoWindows">
+            <input type="text" formControlName="versaoWindows" class="form-control" name="versaoWindows"
+              placeholder="Ex: Windows Server" autocomplete="versaoWindows">
           </div>
         </div>
       </form>
@@ -179,7 +161,8 @@
         <div class="row">
           <div class="col">
             <button type="button" class="btn btn-block btn-success btn-lg"
-              [disabled]="!form.valid || !formAdicional.valid" (click)="salvarAlteracao()">{{this.estadoSalvar == 'cadastrarPatrimonio'?'Cadastrar':'Atualizar'}}</button>
+              [disabled]="!form.valid || !formAdicional.valid"
+              (click)="salvarAlteracao()">{{this.estadoSalvar == 'cadastrarPatrimonio'?'Cadastrar':'Atualizar'}}</button>
           </div>
           <div class="col">
             <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">Limpar</button>
@@ -189,6 +172,15 @@
     </div>
   </form>
 </div>
-<ngx-spinner name="cadastrado" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Cadastrando... </p></ngx-spinner>
-<ngx-spinner name="atualizado" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Atualizando... </p></ngx-spinner>
-<ngx-spinner name="carregando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Carregando... </p></ngx-spinner>
+<ngx-spinner name="cadastrado" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Cadastrando... </p>
+</ngx-spinner>
+<ngx-spinner name="atualizado" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Atualizando... </p>
+</ngx-spinner>
+<ngx-spinner name="carregando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Carregando... </p>
+</ngx-spinner>
