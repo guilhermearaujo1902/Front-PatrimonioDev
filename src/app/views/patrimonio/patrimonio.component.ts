@@ -36,6 +36,7 @@ export class PatrimonioComponent implements OnInit {
 
   public codigoPatrimonio: any;
   public serviceTag: any;
+  public nomeFantasiaEmpresaPadrao: any;
 
   get f(): any {
     return this.form.controls;
@@ -60,7 +61,6 @@ export class PatrimonioComponent implements OnInit {
     }
 
     public salvarAlteracao(): void {
-      debugger;
       let atualizando = this.estadoSalvar == 'atualizarPatrimonio';
       let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
 
@@ -73,7 +73,6 @@ export class PatrimonioComponent implements OnInit {
       this.patrimonioService[this.estadoSalvar](this.patrimonio, this.informacaoAdicional).subscribe(
         () => this.toaster.success(`Patrimônio ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
         (error: any) => {
-          debugger;
           let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
           this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"patrimônio", ['o','do'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
         },
@@ -102,21 +101,19 @@ export class PatrimonioComponent implements OnInit {
   public carregarPatrimonio() : void{
     this.activatedRoute.queryParams.subscribe(parametro => {this.codigoPatrimonio = parametro.codigoPatrimonio, this.serviceTag = parametro.serviceTag} );
 
-    debugger;
     if(this.codigoPatrimonio !== null && this.codigoPatrimonio !== 0 && typeof this.codigoPatrimonio != 'undefined'){
 
       this.estadoSalvar = 'atualizarPatrimonio';
       this.spinner.show('carregando');
 
       this.patrimonioService.obterPatrimonioEInformacaoAdicional(this.codigoPatrimonio).subscribe(listaDeResposta =>{
-        debugger;
         this.form.patchValue(listaDeResposta[0]);
         this.serviceTag = listaDeResposta[0].serviceTag;
         this.formAdicional.patchValue(listaDeResposta[1]);
+        this.nomeFantasiaEmpresaPadrao = listaDeResposta[2];
 
        },
        (error: any) => {
-
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro!');
 
@@ -128,7 +125,6 @@ export class PatrimonioComponent implements OnInit {
   private obterEquipamentos(): void {
     this.equipamento.obterTodosEquipamentos().subscribe(
       (result: Equipamento[]) =>{
-        debugger;
         this.equipamentos = result;
       },
       (error: any) =>{
@@ -175,7 +171,6 @@ export class PatrimonioComponent implements OnInit {
   }
 
   private validarCamposInformacaoAdicional(): void{
-    debugger;
     this.formAdicional = this.fbe.group<InformacaoAdicional>({
       codigoInformacaoAdicional: new FormControl(this.limpandoCampo? this.formAdicional.get('codigoInformacaoAdicional').value : 0, []),
       versaoWindows: new FormControl(''),

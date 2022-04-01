@@ -5,7 +5,7 @@
         <h1><span class="texto-destaque">Patrimônio</span></h1>
       </div>
       <div *ngIf="+form.controls.codigoPatrimonio.value != 0" class="form-group col-sm-12 col-md-4 col-lg-4 text-start">
-        <app-canvas codigoPatrimonio="{{codigoPatrimonio}}" serviceTag="{{serviceTag}}"></app-canvas>
+        <app-canvas codigoPatrimonio="{{codigoPatrimonio}}" serviceTag="{{serviceTag}}" nomeFantasia="{{nomeFantasiaEmpresaPadrao | uppercase | slice:0:18 }}"></app-canvas>
       </div>
     </div>
     <div class="p-3">

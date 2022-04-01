@@ -40,6 +40,9 @@
       <div class="font-small">{{ row.nomeFantasia}}</div>
     </td>
     <td *ngIf="!isMobile">
+      <div class="font-small">{{ row.empresaPadraoImpressao | booleano}} </div>
+    </td>
+    <td *ngIf="!isMobile">
       <div class="font-small">{{ row.cnpj}}</div>
     </td>
     <td *ngIf="isMobile">

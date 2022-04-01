@@ -79,7 +79,7 @@ export class ListarpatrimonioComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos patrimônios. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos patrimônios. Mensagem: ${template.mensagemErro}`, 'Erro');
 
       },
       complete: () => {

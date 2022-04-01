@@ -5,6 +5,7 @@ import { take } from 'rxjs/operators';
 import { Patrimonio } from '../../models/Patrimonio';
 import { ApiService } from '../api/api.service';
 import { environment } from '../../../environments/environment';
+import { EmpresaService } from '../empresa/empresa.service';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,6 @@ export class PatrimonioService {
   }
 
   public cadastrarPatrimonio(patrimonio: Patrimonio, informacaoAdicional: InformacaoAdicional): Observable<Patrimonio> {
-    debugger;
     return this.api
     .post<Patrimonio>(this.baseUrl, {patrimonio: patrimonio, informacaoAdicional: informacaoAdicional})
     .pipe(take(1));
@@ -32,28 +32,33 @@ export class PatrimonioService {
     .pipe(take(1));
   }
 
-  public obterApenasUmPatrimonio(patrimonioId: number): any{
+  public obterApenasUmPatrimonio(patrimonioId: number): Observable<any>{
     return this.api
     .get(`${this.baseUrl}/${patrimonioId}`)
     .pipe(take(1));
   }
 
-  public obterInformacaoAdicional(codigoPatrimonio: number): any{
-    return this.api.get<InformacaoAdicional[]>(`${environment.apiUrl}informacoes/${codigoPatrimonio}`).pipe(take(1));
+  private obterInformacaoAdicional(codigoPatrimonio: number): Observable<InformacaoAdicional>{
+    return this.api.get<InformacaoAdicional>(`${environment.apiUrl}informacoes/${codigoPatrimonio}`).pipe(take(1));
+  }
+
+  private obterEmpresaPadrao():  Observable<string>{
+    return this.api.get<string>(`${environment.apiUrl}empresas/empresaPadrao`, {responseType: 'text'}).pipe(take(1));
   }
 
   public atualizarPatrimonio(patrimonio: Patrimonio, informacaoAdicional: InformacaoAdicional): Observable<Patrimonio>{
-    debugger;
     return this.api
     .put<Patrimonio>(`${this.baseUrl}/${patrimonio.codigoPatrimonio}`, {patrimonio: patrimonio, informacaoAdicional: informacaoAdicional})
     .pipe(take(1));
   }
 
   public obterPatrimonioEInformacaoAdicional(codigoPatrimonio: number): Observable<any[]> {
+
     let respostaPatrimonio = this.obterApenasUmPatrimonio(codigoPatrimonio);
     let respostaInformacaoAdicional = this.obterInformacaoAdicional(codigoPatrimonio);
+    let respostaEmpresaPadrao = this.obterEmpresaPadrao();
 
-    return forkJoin([respostaPatrimonio, respostaInformacaoAdicional]);
+    return forkJoin([respostaPatrimonio, respostaInformacaoAdicional, respostaEmpresaPadrao]);
 
   }
 

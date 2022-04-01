@@ -19,6 +19,7 @@ export class CanvasTagComponent implements AfterViewInit {
   @Input('codigoPatrimonio') codigoPatrimonio: string;
   @Input('serviceTag') serviceTag: string;
   @Input('url') url: string;
+  @Input('nomeFantasia') nomeFantasia: string;
 
   private cx: CanvasRenderingContext2D;
 
@@ -98,7 +99,7 @@ export class CanvasTagComponent implements AfterViewInit {
 
   private escreverTextoNoCanvas(): void {
     this.cx.font = '20px "Roboto"';
-    this.cx.fillText(`PATRIMÔNIO PS`, 50, 200);
+    this.cx.fillText(this.nomeFantasia, 30, 200);
     this.cx.fillText(`SERVICE TAG: ${this.serviceTag}`, 330,210);
   }
 }

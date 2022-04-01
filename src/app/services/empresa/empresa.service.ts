@@ -19,8 +19,11 @@ export class EmpresaService {
   }
 
   public cadastrarEmpresa(empresa: Empresa): Observable<Empresa> {
-    debugger;
     return this.api.post<Empresa>(this.baseUrl, {empresa}).pipe(take(1));
+  }
+
+  public obterEmpresaPadrao(): Observable<string> {
+    return this.api.get<string>(`${this.baseUrl}/empresaPadrao`).pipe(take(1));
   }
 
   public deletarEmpresa(codigoEmpresa: number): Observable<any>{

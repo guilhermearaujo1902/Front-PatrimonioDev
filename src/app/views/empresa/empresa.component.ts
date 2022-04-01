@@ -48,7 +48,7 @@ export class EmpresaComponent implements OnInit {
       nomeFantasia: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
       cnpj: new FormControl('', [Validators.required, Validators.minLength(18), Validators.maxLength(18)]),
       razaoSocial: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(70)]),
-
+      empresaPadraoImpressao: new FormControl(false)
     });
   }
 
@@ -64,10 +64,11 @@ export class EmpresaComponent implements OnInit {
     this.spinner.show(nomeAcaoRealizada);
 
     this.empresa = (this.estadoSalvar === 'cadastrarEmpresa') ? {...this.form.value} : {codigoEmpresa: this.empresa.codigoEmpresa, ...this.form.value};
-
+    debugger;
     this.empresaService[this.estadoSalvar](this.empresa).subscribe(
       () => this.toaster.success(`Empresa ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
+        debugger;
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"empresa", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
       },
@@ -82,7 +83,6 @@ export class EmpresaComponent implements OnInit {
 
   private carregarEmpresa() : void{
     this.codigoEmpresa = +this.activateRouter.snapshot.paramMap.get('codigoEmpresa');
-
      if(this.codigoEmpresa !== null && this.codigoEmpresa !== 0){
 
       this.estadoSalvar = 'atualizarEmpresa';
@@ -93,6 +93,8 @@ export class EmpresaComponent implements OnInit {
            next: (empresa: Empresa) => {
              this.empresa = {...empresa};
              this.form.patchValue(this.empresa);
+             debugger;
+
            },
            error: (error: any) => {
             let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);

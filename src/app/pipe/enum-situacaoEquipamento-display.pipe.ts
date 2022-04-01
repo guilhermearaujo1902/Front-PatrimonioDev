@@ -6,8 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class EnumDisplayPipe implements PipeTransform {
 
-  transform<T>(value: number): unknown {
-    debugger;
+  transform(value: number): unknown {
     return SituacaoEquipamento[value];
   }
 

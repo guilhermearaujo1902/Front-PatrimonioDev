@@ -13,6 +13,9 @@ export abstract class MensagemRequisicao {
     debugger;
     switch (true) {
 
+      case mensagemServidorLowerCase.includes("a empresa de nome fantasia"):
+        return new TemplateMensagemRequisicao(mensagemServidor, TipoMensagem.info);
+
       case mensagemServidorLowerCase.includes("a instrução delete conflitou com a restrição do reference"):
         this.mensagemPadrao = "Não é possível excluir esse registro, pois o mesmo possui relacionamento com outros registros. Detalhe: Conflito FK.";
         return new TemplateMensagemRequisicao(this.mensagemPadrao, TipoMensagem.info);
