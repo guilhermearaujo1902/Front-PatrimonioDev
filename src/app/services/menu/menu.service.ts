@@ -17,7 +17,7 @@ export class MenuService {
             path: './setor',
           },
           {
-            name: 'Listar Setor',
+            name: 'Listagem de Setores',
             path: './listarSetor',
           },
           {
@@ -25,7 +25,7 @@ export class MenuService {
             path: './empresa',
           },
           {
-            name: 'Listar Empresa',
+            name: 'Listagem de Empresas',
             path: './listarEmpresa',
           },
           {
@@ -33,7 +33,7 @@ export class MenuService {
             path: './permissao',
           },
           {
-            name: 'Listar Permissões',
+            name: 'Listagem de Permissões',
             path: './listarPermissao',
           },
           {
@@ -41,7 +41,7 @@ export class MenuService {
             path: './fabricante',
           },
           {
-            name: 'Listar Fabricante',
+            name: 'Listagem de Fabricantes',
             path: './listarFabricante',
           },
           {
@@ -49,7 +49,7 @@ export class MenuService {
             path: './patrimonio',
           },
           {
-            name: 'Listar Patrimônio',
+            name: 'Listagem de Patrimônios',
             path: './listarPatrimonio',
           },
           {
@@ -61,7 +61,7 @@ export class MenuService {
             path: './equipamento',
           },
           {
-            name: 'Listar Equipamento',
+            name: 'Listagem de Equipamentos',
             path: './listarEquipamento',
           },
           {
@@ -69,7 +69,7 @@ export class MenuService {
             path: './usuario',
           },
           {
-            name: 'Listar Usuário',
+            name: 'Listagem de Usuários',
             path: './listarUsuario',
           },
           {
@@ -77,7 +77,7 @@ export class MenuService {
             path: './movimentacao',
           },
           {
-            name: 'Listar Movimentação',
+            name: 'Listagem de Movimentações',
             path: './listarMovimentacao',
           },
           {
@@ -89,7 +89,7 @@ export class MenuService {
             path: './funcionario',
           },
           {
-            name: 'Listar Funcionário',
+            name: 'Listagem de Funcionários',
             path: './listarFuncionario',
           },
           {
@@ -97,7 +97,7 @@ export class MenuService {
             path: './categoria',
           },
           {
-            name: 'Listar Categoria',
+            name: 'Listagem de Categorias',
             path: './listarCategoria',
           }
         ]

@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, On
 import { Fabricante } from '../../../models/Fabricante';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
-import configuracaoTabela from '../../../util/configuracao-tabela'
+import configuracaoTabela from '../../../utils/configuracao-tabela'
 import * as XLSX from 'xlsx';
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 

@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { EstatisticaService } from '../../services/estatistica/estatistica.service';
+import { Estatisticas } from '../../models/Estatistica';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { ToastrService } from 'ngx-toastr';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 
 @Component({
@@ -6,28 +11,66 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['widgets.component.scss']
 })
 export class WidgetsComponent implements OnInit {
-  ngOnInit(): void {
-  }
 
+  private estatisticaCategoria: Estatisticas[] = [];
 
-  // lineChart
-  public lineChartData: Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], backgroundColor: ['#20A8D8'], label: 'Meses'},
-
-  ];
-  public lineChartLabels: Array<any> = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho'];
-  public lineChartOptions: any = {
-    animation: true,
-    responsive: true
-  };
-
-
+  public lineChartData: Array<any> = [ { data: 0, backgroundColor: ['#20A8D8'], label: 'Categorias' }];
+  public lineChartLabels: Array<any> = [[' ']];
+  public lineChartOptions: any;
   public lineChartLegend = true;
   public lineChartType = 'line';
+  public quantidadeDeEquipamentos: number = 0;
 
+  constructor(private estatisticaService: EstatisticaService,
+              private toaster: ToastrService,
+              private spinner: NgxSpinnerService) {}
 
+  ngOnInit(): void {
+    this.obterEstatisticaCategoria()
+  }
 
+  private obterEstatisticaCategoria(): void {
 
+    this.spinner.show('graficoLinha');
 
+    this.estatisticaService.obterEstatisticasCategoria().subscribe(
+      (result: Estatisticas[]) => {
+        this.estatisticaCategoria = result;
+        this.construirGraficoQuantidadeEquipamentosCategoria();
+      },
+      (error: any) => {
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as informações do Dashboard. Mensagem: ${template.mensagemErro}`, 'Erro!');
+      }
+    ).add(()=> this.spinner.hide('graficoLinha'));
+  }
 
+  private construirGraficoQuantidadeEquipamentosCategoria(): void {
+
+    const quantidadeEquipamento = this.estatisticaCategoria.map((valorAtual) => {
+      return valorAtual.quantidadeEquipamento;
+    });
+
+    this.calcularQuantidadeDeEquipamentos(quantidadeEquipamento)
+
+    this.lineChartData = [ { data: quantidadeEquipamento,
+                             backgroundColor: ['#20A8D8'],
+                             label: 'Categorias' }];
+
+    this.lineChartLabels = this.estatisticaCategoria.map((valorAtual) => {
+      return valorAtual.nomeCategoria;
+    });
+
+    this.lineChartOptions = {
+      animation: true,
+      responsive: true,
+    };
+
+  }
+
+  private calcularQuantidadeDeEquipamentos(quantidadeEquipamento: number[]) {
+    for(let i = 0; i < quantidadeEquipamento.length; i++){
+      this.quantidadeDeEquipamentos += +quantidadeEquipamento[i];
+    }
+  }
 }

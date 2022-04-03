@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, On
 import * as XLSX from 'xlsx';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
-import configuracaoTabela from '../../../util/configuracao-tabela';
+import configuracaoTabela from '../../../utils/configuracao-tabela';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 

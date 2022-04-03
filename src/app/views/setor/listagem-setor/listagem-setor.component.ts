@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import * as XLSX from 'xlsx';
-import configuracaoTabela from '../../../util/configuracao-tabela'
+import configuracaoTabela from '../../../utils/configuracao-tabela'
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 
 @Component({

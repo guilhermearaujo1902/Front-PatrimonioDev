@@ -5,6 +5,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { WidgetsComponent } from './widgets.component';
 import { WidgetsRoutingModule } from './widgets-routing.module';
+import { NgxSpinnerModule, NgxSpinnerService } from 'ngx-spinner';
 
 
 
@@ -12,7 +13,8 @@ import { WidgetsRoutingModule } from './widgets-routing.module';
   imports: [
     WidgetsRoutingModule,
     BsDropdownModule,
-    ChartsModule
+    ChartsModule,
+    NgxSpinnerModule
   ],
   declarations: [ WidgetsComponent ]
 })

@@ -2,7 +2,7 @@ import { PermissaoService } from './../../../services/permissao/permissao.servic
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
-import configuracaoTabela from '../../../util/configuracao-tabela';
+import configuracaoTabela from '../../../utils/configuracao-tabela';
 import { TokenService } from '../../../services/token/token.service';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';

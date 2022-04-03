@@ -2,50 +2,50 @@
   <div class="row">
 
 
-    <div class="col-4 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card overflow-hidden">
         <div class="card-body p-0 d-flex align-items-center">
           <div class="bg-primary text-white py-5 px-1 me-3">
-            <i class="fa fa-money fa-3x bg-primary px-5  mr-3 float-left"></i>
+            <i class="fa fa-money fa-3x bg-primary px-3  mr-3 float-left"></i>
           </div>
           <div class="pl-3">
             <div class="fw-semibold text-primary texto-card">1500</div>
-            <div class="text-uppercase legenda-card fw-semibold"><p>Quantidades de movimentações</p></div>
+            <div class="text-uppercase legenda-card fw-semibold"><p>Movimentações</p></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-4 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card overflow-hidden">
         <div class="card-body p-0 d-flex align-items-center">
           <div class="bg-primary text-white py-5 px-1 me-3">
-            <i class="fa fa-user fa-3x bg-primary px-5  mr-3 float-left"></i>
+            <i class="fa fa-user fa-3x bg-primary px-3  mr-3 float-left"></i>
           </div>
           <div class="pl-3">
-            <div class="fw-semibold text-primary texto-card">1200</div>
-            <div class="text-uppercase legenda-card fw-semibold"><p>Total de equipamentos</p></div>
+            <div class="fw-semibold text-primary texto-card">{{quantidadeDeEquipamentos}}</div>
+            <div class="text-uppercase legenda-card fw-semibold"><p>Equipamentos</p></div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="col-4 col-lg-4">
-      <div class="card overflow-hidden">
+    <div class="col-12 col-sm-6 col-lg-4">
+      <div class="card ">
         <div class="card-body p-0 d-flex align-items-center">
           <div class="bg-primary text-white py-5 px-1 me-3">
-            <i class="fa fa-trash fa-3x bg-primary px-5  mr-3 float-left"></i>
+            <i class="fa fa-trash fa-3x bg-primary px-3 mr-3 float-left"></i>
           </div>
           <div class="pl-3">
             <div class="fw-semibold text-primary texto-card">1200</div>
-            <div class="text-uppercase legenda-card fw-semibold"><p>Quantidades de equipamentos por tipo</p></div>
+            <div class="text-uppercase legenda-card fw-semibold"><p>Equipamentos por funcionário</p></div>
           </div>
         </div>
       </div>
     </div>
 
 
-    <div class="col-4 col-lg-4">
+    <div class="col-12 col-sm-6 col-lg-4">
       <div class="card">
         <div class="card-body">
           <div class="h4 mb-0 texto-card">385/1000</div>
@@ -59,7 +59,7 @@
 </div>
 
 <div class="card-body">
-  <h2 class="text-uppercase text-center pb-5 mt-5" id="titulo-grafico">Valores Gastos nos últimos 7 meses</h2>
+  <h2 class="text-uppercase text-center pb-5 mt-5" id="titulo-grafico">Quantidade de equipamentos por Categoria</h2>
   <div class="chart-wrapper">
     <canvas baseChart class="chart"
     [datasets]="lineChartData"
@@ -67,7 +67,9 @@
     [options]="lineChartOptions"
     [legend]="lineChartLegend"
    ></canvas>
+   <ngx-spinner name="graficoLinha" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Carregando informações... </p></ngx-spinner>
   </div>
+
 </div>
 
 </div>

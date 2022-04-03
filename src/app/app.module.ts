@@ -78,6 +78,7 @@ import { EnumDisplayPipe } from './pipe/enum-situacaoEquipamento-display.pipe';
 import { CanvasTagComponent } from './views/canvas-tag/canvas-tag.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BooleanoPipe } from './pipe/booleano.pipe';
+import { WidgetsComponent } from './views/widgets/widgets.component';
 
 
 const customCurrencyMaskConfig = {

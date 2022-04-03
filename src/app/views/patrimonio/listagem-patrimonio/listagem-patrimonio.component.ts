@@ -8,7 +8,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token/token.service';
-import configuracaoTabela from '../../../util/configuracao-tabela';
+import configuracaoTabela from '../../../utils/configuracao-tabela';
 import * as XLSX from 'xlsx';
 
 @Component({
