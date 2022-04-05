@@ -12,7 +12,7 @@ import { SocialAuthService } from 'angularx-social-login';
   templateUrl: './default-layout.component.html'
 })
 
-export class DefaultLayoutComponent implements OnInit{
+export class DefaultLayoutComponent implements OnInit {
 
   public sidebarMinimized = false;
   public navItemsLayout = [];
@@ -26,12 +26,12 @@ export class DefaultLayoutComponent implements OnInit{
     private _router: Router,
     private menuService: MenuService,
     private token: TokenService,
-    private authService: SocialAuthService){
-      this.authService.authState.subscribe((user) => {
-        this.estaLogadoAuth = (user != null);
-      });
+    private authService: SocialAuthService) {
+    this.authService.authState.subscribe((user) => {
+      this.estaLogadoAuth = (user != null);
+    });
 
-    }
+  }
 
   ngOnInit(): void {
     this.menu = this.menuService.obterMenu();
@@ -46,7 +46,7 @@ export class DefaultLayoutComponent implements OnInit{
 
       case Permissao.Gestor:
         navItems.forEach(rota => {
-          if(rota.permissaoDoUsuario !== 1){
+          if (rota.permissaoDoUsuario !== 1) {
             this.navItemsPermissao.push(rota)
           }
         });
@@ -59,7 +59,7 @@ export class DefaultLayoutComponent implements OnInit{
 
         navItems.forEach(rota => {
 
-          if(rota.permissaoDoUsuario == 3){
+          if (rota.permissaoDoUsuario == 3) {
             this.navItemsPermissao.push(rota)
           }
 
@@ -70,13 +70,13 @@ export class DefaultLayoutComponent implements OnInit{
 
       default:
         this.navItemsLayout = navItems;
-      break;
+        break;
     }
   }
 
   private signOutAuth(): void {
 
-    if(this.estaLogadoAuth)
+    if (this.estaLogadoAuth)
       this.authService.signOut(true);
 
   }
@@ -85,7 +85,7 @@ export class DefaultLayoutComponent implements OnInit{
     this.sidebarMinimized = e;
   }
 
-  public logOut(){
+  public logOut() {
 
     this.signOutAuth();
     //TODO: JOGAR PARA CLASSE DE TOKEN
@@ -93,31 +93,51 @@ export class DefaultLayoutComponent implements OnInit{
     this._router.navigate(["login"]);
   }
 
-  ouvirRota(): void {
+  private ouvirRota(): void {
     let routerUrl: string, routerList: Array<any>, target: any;
+    routerUrl = this._router.url;
 
-    this._router.events.subscribe((router: any) => {
-      routerUrl = router.urlAfterRedirects;
-      if (routerUrl && typeof routerUrl === 'string') {
+    this._router.events.subscribe(
+      (router: any) => {
+        debugger;
+        routerUrl = router.url;
 
-        target = this.menu;
+        if (routerUrl && typeof routerUrl === 'string') {
 
-        this.breadcrumbList.length = 0;
-        routerList = routerUrl.slice(1).split('/');
-        routerList.forEach((router, index) => {
-          if(typeof target !== 'undefined' || target !== null){
-             target = target?.find(page => page.path.slice(2) === router);
-          }
-          this.breadcrumbList.push({
-            name: target?.name ,
-            path: (index === 0) ? target?.path : `${this.breadcrumbList[index - 1]?.path}/${target?.path.slice(2)}`
-          });
+          target = this.menu;
 
-          if (index + 1 !== routerList.length) {
-            target = target.children;
-          }
-        });
+          this.breadcrumbList.length = 0;
+
+          routerList = routerUrl.slice(1).split('/');
+
+          this.percorrerMenus(routerList, target);
+        }
+        return;
+      });
+
+      this.percorrerMenus(this._router.url.slice(1).split('/'), this.menu)
+  }
+
+  private percorrerMenus(url: any[], menus: any): void {
+
+    url.forEach((router, index) => {
+
+      if (index > 1)
+        return;
+
+      if (typeof menus !== 'undefined' || menus !== null) {
+        menus = menus?.find(page => page.path.slice(2) === router);
+      }
+
+      this.breadcrumbList.push({
+        name: menus?.name,
+        path: (index === 0) ? menus?.path : `${this.breadcrumbList[index - 1]?.path}/${menus?.path.slice(2)}`
+      });
+
+      if (index + 1 !== url.length) {
+        menus = menus.children;
       }
     });
+
   }
 }
