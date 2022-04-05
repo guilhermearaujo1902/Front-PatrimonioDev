@@ -23,7 +23,7 @@ export class DefaultLayoutComponent implements OnInit {
   public estaLogadoAuth: boolean;
 
   constructor(
-    private _router: Router,
+    private router: Router,
     private menuService: MenuService,
     private token: TokenService,
     private authService: SocialAuthService) {
@@ -50,7 +50,6 @@ export class DefaultLayoutComponent implements OnInit {
             this.navItemsPermissao.push(rota)
           }
         });
-        //TODO: VALIDAR ERRO
 
         this.navItemsLayout = this.navItemsPermissao;
         break;
@@ -88,16 +87,15 @@ export class DefaultLayoutComponent implements OnInit {
   public logOut() {
 
     this.signOutAuth();
-    //TODO: JOGAR PARA CLASSE DE TOKEN
-    localStorage.removeItem('valor');
-    this._router.navigate(["login"]);
+    this.token.removerToken();
+    this.router.navigate(['login']);
   }
 
   private ouvirRota(): void {
     let routerUrl: string, routerList: Array<any>, target: any;
-    routerUrl = this._router.url;
+    routerUrl = this.router.url;
 
-    this._router.events.subscribe(
+    this.router.events.subscribe(
       (router: any) => {
         debugger;
         routerUrl = router.url;
@@ -115,7 +113,7 @@ export class DefaultLayoutComponent implements OnInit {
         return;
       });
 
-      this.percorrerMenus(this._router.url.slice(1).split('/'), this.menu)
+      this.percorrerMenus(this.router.url.slice(1).split('/'), this.menu)
   }
 
   private percorrerMenus(url: any[], menus: any): void {

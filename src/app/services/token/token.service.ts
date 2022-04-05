@@ -13,8 +13,8 @@ export class TokenService {
   private readonly nomeCampoPermissao = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role";
 
   constructor(
-    private encriptar: EncryptDecryptService,
-     public jwtHelper: JwtHelperService){
+     private encriptar: EncryptDecryptService,
+     private jwtHelper: JwtHelperService){
   }
 
   public obterTokenDescriptografado(): string {
@@ -53,5 +53,9 @@ export class TokenService {
   public usuarioEstaAutenticado(){
     const token: string = localStorage.getItem('valor');
     return !this.jwtHelper.isTokenExpired(this.encriptar.decrypt(token));
+  }
+
+  public removerToken(){
+    localStorage.removeItem('valor');
   }
 }
