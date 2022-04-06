@@ -181,5 +181,17 @@ export const navItems: INewNavData[] = [
         icon: 'fa fa-list'
       }
      ]
+  },
+  {
+    name: 'Relatório',
+    title: true,
+    permissaoDoUsuario: Permissao.Usuario,
+
+  },
+  {
+    name: 'Relatório de perdas',
+    url: '/dashboard/listarPerdas',
+    icon: "fa fa-files-o",
+    permissaoDoUsuario: Permissao.Usuario
   }
 ];

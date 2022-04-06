@@ -71,7 +71,7 @@
             data-toggle="dropdown" aria-expanded="false">
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" role="button" data-toggle="modal" data-target="#staticBackdrop">Declarar Perda</a>
+            <a class="dropdown-item" role="button" data-toggle="modal" (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#staticBackdrop">Declarar Perda</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" role="button">Cadastrar Mov.</a>
             <a class="dropdown-item" role="button">Listar Mov.</a>
@@ -116,13 +116,15 @@
       aria-expanded="false">
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item sem-borda" role="button" href="#">Declarar Perda</a>
+      <a class="dropdown-item sem-borda" role="button" (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" href="#">Declarar Perda</a>
       <div class="dropdown-divider sem-borda"></div>
       <a class="dropdown-item sem-borda" role="button" href="#">Cadastrar Mov.</a>
       <a class="dropdown-item sem-borda" role="button" href="#">Listar Mov.</a>
     </div>
   </div>
+
 </ng-template>
+
 <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1"
   aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -132,11 +134,12 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
-        <app-perda></app-perda>
+        <app-perda codigoPatrimonio="{{patrimonioId}}"></app-perda>
       </div>
     </div>
   </div>
 </div>
+
 <ngx-spinner name="buscando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"
   [fullScreen]="true">
   <p style="color: white">

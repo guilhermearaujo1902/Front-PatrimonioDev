@@ -6,13 +6,13 @@
       <div class="form-row">
         <div class="form-group col-12 text-start">
           <label>Motivo da perda</label>
-          <textarea [ngClass]="cssValidator(f.motivo)" formControlName="motivo"
+          <textarea [ngClass]="cssValidator(f.motivoDaPerda)" formControlName="motivoDaPerda"
             class="form-control" name="motivo" rows="5" cols="50" required></textarea>
-          <div *ngIf="f.motivo.errors?.required" class="invalid-feedback">O
+          <div *ngIf="f.motivoDaPerda.errors?.required" class="invalid-feedback">O
             motivo é obrigatório</div>
-          <div *ngIf="f.motivo.errors?.maxlength" class="invalid-feedback">O
+          <div *ngIf="f.motivoDaPerda.errors?.maxlength" class="invalid-feedback">O
             motivo pode ter no máximo 300 caracteres</div>
-          <div *ngIf="f.motivo.errors?.minlength" class="invalid-feedback">O
+          <div *ngIf="f.motivoDaPerda.errors?.minlength" class="invalid-feedback">O
             motivo pode ter no mínimo 30 caracteres</div>
 
         </div>
@@ -21,7 +21,7 @@
         <div class="row">
           <div class="col">
             <button type="button" class="btn btn-block btn-success btn-lg"
-              [disabled]="!form.valid">Declarar</button>
+              [disabled]="!form.valid" (click)="salvarAlteracao()">Declarar</button>
           </div>
         </div>
       </div>

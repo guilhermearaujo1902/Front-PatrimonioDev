@@ -92,13 +92,13 @@ export class ListarpatrimonioComponent implements OnInit {
   }
 
   public confirmar(): void {
+
     this.modalRef?.hide();
     this.spinner.show("excluindo");
 
-    debugger;
     this.patrimonioService.excluirPatrimonio(this.patrimonioId).subscribe(
       () => {
-        this.toaster.success('Patrimônio excluído com sucesso!', 'Deletado');
+        this.toaster.success('Patrimônio excluído com sucesso!', 'Excluído');
         this.obterPatrimonios();
       },
       (error: any) => {
@@ -150,6 +150,9 @@ export class ListarpatrimonioComponent implements OnInit {
     } catch (err) {
       this.toaster.error(`Não foi possível exportar a planilha. Mensagem: ${err}`, "Erro")
     }
+  }
+  public atribuirCodigoPatrimonio(codigoPatrimonio: number): void {
+    this.patrimonioId = codigoPatrimonio;
   }
 
   private obterColunasDaTabela(): any {

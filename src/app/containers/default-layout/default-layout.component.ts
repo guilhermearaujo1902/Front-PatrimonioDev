@@ -97,7 +97,6 @@ export class DefaultLayoutComponent implements OnInit {
 
     this.router.events.subscribe(
       (router: any) => {
-        debugger;
         routerUrl = router.url;
 
         if (routerUrl && typeof routerUrl === 'string') {
@@ -106,14 +105,14 @@ export class DefaultLayoutComponent implements OnInit {
 
           this.breadcrumbList.length = 0;
 
-          routerList = routerUrl.slice(1).split('/');
+          routerList = routerUrl.slice(1).replaceAll('?', '$').replaceAll('/', '$').split('$');
 
           this.percorrerMenus(routerList, target);
         }
         return;
       });
 
-      this.percorrerMenus(this.router.url.slice(1).split('/'), this.menu)
+      this.percorrerMenus(this.router.url.slice(1).replaceAll('?', '$').replaceAll('/', '$').split('$'), this.menu)
   }
 
   private percorrerMenus(url: any[], menus: any): void {
