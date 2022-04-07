@@ -19,8 +19,8 @@
     <ng-template let-row let-index="index">
       <td class="perda">
         <div class="font-small"><p class="identificador">Código da Perda:</p> {{ row.codigoPerda}}</div>
-        <div class="font-small"><p class="identificador">Nome do funcionário:</p> {{ row.nomeFuncionario | uppercase}}</div>
-        <div class="font-small"><p class="identificador">Nome do usuário:</p> {{ row.nomeUsuario | uppercase}}</div>
+        <div class="font-small"><p class="identificador" data-toggle="tooltip" data-placement="top" title="Nome do funcionário vinculado ao equipamento">Nome do funcionário:</p> {{ row.nomeFuncionario | uppercase}}</div>
+        <div class="font-small"><p class="identificador" data-toggle="tooltip" data-placement="top" title="Nome do usuário que registrou a perda">Nome do usuário:</p> {{ row.nomeUsuario | uppercase}}</div>
         <div class="font-small"><p class="identificador">Equipamento:</p> {{ row.tipoEquipamento}}</div>
         <div class="font-small"><p id="perda-motivo">Motivo da Perda:</p> <p id="perda-motivo-texto">{{ row.motivoDaPerda}}</p></div>
       </td>

@@ -48,7 +48,8 @@
               "xlsx",
               "crypto-js",
               "ng2-charts",
-              "qrcode"
+              "qrcode",
+              "jquery"
             ]
           },
           "configurations": {

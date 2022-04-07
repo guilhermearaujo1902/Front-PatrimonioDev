@@ -1,8 +1,10 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { AfterViewChecked, ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import * as XLSX from 'xlsx';
+import * as $ from 'jquery';
+import 'bootstrap'
 import { MensagemRequisicao } from '../../../../helpers/MensagemRequisicao';
 import { PerdaRelatorio } from '../../../../models/relatorios/PerdaRelatorio';
 import { TokenService } from '../../../../services/token/token.service';
@@ -16,7 +18,7 @@ import { PerdaService } from '../../../../services/perda/perda.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
-export class RelatorioPerdaComponent implements OnInit {
+export class RelatorioPerdaComponent implements OnInit, AfterViewChecked  {
 
   @ViewChild('table', { static: true }) table: APIDefinition;
 
@@ -48,6 +50,10 @@ export class RelatorioPerdaComponent implements OnInit {
     this.linhas = this.data.map((_) => _.codigoPerda).reduce((acc, cur) => cur + acc, 0);
 
     this.colunas = this.obterColunasDaTabela();
+  }
+
+  ngAfterViewChecked() {
+    $('[data-toggle="tooltip"]').tooltip();
   }
 
   get isMobile(): boolean {
