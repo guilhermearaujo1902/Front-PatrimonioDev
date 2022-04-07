@@ -172,8 +172,8 @@ export class ListarpatrimonioComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.colunas = [
-        { key: 'nomeFuncionario', title: 'Funcionário' },
         { key: 'tipoEquipamento', title: 'Equipamento' },
+        { key: 'nomeFuncionario', title: 'Funcionário' },
         { key: '', title: 'Expandir' },
       ];
     } else {
