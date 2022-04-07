@@ -190,7 +190,7 @@ export const navItems: INewNavData[] = [
   },
   {
     name: 'Relatório de perdas',
-    url: '/dashboard/listarPerdas',
+    url: '/dashboard/relatorioPerda',
     icon: "fa fa-files-o",
     permissaoDoUsuario: Permissao.Usuario
   }

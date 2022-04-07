@@ -86,7 +86,6 @@ export class ListagemFuncionarioComponent implements OnInit {
 
       },
       complete: () =>{
-        this.configuracao.isLoading = false;
         this.detectorAlteracao.markForCheck();
 
       }

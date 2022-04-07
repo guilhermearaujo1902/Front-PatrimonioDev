@@ -79,6 +79,7 @@ import { CanvasTagComponent } from './views/canvas-tag/canvas-tag.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BooleanoPipe } from './pipe/booleano.pipe';
 import { WidgetsComponent } from './views/widgets/widgets.component';
+import { RelatorioPerdaComponent } from './views/relatorio/relatorio-perda/relatorio-perda/relatorio-perda.component';
 
 
 const customCurrencyMaskConfig = {
@@ -167,7 +168,8 @@ const customCurrencyMaskConfig = {
     ListagemFuncionarioComponent,
     EnumDisplayPipe,
     CanvasTagComponent,
-    BooleanoPipe
+    BooleanoPipe,
+    RelatorioPerdaComponent
    ],
   providers: [
     {

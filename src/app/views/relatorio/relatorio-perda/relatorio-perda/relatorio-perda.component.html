@@ -1,0 +1,44 @@
+<div class="card rounded shadow-sm p-3 m-5">
+  <div class="d-flex mb-1">
+    <div class="flex-fill pr-3">
+
+      <div class="input-group mb-2">
+        <div class="input-group-prepend">
+          <div class="input-group-text">Filtro: </div>
+        </div>
+        <input type="text" placeholder="Buscar por perdas" class="form-control" (input)="onChange($event)" />
+      </div>
+    </div>
+    <div class="ml-1" *ngIf="ehAdministrador">
+      <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1"
+          id="icone-excel"></i> Exportar para Excel</button>
+    </div>
+  </div>
+  <ngx-table [data]="data" [configuration]="configuracao" [columns]="colunas" [noResultsTemplate]="mensagemSemCadastro"
+    [summaryTemplate]="summaryTemplateRef" #table>
+    <ng-template let-row let-index="index">
+      <td class="perda">
+        <div class="font-small"><p class="identificador">Código da Perda:</p> {{ row.codigoPerda}}</div>
+        <div class="font-small"><p class="identificador">Nome do funcionário:</p> {{ row.nomeFuncionario | uppercase}}</div>
+        <div class="font-small"><p class="identificador">Nome do usuário:</p> {{ row.nomeUsuario | uppercase}}</div>
+        <div class="font-small"><p class="identificador">Equipamento:</p> {{ row.tipoEquipamento}}</div>
+        <div class="font-small"><p id="perda-motivo">Motivo da Perda:</p> <p id="perda-motivo-texto">{{ row.motivoDaPerda}}</p></div>
+      </td>
+    </ng-template>
+  </ngx-table>
+</div>
+
+<ng-template #mensagemSemCadastro>
+  <td [attr.colspan]="colunas.length" class="no-results text-center">
+    <h4>Não há nenhuma perda cadastrada</h4>
+  </td>
+</ng-template>
+
+<ng-template #summaryTemplateRef let-total="total">
+  <th>Total de registros: {{ total }}</th>
+</ng-template>
+
+<ngx-spinner name="buscando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"
+  [fullScreen]="true">
+  <p style="color: white"> Buscando... </p>
+</ngx-spinner>

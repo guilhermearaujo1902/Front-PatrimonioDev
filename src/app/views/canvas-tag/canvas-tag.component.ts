@@ -1,6 +1,7 @@
 import { CanvasImagem } from './../../models/CanvasImagem';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-canvas',
@@ -9,7 +10,7 @@ import { environment } from '../../../environments/environment';
 })
 export class CanvasTagComponent implements AfterViewInit {
 
-  constructor(private detectorAlteracao: ChangeDetectorRef) {}
+  constructor(private detectorAlteracao: ChangeDetectorRef, private toaster: ToastrService) {}
 
   @ViewChild('canvas') public canvas: ElementRef;
 
@@ -79,6 +80,13 @@ export class CanvasTagComponent implements AfterViewInit {
   }
 
   public downloadQrCode(): void{
+    if(this.nomeFantasia == ''){
+      this.toaster.toastrConfig.timeOut = 9000;
+      this.toaster.info('É necessário que tenha alguma empresa com a opção de "Empresa padrão para impressão" como "SIM" para gerar a etiqueta','Aviso')
+      return;
+    }
+
+
     let linkDownload = document.getElementById("download");
     let image = this.cx.canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     linkDownload.setAttribute('href',image)

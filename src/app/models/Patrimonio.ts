@@ -12,7 +12,7 @@ export interface Patrimonio {
   armazenamento: string;
   processador: string;
   placaDeVideo: string;
-  situacaoEquipamento: number,
-  mac: string,
-  memoriaRAM: string,
+  situacaoEquipamento: number;
+  mac: string;
+  memoriaRAM: string;
 }

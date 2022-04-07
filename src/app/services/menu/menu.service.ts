@@ -99,6 +99,10 @@ export class MenuService {
           {
             name: 'Listagem de Categorias',
             path: './listarCategoria',
+          },
+          {
+            name: 'Relatório de Perdas',
+            path: './relatorioPerda',
           }
         ]
       },

@@ -1,4 +1,4 @@
 export interface Estatisticas {
-  nomeCategoria: string,
-  quantidadeEquipamento: number
+  nomeCategoria: string;
+  quantidadeEquipamento: number;
 }

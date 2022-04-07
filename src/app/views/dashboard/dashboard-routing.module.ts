@@ -20,6 +20,7 @@ import { FuncionarioRoutingModule } from '../funcionario/funcionario-routing.mod
 import { RoleGuardService } from '../../services/auth/role-guard.service';
 import { Permissao } from '../../models/enums/permissao.enum';
 import { PerdaComponent } from '../perda/perda.component';
+import { RelatorioPerdaComponent } from '../relatorio/relatorio-perda/relatorio-perda/relatorio-perda.component';
 
 const routes: Routes = [
   {
@@ -90,8 +91,14 @@ const routes: Routes = [
     data: {
       title: 'perda'
     }
-  }
-  ,
+  },
+  {
+    path: 'relatorioPerda',
+    component: RelatorioPerdaComponent,
+    data: {
+      title: 'relatorioPerda'
+    }
+  },
   {
     path: 'equipamento',
     component: EquipamentoComponent,
