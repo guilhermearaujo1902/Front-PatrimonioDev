@@ -148,7 +148,7 @@ export class LoginComponent implements OnInit {
 
         }else{
           let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-          this.toaster[template.tipoMensagem](`Houve um erro ao fazer login. Mensagem: ${template.mensagemErro}`, 'Erro!');
+          this.toaster[template.tipoMensagem](`Houve um erro ao fazer login. Mensagem: ${template.mensagemErro}`, template.titulo);
         }
       }
     ).add(() => this.spinner.hide())

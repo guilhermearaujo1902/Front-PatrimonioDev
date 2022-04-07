@@ -68,7 +68,7 @@ export class CategoriaComponent implements OnInit {
       () => this.toaster.success(`Categoria ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"categoria", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"categoria", ['o','da'])} Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () =>
       {
@@ -91,14 +91,12 @@ export class CategoriaComponent implements OnInit {
        this.categoriaService.obterApenasUmaCategoria(this.codigoCategoria).subscribe(
          {
            next: (categoria: Categoria) => {
-             debugger;
              this.categoria = {...categoria};
              this.form.patchValue(this.categoria);
            },
            error: (error: any) => {
-             debugger;
             let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-            this.toaster[template.tipoMensagem](`Houve um problema ao carregar a categoria. Mensagem: ${template.mensagemErro}`, 'Erro!');
+            this.toaster[template.tipoMensagem](`Houve um problema ao carregar a categoria. Mensagem: ${template.mensagemErro}`, template.titulo);
            }
          }
        ).add(() => this.spinner.hide('carregando'));

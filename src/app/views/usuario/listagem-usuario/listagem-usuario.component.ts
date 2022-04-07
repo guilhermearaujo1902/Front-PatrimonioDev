@@ -90,7 +90,7 @@ export class ListagemUsuarioComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos usuários. Mensagem: ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos usuários. Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       complete: () =>{
         this.detectorAlteracao.markForCheck();
@@ -141,7 +141,7 @@ export class ListagemUsuarioComponent implements OnInit {
      },
      (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao desativar o usuário. Mensagem: ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao desativar o usuário. Mensagem: ${template.mensagemErro}`, template.titulo);
      }
     ).add(() => this.spinner.hide("desativando"))
   }

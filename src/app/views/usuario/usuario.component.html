@@ -188,7 +188,7 @@
               [disabled]="!form.valid"
               (click)="salvarAlteracao()"
             >
-              Cadastrar
+            {{this.estadoSalvar.includes('cadastrar')?'Cadastrar':'Atualizar'}}
             </button>
           </div>
           <div class="col">

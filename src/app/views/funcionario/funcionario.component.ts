@@ -81,7 +81,7 @@ export class FuncionarioComponent implements OnInit {
       (error: any) => {
         debugger;
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"funcionário", ['o','do'])}. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"funcionário", ['o','do'])}. Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () => {
         setTimeout(() => {
@@ -107,7 +107,7 @@ export class FuncionarioComponent implements OnInit {
            },
            error: (error: any) => {
             let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-            this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o funcionário. Mensagem: ${template.mensagemErro}`, 'Erro!');
+            this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o funcionário. Mensagem: ${template.mensagemErro}`, template.titulo);
            }
          }
        ).add(() => this.spinner.hide('carregando'));

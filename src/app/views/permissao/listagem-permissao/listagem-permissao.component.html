@@ -1,70 +1,61 @@
-
 <div class="card rounded shadow-sm p-3 m-5">
   <div class="d-flex mb-1">
     <div class="flex-fill pr-3">
 
       <div class="input-group mb-2">
-          <div class="input-group-prepend">
-              <div class="input-group-text">Filtro: </div>
-          </div>
-          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)"/>
+        <div class="input-group-prepend">
+          <div class="input-group-text">Filtro: </div>
+        </div>
+        <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
       </div>
-     </div>
-      <div>
-          <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/permissao">
-              <i class="fa fa-plus-circle my-1"></i>
-              <b class="ml-1 d-none d-sm-block"> Novo</b>
-          </a>
-      </div>
-      <div class="ml-1" *ngIf="ehAdministrador" >
-        <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1" id="icone-excel"></i> Exportar para Excel</button>
-      </div>
+    </div>
+    <div>
+      <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/permissao">
+        <i class="fa fa-plus-circle my-1"></i>
+        <b class="ml-1 d-none d-sm-block"> Novo</b>
+      </a>
+    </div>
+    <div class="ml-1" *ngIf="ehAdministrador">
+      <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1"
+          id="icone-excel"></i> Exportar para Excel</button>
+    </div>
   </div>
-  <ngx-table
-  [data]="data"
-  [configuration]="configuracao"
-  [columns]="colunas"
-  [noResultsTemplate]="mensagemSemCadastro"
-  [summaryTemplate]="summaryTemplateRef"
-  [detailsTemplate]="detailsTemplate"
-
-  #table>
-  <ng-template let-row let-index="index">
-    <td>
-      <div class="font-small">{{ row.codigoUsuarioPermissao }}</div>
-    </td>
-    <td>
-      <span class="font-small">{{ row.descricaoPermissao }}</span>
-    </td>
-    <td *ngIf="!isMobile">
-      <span class="font-small">{{ row.ativo }}</span>
-    </td>
-    <td *ngIf="isMobile">
-      <button
-        class="btn btn-primary"
-        id="expandButton-{{ index }}"
-        (click)="onRowClickEvent($event, index)"
-      >
-        <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
-        <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
-        Expandir
-      </button>
-    </td>
-    <td *ngIf="!isMobile">
-      <button class="btn btn-warning btn-lg" (click)="detalhePermissao(row.codigoUsuarioPermissao)">
-        Alterar
-      </button>
+  <ngx-table [data]="data" [configuration]="configuracao" [columns]="colunas" [noResultsTemplate]="mensagemSemCadastro"
+    [summaryTemplate]="summaryTemplateRef" [detailsTemplate]="detailsTemplate" #table>
+    <ng-template let-row let-index="index">
+      <td *ngIf="!isMobile">
+        <div class="font-small">{{ row.codigoUsuarioPermissao }}</div>
       </td>
-    <td *ngIf="!isMobile">
+      <td>
+        <div class="font-small">{{ row.descricaoPermissao }}</div>
+      </td>
+      <td *ngIf="!isMobile">
+        <div class="font-small">{{ row.ativo }}</div>
+      </td>
+      <td *ngIf="isMobile">
+        <button class="btn btn-primary" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
+          <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+          <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
+          Expandir
+        </button>
+      </td>
+      <td *ngIf="!isMobile">
+        <button class="btn btn-warning btn-lg" (click)="detalhePermissao(row.codigoUsuarioPermissao)">
+          Alterar
+        </button>
+      </td>
+      <td *ngIf="!isMobile">
         <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoUsuarioPermissao)">
           Desativar
         </button>
-    </td>
+      </td>
 
     </ng-template>
   </ngx-table>
 </div>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade" [fullScreen]="true">
+  <p style="color: white"> Buscando... </p>
+</ngx-spinner>
 
 <ng-template #template>
   <div class="modal-body text-center">
@@ -84,18 +75,20 @@
 </ng-template>
 
 <ng-template #detailsTemplate let-row>
-    <button
-      class="btn btn-warning btn-lg"
-      (click)="detalhePermissao(row.codigoUsuarioPermissao)"
-    >
-      Alterar
+    <p class="font-small">Código Permissão: {{ row.codigoUsuarioPermissao }}</p>
+    <p class="font-small">Situação: {{ row.ativo }}</p>
+  <button class="btn btn-warning btn-lg mr-3" (click)="detalhePermissao(row.codigoUsuarioPermissao)">
+    Alterar
   </button>
-  <button
-  class="btn btn-danger btn-lg"
-  (click)="abrirModal($event, template, row.codigoUsuarioPermissao)"
->
-  Desativar
-</button>
+  <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoUsuarioPermissao)">
+    Desativar
+  </button>
 </ng-template>
-<ngx-spinner name="buscando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
-<ngx-spinner name="desativando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Desativando... </p></ngx-spinner>
+<ngx-spinner name="buscando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"
+  [fullScreen]="true">
+  <p style="color: white"> Buscando... </p>
+</ngx-spinner>
+<ngx-spinner name="desativando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"
+  [fullScreen]="true">
+  <p style="color: white"> Desativando... </p>
+</ngx-spinner>

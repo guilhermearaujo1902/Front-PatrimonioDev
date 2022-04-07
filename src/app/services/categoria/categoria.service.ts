@@ -15,12 +15,10 @@ export class CategoriaService {
   constructor(private api: ApiService) { }
 
   public cadastrarCategoria(categoria: Categoria): Observable<Categoria> {
-    debugger;
     return this.api.post<Categoria>(this.baseUrl, {categoria}).pipe(take(1));
   }
 
   public obterTodasCategorias(): Observable<Categoria[]> {
-    debugger;
     return this.api.get<Categoria[]>(this.baseUrl).pipe(take(1));
   }
 

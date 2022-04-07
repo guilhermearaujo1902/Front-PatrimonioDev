@@ -65,8 +65,8 @@ export class PermissaoComponent implements OnInit {
              this.form.patchValue(this.permissao);
            },
            error: (error: any) => {
-             this.toaster.error(`Houve um problema ao carregar a permissão. Mensagem: ${MensagemRequisicao.retornarMensagemTratada(error.message)}`, 'Erro!');
-           }
+            let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+            this.toaster[template.tipoMensagem](`Houve um erro ao carregar a permissão. Mensagem ${template.mensagemErro}`, template.titulo);           }
          }
        ).add(() => this.spinner.hide('carregando'));
      }
@@ -97,7 +97,7 @@ export class PermissaoComponent implements OnInit {
       () => this.toaster.success(`Permissão ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"permissão", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"permissão", ['o','da'])} Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () =>
       {

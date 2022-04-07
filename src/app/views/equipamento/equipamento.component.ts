@@ -61,7 +61,7 @@ export class EquipamentoComponent implements OnInit {
       },
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um problema ao carregar os fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`Houve um problema ao carregar os fabricante. Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () =>{}
     );
@@ -75,7 +75,7 @@ export class EquipamentoComponent implements OnInit {
       },
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um problema ao carregar as categorias. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`Houve um problema ao carregar as categorias. Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () =>{}
     );

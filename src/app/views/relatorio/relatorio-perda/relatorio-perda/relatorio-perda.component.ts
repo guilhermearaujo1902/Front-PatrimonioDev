@@ -3,8 +3,6 @@ import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import * as XLSX from 'xlsx';
-import * as $ from 'jquery';
-import 'bootstrap'
 import { MensagemRequisicao } from '../../../../helpers/MensagemRequisicao';
 import { PerdaRelatorio } from '../../../../models/relatorios/PerdaRelatorio';
 import { TokenService } from '../../../../services/token/token.service';
@@ -18,7 +16,7 @@ import { PerdaService } from '../../../../services/perda/perda.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 
 })
-export class RelatorioPerdaComponent implements OnInit, AfterViewChecked  {
+export class RelatorioPerdaComponent implements OnInit  {
 
   @ViewChild('table', { static: true }) table: APIDefinition;
 
@@ -52,10 +50,6 @@ export class RelatorioPerdaComponent implements OnInit, AfterViewChecked  {
     this.colunas = this.obterColunasDaTabela();
   }
 
-  ngAfterViewChecked() {
-    $('[data-toggle="tooltip"]').tooltip();
-  }
-
   get isMobile(): boolean {
     return this.innerWidth <= 768;
   }
@@ -72,7 +66,7 @@ export class RelatorioPerdaComponent implements OnInit, AfterViewChecked  {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelas perdas. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelas perdas. Mensagem ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () =>{

@@ -80,7 +80,7 @@ export class ListarpermissaoComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as permissões. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as permissões. Mensagem ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () =>{
@@ -102,7 +102,7 @@ export class ListarpermissaoComponent implements OnInit {
       },
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao desativar a permissão. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao desativar a permissão. Mensagem ${template.mensagemErro}`, template.titulo);
       }
     ).add(()=> this.spinner.hide("desativando"));
   }
@@ -150,7 +150,7 @@ export class ListarpermissaoComponent implements OnInit {
     return [
       { key: 'codigoUsuarioPermissao', title: 'Código' },
       { key: 'descricaoPermissao', title: 'Nome' },
-      { key: 'ativo', title: 'Ativo' },
+      { key: 'ativo', title: 'Situação' },
       { key: '', title: '' },
       { key: '', title: '' },
     ];
@@ -160,7 +160,6 @@ export class ListarpermissaoComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.colunas = [
-      { key: 'codigoUsuarioPermissao', title: 'Código' },
       { key: 'descricaoPermissao', title: 'Nome' },
       { key: '', title: 'Expandir' },
       ];

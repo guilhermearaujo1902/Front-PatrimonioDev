@@ -66,7 +66,7 @@ export class FabricanteComponent implements OnInit {
       () => this.toaster.success(`Fabricante ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"fabricante", ['o','do'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"fabricante", ['o','do'])} Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () => {
 
@@ -91,7 +91,7 @@ export class FabricanteComponent implements OnInit {
            },
            error: (error: any) => {
             let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-            this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o fabricante. Mensagem: ${template.mensagemErro}`, 'Erro!');
+            this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o fabricante. Mensagem: ${template.mensagemErro}`, template.titulo);
            }
          }
        ).add(() => this.spinner.hide('carregando'));

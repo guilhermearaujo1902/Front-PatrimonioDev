@@ -80,7 +80,7 @@ export class ListagemEmpresaComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as empresas. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as empresas. Mensagem ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () =>{
@@ -102,7 +102,7 @@ export class ListagemEmpresaComponent implements OnInit {
       },
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao excluir a empresa. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao excluir a empresa. Mensagem ${template.mensagemErro}`, template.titulo);
       }
     ).add(()=> this.spinner.hide("excluindo"));
   }

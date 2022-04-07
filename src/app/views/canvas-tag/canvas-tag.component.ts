@@ -43,7 +43,7 @@ export class CanvasTagComponent implements AfterViewInit {
 
     this.desenharImagemQRCode();
 
-    this.url = `${environment.apiUrl}api/patrimonios?codigoPatrimonio=${this.codigoPatrimonio}&serviceTag=${this.serviceTag}`
+    this.url = `https://patrimoniops.netlify.app/#/dashboard/patrimonio?codigoPatrimonio=${this.codigoPatrimonio}&serviceTag=${this.serviceTag}`
     this.detectorAlteracao.detectChanges();
 
   }

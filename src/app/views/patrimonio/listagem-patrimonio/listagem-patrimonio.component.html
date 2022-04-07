@@ -71,7 +71,8 @@
             data-toggle="dropdown" aria-expanded="false">
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" role="button" data-toggle="modal" (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#staticBackdrop">Declarar Perda</a>
+            <a class="dropdown-item" role="button" data-toggle="modal"
+              (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#staticBackdrop">Declarar Perda</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" role="button">Cadastrar Mov.</a>
             <a class="dropdown-item" role="button">Listar Mov.</a>
@@ -103,25 +104,30 @@
   <p>Situação do equipamento: {{row.situacaoEquipamento}}</p>
   <p>Modelo: {{row.modelo}}</p>
 
-  <button class="btn btn-warning btn-lg" role="button"
-    (click)="detalhePatrimonio(row.codigoPatrimonio, row.serviceTag)">
-    Alterar
-  </button>
-  <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoPatrimonio)">
-    Excluir
-  </button>
   <div class="btn-group">
+    <button class="btn btn-warning btn-lg mr-1" role="button"
+      (click)="detalhePatrimonio(row.codigoPatrimonio, row.serviceTag)">
+      Alterar
+    </button>
+    <button class="btn btn-danger btn-lg mr-1" (click)="abrirModal($event, template, row.codigoPatrimonio)">
+      Excluir
+    </button>
     <button type="button" class="btn btn-danger btn-lg">Ações</button>
     <button type="button" class="btn btn-danger btn-lg dropdown-toggle dropdown-toggle-split" data-toggle="dropdown"
       aria-expanded="false">
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item sem-borda" role="button" (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" href="#">Declarar Perda</a>
+      <a class="dropdown-item sem-borda" role="button" (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)"
+        href="#">Declarar Perda</a>
       <div class="dropdown-divider sem-borda"></div>
       <a class="dropdown-item sem-borda" role="button" href="#">Cadastrar Mov.</a>
       <a class="dropdown-item sem-borda" role="button" href="#">Listar Mov.</a>
     </div>
   </div>
+
+
+
+
 
 </ng-template>
 

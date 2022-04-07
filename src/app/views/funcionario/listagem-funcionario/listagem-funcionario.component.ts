@@ -82,7 +82,7 @@ export class ListagemFuncionarioComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos funcionários. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos funcionários. Mensagem ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () =>{
@@ -105,7 +105,7 @@ export class ListagemFuncionarioComponent implements OnInit {
       },
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao desativar o funcionário. Mensagem: ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao desativar o funcionário. Mensagem: ${template.mensagemErro}`, template.titulo);
       }
     ).add(() => this.spinner.hide("desativando"));
 

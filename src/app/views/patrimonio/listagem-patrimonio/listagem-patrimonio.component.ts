@@ -75,11 +75,10 @@ export class ListarpatrimonioComponent implements OnInit {
       next: (patrimonios: Patrimonio[]) => {
         this.dataFiltradaExcel = patrimonios;
         this.data = patrimonios;
-        debugger;
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos patrimônios. Mensagem: ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos patrimônios. Mensagem: ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () => {
@@ -103,7 +102,7 @@ export class ListarpatrimonioComponent implements OnInit {
       },
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o patrimônio. Mensagem: ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o patrimônio. Mensagem: ${template.mensagemErro}`, template.titulo);
       }
     ).add(() => this.spinner.hide("excluindo"));
 

@@ -53,7 +53,7 @@ debugger;
       () => this.toaster.success(`Perda cadastrada com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao("cadastrar","perda", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao("cadastrar","perda", ['o','da'])} Mensagem: ${template.mensagemErro}`, template.titulo);
       }
     ).add(() => this.spinner.hide());
   }

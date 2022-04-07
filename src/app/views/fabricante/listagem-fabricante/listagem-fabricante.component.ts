@@ -53,7 +53,7 @@ export class ListagemfabricanteComponent implements OnInit {
 
     this.obterFabricante();
     this.ehAdministrador = this.token.ehUsuarioAdministrador();
-
+    this.checkView();
   }
 
   get isMobile(): boolean {
@@ -69,7 +69,7 @@ export class ListagemfabricanteComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos fabricantes. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelos fabricantes. Mensagem ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () =>{
@@ -96,7 +96,7 @@ export class ListagemfabricanteComponent implements OnInit {
       },
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o fabricante. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o fabricante. Mensagem ${template.mensagemErro}`, template.titulo);
       }
     ).add(()=>this.spinner.hide("excluindo"));
   }

@@ -70,7 +70,7 @@ export class EmpresaComponent implements OnInit {
       (error: any) => {
         debugger;
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"empresa", ['o','da'])} Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"empresa", ['o','da'])} Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () =>
       {
@@ -98,7 +98,7 @@ export class EmpresaComponent implements OnInit {
            },
            error: (error: any) => {
             let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-            this.toaster[template.tipoMensagem](`Houve um problema ao carregar a empresa. Mensagem: ${template.mensagemErro}`, 'Erro!');
+            this.toaster[template.tipoMensagem](`Houve um problema ao carregar a empresa. Mensagem: ${template.mensagemErro}`, template.titulo);
            }
          }
        ).add(() => this.spinner.hide('carregando'));

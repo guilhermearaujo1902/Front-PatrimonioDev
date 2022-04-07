@@ -50,7 +50,7 @@ export class ListarsetorComponent implements OnInit {
   ngOnInit(): void {
 
     this.ehAdministrador = this.token.ehUsuarioAdministrador()
-    this.obterSetor();
+    this.obterSetores();
 
     this.configuracao = configuracaoTabela()
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
@@ -69,7 +69,7 @@ export class ListarsetorComponent implements OnInit {
     this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
   }
 
-  private obterSetor(): void {
+  private obterSetores(): void {
 
     this.spinner.show("buscando");
 
@@ -94,14 +94,14 @@ export class ListarsetorComponent implements OnInit {
   }
 
   public confirmar(): void {
+
     this.modalRef?.hide();
     this.spinner.show("excluindo");
 
-    debugger;
     this.setorService.deletarSetor(this.setorId).subscribe(
       () =>{
         this.toaster.success('Setor removido com sucesso!', 'Deletado');
-        this.obterSetor();
+        this.obterSetores();
       },
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);

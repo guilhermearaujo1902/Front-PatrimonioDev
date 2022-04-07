@@ -81,7 +81,7 @@ export class ListagemequipamentoComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao carregar os equipamentos. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar os equipamentos. Mensagem ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () =>{
@@ -103,7 +103,7 @@ export class ListagemequipamentoComponent implements OnInit {
       },
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o equipamento. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao excluir o equipamento. Mensagem ${template.mensagemErro}`, template.titulo);
       }
     ).add(()=> this.spinner.hide("excluindo"));
   }

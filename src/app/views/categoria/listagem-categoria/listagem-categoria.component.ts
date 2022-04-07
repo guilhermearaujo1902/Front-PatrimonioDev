@@ -53,7 +53,7 @@ export class ListagemCategoriaComponent implements OnInit {
 
     this.obterCategorias();
     this.ehAdministrador = this.token.ehUsuarioAdministrador();
-
+    this.checkView();
   }
 
   get isMobile(): boolean {
@@ -69,7 +69,7 @@ export class ListagemCategoriaComponent implements OnInit {
       },
       error: (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelas categorias. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao buscar pelas categorias. Mensagem ${template.mensagemErro}`, template.titulo);
 
       },
       complete: () =>{
@@ -96,7 +96,7 @@ export class ListagemCategoriaComponent implements OnInit {
       },
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao excluir a categoria. Mensagem ${template.mensagemErro}`, 'Erro');
+        this.toaster[template.tipoMensagem](`Houve um erro ao excluir a categoria. Mensagem ${template.mensagemErro}`, template.titulo);
       }
     ).add(()=>this.spinner.hide("excluindo"));
   }

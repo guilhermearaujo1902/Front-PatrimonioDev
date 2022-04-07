@@ -40,7 +40,7 @@ export class WidgetsComponent implements OnInit {
       },
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as informações do Dashboard. Mensagem: ${template.mensagemErro}`, 'Erro!');
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as informações do Dashboard. Mensagem: ${template.mensagemErro}`, template.titulo);
       }
     ).add(()=> this.spinner.hide('graficoLinha'));
   }
