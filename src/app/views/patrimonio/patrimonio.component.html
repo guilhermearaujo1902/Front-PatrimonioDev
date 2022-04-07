@@ -117,12 +117,12 @@
       </div>
 
 
-      <h3 class="col-8 col-lg-4 mb-4 p-0"><span class="texto-destaque">Informações
-          Adicionais</span></h3>
+      <h3 class="col-8 col-lg-4 mb-4 p-2"><span class="texto-destaque">Informações Adicionais</span></h3>
+
       <form [formGroup]="formAdicional">
         <div class="form-row">
           <input type="hidden" formControlName="codigoInformacaoAdicional" class="form-control">
-          <div class="form-group col-6 text-start">
+          <div class="form-group col-lg-6 col-sm-12 text-start">
             <label>Valor Pago</label>
             <input type="text" [ngClass]="cssValidator(fa.valorPago)" formControlName="valorPago" currencyMask
               class="form-control" name="valorPago" placeholder="R$ 0,00">
@@ -130,19 +130,19 @@
               O valor pago é obrigatório
             </div>
           </div>
-          <div class="form-group col-6 text-start">
+          <div class="form-group col-lg-6 col-sm-12 text-start">
             <label>Data Compra</label>
             <input type="date" formControlName="dataCompra" class="form-control" name="dataCompra">
           </div>
         </div>
 
         <div class="form-row">
-          <div class="form-group col-6 text-start">
+          <div class="form-group col-lg-6 col-sm-12 text-start">
             <label>Data Expiração Garantia</label>
             <input type="date" formControlName="dataExpiracaoGarantia" class="form-control"
               name="dataExpiracaoGarantia">
           </div>
-          <div class="form-group col-6 text-start">
+          <div class="form-group col-lg-6 col-sm-12 text-start">
             <label>Antivirus</label>
             <input type="text" formControlName="antivirus" class="form-control" name="antivirus" placeholder="Ex: Avast"
               autocomplete="antivirus">
@@ -150,7 +150,7 @@
         </div>
 
         <div class="form-row">
-          <div class="form-group col-6 text-start">
+          <div class="form-group col-lg-6 col-sm-12 text-start">
             <label>Versão Windows</label>
             <input type="text" formControlName="versaoWindows" class="form-control" name="versaoWindows"
               placeholder="Ex: Windows Server" autocomplete="versaoWindows">
