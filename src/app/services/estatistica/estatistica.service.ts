@@ -18,4 +18,8 @@ export class EstatisticaService {
     return this.api.get<Estatisticas[]>(this.baseUrl).pipe(take(1));
   }
 
+  public obterMediaEquipamentoPorFuncionario(): Observable<Estatisticas[]>{
+    return this.api.get<Estatisticas[]>(`${this.baseUrl}/media`).pipe(take(1));
+  }
+
 }

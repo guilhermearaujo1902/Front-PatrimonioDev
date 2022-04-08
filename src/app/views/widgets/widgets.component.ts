@@ -13,6 +13,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class WidgetsComponent implements OnInit {
 
   private estatisticaCategoria: Estatisticas[] = [];
+  public mediaEquipamento: string;
 
   public lineChartData: Array<any> = [ { data: 0, backgroundColor: ['#20A8D8'], label: 'Categorias' }];
   public lineChartLabels: Array<any> = [[' ']];
@@ -26,7 +27,8 @@ export class WidgetsComponent implements OnInit {
               private spinner: NgxSpinnerService) {}
 
   ngOnInit(): void {
-    this.obterEstatisticaCategoria()
+    this.obterEstatisticaCategoria();
+    this.obterMediaEquipamentoPorFuncionario();
   }
 
   private obterEstatisticaCategoria(): void {
@@ -45,6 +47,23 @@ export class WidgetsComponent implements OnInit {
     ).add(()=> this.spinner.hide('graficoLinha'));
   }
 
+  private obterMediaEquipamentoPorFuncionario(): void {
+
+    this.spinner.show('graficoLinha');
+
+    this.estatisticaService.obterMediaEquipamentoPorFuncionario().subscribe(
+      (result: Estatisticas[]) => {
+        this.mediaEquipamento = (result[0].quantidadeTotalDeEquipamento / result[0].quantidadeTotalFuncionario).toFixed(2);
+
+      },
+      (error: any) => {
+        let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
+        this.toaster[template.tipoMensagem](`Houve um erro ao carregar as informações do Dashboard. Mensagem: ${template.mensagemErro}`, template.titulo);
+      }
+    ).add(()=> this.spinner.hide('graficoLinha'));
+  }
+
+
   private construirGraficoQuantidadeEquipamentosCategoria(): void {
 
     const quantidadeEquipamento = this.estatisticaCategoria.map((valorAtual) => {
@@ -55,7 +74,7 @@ export class WidgetsComponent implements OnInit {
 
     this.lineChartData = [ { data: quantidadeEquipamento,
                              backgroundColor: ['#20A8D8'],
-                             label: 'Categorias' }];
+                             label: 'Quantidade' }];
 
     this.lineChartLabels = this.estatisticaCategoria.map((valorAtual) => {
       return valorAtual.nomeCategoria;
