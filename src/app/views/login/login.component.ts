@@ -96,11 +96,12 @@ export class LoginComponent implements OnInit {
       },
       (error: any) =>{
           debugger;
-        if(error.error !== "popup_closed_by_user")
-          this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : ${error.error}`)
-        else if(error.include("Login providers not ready yet. Are there errors on your console?"))
-          this.toaster.error(`Houve um erro ao fazer login com a conta da Google. Mensagem : Não foi possível carregar a tela de autenticação da GOOGLE`)
-
+        if(error.include('Login providers not ready yet. Are there errors on your console?')){
+          this.toaster.toastrConfig.timeOut = 5000;
+          this.toaster.info(`Houve um erro ao fazer login com a conta da Google. Mensagem: Não foi possível carregar a tela de autenticação, pois ela não estava carregada totalmente. Tente novamente`)
+        }else{
+          this.toaster.error(`Houve um erro ao fazer login com a conta da Google`)
+        }
       },
       () => {
         //TODO: Realizar tudo por post

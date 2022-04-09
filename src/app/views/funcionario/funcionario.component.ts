@@ -81,7 +81,7 @@ export class FuncionarioComponent implements OnInit {
       (error: any) => {
         debugger;
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"funcionário", ['o','do'])}. Mensagem: ${template.mensagemErro}`, template.titulo);
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"funcionário", ['o','do'])} Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () => {
         setTimeout(() => {

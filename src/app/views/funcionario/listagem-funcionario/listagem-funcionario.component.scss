@@ -1,3 +1,19 @@
 p{
   word-break: break-all !important
 }
+
+.estilizacao-situacao-funcionario{
+  padding:5px;
+  border-radius: 20px;
+  color: white;
+}
+
+.inativo{
+  background-color: gray;
+  @extend .estilizacao-situacao-funcionario
+}
+
+.ativo{
+  background-color: green;
+  @extend .estilizacao-situacao-funcionario
+}

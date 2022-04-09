@@ -3,4 +3,6 @@ export interface Estatisticas {
   quantidadeEquipamento: number;
   quantidadeTotalDeEquipamento: number;
   quantidadeTotalFuncionario: number;
+  quantidadePatrimonioDisponivel: number;
+  quantidadeTotalPatrimonio: number;
 }

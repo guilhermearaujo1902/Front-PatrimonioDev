@@ -30,7 +30,7 @@
         <span class="font-small">{{ row.nomeFuncionario }}</span>
       </td>
       <td *ngIf="!isMobile">
-        <span class="font-small">{{ row.ativo }}</span>
+        <span class="font-small" [ngClass]="{'ativo': row.ativo == true,'inativo': row.ativo == false }">{{ row.ativo | booleano}}</span>
       </td>
       <td *ngIf="!isMobile">
         <span class="font-small">{{ row.observacao }}</span>

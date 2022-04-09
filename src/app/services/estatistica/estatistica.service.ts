@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from '../api/api.service';
-import { Observable } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { Estatisticas } from '../../models/Estatistica';
 import { environment } from '../../../environments/environment';
 import { take } from 'rxjs/operators';
@@ -14,12 +14,26 @@ export class EstatisticaService {
 
   baseUrl = `${environment.apiUrl}estatisticas`;
 
-  public obterEstatisticasCategoria(): Observable<Estatisticas[]>{
+  private obterEstatisticasCategoria(): Observable<Estatisticas[]>{
     return this.api.get<Estatisticas[]>(this.baseUrl).pipe(take(1));
   }
 
-  public obterMediaEquipamentoPorFuncionario(): Observable<Estatisticas[]>{
+  private obterMediaEquipamentoPorFuncionario(): Observable<Estatisticas[]>{
     return this.api.get<Estatisticas[]>(`${this.baseUrl}/media`).pipe(take(1));
+  }
+
+  private obterPatrimonioDisponivel(): Observable<Estatisticas[]>{
+    return this.api.get<Estatisticas[]>(`${this.baseUrl}/patrimoniodisponivel`).pipe(take(1));
+  }
+
+  public obterEstatisticas(): Observable<any[]> {
+
+    let estatisticaCategoria = this.obterEstatisticasCategoria();
+    let mediaEquipamento = this.obterMediaEquipamentoPorFuncionario();
+    let patrimoniosDisponiveis = this.obterPatrimonioDisponivel();
+
+    return forkJoin([estatisticaCategoria, mediaEquipamento, patrimoniosDisponiveis]);
+
   }
 
 }
