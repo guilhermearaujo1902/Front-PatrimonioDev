@@ -18,5 +18,26 @@
 - Tela inicial da aplicação onde temos a possibilidade de se logar com a conta do google, facebook ou por e-mail.
 ![screencapture-localhost-4200-2022-03-22-22_23_12](https://user-images.githubusercontent.com/39220517/159603798-ec032b56-9bcd-4ea1-9f5e-8fe19c4761d2.png)
 
+- Tela de cadastro inicial
+![screencapture-localhost-4200-2022-04-10-09_49_00](https://user-images.githubusercontent.com/39220517/162618989-b5e5b3fd-a509-4cc6-b4fd-d295b5cdb199.png)
+
 - Tela de perfil do usuário e todas as funcionalidades no menu a esquerda
-- ![screencapture-localhost-4200-2022-03-23-23_13_18](https://user-images.githubusercontent.com/39220517/159828610-6c5f5e44-dbf5-43da-943b-1703e6a3e360.png)
+![screencapture-localhost-4200-2022-03-23-23_13_18](https://user-images.githubusercontent.com/39220517/159828610-6c5f5e44-dbf5-43da-943b-1703e6a3e360.png)
+  
+ ## Como rodar a aplicação
+  
+  - Baixe o projeto
+  ```
+  git clone https://github.com/adolfosp/Front-PatrimonioDev.git
+  ```
+  
+  - Logo após baixar o projeto digite
+  ```
+  npm install
+  ```
+  
+  - Pronto, agora é só rodar o comando abaixo para rodar a aplicação
+  ```
+  npm run start
+  ```
+ 
