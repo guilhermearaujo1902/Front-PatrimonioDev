@@ -10,7 +10,7 @@ import { MenuService } from './services/menu/menu.service';
 
 import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA  } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -78,7 +78,6 @@ import { EnumDisplayPipe } from './pipe/enum-situacaoEquipamento-display.pipe';
 import { CanvasTagComponent } from './views/canvas-tag/canvas-tag.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BooleanoPipe } from './pipe/booleano.pipe';
-import { WidgetsComponent } from './views/widgets/widgets.component';
 import { RelatorioPerdaComponent } from './views/relatorio/relatorio-perda/relatorio-perda/relatorio-perda.component';
 
 
@@ -128,13 +127,14 @@ const customCurrencyMaskConfig = {
     TabsModule.forRoot(),
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
-      { timeOut: 4000,
+      {
+        timeOut: 4000,
         positionClass: 'toast-bottom-right',
         preventDuplicates: true,
         progressBar: true
       }
     )
-   ],
+  ],
   declarations: [
     EnumDisplayPipe,
     BooleanoPipe,
@@ -170,7 +170,8 @@ const customCurrencyMaskConfig = {
     CanvasTagComponent,
     BooleanoPipe,
     RelatorioPerdaComponent
-   ],
+
+  ],
   providers: [
     {
       provide: 'SocialAuthServiceConfig',
@@ -205,7 +206,7 @@ const customCurrencyMaskConfig = {
     JwtHelperService,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
   ],
-  bootstrap: [ AppComponent ],
+  bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

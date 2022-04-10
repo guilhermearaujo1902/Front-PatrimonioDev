@@ -45,6 +45,7 @@
     "@coreui/icons-angular": "1.0.0-alpha.3",
     "@types/bootstrap": "^4.6.0",
     "@types/jquery": "^3.5.14",
+    "angular-dark-mode": "^2.0.1",
     "angular-typesafe-reactive-forms-helper": "^2.0.2",
     "angularx-qrcode": "^11.0.0",
     "angularx-social-login": "^3.5.7",
