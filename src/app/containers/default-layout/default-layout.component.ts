@@ -47,7 +47,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.ouvirRota();
     this.obterMenusPermissaoUsuario();
 
-    this._idle.setIdle(5);
+    this._idle.setIdle(900);
     this._idle.setTimeout(10);
     this._idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 

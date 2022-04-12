@@ -16,6 +16,9 @@ export abstract class MensagemRequisicao {
       case mensagemServidorLowerCase.includes("a empresa de nome fantasia"):
         return new TemplateMensagemRequisicao(mensagemServidor, TipoMensagem.info, "Informação");
 
+      case mensagemServidorLowerCase.includes("não é possível realizar o cadastro pois o e-mail já foi utilizado em outro registro."):
+        return new TemplateMensagemRequisicao(mensagemServidor, TipoMensagem.info, "Informação");
+
       case mensagemServidorLowerCase.includes("a instrução delete conflitou com a restrição do reference"):
       case mensagemServidorLowerCase.includes("the delete statement conflicted with the reference constraint"):
         this.mensagemPadrao = "Não é possível excluir esse registro, pois o mesmo possui relacionamento com outros registros. Detalhe: Conflito FK.";
