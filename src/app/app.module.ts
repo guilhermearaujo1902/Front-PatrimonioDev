@@ -79,6 +79,9 @@ import { CanvasTagComponent } from './views/canvas-tag/canvas-tag.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BooleanoPipe } from './pipe/booleano.pipe';
 import { RelatorioPerdaComponent } from './views/relatorio/relatorio-perda/relatorio-perda/relatorio-perda.component';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { Idle } from '@ng-idle/core';
+import { ModalTempoComponent } from './views/modal-tempo/modal-tempo.component';
 
 
 const customCurrencyMaskConfig = {
@@ -125,6 +128,7 @@ const customCurrencyMaskConfig = {
     AppBreadcrumbModule.forRoot(),
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
+    NgIdleKeepaliveModule.forRoot(),
     IconSetModule.forRoot(),
     ToastrModule.forRoot(
       {
@@ -169,7 +173,8 @@ const customCurrencyMaskConfig = {
     EnumDisplayPipe,
     CanvasTagComponent,
     BooleanoPipe,
-    RelatorioPerdaComponent
+    RelatorioPerdaComponent,
+    ModalTempoComponent
 
   ],
   providers: [
@@ -204,6 +209,7 @@ const customCurrencyMaskConfig = {
     FabricanteService,
     FormBuilderTypeSafe,
     JwtHelperService,
+    Idle,
     { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
   ],
   bootstrap: [AppComponent],

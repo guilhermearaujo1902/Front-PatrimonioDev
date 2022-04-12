@@ -47,3 +47,7 @@
 <app-footer>
 
 </app-footer>
+
+<ng-template #template>
+  <app-modal [mensagem]="mensagem" (podeFecharAplicacao)="fecharModalTempoExpirado(valor)" ></app-modal>
+</ng-template>
