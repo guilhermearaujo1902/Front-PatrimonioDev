@@ -144,7 +144,7 @@ export class UsuarioComponent implements OnInit {
       () =>
       {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarUsuario'])
+          this.router.navigate(['dashboard/listar-usuario'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

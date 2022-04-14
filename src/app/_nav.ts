@@ -45,7 +45,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarUsuario',
+        url: '/dashboard/listar-usuario',
         icon: 'fa fa-list'
       }
    ]
@@ -190,7 +190,7 @@ export const navItems: INewNavData[] = [
   },
   {
     name: 'Relatório de perdas',
-    url: '/dashboard/relatorioPerda',
+    url: '/dashboard/relatorio-de-perda',
     icon: "fa fa-files-o",
     permissaoDoUsuario: Permissao.Usuario
   }

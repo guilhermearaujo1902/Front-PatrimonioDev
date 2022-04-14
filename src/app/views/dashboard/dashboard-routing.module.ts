@@ -93,10 +93,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'relatorioPerda',
+    path: 'relatorio-de-perda',
     component: RelatorioPerdaComponent,
     data: {
-      title: 'relatorioPerda'
+      title: 'relatorio-de-perda'
     }
   },
   {

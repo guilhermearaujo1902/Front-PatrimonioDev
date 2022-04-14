@@ -70,7 +70,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Usuários',
-            path: './listarUsuario',
+            path: './listar-usuario',
           },
           {
             name: 'Movimentação',
@@ -82,7 +82,7 @@ export class MenuService {
           },
           {
             name: 'Perfil',
-            path: './usuarioPerfil',
+            path: './usuario-perfil',
           },
           {
             name: 'Funcionário',
@@ -102,7 +102,7 @@ export class MenuService {
           },
           {
             name: 'Relatório de Perdas',
-            path: './relatorioPerda',
+            path: './relatorio-de-perda',
           }
         ]
       },

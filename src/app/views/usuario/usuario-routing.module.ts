@@ -9,7 +9,7 @@ import { Permissao } from '../../models/enums/permissao.enum';
 
 const routes: Routes = [
   {
-    path: 'usuarioPerfil',
+    path: 'usuario-perfil',
     component: UsuarioPerfilComponent,
     canActivate: [AuthGuard,RoleGuardService],
     data: {
@@ -39,11 +39,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarUsuario',
+    path: 'listar-usuario',
     component: ListagemUsuarioComponent,
     canActivate: [AuthGuard,RoleGuardService],
     data: {
-      title: 'listarUsuario',
+      title: 'listar-usuario',
       permissaoEsperada: [Permissao.Administrador]
 
     }
