@@ -20,10 +20,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarFuncionario',
+    path: 'listar-funcionario',
     component: ListagemFuncionarioComponent,
     data: {
-      title: 'listarFuncionario'
+      title: 'listar-funcionario'
     }
   }
 ]

@@ -78,7 +78,7 @@ export class PatrimonioComponent implements OnInit {
         },
         () => {
           setTimeout(() => {
-            this.router.navigate(['dashboard/listarPatrimonio'])
+            this.router.navigate(['dashboard/listar-patrimonio'])
           }, 1700)
         }
       ).add(() => this.spinner.hide(nomeAcaoRealizada));

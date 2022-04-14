@@ -18,7 +18,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Setores',
-            path: './listarSetor',
+            path: './listar-setor',
           },
           {
             name: 'Empresa',
@@ -34,7 +34,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Permissões',
-            path: './listarPermissao',
+            path: './listar-permissao',
           },
           {
             name: 'Fabricante',
@@ -42,7 +42,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Fabricantes',
-            path: './listarFabricante',
+            path: './listar-fabricante',
           },
           {
             name: 'Patrimônio',
@@ -50,7 +50,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Patrimônios',
-            path: './listarPatrimonio',
+            path: './listar-patrimonio',
           },
           {
             name: 'Perca',
@@ -90,7 +90,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Funcionários',
-            path: './listarFuncionario',
+            path: './listar-funcionario',
           },
           {
             name: 'Categoria',

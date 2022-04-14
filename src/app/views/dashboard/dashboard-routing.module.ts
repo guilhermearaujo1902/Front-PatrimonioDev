@@ -48,11 +48,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarPatrimonio',
+    path: 'listar-patrimonio',
     component: ListarpatrimonioComponent,
     canActivate: [AuthGuard],
     data: {
-      title: 'listarPatrimonio',
+      title: 'listar-patrimonio',
     }
   },
   {
@@ -76,11 +76,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarPermissao',
+    path: 'listar-permissao',
     component: ListarpermissaoComponent,
     canActivate: [AuthGuard, RoleGuardService],
     data: {
-      title: 'listarPermissao',
+      title: 'listar-permissao',
       permissaoEsperada: [Permissao.Administrador, Permissao.Gestor]
 
     }

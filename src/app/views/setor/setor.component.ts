@@ -76,7 +76,7 @@ export class SetorComponent implements OnInit {
       () =>
       {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarSetor'])
+          this.router.navigate(['dashboard/listar-setor'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

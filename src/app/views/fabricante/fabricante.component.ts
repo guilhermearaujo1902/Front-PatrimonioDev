@@ -71,7 +71,7 @@ export class FabricanteComponent implements OnInit {
       () => {
 
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarFabricante'])
+          this.router.navigate(['dashboard/listar-fabricante'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

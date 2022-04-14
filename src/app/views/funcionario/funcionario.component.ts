@@ -85,7 +85,7 @@ export class FuncionarioComponent implements OnInit {
       },
       () => {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarFuncionario'])
+          this.router.navigate(['dashboard/listar-funcionario'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

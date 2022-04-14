@@ -27,7 +27,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarPermissao',
+        url: '/dashboard/listar-permissao',
         icon: 'fa fa-list'
       }
     ]
@@ -63,7 +63,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarFuncionario',
+        url: '/dashboard/listar-funcionario',
         icon: 'fa fa-list'
       }
    ]
@@ -105,7 +105,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarSetor',
+        url: '/dashboard/listar-setor',
         icon: 'fa fa-list'
       }
     ]
@@ -123,7 +123,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarFabricante',
+        url: '/dashboard/listar-fabricante',
         icon: 'fa fa-list'
       }
    ]
@@ -141,7 +141,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarPatrimonio',
+        url: '/dashboard/listar-patrimonio',
         icon: 'fa fa-list'
       }
    ]

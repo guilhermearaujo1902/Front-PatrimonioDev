@@ -102,7 +102,7 @@ export class PermissaoComponent implements OnInit {
       () =>
       {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarPermissao'])
+          this.router.navigate(['dashboard/listar-permissao'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

@@ -27,11 +27,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarSetor',
+    path: 'listar-setor',
     component: ListarsetorComponent,
     canActivate: [AuthGuard,RoleGuardService],
     data: {
-      title: 'listarSetor',
+      title: 'listar-setor',
       permissaoEsperada: [Permissao.Administrador]
     }
   },

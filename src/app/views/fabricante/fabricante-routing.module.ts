@@ -19,10 +19,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarFabricante',
+    path: 'listar-fabricante',
     component: ListagemfabricanteComponent,
     data: {
-      title: 'listarFabricante'
+      title: 'listar-fabricante'
     }
   },
 ]
