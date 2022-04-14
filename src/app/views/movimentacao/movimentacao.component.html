@@ -1,91 +1,68 @@
 <div class="card rounded shadow-sm ml-3 m-3 p-3" id="formulario">
   <form [formGroup]="form">
-    <h1>Realizar movimentação</h1>
-    <hr />
+    <h1 class="col-4 col-lg-3"><span class="texto-destaque">Movimentação</span></h1>
     <div class="p-3">
       <div class="form-row">
         <div class="form-group col-12 text-start">
           <label>Código movimentação</label>
-          <input
-            type="text"
-            readonly
-            class="form-control"
-            name="codigoMovimentacao"
-            formControlName="codigoMovimentacao"
-          />
+          <input type="text" readonly class="form-control" formControlName="codigoMovimentacao"
+            name="codigoMovimentacao" formControlName="codigoMovimentacao" />
         </div>
       </div>
-
       <div class="form-row">
-        <div class="form-group col-6 text-start">
+        <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Usuário</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="codigoUsuario"
-            name="codigoUsuario"
-            readonly
-          />
+          <input type="hidden" class="form-control" name="codigoUsuario" formControlName="codigoUsuario" readonly>
+          <input type="text" class="form-control" name="nomeUsuario" formControlName="nomeUsuario" readonly>
         </div>
-        <div class="form-group col-6 text-start">
+        <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Patrimônio</label>
-          <input
-            type="text"
-            class="form-control"
-            formControlName="codigoPatrimonio"
-            name="codigoPatrimonio"
-            readonly
-          />
+          <input type="hidden" class="form-control" formControlName="codigoPatrimonio" name="codigoPatrimonio"
+            readonly />
+          <input type="text" class="form-control" name="nomePatrimonio" formControlName="nomePatrimonio" readonly>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group col-6 text-start">
+        <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Data Apropriação</label>
-          <input
-            type="date"
-            class="form-control"
-            formControlName="dataApropriacao"
-            name="dataApropriacao"
-            required
-          />
-          <div
-            *ngIf="f.dataApropriacao.errors?.required"
-            class="invalid-feedback"
-          >
+          <input type="datetime-local" class="form-control" [ngClass]="cssValidatorCampoSelecao(f.dataApropriacao)"
+            formControlName="dataApropriacao" name="dataApropriacao" required />
+          <div *ngIf="f.dataApropriacao.errors?.required" class="invalid-feedback">
             Data de apropriação é obrigatório
           </div>
         </div>
 
-        <div class="form-group col-6 text-start">
+        <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Data Devolução</label>
-          <input type="date" class="form-control" name="dataDevolucao" />
+          <input type="date" class="form-control" formControlName="dataDevolucao" name="dataDevolucao" />
         </div>
+      </div>
+      <div class="form-row">
+          <div class="form-group col-lg-6 col-sm-12 text-start">
+            <label>O Patrimônio está:</label>
+            <select class="form-select form-control" formControlName="movimentacaoDoEquipamento">
+              <option *ngFor="let name of chaveSituacaoMovimento" [value]="name"> {{situacaoMovimento[name]}}
+              </option>
+            </select>
+          </div>
       </div>
       <div class="form-row">
         <div class="form-group col-12 text-start">
           <label>Observação</label>
-          <textarea
-            class="form-control"
-            name="observacao"
-            rows="5"
-            cols="50"
-          ></textarea>
+          <textarea class="form-control" name="observacao" formControlName="observacao" rows="5" cols="50"></textarea>
         </div>
       </div>
 
       <div class="form-row pt-3">
         <div class="row">
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-block btn-success btn-lg"
-              [disabled]="!form.valid"
-            >
-              Cadastrar
+            <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid"
+              (click)="salvarAlteracao()">
+              {{this.estadoSalvar.includes('realizar')?'Realizar Movimentação':'Atualizar'}}
             </button>
           </div>
           <div class="col">
-            <button type="button" class="btn btn-block btn-warning btn-lg">
+            <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">
               Limpar
             </button>
           </div>
@@ -94,3 +71,15 @@
     </div>
   </form>
 </div>
+<ngx-spinner name="realizada" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Realizando movimentação... </p>
+</ngx-spinner>
+<ngx-spinner name="atualizado" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Atualizando... </p>
+</ngx-spinner>
+<ngx-spinner name="carregando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Carregando... </p>
+</ngx-spinner>

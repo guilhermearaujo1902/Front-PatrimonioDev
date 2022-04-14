@@ -135,10 +135,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarMovimentacao',
+    path: 'listar-movimentacao',
     component: ListagemMovimentacaoComponent,
     data: {
-      title: 'listarMovimentacao'
+      title: 'listar-movimentacao'
     }
   },
   {

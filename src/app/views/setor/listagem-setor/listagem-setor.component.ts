@@ -85,7 +85,6 @@ export class ListarsetorComponent implements OnInit {
 
       },
       complete: () =>{
-        this.configuracao.isLoading = false;
         this.detectorAlteracao.markForCheck();
 
       }

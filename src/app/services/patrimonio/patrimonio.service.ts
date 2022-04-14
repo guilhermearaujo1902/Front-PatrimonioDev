@@ -5,7 +5,6 @@ import { take } from 'rxjs/operators';
 import { Patrimonio } from '../../models/Patrimonio';
 import { ApiService } from '../api/api.service';
 import { environment } from '../../../environments/environment';
-import { EmpresaService } from '../empresa/empresa.service';
 
 @Injectable({
   providedIn: 'root'

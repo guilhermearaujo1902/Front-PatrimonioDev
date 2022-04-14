@@ -57,8 +57,6 @@ export class PatrimonioComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute)
     {
-      debugger;
-      let teste = this.activatedRoute.root
       this.chaveSituacaoEquipamento = Object.keys(this.situacaoEquipamento).filter(Number);
     }
 

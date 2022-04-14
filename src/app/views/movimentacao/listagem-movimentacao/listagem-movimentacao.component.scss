@@ -1,20 +1,5 @@
 @import "../../../../scss/fonts.scss";
 
-
-.alinhamento-card-direita{
-  margin-left: 40%;
-}
-
-.alinhamento-card-esquerda{
-  margin-left: 25%;
-}
-
-img#imagem-seta{
-  width: 40px;
-  height: 40px;
-  margin-left: 40vw;
-}
-
 p.card-text, p.card-title{
   font-family: 'brandon', arial;
   font-weight: 400;
@@ -23,14 +8,6 @@ p.card-text, p.card-title{
 
 .card{
   box-shadow: 5px 7px 22px -3px rgba(0,0,0,0.31);
-}
-
-.titulo-inline{
-  display: inline;
-}
-
-.texto-direita{
-  float: right;
 }
 
 span{

@@ -78,7 +78,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Movimentações',
-            path: './listarMovimentacao',
+            path: './listar-movimentacao',
           },
           {
             name: 'Perfil',

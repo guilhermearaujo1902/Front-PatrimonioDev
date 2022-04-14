@@ -47,29 +47,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.ouvirRota();
     this.obterMenusPermissaoUsuario();
 
-    this._idle.setIdle(900);
-    this._idle.setTimeout(10);
-    this._idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
-
-    this._idle.onIdleStart.subscribe(() => {
-      this.modalRef = this.modalService.show(this.template)
-    });
-
-    this._idle.onIdleEnd.subscribe(() => {
-      this.modalRef.hide();
-    });
-
-    this._idle.onTimeoutWarning.subscribe((secondsLeft: number) => {
-      this.mensagem = `Fecharemos em ${secondsLeft}`;
-    });
-
-    this._idle.onTimeout.subscribe(() => {
-     this.modalRef.hide();
-     this.token.removerToken();
-     this.router.navigate(['login']);
-    });
-
-    this._idle.watch()
+    this.configurarObservacaoInatividadeUsuario();
   }
 
   private obterMenusPermissaoUsuario(): void {
@@ -145,7 +123,7 @@ export class DefaultLayoutComponent implements OnInit {
         return;
       });
 
-      this.percorrerMenus(this.router.url.slice(1).replaceAll('?', '$').replaceAll('/', '$').split('$'), this.menu)
+    this.percorrerMenus(this.router.url.slice(1).replaceAll('?', '$').replaceAll('/', '$').split('$'), this.menu)
   }
 
   private percorrerMenus(url: any[], menus: any): void {
@@ -168,6 +146,32 @@ export class DefaultLayoutComponent implements OnInit {
         menus = menus.children;
       }
     });
+  }
 
+  private configurarObservacaoInatividadeUsuario() {
+    this._idle.setIdle(900);
+    this._idle.setTimeout(10);
+    this._idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
+
+    this._idle.onIdleStart.subscribe(() => {
+      this.modalRef = this.modalService.show(this.template)
+    });
+
+    this._idle.onIdleEnd.subscribe(() => {
+      this.modalRef.hide();
+    });
+
+    this._idle.onTimeoutWarning.subscribe((secondsLeft: number) => {
+      this.mensagem = `Fecharemos em ${secondsLeft}`;
+    });
+
+    this._idle.onTimeout.subscribe(() => {
+      this.modalRef.hide();
+      this.token.removerToken();
+      this.router.navigate(['login']);
+    });
+
+    this._idle.watch()
   }
 }
+

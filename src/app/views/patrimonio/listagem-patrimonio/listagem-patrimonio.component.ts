@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token/token.service';
 import configuracaoTabela from '../../../utils/configuracao-tabela';
 import * as XLSX from 'xlsx';
+import { EncryptDecryptService } from '../../../services/encrypt-decrypt/encrypt-decrypt.service';
 
 @Component({
   selector: 'app-listarPatrimonio',
@@ -43,6 +44,7 @@ export class ListarpatrimonioComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private router: Router,
     private token: TokenService,
+    private encriptacao: EncryptDecryptService,
     private detectorAlteracao: ChangeDetectorRef) { }
 
   ngOnInit(): void {
@@ -114,6 +116,14 @@ export class ListarpatrimonioComponent implements OnInit {
 
   public detalhePatrimonio(codigoPatrimonio: number, serviceTag: string): void {
     this.router.navigate([`dashboard/patrimonio`], { queryParams: { codigoPatrimonio, serviceTag } })
+  }
+
+  public cadastrarMovimentacao(codigoPatrimonio: number, tipoEquipamento: string, nomeFuncionario: string): void {
+    this.router.navigate([`dashboard/movimentacao`], { queryParams: { codigoPatrimonio: this.encriptacao.encrypt(codigoPatrimonio.toString()), patrimonio: `${tipoEquipamento} - ${nomeFuncionario}` } })
+  }
+
+  public listarTodasAsMovimentacoes(codigoPatrimonio: number): void {
+    this.router.navigate([`dashboard/listar-movimentacao`], { queryParams: { codigoDoPatrimonio: this.encriptacao.encrypt(codigoPatrimonio.toString())} })
   }
 
   public onChange(event: Event): void {
