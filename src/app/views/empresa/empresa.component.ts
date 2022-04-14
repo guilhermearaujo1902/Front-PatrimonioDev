@@ -75,7 +75,7 @@ export class EmpresaComponent implements OnInit {
       () =>
       {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarEmpresa'])
+          this.router.navigate(['dashboard/listar-empresa'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

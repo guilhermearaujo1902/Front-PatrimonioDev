@@ -117,7 +117,7 @@ export class EquipamentoComponent implements OnInit {
       () =>
       {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarEquipamento'])
+          this.router.navigate(['dashboard/listar-equipamento'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

@@ -73,7 +73,7 @@ export class CategoriaComponent implements OnInit {
       () =>
       {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listarCategoria'])
+          this.router.navigate(['dashboard/listar-categoria'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

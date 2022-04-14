@@ -81,7 +81,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarEmpresa',
+        url: '/dashboard/listar-empresa',
         icon: 'fa fa-list'
       }
     ]
@@ -159,7 +159,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarEquipamento',
+        url: '/dashboard/listar-equipamento',
         icon: 'fa fa-list'
       }
    ]
@@ -177,7 +177,7 @@ export const navItems: INewNavData[] = [
       },
       {
         name: 'Listar',
-        url: '/dashboard/listarCategoria',
+        url: '/dashboard/listar-categoria',
         icon: 'fa fa-list'
       }
      ]

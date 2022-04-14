@@ -26,7 +26,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Empresas',
-            path: './listarEmpresa',
+            path: './listar-empresa',
           },
           {
             name: 'Permissão',
@@ -62,7 +62,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Equipamentos',
-            path: './listarEquipamento',
+            path: './listar-equipamento',
           },
           {
             name: 'Usuário',
@@ -98,7 +98,7 @@ export class MenuService {
           },
           {
             name: 'Listagem de Categorias',
-            path: './listarCategoria',
+            path: './listar-categoria',
           },
           {
             name: 'Relatório de Perdas',

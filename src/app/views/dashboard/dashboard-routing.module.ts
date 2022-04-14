@@ -114,10 +114,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarEquipamento',
+    path: 'listar-equipamento',
     component: ListagemequipamentoComponent,
     data: {
-      title: 'listarEquipamento'
+      title: 'listar-equipamento'
     }
   },
   {
@@ -156,10 +156,10 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarCategoria',
+    path: 'listar-categoria',
     component: ListagemCategoriaComponent,
     data: {
-      title: 'listarCategoria'
+      title: 'listar-categoria'
     }
   }
 ];

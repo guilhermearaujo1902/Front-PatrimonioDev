@@ -28,11 +28,11 @@ const routes: Routes = [
     }
   },
   {
-    path: 'listarEmpresa',
+    path: 'listar-empresa',
     component: ListagemEmpresaComponent,
     canActivate: [AuthGuard,RoleGuardService],
     data: {
-      title: 'listarEmpresa',
+      title: 'listar-empresa',
       permissaoEsperada: [Permissao.Administrador]
 
     }
