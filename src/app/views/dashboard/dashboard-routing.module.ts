@@ -128,14 +128,14 @@ const routes: Routes = [
     }
   },
   {
-    path: 'movimentacao',
+    path: 'listar-patrimonio/movimentacao',
     component: MovimentacaoComponent,
     data: {
       title: 'movimentacao'
     }
   },
   {
-    path: 'listar-movimentacao',
+    path: 'listar-patrimonio/listar-movimentacao',
     component: ListagemMovimentacaoComponent,
     data: {
       title: 'listar-movimentacao'

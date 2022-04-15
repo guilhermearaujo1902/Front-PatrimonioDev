@@ -51,6 +51,16 @@ export class MenuService {
           {
             name: 'Listagem de Patrimônios',
             path: './listar-patrimonio',
+            children:[
+              {
+                name: 'Listagem de Movimentações',
+                path: './listar-movimentacao',
+              },
+              {
+                name: 'Movimentação',
+                path: './movimentacao',
+              }
+            ]
           },
           {
             name: 'Perca',
@@ -71,14 +81,6 @@ export class MenuService {
           {
             name: 'Listagem de Usuários',
             path: './listar-usuario',
-          },
-          {
-            name: 'Movimentação',
-            path: './movimentacao',
-          },
-          {
-            name: 'Listagem de Movimentações',
-            path: './listar-movimentacao',
           },
           {
             name: 'Perfil',

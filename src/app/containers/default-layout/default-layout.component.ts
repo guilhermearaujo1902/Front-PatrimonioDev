@@ -47,7 +47,7 @@ export class DefaultLayoutComponent implements OnInit {
     this.ouvirRota();
     this.obterMenusPermissaoUsuario();
 
-    this.configurarObservacaoInatividadeUsuario();
+    this.configurarObservacaoInatividaDeUsuario();
   }
 
   private obterMenusPermissaoUsuario(): void {
@@ -111,7 +111,6 @@ export class DefaultLayoutComponent implements OnInit {
         routerUrl = router.url;
 
         if (routerUrl && typeof routerUrl === 'string') {
-
           target = this.menu;
 
           this.breadcrumbList.length = 0;
@@ -129,8 +128,7 @@ export class DefaultLayoutComponent implements OnInit {
   private percorrerMenus(url: any[], menus: any): void {
 
     url.forEach((router, index) => {
-
-      if (index > 1)
+      if (index > 2)
         return;
 
       if (typeof menus !== 'undefined' || menus !== null) {
@@ -148,7 +146,7 @@ export class DefaultLayoutComponent implements OnInit {
     });
   }
 
-  private configurarObservacaoInatividadeUsuario() {
+  private configurarObservacaoInatividaDeUsuario() {
     this._idle.setIdle(900);
     this._idle.setTimeout(10);
     this._idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
