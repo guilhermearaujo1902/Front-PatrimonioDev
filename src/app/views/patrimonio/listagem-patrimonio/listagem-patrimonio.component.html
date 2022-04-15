@@ -74,10 +74,10 @@
             <a class="dropdown-item" role="button" data-toggle="modal"
               (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#staticBackdrop">Declarar Perda</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item"
+            <a class="dropdown-item disabled"
               (click)="cadastrarMovimentacao(row.codigoPatrimonio, row.tipoEquipamento, row.nomeFuncionario)"
-              role="button">Cadastrar Mov.</a>
-            <a class="dropdown-item" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov.</a>
+              role="button">Cadastrar Mov. <b>(EM BREVE)</b></a>
+            <a class="dropdown-item disabled" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
           </div>
         </div>
       </td>
