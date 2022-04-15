@@ -8,6 +8,7 @@ import { MovimentacaoService } from '../../../services/movimentacao/movimentacao
 import { Movimentacao } from '../../../models/Movimentacao';
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 import { MovimentacaoEquipamento } from '../../../models/enums/movimentacao-equipamento.enum';
+import { EnumType } from 'typescript';
 
 @Component({
   selector: 'app-listagem-movimentacao',
@@ -32,6 +33,14 @@ export class ListagemMovimentacaoComponent implements OnInit {
 
   ngOnInit(): void {
       this.obterMovimentacoes();
+  }
+
+  public adicionarClasseAlinhamentoDireita(index: number): any {
+      return {'right': index % 2 === 0};
+  }
+
+  public obterDescricaoEnum(index: number): string{
+    return MovimentacaoEquipamento[index];
   }
 
   private obterMovimentacoes(): void {

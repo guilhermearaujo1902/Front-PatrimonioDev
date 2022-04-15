@@ -8,9 +8,9 @@ import { FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { FabricanteService } from './services/fabricante/fabricante.service';
 import { MenuService } from './services/menu/menu.service';
 
-import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy } from '@angular/common';
+import { CommonModule, HashLocationStrategy, LocationStrategy, PathLocationStrategy, registerLocaleData } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -74,7 +74,6 @@ import { FuncionarioComponent } from './views/funcionario/funcionario.component'
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
-import { EnumDisplayPipe } from './pipe/enum-situacaoEquipamento-display.pipe';
 import { CanvasTagComponent } from './views/canvas-tag/canvas-tag.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BooleanoPipe } from './pipe/booleano.pipe';
@@ -82,7 +81,9 @@ import { RelatorioPerdaComponent } from './views/relatorio/relatorio-perda/relat
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { Idle } from '@ng-idle/core';
 import { ModalTempoComponent } from './views/modal-tempo/modal-tempo.component';
+import localePt from '@angular/common/locales/pt';
 
+registerLocaleData(localePt);
 
 const customCurrencyMaskConfig = {
   align: "left",
@@ -140,7 +141,6 @@ const customCurrencyMaskConfig = {
     )
   ],
   declarations: [
-    EnumDisplayPipe,
     BooleanoPipe,
     AppComponent,
     ...APP_CONTAINERS,
@@ -170,7 +170,6 @@ const customCurrencyMaskConfig = {
     UsuarioPerfilComponent,
     FuncionarioComponent,
     ListagemFuncionarioComponent,
-    EnumDisplayPipe,
     CanvasTagComponent,
     BooleanoPipe,
     RelatorioPerdaComponent,
@@ -210,7 +209,9 @@ const customCurrencyMaskConfig = {
     FormBuilderTypeSafe,
     JwtHelperService,
     Idle,
-    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS }
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    { provide: LOCALE_ID, useValue: 'pt-BR' }
+
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

@@ -11,6 +11,7 @@ import { TokenService } from '../../../services/token/token.service';
 import configuracaoTabela from '../../../utils/configuracao-tabela';
 import * as XLSX from 'xlsx';
 import { EncryptDecryptService } from '../../../services/encrypt-decrypt/encrypt-decrypt.service';
+import { SituacaoEquipamento } from '../../../models/enums/situacao-equipamento.enum';
 
 @Component({
   selector: 'app-listarPatrimonio',
@@ -117,7 +118,9 @@ export class ListarpatrimonioComponent implements OnInit {
   public detalhePatrimonio(codigoPatrimonio: number, serviceTag: string): void {
     this.router.navigate([`dashboard/patrimonio`], { queryParams: { codigoPatrimonio, serviceTag } })
   }
-
+  public obterDescricaoEnum(index: number): string{
+    return SituacaoEquipamento[index];
+  }
   public cadastrarMovimentacao(codigoPatrimonio: number, tipoEquipamento: string, nomeFuncionario: string): void {
     this.router.navigate([`dashboard/movimentacao`], { queryParams: { codigoPatrimonio: this.encriptacao.encrypt(codigoPatrimonio.toString()), patrimonio: `${tipoEquipamento} - ${nomeFuncionario}` } })
   }

@@ -37,7 +37,6 @@ export class WidgetsComponent implements OnInit {
     this.spinner.show('graficoLinha');
 
     this.estatisticaService.obterEstatisticas().subscribe(listaDeResposta =>{
-        debugger;
         this.estatisticaCategoria = listaDeResposta[0];
         this.construirGraficoQuantidadeEquipamentosCategoria();
 

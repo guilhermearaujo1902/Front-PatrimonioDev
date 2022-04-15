@@ -1,15 +1,206 @@
 @import "../../../../scss/fonts.scss";
 
-p.card-text, p.card-title{
-  font-family: 'brandon', arial;
-  font-weight: 400;
-  font-size: 1.1rem
+// Variables
+$bg-body: #f9f9f9;
+
+$red: #009AE0;
+$blue: #2b2e48;
+$primary-color: $red;
+$secondary-color: $blue;
+
+
+// Typography
+$base-font: helvetica, arial, tahoma, verdana;
+$base-font-title: "Dosis", arial, tahoma, verdana;
+
+$base-font-color: #726f77;
+
+// Timeline
+$timeline-color: $primary-color;
+
+
+// Mixins and Placeholders
+%clearfix {
+	&:after, &:before {
+		content: '';
+		display: block;
+		width: 100%;
+		clear: both;
+	}
 }
 
-.card{
-  box-shadow: 5px 7px 22px -3px rgba(0,0,0,0.31);
+@mixin prefix($prop, $val) {
+	@each $prefix in '-webkit-', '-moz-', '-ms-', '' {
+		#{$prefix}#{$prop}: $val;
+	}
+}
+*, *:before, *:after {
+	box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
 }
 
-span{
-  border-radius: 5px;
+body, html {
+	height: 100%;
+}
+body {
+	background: $bg-body;
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+	font-family: $base-font;
+	line-height: 20px;
+	font-size: 14px;
+	color: $base-font-color;
+}
+
+img {max-width: 100%;}
+
+a {
+	text-decoration: none;
+}
+
+.container {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+h1, h2, h3, h4 {
+		family: $base-font-title;
+		weight: 500;
+}
+
+// Timeline
+#timeline {
+	width: 100%;
+  margin: 30px auto;
+	position: relative;
+  padding: 0 10px;
+	@include prefix(transition, all .4s ease);
+
+	&:before {
+		content:"";
+		width: 3px;
+		height: 100%;
+		background: $timeline-color;
+		left: 50%;
+		top: 0;
+		position: absolute;
+	}
+
+	&:after {
+		content: "";
+		clear: both;
+		display: table;
+		width: 100%;
+	}
+
+	.timeline-item {
+		margin-bottom: 50px;
+		position: relative;
+		@extend %clearfix;
+
+		.timeline-icon {
+			background: $timeline-color;
+			width: 50px;
+			height: 50px;
+			position: absolute;
+			top: 0;
+			left: 50%;
+			overflow: hidden;
+			margin-left: -23px;
+			@include prefix(border-radius, 50%);
+
+			img {
+				position: relative;
+				top: 5px;
+				left: 5px;
+			}
+		}
+
+		.timeline-content {
+			width: 45%;
+			background: #fff;
+			padding: 20px;
+			@include prefix(box-shadow, 0 3px 0 rgba(0,0,0,0.1));
+			@include prefix(border-radius, 5px);
+			@include prefix(transition, all .3s ease);
+
+			h2 {
+				padding: 15px;
+				background: $timeline-color;
+				color: #fff;
+				margin: -20px -20px 0 -20px;
+				font-weight: 300;
+				@include prefix(border-radius, 3px 3px 0 0);
+			}
+
+			&:before {
+				content: '';
+				position: absolute;
+				left: 45%;
+				top: 20px;
+				width: 0;
+				height: 0;
+				border-top: 7px solid transparent;
+				border-bottom: 7px solid transparent;
+				border-left:7px solid $timeline-color;
+			}
+
+			&.right {
+				float: right;
+
+				&:before {
+					content: '';
+					right: 45%;
+					left: inherit;
+					border-left: 0;
+					border-right: 7px solid $timeline-color;
+				}
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 768px) {
+	#timeline {
+		margin: 30px;
+		padding: 0px;
+    width: 90%;
+		&:before {
+			left: 0;
+		}
+
+		.timeline-item {
+			.timeline-content {
+				width: 90%;
+				float: right;
+
+				&:before, &.right:before {
+					left: 10%;
+					margin-left: -6px;
+					border-left: 0;
+					border-right: 7px solid $timeline-color;
+				}
+			}
+
+			.timeline-icon {
+				left: 0;
+			}
+		}
+	}
+}
+
+p{
+  font-size: 16px;
+}
+
+span.item-movimentacao {
+  font-family: 'Roboto-Black';
+  font-size: 17px;
+}
+
+button{
+  font-family: 'Roboto-Black';
+  font-size: 17px;
 }

@@ -74,13 +74,13 @@ export class MovimentacaoComponent implements OnInit {
     this.form = this.fb.group<Movimentacao>({
       codigoMovimentacao: new FormControl(this.limpandoCampo ? this.form.get('codigoMovimentacao').value : 0, []),
       dataApropriacao: new FormControl('', [Validators.required]),
-      dataDevolucao: new FormControl(''),
+      dataDevolucao: new FormControl(' '),
       observacao: new FormControl(''),
       movimentacaoDoEquipamento: new FormControl(+MovimentacaoEquipamento['Em Uso']),
       codigoPatrimonio: new FormControl(this.codigoPatrimonio),
       codigoUsuario: new FormControl(this.token.obterCodigoUsuarioToken()),
       nomeUsuario: new FormControl(this.token.obterNomeUsuarioToken()),
-      nomePatrimonio: new FormControl(this.nomePatrimonio)
+      nomePatrimonio: new FormControl("")
 
     });
   }
@@ -95,6 +95,7 @@ export class MovimentacaoComponent implements OnInit {
     this.movimentacao = (this.estadoSalvar === 'realizarMovimentacao') ? { ...this.form.value } : { codigoMovimentacao: this.movimentacao.codigoMovimentacao, ...this.form.value };
 
     this.formatarDatas()
+    this.converterEnumEquipamentoParaNumber()
 
     this.movimentacaoService[this.estadoSalvar](this.movimentacao).subscribe(
       () => this.toaster.success(`Movimentação ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
@@ -115,34 +116,17 @@ export class MovimentacaoComponent implements OnInit {
     let dataApropriacao = this.form.controls.dataApropriacao.value
     let dataDevolucao = this.form.controls.dataDevolucao.value
 
-    this.movimentacao.dataApropriacao = moment(dataApropriacao).subtract(3, 'hours').toISOString();
+    this.movimentacao.dataApropriacao = new Date(moment(dataApropriacao).subtract(3, 'hours').toISOString());
 
     if (typeof dataDevolucao != 'undefined') {
       this.movimentacao.dataDevolucao = moment(dataDevolucao).local().subtract(3, 'hours').toISOString();
     }
+
+  }
+  private converterEnumEquipamentoParaNumber(): void {
+    this.movimentacao.movimentacaoDoEquipamento = +this.form.controls.movimentacaoDoEquipamento.value
   }
 
 
-
-  // public carregarMovimentacao(): void {
-  //   this.codigoMovimentacao = +this.activateRouter.snapshot.paramMap.get('codigoMovimentacao');
-  //   if (this.codigoMovimentacao !== null && this.codigoMovimentacao !== 0) {
-  //     this.estadoSalvar = 'atualizarMovimentacao';
-  //     this.spinner.show('carregando');
-
-  //     this.usuarioService.obterApenasUmUsuario(this.codigoMovimentacao).subscribe(
-  //       {
-  //         next: (usuario: Usuario) => {
-  //           this.movimentacao = { ...usuario };
-  //           this.form.patchValue(this.movimentacao);
-  //           this.form.controls.confirmeSenha.setValue(usuario.senha);
-  //         },
-  //         error: (error: any) => {
-  //           this.toaster.error(`Houve um erro ao tentar carregar o usuário. Mensagem: ${error.message}`, 'Erro!');
-  //         }
-  //       }
-  //     ).add(() => this.spinner.hide('carregando'));
-  //   }
-  // }
 
 }

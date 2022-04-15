@@ -34,7 +34,8 @@
           'em-uso': row.situacaoEquipamento == 1,
           'disponivel': row.situacaoEquipamento == 2,
           'manutencao': row.situacaoEquipamento == 4}">
-          {{ row.situacaoEquipamento | enumDisplay:row.situacaoEquipamento}}</span>
+          {{obterDescricaoEnum(row.situacaoEquipamento)}}</span>
+
       </td>
       <td>
         <span class="font-small">{{ row.tipoEquipamento }}</span>
@@ -74,10 +75,10 @@
             <a class="dropdown-item" role="button" data-toggle="modal"
               (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#staticBackdrop">Declarar Perda</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item disabled"
+            <a class="dropdown-item "
               (click)="cadastrarMovimentacao(row.codigoPatrimonio, row.tipoEquipamento, row.nomeFuncionario)"
               role="button">Cadastrar Mov. <b>(EM BREVE)</b></a>
-            <a class="dropdown-item disabled" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
+            <a class="dropdown-item " (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
           </div>
         </div>
       </td>

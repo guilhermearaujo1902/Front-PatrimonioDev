@@ -15,6 +15,7 @@ export class MovimentacaoService {
   constructor(private api: ApiService) { }
 
   public realizarMovimentacao(movimentacao: Movimentacao): Observable<Movimentacao> {
+    debugger;
     return this.api
     .post<Movimentacao>(this.baseUrl, {movimentacao})
     .pipe(take(1));
