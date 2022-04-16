@@ -4,7 +4,7 @@
 
       <div class="input-group mb-2">
         <div class="input-group-prepend">
-          <div class="input-group-text">Filtro: </div>
+          <div class="input-group-text" id="campo-filtro">Filtro: </div>
         </div>
         <input type="text" placeholder="Buscar por perdas" class="form-control" (input)="onChange($event)" />
       </div>
@@ -19,7 +19,7 @@
     <ng-template let-row let-index="index">
       <td class="perda">
         <div class="font-small"><p class="identificador">Código da Perda:</p> {{ row.codigoPerda}}</div>
-        <div class="font-small"><p class="identificador" data-toggle="tooltip" data-placement="top" title="Nome do funcionário vinculado ao equipamento">Nome do funcionário:</p> {{ row.nomeFuncionario | uppercase}}</div>
+        <div class="font-small"><p class="identificador" data-toggle="tooltip" data-placement="top" title="Nome do funcionário vinculado ao patrimônio">Nome do funcionário:</p> {{ row.nomeFuncionario | uppercase}}</div>
         <div class="font-small"><p class="identificador" data-toggle="tooltip" data-placement="top" title="Nome do usuário que registrou a perda">Nome do usuário:</p> {{ row.nomeUsuario | uppercase}}</div>
         <div class="font-small"><p class="identificador">Equipamento:</p> {{ row.tipoEquipamento}}</div>
         <div class="font-small"><p id="perda-motivo">Motivo da Perda:</p> <p id="perda-motivo-texto">{{ row.motivoDaPerda}}</p></div>

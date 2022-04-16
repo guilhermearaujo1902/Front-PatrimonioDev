@@ -1,6 +1,7 @@
 @import "../../../../scss/fonts.scss";
+@import "../../../../scss/style-listagem.scss";
 
-// Variables
+
 $bg-body: #f9f9f9;
 
 $red: #009AE0;
@@ -8,18 +9,13 @@ $blue: #2b2e48;
 $primary-color: $red;
 $secondary-color: $blue;
 
-
-// Typography
 $base-font: helvetica, arial, tahoma, verdana;
 $base-font-title: "Dosis", arial, tahoma, verdana;
 
 $base-font-color: #726f77;
 
-// Timeline
 $timeline-color: $primary-color;
 
-
-// Mixins and Placeholders
 %clearfix {
 	&:after, &:before {
 		content: '';
@@ -66,11 +62,10 @@ a {
 }
 
 h1, h2, h3, h4 {
-		family: $base-font-title;
-		weight: 500;
+		font-family: $base-font-title;
+		font-weight: 500;
 }
 
-// Timeline
 #timeline {
 	width: 100%;
   margin: 30px auto;

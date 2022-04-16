@@ -115,6 +115,11 @@ export class ListarpatrimonioComponent implements OnInit {
     this.modalRef?.hide();
   }
 
+  public fecharModalPerda(podeFechar: boolean){
+    let botaoFecharPerda = document.getElementById("botao-fechar-modal-perda")
+    botaoFecharPerda.click();
+  }
+
   public detalhePatrimonio(codigoPatrimonio: number, serviceTag: string): void {
     this.router.navigate([`dashboard/patrimonio`], { queryParams: { codigoPatrimonio, serviceTag } })
   }

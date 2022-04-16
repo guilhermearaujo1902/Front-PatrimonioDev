@@ -1,5 +1,5 @@
 import { ToastrService } from 'ngx-toastr';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { PerdaEquipamento } from '../../models/PerdaEquipamento';
@@ -14,8 +14,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./perda.component.scss','../../../scss/style-base.scss']
 })
 export class PerdaComponent implements OnInit {
-debugger;
   @Input('codigoPatrimonio') codigoPatrimonio: number;
+  @Output() podeFecharModal = new EventEmitter<boolean>();
 
   form!: FormGroupTypeSafe<PerdaEquipamento>;
   private perda = {} as PerdaEquipamento
@@ -27,8 +27,8 @@ debugger;
   constructor(private fb: FormBuilderTypeSafe,
               private perdaService: PerdaService,
               private spinner: NgxSpinnerService,
-              private toaster: ToastrService,
-              private router: Router) { }
+              private toaster: ToastrService
+              ) { }
 
   ngOnInit(): void {
     this.validacao();
@@ -45,7 +45,7 @@ debugger;
   public salvarAlteracao(): void {
 
     this.spinner.show();
-debugger;
+
     this.perda = {...this.form.value};
     this.perda.codigoPatrimonio = this.codigoPatrimonio;
 
@@ -54,6 +54,9 @@ debugger;
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao("cadastrar","perda", ['o','da'])} Mensagem: ${template.mensagemErro}`, template.titulo);
+      },
+      () =>{
+        this.podeFecharModal.emit(true);
       }
     ).add(() => this.spinner.hide());
   }
