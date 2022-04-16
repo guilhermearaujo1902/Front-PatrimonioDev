@@ -53,7 +53,7 @@ export const navItems: INewNavData[] = [
   {
     name: 'Funcionário',
     url: '/semurl',
-    icon: 'fa fa-users',
+    icon: 'fas fa-id-badge',
     permissaoDoUsuario: Permissao.Usuario,
     children: [
       {
@@ -95,7 +95,7 @@ export const navItems: INewNavData[] = [
   {
     name: 'Setor',
     url: '/s',
-    icon: 'fa fa-users',
+    icon: 'fas fa-puzzle-piece',
     permissaoDoUsuario: Permissao.Administrador,
     children: [
       {
@@ -113,7 +113,7 @@ export const navItems: INewNavData[] = [
   {
     name: 'Fabricante',
     url: '/semu',
-    icon: 'fa fa-archive',
+    icon: 'fa fa-industry',
     permissaoDoUsuario: Permissao.Usuario,
     children: [
       {
@@ -191,7 +191,7 @@ export const navItems: INewNavData[] = [
   {
     name: 'Relatório de perdas',
     url: '/dashboard/relatorio-de-perda',
-    icon: "fa fa-files-o",
+    icon: "fas fa-file",
     permissaoDoUsuario: Permissao.Usuario
   }
 ];
