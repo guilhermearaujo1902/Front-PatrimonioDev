@@ -30,7 +30,7 @@
         <div class="font-small">{{ row.descricaoPermissao }}</div>
       </td>
       <td *ngIf="!isMobile">
-        <div class="font-small">{{ row.ativo }}</div>
+        <div class="font-small">{{ row.ativo | booleano: true }}</div>
       </td>
       <td *ngIf="isMobile">
         <button class="btn btn-primary" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">

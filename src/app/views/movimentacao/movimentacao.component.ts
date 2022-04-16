@@ -44,8 +44,11 @@ export class MovimentacaoComponent implements OnInit {
     private encriptacao: EncryptDecryptService,
     private activatedRoute: ActivatedRoute) {
     this.chaveSituacaoMovimento = Object.keys(this.situacaoMovimento).filter(Number);
-    this.activatedRoute.queryParams.subscribe(parametro => { this.codigoPatrimonio = +this.encriptacao.decrypt(parametro.codigoPatrimonio) });
-
+    this.activatedRoute.queryParams.subscribe(parametro =>
+                                              { this.codigoPatrimonio = +this.encriptacao.decrypt(parametro.codigoPatrimonio)
+                                                this.nomePatrimonio = parametro.nomePatrimonio
+                                              });
+                                              debugger;
   }
 
   ngOnInit(): void {
@@ -80,7 +83,7 @@ export class MovimentacaoComponent implements OnInit {
       codigoPatrimonio: new FormControl(this.codigoPatrimonio),
       codigoUsuario: new FormControl(this.token.obterCodigoUsuarioToken()),
       nomeUsuario: new FormControl(this.token.obterNomeUsuarioToken()),
-      nomePatrimonio: new FormControl("")
+      nomePatrimonio: new FormControl(this.nomePatrimonio)
 
     });
   }
@@ -105,7 +108,7 @@ export class MovimentacaoComponent implements OnInit {
       },
       () => {
         setTimeout(() => {
-          this.router.navigate(['dashboard/listar-movimentacao'])
+          this.router.navigate(['dashboard/listar-patrimonio/listar-movimentacao'])
         }, 1700)
       }
     ).add(() => this.spinner.hide(nomeAcaoRealizada));

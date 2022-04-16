@@ -5,8 +5,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class BooleanoPipe implements PipeTransform {
 
-  transform(value: boolean,): string {
+  transform(value: boolean, descricaoAtivoInativo: boolean): string {
+
+    if(descricaoAtivoInativo) return value ? 'Ativo': 'Inativo';
+
     return value ? 'Sim': 'Não';
+
   }
 
 }
