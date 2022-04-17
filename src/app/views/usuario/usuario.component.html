@@ -5,28 +5,18 @@
       <div class="form-row">
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Código do usuário</label>
-          <input
-            type="text"
-            readonly
-            class="form-control"
-            value="15"
-            name="codigoUsuario"
-            formControlName="codigoUsuario"
-          />
+          <input type="text" readonly class="form-control" value="15" name="codigoUsuario"
+            formControlName="codigoUsuario" />
         </div>
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Setor</label>
-          <select
-            class="form-select form-control"
-            [ngClass]="cssValidatorCampoSelecao(f.codigoSetor)"
-            formControlName="codigoSetor"
-            required
-          >
-            <option value="" disabled>--Selecione um setor--</option>
-            <option *ngFor="let setor of setores" [value]="setor.codigoSetor">
-              {{ setor.nome }}
-            </option>
-          </select>
+          <ng-select formControlName="codigoSetor" [ngClass]="cssValidatorCampoSelecao(f.codigoSetor)"
+            [multiple]="false">
+            <ng-option value="" disabled>--Selecione um setor--</ng-option>
+            <ng-option *ngFor="let setor of setores" [value]="setor.codigoSetor">
+              {{setor.codigoSetor}} - {{ setor.nome }}
+            </ng-option>
+          </ng-select>
           <div *ngIf="f.codigoSetor.errors?.required" class="invalid-feedback">
             Setor do usuário é obrigatório
           </div>
@@ -35,35 +25,20 @@
       <div class="form-row">
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Empresa</label>
-          <select
-            class="form-select form-control"
-            [ngClass]="cssValidatorCampoSelecao(f.codigoEmpresa)"
-            formControlName="codigoEmpresa"
-            required
-          >
-            <option value="" disabled>--Selecione uma empresa--</option>
-            <option
-              *ngFor="let empresa of empresas"
-              selected
-              [value]="empresa.codigoEmpresa"
-            >
-              {{ empresa.razaoSocial }}
-            </option>
-          </select>
-          <div
-            *ngIf="f.codigoEmpresa.errors?.required"
-            class="invalid-feedback"
-          >
+          <ng-select formControlName="codigoEmpresa" [ngClass]="cssValidatorCampoSelecao(f.codigoEmpresa)"
+            [multiple]="false">
+            <ng-option value="" disabled>--Selecione uma empresa--</ng-option>
+            <ng-option *ngFor="let empresa of empresas" selected [value]="empresa.codigoEmpresa">
+              {{empresa.codigoEmpresa}} - {{ empresa.razaoSocial }}
+            </ng-option>
+          </ng-select>
+          <div *ngIf="f.codigoEmpresa.errors?.required" class="invalid-feedback">
             Empresa do usuário é obrigatório
           </div>
         </div>
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Situação</label>
-          <select
-            class="form-select form-control"
-            formControlName="ativo"
-            required
-          >
+          <select class="form-select form-control" formControlName="ativo" required>
             <option selected [ngValue]="true">Ativo</option>
             <option [ngValue]="false">Desativado</option>
           </select>
@@ -72,24 +47,14 @@
       <div class="form-row mb-5">
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Permissão</label>
-          <select
-            class="form-select form-control"
-            [ngClass]="cssValidatorCampoSelecao(f.codigoUsuarioPermissao)"
-            formControlName="codigoUsuarioPermissao"
-            required
-          >
-            <option value="" disabled>--Selecione uma permissão--</option>
-            <option
-              *ngFor="let permissao of permissoes"
-              [value]="permissao.codigoUsuarioPermissao"
-            >
-              {{ permissao.descricaoPermissao }}
-            </option>
-          </select>
-          <div
-            *ngIf="f.codigoUsuarioPermissao.errors?.required"
-            class="invalid-feedback"
-          >
+          <ng-select formControlName="codigoUsuarioPermissao"
+            [ngClass]="cssValidatorCampoSelecao(f.codigoUsuarioPermissao)" [multiple]="false">
+            <ng-option value="" disabled>--Selecione uma permissão--</ng-option>
+            <ng-option *ngFor="let permissao of permissoes" [value]="permissao.codigoUsuarioPermissao">
+              {{permissao.codigoUsuarioPermissao}} - {{ permissao.descricaoPermissao }}
+            </ng-option>
+          </ng-select>
+          <div *ngIf="f.codigoUsuarioPermissao.errors?.required" class="invalid-feedback">
             Permissão do usuário é obrigatório
           </div>
         </div>
@@ -98,15 +63,8 @@
       <div class="form-row mt-5">
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Nome</label>
-          <input
-            type="text"
-            class="form-control"
-            [ngClass]="cssValidator(f.nome)"
-            name="nome"
-            formControlName="nome"
-            placeholder="Nome do usuário"
-            required
-          />
+          <input type="text" class="form-control" [ngClass]="cssValidator(f.nome)" name="nome" formControlName="nome"
+            placeholder="Nome do usuário" required />
           <div *ngIf="f.nome.errors?.required" class="invalid-feedback">
             Nome é obrigatório
           </div>
@@ -119,15 +77,8 @@
         </div>
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>E-mail</label>
-          <input
-            type="email"
-            class="form-control"
-            [ngClass]="cssValidator(f.email)"
-            name="email"
-            formControlName="email"
-            placeholder="E-mail do usuário"
-            required
-          />
+          <input type="email" class="form-control" [ngClass]="cssValidator(f.email)" name="email"
+            formControlName="email" placeholder="E-mail do usuário" required />
           <div *ngIf="f.email.errors?.required" class="invalid-feedback">
             E-mail é obrigatório
           </div>
@@ -143,15 +94,8 @@
       <div div class="form-row">
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Senha</label>
-          <input
-            type="password"
-            class="form-control"
-            [ngClass]="cssValidator(f.senha)"
-            name="senha"
-            formControlName="senha"
-            placeholder="Senha"
-            required
-          />
+          <input type="password" class="form-control" [ngClass]="cssValidator(f.senha)" name="senha"
+            formControlName="senha" placeholder="Senha" required />
           <div *ngIf="f.senha.errors?.required" class="invalid-feedback">
             Senha é obrigatório
           </div>
@@ -164,39 +108,26 @@
         </div>
         <div class="form-group col-sm-12 col-md-6 text-start">
           <label>Repita a senha</label>
-          <input
-            type="password"
-            class="form-control"
-            name="repitirSenha"
-            formControlName="confirmeSenha"
-            placeholder="Repita a senha"
-            [ngClass]="cssValidator(f.confirmeSenha)"
-            required
-          />
+          <input type="password" class="form-control" name="repitirSenha" formControlName="confirmeSenha"
+            placeholder="Repita a senha" [ngClass]="cssValidator(f.confirmeSenha)" required />
           <div *ngIf="f.confirmeSenha.errors?.required" class="invalid-feedback">Senha é obrigatória</div>
-          <div *ngIf="f.confirmeSenha.errors?.minlength" class="invalid-feedback">Senha deve ter no mínimo 5 caracteres</div>
-          <div *ngIf="f.confirmeSenha.errors?.maxlength" class="invalid-feedback">Senha deve ter no máximo 25 caracteres</div>
+          <div *ngIf="f.confirmeSenha.errors?.minlength" class="invalid-feedback">Senha deve ter no mínimo 5 caracteres
+          </div>
+          <div *ngIf="f.confirmeSenha.errors?.maxlength" class="invalid-feedback">Senha deve ter no máximo 25 caracteres
+          </div>
           <div *ngIf="f.confirmeSenha.errors?.mustMatch" class="invalid-feedback">Senha incorreta</div>
         </div>
       </div>
       <div class="form-row pt-3">
         <div class="row">
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-block btn-success btn-lg"
-              [disabled]="!form.valid"
-              (click)="salvarAlteracao()"
-            >
-            {{this.estadoSalvar.includes('cadastrar')?'Cadastrar':'Atualizar'}}
+            <button type="button" class="btn btn-block btn-success btn-lg" [disabled]="!form.valid"
+              (click)="salvarAlteracao()">
+              {{this.estadoSalvar.includes('cadastrar')?'Cadastrar':'Atualizar'}}
             </button>
           </div>
           <div class="col">
-            <button
-              type="button"
-              class="btn btn-block btn-warning btn-lg"
-              (click)="limparCampos()"
-            >
+            <button type="button" class="btn btn-block btn-warning btn-lg" (click)="limparCampos()">
               Limpar
             </button>
           </div>
@@ -205,7 +136,15 @@
     </div>
   </form>
 </div>
-<ngx-spinner name="cadastrada" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade" [fullScreen]="true"><p style="color: white" > Cadastrando... </p></ngx-spinner>
-<ngx-spinner name="atualizada" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade" [fullScreen]="true"><p style="color: white" > Atualizando... </p></ngx-spinner>
-<ngx-spinner name="carregando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Carregando... </p></ngx-spinner>
-
+<ngx-spinner name="cadastrada" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Cadastrando... </p>
+</ngx-spinner>
+<ngx-spinner name="atualizada" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Atualizando... </p>
+</ngx-spinner>
+<ngx-spinner name="carregando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+  [fullScreen]="true">
+  <p style="color: white"> Carregando... </p>
+</ngx-spinner>

@@ -82,6 +82,7 @@ import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { Idle } from '@ng-idle/core';
 import { ModalTempoComponent } from './views/modal-tempo/modal-tempo.component';
 import localePt from '@angular/common/locales/pt';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 registerLocaleData(localePt);
 
@@ -112,6 +113,7 @@ const customCurrencyMaskConfig = {
     ReactiveFormsModule,
     FormsModule,
     CommonModule,
+    NgSelectModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     AppAsideModule,

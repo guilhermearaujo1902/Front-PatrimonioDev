@@ -5,7 +5,8 @@
         <h1><span class="texto-destaque">Patrimônio</span></h1>
       </div>
       <div *ngIf="+form.controls.codigoPatrimonio.value != 0" class="form-group col-sm-12 col-md-4 col-lg-4 text-start">
-        <app-canvas codigoPatrimonio="{{codigoPatrimonio}}" serviceTag="{{serviceTag}}" nomeFantasia="{{nomeFantasiaEmpresaPadrao | uppercase | slice:0:18 }}"></app-canvas>
+        <app-canvas codigoPatrimonio="{{codigoPatrimonio}}" serviceTag="{{serviceTag}}"
+          nomeFantasia="{{nomeFantasiaEmpresaPadrao | uppercase | slice:0:18 }}"></app-canvas>
       </div>
     </div>
     <div class="p-3">
@@ -19,13 +20,14 @@
       <div class="form-row">
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Funcionário</label>
-          <select class="form-select form-control" formControlName="codigoFuncionario"
-            [ngClass]="cssValidatorCampoSelecao(f.codigoFuncionario)" required>
-            <option value="" disabled>--Selecione um funcionário--</option>
-            <option *ngFor="let funcionario of funcionarios" [value]="funcionario.codigoFuncionario">
-              {{ funcionario.nomeFuncionario }}
-            </option>
-          </select>
+          <ng-select formControlName="codigoFuncionario" [ngClass]="cssValidatorCampoSelecao(f.codigoFuncionario)"
+            [multiple]="false">
+            <ng-option value="" disabled>--Selecione um funcionário--</ng-option>
+            <ng-option *ngFor="let funcionario of funcionarios" [value]="funcionario.codigoFuncionario">
+              {{funcionario.codigoFuncionario}} - {{ funcionario.nomeFuncionario }}
+            </ng-option>
+          </ng-select>
+
           <div *ngIf="f.codigoFuncionario.errors?.required" class="invalid-feedback">
             Funcionário é obrigatório
           </div>
@@ -33,13 +35,13 @@
 
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Equipamento</label>
-          <select class="form-select form-control" formControlName="codigoTipoEquipamento"
-            [ngClass]="cssValidatorCampoSelecao(f.codigoTipoEquipamento)" required>
-            <option value="" disabled>--Selecione um equipamento--</option>
-            <option *ngFor="let equipamento of equipamentos" [value]="equipamento.codigoTipoEquipamento">
-              {{ equipamento.tipoEquipamento }}
-            </option>
-          </select>
+          <ng-select formControlName="codigoTipoEquipamento"
+            [ngClass]="cssValidatorCampoSelecao(f.codigoTipoEquipamento)" [multiple]="false">
+            <ng-option value="" disabled>--Selecione um equipamento--</ng-option>
+            <ng-option *ngFor="let equipamento of equipamentos" [value]="equipamento.codigoTipoEquipamento">
+              {{equipamento.codigoTipoEquipamento}} - {{ equipamento.tipoEquipamento }}
+            </ng-option>
+          </ng-select>
           <div *ngIf="f.codigoTipoEquipamento.errors?.required" class="invalid-feedback">
             Equipamento é obrigatório
           </div>
@@ -67,17 +69,17 @@
 
         <div class="form-group col-lg-6 col-sm-12 text-start">
           <label>Service tag</label>
-          <input type="text" [ngClass]="cssValidator(f.serviceTag)" class="form-control" name="serviceTag" formControlName="serviceTag"
-            placeholder="Tag para identificação">
-            <div *ngIf="f.serviceTag.errors?.required" class="invalid-feedback">
-              ServiceTag é obrigatória
-            </div>
-            <div *ngIf="f.serviceTag.errors?.maxlength" class="invalid-feedback">
-              A service tag pode ter no máximo 20 letras
-            </div>
-            <div *ngIf="f.serviceTag.errors?.minlength" class="invalid-feedback">
-              A service tag pode ter no mínimo 4 letras
-            </div>
+          <input type="text" [ngClass]="cssValidator(f.serviceTag)" class="form-control" name="serviceTag"
+            formControlName="serviceTag" placeholder="Tag para identificação">
+          <div *ngIf="f.serviceTag.errors?.required" class="invalid-feedback">
+            ServiceTag é obrigatória
+          </div>
+          <div *ngIf="f.serviceTag.errors?.maxlength" class="invalid-feedback">
+            A service tag pode ter no máximo 20 letras
+          </div>
+          <div *ngIf="f.serviceTag.errors?.minlength" class="invalid-feedback">
+            A service tag pode ter no mínimo 4 letras
+          </div>
         </div>
       </div>
 

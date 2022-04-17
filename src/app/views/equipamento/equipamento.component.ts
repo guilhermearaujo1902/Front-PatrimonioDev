@@ -26,7 +26,7 @@ export class EquipamentoComponent implements OnInit {
   public fabricantes: Fabricante[] = [];
   public categorias: Categoria[] = [];
   private limpandoCampo: boolean = false;
-
+  public select: any
   get f(): any {
     return this.form.controls;
   }
@@ -46,6 +46,11 @@ export class EquipamentoComponent implements OnInit {
     this.carregarFabricantes();
     this.carregarCategorias();
     this.carregarEquipamento();
+  }
+
+  getValues(){
+    this.select;
+    debugger;
   }
 
   public limparCampos(): void{
