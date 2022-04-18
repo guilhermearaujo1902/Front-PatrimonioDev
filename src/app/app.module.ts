@@ -83,6 +83,7 @@ import { Idle } from '@ng-idle/core';
 import { ModalTempoComponent } from './views/modal-tempo/modal-tempo.component';
 import localePt from '@angular/common/locales/pt';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { environment } from '../environments/environment.prod';
 
 registerLocaleData(localePt);
 
@@ -187,13 +188,13 @@ const customCurrencyMaskConfig = {
           {
             id: GoogleLoginProvider.PROVIDER_ID,
             provider: new GoogleLoginProvider(
-              '226014073143-ml8ufg6nmtjsph9o67j6t30rjjljv821.apps.googleusercontent.com'
+              environment.googleProvider
             )
           },
           ,
           {
             id: FacebookLoginProvider.PROVIDER_ID,
-            provider: new FacebookLoginProvider('1110826919739685')
+            provider: new FacebookLoginProvider(environment.facebookProvider)
           }
         ]
       } as SocialAuthServiceConfig

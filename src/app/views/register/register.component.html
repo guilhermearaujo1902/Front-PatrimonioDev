@@ -10,7 +10,7 @@
                 <p class="text-muted">Crie sua conta</p>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-user"></i></span>
+                    <span class="input-group-text"><i class="fa fa-user"></i></span>
                   </div>
                   <input type="text" class="form-control" name="nome" [ngClass]="cssValidator(f.nome)" formControlName="nome" placeholder="Seu apelido ou nome" autocomplete="Nome" required>
                   <div *ngIf="f.nome.errors?.required" class="invalid-feedback">Nome é obrigatório</div>
@@ -28,7 +28,7 @@
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
                   </div>
                   <input type="password" class="form-control" name="senha" [ngClass]="cssValidator(f.senha)" formControlName="senha" placeholder="Digite sua senha" required>
                   <div *ngIf="f.senha.errors?.required" class="invalid-feedback">Senha é obrigatória</div>
@@ -37,7 +37,7 @@
                 </div>
                 <div class="input-group mb-4">
                   <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-lock"></i></span>
+                    <span class="input-group-text"><i class="fa fa-lock"></i></span>
                   </div>
                   <input type="password" class="form-control" placeholder="Repita a senha digita no campo acima" [ngClass]="cssValidator(f.confirmeSenha)" formControlName="confirmeSenha" required>
                   <div *ngIf="f.confirmeSenha.errors?.required" class="invalid-feedback">Senha é obrigatória</div>
