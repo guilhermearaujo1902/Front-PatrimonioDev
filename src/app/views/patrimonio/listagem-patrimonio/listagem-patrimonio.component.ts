@@ -175,11 +175,10 @@ export class ListarpatrimonioComponent implements OnInit {
 
   private obterColunasDaTabela(): any {
     return [
-      { key: 'codigoPatrimonio', title: 'Código' },
-      { key: 'situacaoEquipamento', title: 'Situação' },
-      { key: 'tipoEquipamento', title: 'Equipamento' },
+      { key: 'codigoPatrimonio', title: 'Código', width: '3%' },
+      { key: 'situacaoEquipamento', title: 'Situação', width: '12%' },
+      { key: 'tipoEquipamento', title: 'Equipamento', width: '5%' },
       { key: 'nomeFuncionario', title: 'Funcionário' },
-      { key: 'modelo', title: 'Modelo' },
       { key: '', title: '' },
       { key: '', title: '' },
       { key: '', title: '' },
@@ -190,8 +189,8 @@ export class ListarpatrimonioComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.colunas = [
-        { key: 'tipoEquipamento', title: 'Equipamento' },
-        { key: 'nomeFuncionario', title: 'Funcionário' },
+        { key: 'tipoEquipamento', title: 'Equip.' },
+        { key: 'nomeFuncionario', title: 'Func.' },
         { key: '', title: 'Expandir' },
       ];
     } else {

@@ -164,7 +164,6 @@ export class ListagemEmpresaComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.colunas = [
-      { key: 'codigoEmpresa', title: 'Código' },
       { key: 'razaoSocial', title: 'Razão Social' },
       { key: '', title: 'Expandir' },
       ];

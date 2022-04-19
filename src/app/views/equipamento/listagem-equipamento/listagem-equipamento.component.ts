@@ -164,7 +164,6 @@ export class ListagemequipamentoComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.colunas = [
-        { key: 'codigoTipoEquipamento', title: 'Código' },
         { key: 'tipoEquipamento', title: 'Descrição' },
         { key: '', title: 'Expandir' },
       ];

@@ -1,23 +1,23 @@
 <div class="card rounded shadow-sm p-3 m-5">
-  <div class="d-flex mb-1">
-    <div class="flex-fill pr-3">
-      <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text" id="campo-filtro">Filtro: </div>
+  <div class="row">
+    <div class="col-lg-8 col-sm-12 col-md-12">
+      <div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text" id="campo-filtro">Filtro:</div>
+          </div>
+          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
         </div>
-        <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
       </div>
     </div>
-
-    <div>
-      <a class="d-flex btn btn-outline-primary ml-3" routerLink="/dashboard/funcionario">
-        <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block"> Novo</b>
-      </a>
-    </div>
-    <div class="ml-1" *ngIf="ehAdministrador">
-      <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1"
-          id="icone-excel"></i> Exportar para Excel</button>
+    <div class="col-lg-4 col-sm-12 col-md-12 col-12">
+      <button class="btn btn-outline-primary mb-1" routerLink="/dashboard/funcionario">
+        <b class="ml-1">Novo <i class="fa fa-plus-circle my-1"></i></b>
+      </button>
+      <button class="btn btn-success mb-1" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
+        <i class="fas fa-file-excel my-1" id="icone-excel"></i> Exportar para
+        Excel
+      </button>
     </div>
   </div>
   <ngx-table [data]="data" [configuration]="configuracao" [columns]="colunas" [noResultsTemplate]="mensagemSemCadastro"
@@ -75,7 +75,7 @@
 </ng-template>
 
 <ng-template #detailsTemplate let-row>
-  <p>Ativo: {{row.ativo}}</p>
+  <p>Ativo: {{row.ativo | booleano}}</p>
   <p>Observação: {{row.observacao}}</p>
   <button class="btn btn-warning btn-lg mr-3" (click)="detalheFuncionario(row.codigoFuncionario)">
     Alterar

@@ -9,6 +9,7 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import configuracaoTabela from '../../../utils/configuracao-tabela';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
+import { TokenService } from '../../../services/token/token.service';
 
 @Component({
   selector: 'app-listagem-usuario',
@@ -29,6 +30,8 @@ export class ListagemUsuarioComponent implements OnInit {
   public data: Usuario[] = [];
   public dataFiltradaExcel: Usuario[] = [];
 
+  public ehAdministrador: boolean;
+
   modalRef?: BsModalRef;
   codigoUsuario: number;
 
@@ -38,7 +41,8 @@ export class ListagemUsuarioComponent implements OnInit {
     private spinner: NgxSpinnerService,
     private modalService: BsModalService,
     private router: Router,
-    private detectorAlteracao: ChangeDetectorRef) { }
+    private detectorAlteracao: ChangeDetectorRef,
+    private token: TokenService) { }
 
   ngOnInit(): void {
 
@@ -46,6 +50,7 @@ export class ListagemUsuarioComponent implements OnInit {
     this.configuracao = configuracaoTabela()
 
     this.linhas = this.data.map((_) => _.codigoSetor).reduce((acc, cur) => cur + acc, 0);
+    this.ehAdministrador = this.token.ehUsuarioAdministrador();
 
     this.colunas = this.obterColunasDaTabela();
     this.checkView();
@@ -56,7 +61,6 @@ export class ListagemUsuarioComponent implements OnInit {
     this.innerWidth = window.innerWidth;
     if (this.isMobile) {
       this.colunas = [
-        { key: 'codigoUsuario', title: 'Código' },
         { key: 'nome', title: 'Nome' },
         { key: '', title: 'Expandir' },
       ];

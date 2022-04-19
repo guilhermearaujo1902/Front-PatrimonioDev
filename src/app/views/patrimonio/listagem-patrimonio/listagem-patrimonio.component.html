@@ -1,25 +1,23 @@
 <div class="card rounded shadow-sm p-3 m-5 teste">
-
-  <div class="d-flex mb-1">
-    <div class="flex-fill pr-3">
-
-      <div class="input-group mb-2">
-        <div class="input-group-prepend">
-          <div class="input-group-text" id="campo-filtro">Filtro: </div>
+  <div class="row">
+    <div class="col-lg-8 col-sm-12 col-md-12">
+      <div>
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text" id="campo-filtro">Filtro:</div>
+          </div>
+          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
         </div>
-        <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
       </div>
     </div>
-    <div>
-      <a class="d-flex btn btn-outline-primary" routerLink="/dashboard/patrimonio">
-        <i class="fa fa-plus-circle my-1"></i>
-        <b class="ml-1 d-none d-sm-block"> Novo</b>
-      </a>
-    </div>
-    <div class="ml-1" *ngIf="ehAdministrador">
-      <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1"
-          id="icone-excel"></i> Exportar para
-        Excel</button>
+    <div class="col-lg-4 col-sm-12 col-md-12 col-12">
+      <button class="btn btn-outline-primary mb-1" routerLink="/dashboard/patrimonio">
+        <b class="ml-1">Novo <i class="fa fa-plus-circle my-1"></i></b>
+      </button>
+      <button class="btn btn-success mb-1" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
+        <i class="fas fa-file-excel my-1" id="icone-excel"></i> Exportar para
+        Excel
+      </button>
     </div>
   </div>
   <ngx-table [data]="data" [configuration]="configuracao" [columns]="colunas" [noResultsTemplate]="mensagemSemCadastro"
@@ -42,9 +40,6 @@
       </td>
       <td>
         <span class="font-small">{{ row.nomeFuncionario }}</span>
-      </td>
-      <td *ngIf="!isMobile">
-        <span class="font-small">{{ row.modelo }}</span>
       </td>
       <td *ngIf="isMobile">
         <button class="btn btn-primary" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
@@ -103,8 +98,8 @@
 </ng-template>
 
 <ng-template #detailsTemplate let-row>
-  <p>Código patrimônio: {{row.codigoPatrimonio}}</p>
-  <p>Situação do equipamento: {{row.situacaoEquipamento}}</p>
+  <p>Código: {{row.codigoPatrimonio}}</p>
+  <p>Situação do equipamento: {{obterDescricaoEnum(row.situacaoEquipamento)}}</p>
   <p>Modelo: {{row.modelo}}</p>
   <button class="btn btn-warning btn-lg mr-1" role="button"
     (click)="detalhePatrimonio(row.codigoPatrimonio, row.serviceTag)">
@@ -113,7 +108,7 @@
   <button class="btn btn-danger btn-lg mr-1" (click)="abrirModal($event, template, row.codigoPatrimonio)">
     Excluir
   </button>
-  <div class="btn-group">
+  <div class="btn-group mt-1">
     <button type="button" class="btn btn-secondary btn-lg">Ações</button>
     <button type="button" class="btn btn-secondary btn-lg dropdown-toggle dropdown-toggle-split"
       data-toggle="dropdown" aria-expanded="false">
@@ -122,10 +117,10 @@
       <a class="dropdown-item" role="button" data-toggle="modal"
         (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#modalPerda">Declarar Perda</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item "
+      <a class="dropdown-item disabled"
         (click)="cadastrarMovimentacao(row.codigoPatrimonio, row.tipoEquipamento, row.nomeFuncionario)"
         role="button">Cadastrar Mov. <b>(EM BREVE)</b></a>
-      <a class="dropdown-item " (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
+      <a class="dropdown-item disabled" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
     </div>
   </div>
 
