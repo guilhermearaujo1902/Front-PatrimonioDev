@@ -45,7 +45,7 @@ export class WidgetsComponent implements OnInit {
         if(isNaN(this.mediaEquipamento)){
           this.mediaEquipamento = 0
         }
-
+        debugger;
         this.quantidadeTotalDePatrimonios = listaDeResposta[2][0].quantidadeTotalPatrimonio;
         this.quantidadeTotalDePatrimoniosDisponiveis = listaDeResposta[2][0].quantidadePatrimonioDisponivel;
         this.alterarProgessBar();

@@ -6,7 +6,6 @@ import { PerdaEquipamento } from '../../models/PerdaEquipamento';
 import { PerdaService } from '../../services/perda/perda.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perda',

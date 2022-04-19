@@ -118,6 +118,7 @@ export class ListarpatrimonioComponent implements OnInit {
   public fecharModalPerda(podeFechar: boolean){
     let botaoFecharPerda = document.getElementById("botao-fechar-modal-perda")
     botaoFecharPerda.click();
+    this.obterPatrimonios()
   }
 
   public detalhePatrimonio(codigoPatrimonio: number, serviceTag: string): void {
