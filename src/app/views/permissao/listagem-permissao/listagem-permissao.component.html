@@ -12,7 +12,7 @@
     </div>
     <div class="col-lg-4 col-sm-12 col-md-12 col-12">
       <button class="btn btn-outline-primary mb-1" routerLink="/dashboard/permissao">
-        <b class="ml-1">Novo <i class="fa fa-plus-circle my-1"></i></b>
+        <b class="ml-1 mr-1">Novo <i class="fa fa-plus-circle my-1"></i></b>
       </button>
       <button class="btn btn-success mb-1" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
         <i class="fas fa-file-excel my-1" id="icone-excel"></i> Exportar para
@@ -75,7 +75,7 @@
 </ng-template>
 
 <ng-template #detailsTemplate let-row>
-    <p class="font-small">Código Permissão: {{ row.codigoUsuarioPermissao }}</p>
+    <p class="font-small">Código: {{ row.codigoUsuarioPermissao }}</p>
     <p class="font-small">Situação: {{ row.ativo | booleano: true }}</p>
   <button class="btn btn-warning btn-lg mr-3" (click)="detalhePermissao(row.codigoUsuarioPermissao)">
     Alterar
