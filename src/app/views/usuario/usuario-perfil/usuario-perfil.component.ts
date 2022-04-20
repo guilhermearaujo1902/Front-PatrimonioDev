@@ -95,6 +95,8 @@ export class UsuarioPerfilComponent implements OnInit {
 
   public salvarAlteracaoPerfil(): void{
 
+    this.spinner.show('atualizando');
+
     this.usuarioPerfil.senha = this.form.controls.senha.value;
     this.usuarioPerfil.nomeUsuario = this.nomeUsuario;
     this.usuarioPerfil.codigoUsuario = this.form.controls.codigoUsuario.value
@@ -106,12 +108,12 @@ export class UsuarioPerfilComponent implements OnInit {
       (error: any) =>{
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`Houve um erro ao atualizar o perfil. Mensagem: ${template.mensagemErro}`, 'Erro');
-      }
-    );
+      },
+    ).add(() => this.spinner.hide('atualizando'));
 
   }
 
-  onFileChange(env: any): void{
+  public onFileChange(env: any): void{
     const reader = new FileReader();
 
     reader.onload = (event: any) => this.imagemUrl = event.target.result;
@@ -128,7 +130,7 @@ export class UsuarioPerfilComponent implements OnInit {
 
   private uploadImagem(): void{
 
-    this.spinner.show("upload");
+    this.spinner.show('upload');
 
     this.perfilService.inserirImagem(this.codigoUsuario, this.file).subscribe(
       () => {
@@ -139,7 +141,7 @@ export class UsuarioPerfilComponent implements OnInit {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
         this.toaster[template.tipoMensagem](`Houve um erro ao subir a imagem: Mensagem: ${template.mensagemErro}`, 'Erro');
       }
-    ).add(() => this.spinner.hide("upload"));
+    ).add(() => this.spinner.hide('upload'));
   }
 
 }
