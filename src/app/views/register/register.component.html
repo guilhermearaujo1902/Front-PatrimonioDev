@@ -39,7 +39,7 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="fa fa-lock"></i></span>
                   </div>
-                  <input type="password" class="form-control" placeholder="Repita a senha digita no campo acima" [ngClass]="cssValidator(f.confirmeSenha)" formControlName="confirmeSenha" required>
+                  <input type="password" class="form-control" placeholder="Repita a senha digitada no campo acima" [ngClass]="cssValidator(f.confirmeSenha)" formControlName="confirmeSenha" required>
                   <div *ngIf="f.confirmeSenha.errors?.required" class="invalid-feedback">Senha é obrigatória</div>
                   <div *ngIf="f.confirmeSenha.errors?.minlength" class="invalid-feedback">Senha deve ter no mínimo 5 caracteres</div>
                   <div *ngIf="f.confirmeSenha.errors?.maxlength" class="invalid-feedback">Senha deve ter no máximo 25 caracteres</div>

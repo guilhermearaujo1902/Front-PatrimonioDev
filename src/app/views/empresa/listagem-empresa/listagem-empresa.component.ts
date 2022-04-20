@@ -150,7 +150,7 @@ export class ListagemEmpresaComponent implements OnInit {
 
   private obterColunasDaTabela(): any {
     return [
-      { key: 'codigoEmpresa', title: 'Código' },
+      { key: 'codigoEmpresa', title: 'Código', width: '3%' },
       { key: 'razaoSocial', title: 'Razão Social' },
       { key: 'nomeFantasia', title: 'Nome Fantasia' },
       { key: 'empresaoPadraoImpressao', title: 'Empresa Impressão' },

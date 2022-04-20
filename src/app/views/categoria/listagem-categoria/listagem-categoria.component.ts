@@ -142,7 +142,7 @@ export class ListagemCategoriaComponent implements OnInit {
 
   private obterColunasDaTabela(): any {
     return [
-      { key: 'codigoCategoria', title: 'Código' },
+      { key: 'codigoCategoria', title: 'Código', width: '3%' },
       { key: 'descricao', title: 'Descrição' },
       { key: '', title: '' },
       { key: '', title: '' },

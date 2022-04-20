@@ -152,7 +152,7 @@ export class ListagemFuncionarioComponent implements OnInit {
 
   private obterColunasDaTabela(): any {
     return [
-      { key: 'codigoFuncionario', title: 'Código' },
+      { key: 'codigoFuncionario', title: 'Código', width: '3%' },
       { key: 'nomeFuncionario', title: 'Nome' },
       { key: 'ativo', title: 'Ativo' },
       { key: 'observacao', title: 'Observação' },

@@ -71,7 +71,7 @@ export class ListagemUsuarioComponent implements OnInit {
 
   obterColunasDaTabela(): Columns[] {
     return [
-      { key: 'codigoUsuario', title: 'Código' },
+      { key: 'codigoUsuario', title: 'Código', width: '3%' },
       { key: 'nome', title: 'Nome' },
       { key: 'email', title: 'E-mail' },
       { key: '', title: '' },
