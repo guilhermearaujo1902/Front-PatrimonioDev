@@ -12,7 +12,7 @@
                 <input type="text" class="form-control" [ngClass]="cssValidator(f.descricao)" name="descricao" formControlName="descricao" placeholder="Ex: Headphone" required>
                 <div *ngIf="f.descricao.errors?.required" class="invalid-feedback">A descrição é obrigatória</div>
                 <div *ngIf="f.descricao.errors?.maxlength" class="invalid-feedback">A descrição pode ter no máximo 50 letras</div>
-                <div *ngIf="f.descricao.errors?.minlength" class="invalid-feedback">A descrição pode ter no mínimo 5 letras</div>
+                <div *ngIf="f.descricao.errors?.minlength" class="invalid-feedback">A descrição pode ter no mínimo 2 letras</div>
             </div>
           </div>
           <div class="form-row pt-3">

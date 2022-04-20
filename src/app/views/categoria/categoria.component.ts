@@ -46,7 +46,7 @@ export class CategoriaComponent implements OnInit {
   private validacao(): void {
     this.form = this.fb.group<Categoria>({
       codigoCategoria: new FormControl(this.limpandoCampo? this.form.get('codigoCategoria').value : 0, [],),
-      descricao: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)])
+      descricao: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(50)])
 
     });
   }
