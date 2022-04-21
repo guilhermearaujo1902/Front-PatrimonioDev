@@ -5,7 +5,7 @@ export const navItems: INewNavData[] = [
   {
     name: 'Dashboard',
     url: '/dashboard',
-    icon: 'icon-chart',
+    icon: 'fas fa-chart-bar',
     permissaoDoUsuario: Permissao.Usuario,
   },
   {
