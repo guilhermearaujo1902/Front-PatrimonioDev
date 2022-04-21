@@ -23,7 +23,11 @@ export class EstatisticaService {
   }
 
   private obterPatrimonioDisponivel(): Observable<Estatisticas[]>{
-    return this.api.get<Estatisticas[]>(`${this.baseUrl}/patrimoniodisponivel`).pipe(take(1));
+    return this.api.get<Estatisticas[]>(`${this.baseUrl}/patrimonio-disponivel`).pipe(take(1));
+  }
+
+  private obterQuantidadeMovimentacoes(): Observable<Estatisticas>{
+    return this.api.get<Estatisticas>(`${this.baseUrl}/quantidade-movimentacao`).pipe(take(1));
   }
 
   public obterEstatisticas(): Observable<any[]> {
@@ -31,8 +35,9 @@ export class EstatisticaService {
     let estatisticaCategoria = this.obterEstatisticasCategoria();
     let mediaEquipamento = this.obterMediaEquipamentoPorFuncionario();
     let patrimoniosDisponiveis = this.obterPatrimonioDisponivel();
+    let quantidadeMovimentacoes = this.obterQuantidadeMovimentacoes();
 
-    return forkJoin([estatisticaCategoria, mediaEquipamento, patrimoniosDisponiveis]);
+    return forkJoin([estatisticaCategoria, mediaEquipamento, patrimoniosDisponiveis, quantidadeMovimentacoes]);
 
   }
 

@@ -12,7 +12,7 @@
                 <input type="text" class="form-control" [ngClass]="cssValidator(f.nomeFabricante)" name="nomeFabricante" formControlName="nomeFabricante" placeholder="Nome do fabricante" autocomplete="nomeSetor" required>
                 <div *ngIf="f.nomeFabricante.errors?.required" class="invalid-feedback">Nome do fabricante é obrigatório</div>
                 <div *ngIf="f.nomeFabricante.errors?.maxlength" class="invalid-feedback">Nome do fabricante pode ter no máximo 60 letras</div>
-                <div *ngIf="f.nomeFabricante.errors?.minlength" class="invalid-feedback">Nome do fabricante pode ter no mínimo 4 letras</div>
+                <div *ngIf="f.nomeFabricante.errors?.minlength" class="invalid-feedback">Nome do fabricante pode ter no mínimo 2 letras</div>
             </div>
           </div>
           <div class="form-row pt-3">

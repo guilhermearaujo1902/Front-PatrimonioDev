@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { BsModalService } from 'ngx-bootstrap/modal';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { EncryptDecryptService } from '../../../services/encrypt-decrypt/encrypt-decrypt.service';
@@ -8,7 +7,6 @@ import { MovimentacaoService } from '../../../services/movimentacao/movimentacao
 import { Movimentacao } from '../../../models/Movimentacao';
 import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
 import { MovimentacaoEquipamento } from '../../../models/enums/movimentacao-equipamento.enum';
-import { EnumType } from 'typescript';
 
 @Component({
   selector: 'app-listagem-movimentacao',
@@ -32,19 +30,19 @@ export class ListagemMovimentacaoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.obterMovimentacoes();
+    this.obterMovimentacoes();
   }
 
   public adicionarClasseAlinhamentoDireita(index: number): any {
-      return {'right': index % 2 === 0};
+    return { 'right': index % 2 === 0 };
   }
 
-  public obterDescricaoEnum(index: number): string{
+  public obterDescricaoEnum(index: number): string {
     return MovimentacaoEquipamento[index];
   }
 
   private obterMovimentacoes(): void {
-    this.activatedRoute.queryParams.subscribe(parametro => { this.codigoPatrimonio = +this.encriptacao.decrypt(parametro.codigoDoPatrimonio) })
+    this.activatedRoute.queryParams.subscribe(parametro => {this.codigoPatrimonio = +this.encriptacao.decrypt(parametro.codigoPatrimonio) })
 
     this.spinner.show("buscando");
 
@@ -60,5 +58,9 @@ export class ListagemMovimentacaoComponent implements OnInit {
       }
 
     }).add(() => this.spinner.hide("buscando"));
+  }
+
+  public detalheMovimentacao(codigoMovimentacao: number): void {
+    this.router.navigate([`dashboard/listar-patrimonio/movimentacao`], { queryParams: { codigoMovimentacao } })
   }
 }

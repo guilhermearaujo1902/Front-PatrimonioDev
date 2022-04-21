@@ -22,9 +22,22 @@ export class MovimentacaoService {
   }
 
   public obterTodasMovimentacoesDoPatrimonio(codigoPatrimonio: number): Observable<Movimentacao[]> {
+    debugger;
     return this.api
-    .get<Movimentacao[]>(`${this.baseUrl}/${codigoPatrimonio}`)
+    .get<Movimentacao[]>(`${this.baseUrl}/movimentacao/${codigoPatrimonio}`)
     .pipe(take(1));
   }
+
+  public atualizarMovimentacao(movimentacao: Movimentacao, ): Observable<Movimentacao>{
+    debugger;
+    return this.api
+    .put<Movimentacao>(`${this.baseUrl}/${movimentacao.codigoMovimentacao}`, {movimentacao})
+    .pipe(take(1));
+  }
+
+  public obterApenasUmaMovimentacao(codigoMovimentacao: number): Observable<Movimentacao> {
+    return this.api.get<Movimentacao>(`${this.baseUrl}/${codigoMovimentacao}`).pipe(take(1));;
+  }
+
 
 }

@@ -134,7 +134,6 @@ export class DefaultLayoutComponent implements OnInit {
 
       menus = menus?.find(page => page.path.slice(2) === router);
 
-      debugger;
       this.breadcrumbList.push({
         name: menus?.name,
         path: (index === 0) ? menus?.path : `${this.breadcrumbList[index - 1]?.path}/${menus?.path.slice(2)}`

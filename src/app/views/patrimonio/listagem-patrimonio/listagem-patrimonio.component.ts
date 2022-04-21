@@ -132,7 +132,7 @@ export class ListarpatrimonioComponent implements OnInit {
   }
 
   public listarTodasAsMovimentacoes(codigoPatrimonio: number): void {
-    this.router.navigate([`dashboard/listar-patrimonio/listar-movimentacao`], { queryParams: { codigoDoPatrimonio: this.encriptacao.encrypt(codigoPatrimonio.toString())}})
+    this.router.navigate([`dashboard/listar-patrimonio/listar-movimentacao`], { queryParams: { codigoPatrimonio: this.encriptacao.encrypt(codigoPatrimonio.toString())}})
   }
 
   public onChange(event: Event): void {

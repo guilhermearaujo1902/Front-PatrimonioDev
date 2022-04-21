@@ -2,7 +2,8 @@
 export interface Movimentacao {
   codigoMovimentacao: number;
   codigoPatrimonio: number;
-  nomePatrimonio: string;
+  tipoEquipamento: string;
+  nomeFuncionario: string;
   codigoUsuario: number;
   nomeUsuario: string;
   dataApropriacao: Date;

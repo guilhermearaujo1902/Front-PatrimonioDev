@@ -127,20 +127,20 @@ const routes: Routes = [
       title: 'widget'
     }
   },
-  {
-    path: 'listar-patrimonio/movimentacao',
-    component: MovimentacaoComponent,
-    data: {
-      title: 'movimentacao'
-    }
-  },
-  {
-    path: 'listar-patrimonio/listar-movimentacao',
-    component: ListagemMovimentacaoComponent,
-    data: {
-      title: 'listar-movimentacao'
-    }
-  },
+  // {
+  //   path: 'listar-patrimonio/movimentacao',
+  //   component: MovimentacaoComponent,
+  //   data: {
+  //     title: 'movimentacao'
+  //   }
+  // },
+  // {
+  //   path: 'listar-patrimonio/listar-movimentacao',
+  //   component: ListagemMovimentacaoComponent,
+  //   data: {
+  //     title: 'listar-movimentacao'
+  //   }
+  // },
   {
     path: 'categoria',
     component: CategoriaComponent,

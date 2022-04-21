@@ -23,6 +23,7 @@ export class WidgetsComponent implements OnInit {
   public quantidadeDeEquipamentos: number = 0;
   public quantidadeTotalDePatrimonios: number = 0;
   public quantidadeTotalDePatrimoniosDisponiveis: number = 0;
+  public quantidadeMovimentacoes: number = 0;
 
   constructor(private estatisticaService: EstatisticaService,
               private toaster: ToastrService,
@@ -36,6 +37,7 @@ export class WidgetsComponent implements OnInit {
 
     this.spinner.show('graficoLinha');
 
+    //REFATORAR: Refatorar junto com a parte do back
     this.estatisticaService.obterEstatisticas().subscribe(listaDeResposta =>{
         this.estatisticaCategoria = listaDeResposta[0];
         this.construirGraficoQuantidadeEquipamentosCategoria();
@@ -46,9 +48,13 @@ export class WidgetsComponent implements OnInit {
           this.mediaEquipamento = 0
         }
 
-        this.quantidadeTotalDePatrimonios = listaDeResposta[2][0].quantidadeTotalPatrimonio;
-        this.quantidadeTotalDePatrimoniosDisponiveis = listaDeResposta[2][0].quantidadePatrimonioDisponivel;
+        this.quantidadeTotalDePatrimonios = +listaDeResposta[2][0].quantidadeTotalPatrimonio;
+        this.quantidadeTotalDePatrimoniosDisponiveis = +listaDeResposta[2][0].quantidadePatrimonioDisponivel;
+        debugger;
+        this.quantidadeMovimentacoes =  +listaDeResposta[3].quantidadeMovimentacao;
+
         this.alterarProgessBar();
+
      },
 
       (error: any) => {

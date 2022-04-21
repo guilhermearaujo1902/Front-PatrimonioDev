@@ -20,7 +20,7 @@
             <img src="assets/img/circlearrow.png" width="40px" height="40px" >
           </div>
           <div class="timeline-content" [ngClass]="adicionarClasseAlinhamentoDireita(indexMovimentacao)">
-            <h2 class="mb-3">{{item.patrimonio | uppercase}}</h2>
+            <h2 class="mb-3">{{item.tipoEquipamento | uppercase}} - {{item.nomeFuncionario | uppercase}}</h2>
             <p>Data apropriação: <span class="item-movimentacao">{{item.dataApropriacao | date: 'medium'}}</span></p>
             <p>Data devolução: <span class="item-movimentacao">{{item.dataDevolucao | date: 'medium' }}</span></p>
             <p>Movimentação realizada por: <span class="item-movimentacao">{{item.nomeUsuario}}</span></p>
@@ -29,7 +29,7 @@
             <p>Observação: <span class="item-movimentacao">{{item.observacao}}</span></p>
 
             <div class="d-flex justify-content-center">
-              <button class="btn btn-warning btn-lg">Alterar</button>
+              <button class="btn btn-warning btn-lg" (click)="detalheMovimentacao(item.codigoMovimentacao)">Alterar</button>
             </div>
           </div>
         </div>
