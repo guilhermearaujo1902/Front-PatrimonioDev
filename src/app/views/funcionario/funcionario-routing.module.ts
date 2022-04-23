@@ -5,7 +5,6 @@ import { NgModule } from '@angular/core';
 import { AuthGuard } from '../../services/auth/auth.guard';
 
 const routes: Routes = [
-
   {
     path: 'funcionario',
     canActivate: [AuthGuard],
