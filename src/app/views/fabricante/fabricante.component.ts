@@ -26,12 +26,12 @@ export class FabricanteComponent implements OnInit {
   }
 
   constructor(
-              private fb: FormBuilderTypeSafe,
-              private fabricanteService: FabricanteService,
-              private toaster: ToastrService,
-              private spinner: NgxSpinnerService,
-              private router: Router,
-              private activateRouter: ActivatedRoute) { }
+    private fb: FormBuilderTypeSafe,
+    private fabricanteService: FabricanteService,
+    private toaster: ToastrService,
+    private spinner: NgxSpinnerService,
+    private router: Router,
+    private activateRouter: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.validacao();
@@ -40,33 +40,33 @@ export class FabricanteComponent implements OnInit {
 
   private validacao(): void {
     this.form = this.fb.group<Fabricante>({
-      codigoFabricante: new FormControl(this.limpandoCampo? this.form.get('codigoFabricante').value : 0, []),
+      codigoFabricante: new FormControl(this.limpandoCampo ? this.form.get('codigoFabricante').value : 0, []),
       nomeFabricante: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(60)]),
     });
   }
 
-  public limparCampos(): void{
+  public limparCampos(): void {
     this.limpandoCampo = true;
     this.validacao();
   }
 
   public cssValidator(campoForm: FormControl): any {
-    return {'is-invalid': campoForm.errors && campoForm.touched};
+    return { 'is-invalid': campoForm.errors && campoForm.touched };
   }
 
   public salvarAlteracao(): void {
     let atualizando = this.estadoSalvar == 'atualizarFabricante';
-    let nomeAcaoRealizada = atualizando? 'atualizado': 'cadastrado';
+    let nomeAcaoRealizada = atualizando ? 'atualizado' : 'cadastrado';
 
     this.spinner.show(nomeAcaoRealizada);
 
-    this.fabricante = (this.estadoSalvar === 'cadastrarFabricante') ? {...this.form.value} : {codigoFabricante: this.fabricante.codigoFabricante, ...this.form.value};
+    this.fabricante = (this.estadoSalvar === 'cadastrarFabricante') ? { ...this.form.value } : { codigoFabricante: this.fabricante.codigoFabricante, ...this.form.value };
 
     this.fabricanteService[this.estadoSalvar](this.fabricante).subscribe(
       () => this.toaster.success(`Fabricante ${nomeAcaoRealizada} com sucesso`, 'Sucesso!'),
       (error: any) => {
         let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
-        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada,"fabricante", ['o','do'])} Mensagem: ${template.mensagemErro}`, template.titulo);
+        this.toaster[template.tipoMensagem](`${MensagemRequisicao.retornarMensagemDeErroAoRealizarOperacao(nomeAcaoRealizada, "fabricante", ['o', 'do'])} Mensagem: ${template.mensagemErro}`, template.titulo);
       },
       () => {
 
@@ -77,25 +77,25 @@ export class FabricanteComponent implements OnInit {
     ).add(() => this.spinner.hide(nomeAcaoRealizada));
   }
 
-  public carregarFabricante() : void{
+  public carregarFabricante(): void {
     this.codigoFabricante = +this.activateRouter.snapshot.paramMap.get('codigoFabricante');
-     if(this.codigoFabricante !== null && this.codigoFabricante !== 0){
+    if (this.codigoFabricante !== null && this.codigoFabricante !== 0) {
       this.estadoSalvar = 'atualizarFabricante';
-       this.spinner.show('carregando');
+      this.spinner.show('carregando');
 
-       this.fabricanteService.obterApenasUmFabricante(this.codigoFabricante).subscribe(
-         {
-           next: (fabricante: Fabricante) => {
-             this.fabricante = {...fabricante};
-             this.form.patchValue(this.fabricante);
-           },
-           error: (error: any) => {
+      this.fabricanteService.obterApenasUmFabricante(this.codigoFabricante).subscribe(
+        {
+          next: (fabricante: Fabricante) => {
+            this.fabricante = { ...fabricante };
+            this.form.patchValue(this.fabricante);
+          },
+          error: (error: any) => {
             let template = MensagemRequisicao.retornarMensagemTratada(error.message, error.error.mensagem);
             this.toaster[template.tipoMensagem](`Houve um erro ao tentar carregar o fabricante. Mensagem: ${template.mensagemErro}`, template.titulo);
-           }
-         }
-       ).add(() => this.spinner.hide('carregando'));
-     }
+          }
+        }
+      ).add(() => this.spinner.hide('carregando'));
     }
+  }
 
 }

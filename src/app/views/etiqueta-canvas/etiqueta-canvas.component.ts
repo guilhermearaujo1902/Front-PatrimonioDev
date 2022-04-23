@@ -1,12 +1,12 @@
-import { CanvasImagem } from './../../models/CanvasImagem';
+import { CanvasImagem } from '../../models/CanvasImagem';
 import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { environment } from '../../../environments/environment';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-canvas',
-  templateUrl: './canvas-tag.component.html',
-  styleUrls: ['./canvas-tag.component.scss']
+  templateUrl: './etiqueta-canvas.component.html',
+  styleUrls: ['./etiqueta-canvas.component.scss']
 })
 export class CanvasTagComponent implements AfterViewInit {
 
