@@ -74,7 +74,7 @@ import { FuncionarioComponent } from './views/funcionario/funcionario.component'
 import { ListagemFuncionarioComponent } from './views/funcionario/listagem-funcionario/listagem-funcionario.component';
 import { NgxMaskModule } from 'ngx-mask';
 import { CurrencyMaskInputMode, NgxCurrencyModule } from 'ngx-currency';
-import { CanvasTagComponent } from './views/canvas-tag/canvas-tag.component';
+import { CanvasTagComponent } from './views/etiqueta-canvas/etiqueta-canvas.component';
 import { QRCodeModule } from 'angularx-qrcode';
 import { BooleanoPipe } from './pipe/booleano.pipe';
 import { RelatorioPerdaComponent } from './views/relatorio/relatorio-perda/relatorio-perda/relatorio-perda.component';
@@ -84,6 +84,7 @@ import { ModalTempoComponent } from './views/modal-tempo/modal-tempo.component';
 import localePt from '@angular/common/locales/pt';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { environment } from '../environments/environment.prod';
+import { QrCodeComponent } from './views/qr-code/qr-code.component';
 
 registerLocaleData(localePt);
 
@@ -176,7 +177,8 @@ const customCurrencyMaskConfig = {
     CanvasTagComponent,
     BooleanoPipe,
     RelatorioPerdaComponent,
-    ModalTempoComponent
+    ModalTempoComponent,
+    QrCodeComponent
 
   ],
   providers: [
