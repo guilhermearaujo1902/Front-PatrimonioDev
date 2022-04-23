@@ -2,11 +2,13 @@ import { ListagemFuncionarioComponent } from './listagem-funcionario/listagem-fu
 import { FuncionarioComponent } from './funcionario.component';
 import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
+import { AuthGuard } from '../../services/auth/auth.guard';
 
 const routes: Routes = [
 
   {
     path: 'funcionario',
+    canActivate: [AuthGuard],
     component: FuncionarioComponent,
     data: {
       title: 'Funcionário'
@@ -14,6 +16,7 @@ const routes: Routes = [
   },
   {
     path: 'funcionario/:codigoFuncionario',
+    canActivate: [AuthGuard],
     component: FuncionarioComponent,
     data: {
       title: 'Funcionário'
@@ -21,6 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'listar-funcionario',
+    canActivate: [AuthGuard],
     component: ListagemFuncionarioComponent,
     data: {
       title: 'listar-funcionario'

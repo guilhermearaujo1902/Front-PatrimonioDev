@@ -21,6 +21,7 @@ import { RoleGuardService } from '../../services/auth/role-guard.service';
 import { Permissao } from '../../models/enums/permissao.enum';
 import { PerdaComponent } from '../perda/perda.component';
 import { RelatorioPerdaComponent } from '../relatorio/relatorio-perda/relatorio-perda/relatorio-perda.component';
+import { QRCodeComponent } from 'angularx-qrcode';
 
 const routes: Routes = [
   {
@@ -87,6 +88,7 @@ const routes: Routes = [
   },
   {
     path: 'perda',
+    canActivate: [AuthGuard],
     component: PerdaComponent,
     data: {
       title: 'perda'
@@ -94,6 +96,7 @@ const routes: Routes = [
   },
   {
     path: 'relatorio-de-perda',
+    canActivate: [AuthGuard],
     component: RelatorioPerdaComponent,
     data: {
       title: 'relatorio-de-perda'
@@ -101,6 +104,7 @@ const routes: Routes = [
   },
   {
     path: 'equipamento',
+    canActivate: [AuthGuard],
     component: EquipamentoComponent,
     data: {
       title: 'equipamento'
@@ -108,6 +112,7 @@ const routes: Routes = [
   },
   {
     path: 'equipamento/:codigoEquipamento',
+    canActivate: [AuthGuard],
     component: EquipamentoComponent,
     data: {
       title: 'equipamento'
@@ -115,6 +120,7 @@ const routes: Routes = [
   },
   {
     path: 'listar-equipamento',
+    canActivate: [AuthGuard],
     component: ListagemequipamentoComponent,
     data: {
       title: 'listar-equipamento'
@@ -122,6 +128,7 @@ const routes: Routes = [
   },
   {
     path: 'widget',
+    canActivate: [AuthGuard],
     component: WidgetsComponent,
     data: {
       title: 'widget'
@@ -129,6 +136,7 @@ const routes: Routes = [
   },
   // {
   //   path: 'listar-patrimonio/movimentacao',
+  //   canActivate: [AuthGuard],
   //   component: MovimentacaoComponent,
   //   data: {
   //     title: 'movimentacao'
@@ -136,6 +144,7 @@ const routes: Routes = [
   // },
   // {
   //   path: 'listar-patrimonio/listar-movimentacao',
+  //   canActivate: [AuthGuard],
   //   component: ListagemMovimentacaoComponent,
   //   data: {
   //     title: 'listar-movimentacao'
@@ -143,6 +152,7 @@ const routes: Routes = [
   // },
   {
     path: 'categoria',
+    canActivate: [AuthGuard],
     component: CategoriaComponent,
     data: {
       title: 'categoria'
@@ -150,6 +160,7 @@ const routes: Routes = [
   },
   {
     path: 'categoria/:codigoCategoria',
+    canActivate: [AuthGuard],
     component: CategoriaComponent,
     data: {
       title: 'categoria'
@@ -157,11 +168,19 @@ const routes: Routes = [
   },
   {
     path: 'listar-categoria',
+    canActivate: [AuthGuard],
     component: ListagemCategoriaComponent,
     data: {
       title: 'listar-categoria'
     }
   }
+  // {
+  //   path: 'qr-code',
+  //   component: QRCodeComponent,
+  //   data: {
+  //     title: 'Leitura de QR Code'
+  //   }
+  // }
 ];
 
 @NgModule({
