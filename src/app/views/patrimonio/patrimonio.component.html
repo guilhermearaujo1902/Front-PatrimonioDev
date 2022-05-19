@@ -1,4 +1,4 @@
-<div class="card rounded shadow-sm ml-3 m-3 p-3" id="formulario">
+<div class="card border-0 rounded shadow-sm ml-3 m-3 p-3" id="formulario">
   <form [formGroup]="form">
     <div class="form-row">
       <div class="form-group col-sm-12 col-md-8 col-lg-8 text-start">
@@ -126,7 +126,7 @@
           <input type="hidden" formControlName="codigoInformacaoAdicional" class="form-control">
           <div class="form-group col-lg-6 col-sm-12 text-start">
             <label>Valor Pago</label>
-            <input type="text" [ngClass]="cssValidator(fa.valorPago)" formControlName="valorPago" currencyMask
+            <input type="text" inputmode="decimal" [ngClass]="cssValidator(fa.valorPago)" formControlName="valorPago" currencyMask
               class="form-control" name="valorPago" placeholder="R$ 0,00">
             <div *ngIf="fa.valorPago.errors?.required" class="invalid-feedback">
               O valor pago é obrigatório

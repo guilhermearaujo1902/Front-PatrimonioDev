@@ -8,7 +8,7 @@ import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import configuracaoTabela from '../../../utils/configuracao-tabela';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicaoHelper';
 import { TokenService } from '../../../services/token/token.service';
 
 @Component({

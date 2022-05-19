@@ -92,12 +92,6 @@ export const navItems: INewNavData[] = [
     permissaoDoUsuario: Permissao.Usuario,
 
   },
-  // {
-  //   name: 'QR Code',
-  //   url: '/dashboard/qr-code',
-  //   icon: 'fas fa-qrcode',
-  //   permissaoDoUsuario: Permissao.Usuario
-  // },
   {
     name: 'Setor',
     url: '/s',
@@ -149,6 +143,11 @@ export const navItems: INewNavData[] = [
         name: 'Listar',
         url: '/dashboard/listar-patrimonio',
         icon: 'fa fa-list'
+      },
+      {
+        name: 'QR Code',
+        url: '/dashboard/qr-code',
+        icon: 'fas fa-qrcode',
       }
    ]
   },

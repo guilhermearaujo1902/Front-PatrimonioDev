@@ -6,7 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-fabricante',

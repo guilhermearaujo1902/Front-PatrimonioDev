@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 import { Movimentacao } from '../../models/Movimentacao';
 import { MovimentacaoService } from '../../services/movimentacao/movimentacao.service';
 import { TokenService } from '../../services/token/token.service';

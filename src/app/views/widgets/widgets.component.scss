@@ -1,17 +1,20 @@
 @import "../../../scss/fonts.scss";
 
+
 .texto-card{
   font-family: "brandon";
   font-size: 30px;
+  color: #009AE0;
 }
 
-p.legenda-card{
-  font-family: "brandon";
-  font-size:25px !important;
-
+.legenda-card {
+  font-family: "Roboto-black";
+  font-size:15px !important;
+  color: var(--color-black);
 }
 
 #titulo-grafico{
-  font-family: 'brandon'
+  font-family: 'brandon';
+  color: var(--color-contraste)
 }
 

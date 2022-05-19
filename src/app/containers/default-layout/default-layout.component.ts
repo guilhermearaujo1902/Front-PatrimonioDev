@@ -23,6 +23,7 @@ export class DefaultLayoutComponent implements OnInit {
   public sidebarMinimized = false;
   public navItemsLayout = [];
   public navItemsPermissao = [];
+  public anoAtual = new Date().getFullYear()
   name: string;
   menu: Array<any> = [];
   breadcrumbList: Array<any> = [];
@@ -42,12 +43,14 @@ export class DefaultLayoutComponent implements OnInit {
 
   }
 
+
   ngOnInit(): void {
     this.menu = this.menuService.obterMenu();
     this.ouvirRota();
     this.obterMenusPermissaoUsuario();
 
     this.configurarObservacaoInatividaDeUsuario();
+
   }
 
   private obterMenusPermissaoUsuario(): void {

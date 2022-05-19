@@ -2,7 +2,7 @@ import { CategoriaService } from './../../../services/categoria/categoria.servic
 import { Categoria } from './../../../models/Categoria';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
-import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicaoHelper';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';

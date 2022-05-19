@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token/token.service';
 import configuracaoTabela from '../../../utils/configuracao-tabela';
-import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-listagem-funcionario',

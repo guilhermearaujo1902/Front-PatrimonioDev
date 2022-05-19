@@ -5,7 +5,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 import { FuncionarioService } from '../../services/funcionario/funcionario.service';
 
 @Component({

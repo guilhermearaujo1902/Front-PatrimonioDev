@@ -9,7 +9,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import * as XLSX from 'xlsx';
 import configuracaoTabela from '../../../utils/configuracao-tabela'
-import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-listarsetor',

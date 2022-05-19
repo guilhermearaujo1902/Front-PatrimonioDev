@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { EstatisticaService } from '../../services/estatistica/estatistica.service';
 import { Estatisticas } from '../../models/Estatistica';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-
 
 @Component({
   templateUrl: 'widgets.component.html',
@@ -15,7 +14,7 @@ export class WidgetsComponent implements OnInit {
   private estatisticaCategoria: Estatisticas[] = [];
   public mediaEquipamento: number;
 
-  public lineChartData: Array<any> = [ { data: 0, backgroundColor: ['#20A8D8'], label: 'Categorias' }];
+  public lineChartData: Array<any> = [ { data: 0, backgroundColor: ['#20A8D8'],  label: 'Categorias' }];
   public lineChartLabels: Array<any> = [[' ']];
   public lineChartOptions: any;
   public lineChartLegend = true;
@@ -50,7 +49,6 @@ export class WidgetsComponent implements OnInit {
 
         this.quantidadeTotalDePatrimonios = +listaDeResposta[2][0].quantidadeTotalPatrimonio;
         this.quantidadeTotalDePatrimoniosDisponiveis = +listaDeResposta[2][0].quantidadePatrimonioDisponivel;
-        debugger;
         this.quantidadeMovimentacoes =  +listaDeResposta[3].quantidadeMovimentacao;
 
         this.alterarProgessBar();

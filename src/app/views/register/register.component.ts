@@ -8,8 +8,10 @@ import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactiv
 
 import { Usuario } from '../../models/Usuario';
 import { UsuarioService } from './../../services/usuario/usuario.service';
-import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenha';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenhaHelper';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
+import { DarkModeImagemHelper } from '../../helpers/DarkModeImagemHelper';
+import { atribuirTemaCorretoAoRecarregarPagina } from '../../helpers/ModoDarkLightHelper';
 
 @Component({
   selector: 'app-dashboard',
@@ -32,19 +34,34 @@ export class RegisterComponent implements OnInit {
     private usuarioService: UsuarioService,
     private toaster: ToastrService,
     private router: Router) {
-      var emailURL = this.router.getCurrentNavigation().extras;
-      this.emailAuth = typeof emailURL.queryParams == "undefined"? "": emailURL.queryParams.email;
+    var emailURL = this.router.getCurrentNavigation().extras;
+    this.emailAuth = typeof emailURL.queryParams == 'undefined' ? '' : emailURL.queryParams.email;
 
-    }
+  }
 
   ngOnInit(): void {
     this.validarCamposFormulario();
+
+    this.alternarImagemDarkMode();
+
+  }
+
+  private alternarImagemDarkMode(): void {
+
+    let darkModeImagem = new DarkModeImagemHelper('assets/img/novo-registro-dark.gif',
+                                                  'assets/img/novo-registro.gif',
+                                                  'imagem-novo-registro');
+
+    darkModeImagem.alternarImagemDeAcordoComOModo();
+
+    atribuirTemaCorretoAoRecarregarPagina();
+
   }
 
   public validarCamposFormulario(): void {
 
     const formOptions: AbstractControlOptions = {
-      validators: ValidacaoCampoSenha.MustMatch('senha','confirmeSenha')
+      validators: ValidacaoCampoSenha.MustMatch('senha', 'confirmeSenha')
     };
 
     this.form = this.fb.group<Usuario>({
@@ -61,12 +78,12 @@ export class RegisterComponent implements OnInit {
   }
 
   public cssValidator(campoForm: FormControl): any {
-    return {'is-invalid': campoForm.errors && campoForm.touched};
+    return { 'is-invalid': campoForm.errors && campoForm.touched };
   }
 
   public salvarAlteracao(): void {
 
-    this.usuario = {...this.form.value};
+    this.usuario = { ...this.form.value };
     this.spinner.show();
 
     this.usuarioService.cadastrarUsuario(this.usuario).subscribe(

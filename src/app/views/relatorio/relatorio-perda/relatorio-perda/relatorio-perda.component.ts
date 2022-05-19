@@ -3,7 +3,7 @@ import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import * as XLSX from 'xlsx';
-import { MensagemRequisicao } from '../../../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../../../helpers/MensagemRequisicaoHelper';
 import { PerdaRelatorio } from '../../../../models/relatorios/PerdaRelatorio';
 import { TokenService } from '../../../../services/token/token.service';
 import configuracaoTabela from '../../../../utils/configuracao-tabela';

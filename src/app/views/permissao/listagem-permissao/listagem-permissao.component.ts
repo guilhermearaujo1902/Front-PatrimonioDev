@@ -1,7 +1,7 @@
 import { PermissaoService } from './../../../services/permissao/permissao.service';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { API, APIDefinition, Columns, Config } from 'ngx-easy-table';
-import { MensagemRequisicao } from '../../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../../helpers/MensagemRequisicaoHelper';
 import configuracaoTabela from '../../../utils/configuracao-tabela';
 import { TokenService } from '../../../services/token/token.service';
 import { Router } from '@angular/router';

@@ -12,8 +12,8 @@ import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
 import { EmpresaService } from '../../services/empresa/empresa.service';
 import { PermissaoService } from '../../services/permissao/permissao.service';
-import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenha';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { ValidacaoCampoSenha } from '../../helpers/ValidacaoSenhaHelper';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-usuario',

@@ -4,13 +4,7 @@
       <div class="col-md-6">
 
         <!-- TODO: FAZER UMA BUSCA POR PÁGINA -->
-        <div class="input-prepend input-group d-flex justify-content-center">
-          <h1><img src="assets/img/403.gif"></h1>
-          <h4>Oops! Você não tem autorização para entrar nesse módulo.</h4>
-          <span class="input-group-append">
-            <button class="btn btn-info" (click)="validarSeTokenExpirado()" type="button">Voltar para o dashboard</button>
-          </span>
-        </div>
+        <app-http-code-mensagem mensagemErro="{{mensagemErro}}" caminhoImagemDark="{{caminhoImagemDark}}" caminhoImagemLight="{{caminhoImagemLight}}"></app-http-code-mensagem>
       </div>
     </div>
   </div>

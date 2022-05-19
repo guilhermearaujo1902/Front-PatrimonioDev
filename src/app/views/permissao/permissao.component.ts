@@ -6,7 +6,7 @@ import { UsuarioPermissao } from '../../models/UsuarioPermissao';
 import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactive-forms-helper';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-permissao',

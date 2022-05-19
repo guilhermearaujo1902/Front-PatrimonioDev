@@ -1,4 +1,4 @@
-<div class="card rounded shadow-sm p-3 m-5 teste">
+<div class="card border-0 rounded shadow-sm p-3 m-5 teste">
   <div class="row">
     <div class="col-lg-8 col-sm-12 col-md-12">
       <div>
@@ -70,10 +70,10 @@
             <a class="dropdown-item" role="button" data-toggle="modal"
               (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#modalPerda">Declarar Perda</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item disabled"
+            <a class="dropdown-item"
               (click)="cadastrarMovimentacao(row.codigoPatrimonio, row.tipoEquipamento, row.nomeFuncionario)"
               role="button">Cadastrar Mov. <b>(EM BREVE)</b></a>
-            <a class="dropdown-item disabled" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
+            <a class="dropdown-item" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
           </div>
         </div>
       </td>
@@ -117,10 +117,10 @@
       <a class="dropdown-item" role="button" data-toggle="modal"
         (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#modalPerda">Declarar Perda</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item disabled"
+      <a class="dropdown-item"
         (click)="cadastrarMovimentacao(row.codigoPatrimonio, row.tipoEquipamento, row.nomeFuncionario)"
         role="button">Cadastrar Mov. <b>(EM BREVE)</b></a>
-      <a class="dropdown-item disabled" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
+      <a class="dropdown-item" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov. <b>(EM BREVE)</b></a>
     </div>
   </div>
 

@@ -10,7 +10,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-equipamento',
@@ -89,7 +89,7 @@ export class EquipamentoComponent implements OnInit {
   private validacao(): void {
     this.form = this.fb.group<Equipamento>({
       codigoTipoEquipamento: new FormControl(this.limpandoCampo? this.form.get('codigoTipoEquipamento').value : 0, [],),
-      tipoEquipamento: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(70)]),
+      tipoEquipamento: new FormControl('', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]),
       codigoFabricante: new FormControl('' ,[Validators.required]),
       codigoCategoria: new FormControl('' ,[Validators.required]),
       nomeFabricante: new FormControl(''),

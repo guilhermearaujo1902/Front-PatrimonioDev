@@ -1,76 +1,87 @@
 <div class="animated fadeIn m-5">
   <div class="row">
-
-
     <div class="col-12 col-sm-6 col-lg-4">
-      <div class="card overflow-hidden">
+      <div class="card  border-0 overflow-hidden">
         <div class="card-body p-0 d-flex align-items-center">
           <div class="bg-primary text-white py-5 px-1 me-3">
-            <img src="assets/img/movimentacao.png"/>
+            <img loading="lazy" src="assets/img/movimentacao.png" />
           </div>
           <div class="pl-3">
             <div class="fw-semibold text-primary texto-card">0</div>
-            <div class="text-uppercase legenda-card fw-semibold"><p>Movimentações <b>(EM BREVE)</b></p></div>
+            <div class="text-uppercase legenda-card fw-semibold">
+              <p>Movimentações <b>(EM BREVE)</b></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="col-12 col-sm-6 col-lg-4">
-      <div class="card overflow-hidden">
+      <div class="card border-0 overflow-hidden">
         <div class="card-body p-0 d-flex align-items-center">
           <div class="bg-primary text-white py-5 px-1 me-3">
-            <img src="assets/img/computer.png"/>
+            <img loading="lazy" src="assets/img/computer.png" />
           </div>
           <div class="pl-3">
-            <div class="fw-semibold text-primary texto-card">{{quantidadeDeEquipamentos}}</div>
-            <div class="text-uppercase legenda-card fw-semibold"><p>Equipamentos</p></div>
+            <div class="fw-semibold text-primary texto-card">
+              {{ quantidadeDeEquipamentos }}
+            </div>
+            <div class="text-uppercase legenda-card fw-semibold">
+              <p>Equipamentos</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
-
     <div class="col-12 col-sm-6 col-lg-4">
-      <div class="card ">
+      <div class="card border-0 overflow-hidden">
         <div class="card-body p-0 d-flex align-items-center">
           <div class="bg-primary text-white py-5 px-1 me-3">
-            <img src="assets/img/average.png"/>
+            <img loading="lazy" src="assets/img/average.png" />
           </div>
           <div class="pl-3">
-
-            <div class="fw-semibold text-primary texto-card">{{mediaEquipamento}} </div>
-            <div class="text-uppercase legenda-card fw-semibold"><p>Media de equipamentos por funcionário</p></div>
+            <div class="fw-semibold text-primary texto-card">
+              {{ mediaEquipamento }}
+            </div>
+            <div class="text-uppercase legenda-card fw-semibold">
+              <p>Média de equipamentos por funcionário</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-
     <div class="col-12 col-sm-6 col-lg-4">
-      <div class="card">
+      <div class="card border-0">
         <div class="card-body">
-          <div class="h4 mb-0 texto-card">{{quantidadeTotalDePatrimoniosDisponiveis}}/{{quantidadeTotalDePatrimonios}}</div>
-          <small class="text-muted text-uppercase font-weight-bold legenda-card">Quantidade de patrimônios disponíveis</small>
+          <div class="h4 mb-0 texto-card">
+            {{ quantidadeTotalDePatrimoniosDisponiveis }}/{{
+              quantidadeTotalDePatrimonios
+            }}
+          </div>
+          <small class="text-uppercase legenda-card fw-semibold">Quantidade de patrimônios disponíveis</small>
           <div class="progress progress-xs mt-3 mb-0">
-            <div class="progress-bar bg-success" role="progressbar" [attr.aria-valuenow]="(quantidadeTotalDePatrimoniosDisponiveis * 100)/quantidadeTotalDePatrimonios" aria-valuemin="0" [attr.aria-valuemax]="quantidadeTotalDePatrimonios"></div>
+            <div class="progress-bar bg-success" role="progressbar" [attr.aria-valuenow]="
+                (quantidadeTotalDePatrimoniosDisponiveis * 100) /
+                quantidadeTotalDePatrimonios
+              " aria-valuemin="0" [attr.aria-valuemax]="quantidadeTotalDePatrimonios"></div>
           </div>
         </div>
       </div>
     </div>
-</div>
-
-<div class="card-body">
-  <h2 class="text-uppercase text-center pb-5 mt-5" id="titulo-grafico">Quantidade de equipamentos por Categoria</h2>
-  <div class="chart-wrapper">
-    <canvas baseChart class="chart"
-    [datasets]="lineChartData"
-    [labels]="lineChartLabels"
-    [options]="lineChartOptions"
-    [legend]="lineChartLegend"
-   ></canvas>
-   <ngx-spinner name="graficoLinha" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-spin-fade" [fullScreen] = "true"><p style="color: white" > Carregando informações... </p></ngx-spinner>
   </div>
 
-</div>
-
+  <div class="card-body">
+    <h2 class="text-uppercase text-center pb-5 mt-5" id="titulo-grafico">
+      Quantidade de equipamentos por Categoria
+    </h2>
+    <div class="chart-wrapper">
+      <canvas baseChart [datasets]="lineChartData" [labels]="lineChartLabels" [options]="lineChartOptions"
+        [legend]="lineChartLegend"></canvas>
+      <ngx-spinner name="graficoLinha" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-spin-fade"
+        [fullScreen]="true">
+        <p style="color: white">Carregando informações...</p>
+      </ngx-spinner>
+    </div>
+  </div>
 </div>

@@ -13,9 +13,11 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-user"></i></span>
                     </div>
-                    <input type="text" class="form-control" placeholder="E-mail" [ngClass]="cssValidator(f.email)" formControlName="email" placeholder="E-mail" autocomplete="email" required>
+                    <input type="text" class="form-control" placeholder="E-mail" [ngClass]="cssValidator(f.email)"
+                      formControlName="email" placeholder="E-mail" autocomplete="email" required>
                     <div *ngIf="f.email.errors?.required" class="invalid-feedback">E-mail é obrigatório</div>
-                    <div *ngIf="f.email.errors?.minlength" class="invalid-feedback">E-mail pode ter no mínimo 10 caracteres</div>
+                    <div *ngIf="f.email.errors?.minlength" class="invalid-feedback">E-mail pode ter no mínimo 10
+                      caracteres</div>
                     <div *ngIf="f.email.errors?.email" class="invalid-feedback">E-mail está inválido</div>
 
                   </div>
@@ -23,26 +25,32 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text"><i class="fa fa-lock"></i></span>
                     </div>
-                    <input type="password" class="form-control" [ngClass]="cssValidator(f.senha)" formControlName="senha" placeholder="Senha" autocomplete="senha" required>
+                    <input type="password" class="form-control" [ngClass]="cssValidator(f.senha)"
+                      formControlName="senha" placeholder="Senha" autocomplete="senha" required>
                     <div *ngIf="f.senha.errors?.required" class="invalid-feedback">Senha é obrigatória</div>
-                    <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">Senha pode ter no mínimo 5 caracteres</div>
+                    <div *ngIf="f.senha.errors?.minlength" class="invalid-feedback">Senha pode ter no mínimo 5
+                      caracteres</div>
                   </div>
                   <div class="row">
                     <div class="form-check form-switch ml-3 mb-2 col-12">
-                      <input class="form-check-input" [ngModelOptions]="{standalone: true}" [(ngModel)]="lembrarMe" type="checkbox" id="flexSwitchCheckDefault">
+                      <input class="form-check-input" [ngModelOptions]="{standalone: true}" (change)="alterarLembrarMe()" [(ngModel)]="lembrarMe"
+                        type="checkbox" id="flexSwitchCheckDefault">
                       <label class="form-check-label" for="flexSwitchCheckDefault">Lembrar-me</label>
                     </div>
                     <div class="col-6">
-                      <button type="button" (click)="validarCredenciais()" [disabled]="!form.valid" class="btn btn-primary px-4">Login</button>
+                      <button type="button" (click)="validarCredenciais()" [disabled]="!form.valid"
+                        class="btn btn-primary px-4">Login</button>
                     </div>
 
                   </div>
                   <div class="row mt-5 d-flex justify-content-around">
                     <div>
-                      <button class="btn" id="icon_face" (click)="logarComFacebook()"><i class="fab fa-facebook"> acebook</i></button>
+                      <button class="btn" id="icon_face" (click)="logarComFacebook()"><i class="fab fa-facebook">
+                          acebook</i></button>
                     </div>
                     <div>
-                      <button class="btn" id="icon_google" (click)="logarComGoogle()"><i class="fab fa-google"> oogle</i></button>
+                      <button class="btn" id="icon_google" (click)="logarComGoogle()"><i class="fab fa-google">
+                          oogle</i></button>
                     </div>
                   </div>
                 </form>
@@ -50,13 +58,14 @@
             </div>
             <div class="card text-white bg-dark py-5 d-inline-block">
               <div class="row d-flex justify-content-center">
-                <img src="assets/img/ps.png" width="100" height="100" alt="logo"/>
+                <img src="assets/img/ps.png" width="100" height="100" alt="logo" />
               </div>
               <div class="card-body text-center">
                 <div>
                   <h2>Cadastre-se</h2>
                   <p>Realize seu cadastro na plataforma clicando no botão abaixo</p>
-                  <button type="button" routerLink="/register" class="btn btn-primary active mt-3">Cadastrar-se agora!</button>
+                  <button type="button" routerLink="/register" class="btn btn-primary active mt-3">Cadastrar-se
+                    agora!</button>
                 </div>
               </div>
             </div>
@@ -66,4 +75,6 @@
     </div>
   </main>
 </div>
-<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Validando Credenciais... </p></ngx-spinner>
+<ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate" [fullScreen]="true">
+  <p style="color: white"> Validando Credenciais... </p>
+</ngx-spinner>

@@ -1,4 +1,4 @@
-import { TipoMensagem } from './../models/enums/tipo-mensagem.enum';
+import { TipoMensagem } from '../models/enums/tipo-mensagem.enum';
 import { TemplateMensagemRequisicao } from "../models/helpers/TemplateMensagemRequisicao";
 
 export abstract class MensagemRequisicao {
@@ -8,8 +8,11 @@ export abstract class MensagemRequisicao {
   public static retornarMensagemTratada(errorMessage: string, mensagemServidor?: string): TemplateMensagemRequisicao {
 
     let errorMessageLowerCase = errorMessage.toLowerCase();
+
     mensagemServidor = this.validarMensagemServidor(mensagemServidor);
+
     let mensagemServidorLowerCase = mensagemServidor.toLowerCase();
+
     debugger;
     switch (true) {
 
@@ -61,6 +64,9 @@ export abstract class MensagemRequisicao {
   }
 
   public static retornarMensagemDeErroAoRealizarOperacao(acao: string, entidade: string, conectivo: string[]): string{
-    return `Houve um erro durante ${conectivo[0]} ${acao} ${conectivo[1]} ${entidade}.`.replace('atualizado','atualizar').replace('cadastrado','cadastro').replace('cadastrada','cadastro')
+    return `Houve um erro durante ${conectivo[0]} ${acao} ${conectivo[1]} ${entidade}.`
+            .replace('atualizado','atualizar')
+            .replace('cadastrado','cadastro')
+            .replace('cadastrada','cadastro')
   }
 }

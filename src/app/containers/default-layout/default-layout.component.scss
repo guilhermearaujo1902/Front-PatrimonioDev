@@ -1,12 +1,45 @@
 @import "../../../scss/fonts.scss";
 
+.backgroud-menu-superior{
+  background-color: var(--color-background-breadcrumb);
+}
+
+#menu-superior{
+  @extend .backgroud-menu-superior;
+}
+
+
 .main .container-fluid{
   padding: 0 0;
+
+  #breadcrumb-color{
+    @extend .backgroud-menu-superior;
+    border: none;
+    #span-color{
+      color: var(--color-contraste);
+      font-family: 'Omnes';
+      font-weight: 500;
+    }
+  }
 }
 
 #texto-perfil{
   font-size: medium;
   font-family: 'brandon';
   cursor: pointer;
+  color: var(--color-contraste);
 }
 
+#footer-background{
+  background-color: var(--color-background-menu-superior);
+  display: flex;
+  justify-content: center;
+  border: none;
+
+  p{
+    color: var(--color-contraste);
+    font-family: 'Roboto-black';
+    font-size: .8rem;
+  }
+
+}

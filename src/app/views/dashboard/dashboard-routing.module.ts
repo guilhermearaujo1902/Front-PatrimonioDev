@@ -7,21 +7,17 @@ import { ListagemequipamentoComponent } from './../equipamento/listagem-equipame
 import { MovimentacaoComponent } from './../movimentacao/movimentacao.component';
 import { EquipamentoComponent } from './../equipamento/equipamento.component';
 import { WidgetsComponent } from './../widgets/widgets.component';
-import { PatrimonioComponent } from './../patrimonio/patrimonio.component';
-import { PermissaoComponent } from './../permissao/permissao.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ListarpermissaoComponent } from '../permissao/listagem-permissao/listagem-permissao.component';
-import { ListarpatrimonioComponent } from '../patrimonio/listagem-patrimonio/listagem-patrimonio.component';
 import { ListagemMovimentacaoComponent } from '../movimentacao/listagem-movimentacao/listagem-movimentacao.component';
 import { EmpresaRoutingModule } from '../empresa/empresa-routing.module';
 import { FabricanteRoutingModule } from '../fabricante/fabricante-routing.module';
 import { FuncionarioRoutingModule } from '../funcionario/funcionario-routing.module';
-import { RoleGuardService } from '../../services/auth/role-guard.service';
-import { Permissao } from '../../models/enums/permissao.enum';
 import { PerdaComponent } from '../perda/perda.component';
 import { RelatorioPerdaComponent } from '../relatorio/relatorio-perda/relatorio-perda/relatorio-perda.component';
-import { QRCodeComponent } from 'angularx-qrcode';
+import { QrCodeComponent } from '../qr-code/qr-code.component';
+import { PatrimonioRoutingModule } from '../patrimonio/patrimonio-routing.module';
+import { PermissaoRoutingModule } from '../permissao/permissao-routing.module';
 
 const routes: Routes = [
   {
@@ -30,60 +26,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     data: {
       title: 'Dashboard'
-    }
-  },
-  {
-    path: 'patrimonio',
-    component: PatrimonioComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'patrimonio',
-    }
-  },
-  {
-    path: 'patrimonio/:codigoPatrimonio',
-    component: PatrimonioComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'patrimonio',
-    }
-  },
-  {
-    path: 'listar-patrimonio',
-    component: ListarpatrimonioComponent,
-    canActivate: [AuthGuard],
-    data: {
-      title: 'listar-patrimonio',
-    }
-  },
-  {
-    path: 'permissao',
-    component: PermissaoComponent,
-    canActivate: [AuthGuard, RoleGuardService],
-    data: {
-      title: 'Permissao',
-      permissaoEsperada: [Permissao.Administrador, Permissao.Gestor]
-
-    }
-  },
-  {
-    path: 'permissao/:codigoPermissao',
-    component: PermissaoComponent,
-    canActivate: [AuthGuard, RoleGuardService],
-    data: {
-      title: 'Permissao',
-      permissaoEsperada: [Permissao.Administrador, Permissao.Gestor]
-
-    }
-  },
-  {
-    path: 'listar-permissao',
-    component: ListarpermissaoComponent,
-    canActivate: [AuthGuard, RoleGuardService],
-    data: {
-      title: 'listar-permissao',
-      permissaoEsperada: [Permissao.Administrador, Permissao.Gestor]
-
     }
   },
   {
@@ -134,22 +76,22 @@ const routes: Routes = [
       title: 'widget'
     }
   },
-  // {
-  //   path: 'listar-patrimonio/movimentacao',
-  //   canActivate: [AuthGuard],
-  //   component: MovimentacaoComponent,
-  //   data: {
-  //     title: 'movimentacao'
-  //   }
-  // },
-  // {
-  //   path: 'listar-patrimonio/listar-movimentacao',
-  //   canActivate: [AuthGuard],
-  //   component: ListagemMovimentacaoComponent,
-  //   data: {
-  //     title: 'listar-movimentacao'
-  //   }
-  // },
+  {
+    path: 'listar-patrimonio/movimentacao',
+    canActivate: [AuthGuard],
+    component: MovimentacaoComponent,
+    data: {
+      title: 'movimentacao'
+    }
+  },
+  {
+    path: 'listar-patrimonio/listar-movimentacao',
+    canActivate: [AuthGuard],
+    component: ListagemMovimentacaoComponent,
+    data: {
+      title: 'listar-movimentacao'
+    }
+  },
   {
     path: 'categoria',
     canActivate: [AuthGuard],
@@ -173,14 +115,14 @@ const routes: Routes = [
     data: {
       title: 'listar-categoria'
     }
+  },
+  {
+    path: 'qr-code',
+    component: QrCodeComponent,
+    data: {
+      title: 'qr-code'
+    }
   }
-  // {
-  //   path: 'qr-code',
-  //   component: QRCodeComponent,
-  //   data: {
-  //     title: 'Leitura de QR Code'
-  //   }
-  // }
 ];
 
 @NgModule({
@@ -190,7 +132,9 @@ const routes: Routes = [
     SetorRoutingModule,
     FabricanteRoutingModule,
     UsuarioRoutingModule,
-    FuncionarioRoutingModule],
+    FuncionarioRoutingModule,
+    PatrimonioRoutingModule,
+    PermissaoRoutingModule],
   exports: [RouterModule]
 })
 export class DashboardRoutingModule {}

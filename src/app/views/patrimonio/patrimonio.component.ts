@@ -12,7 +12,7 @@ import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactiv
 import { Funcionario } from './../../models/Funcionario';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({

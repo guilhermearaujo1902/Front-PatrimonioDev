@@ -8,7 +8,7 @@ import { FormBuilderTypeSafe, FormGroupTypeSafe } from 'angular-typesafe-reactiv
 
 import { SetorService } from '../../services/setor/setor.service';
 import { Setor } from '../../models/Setor';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-setor',

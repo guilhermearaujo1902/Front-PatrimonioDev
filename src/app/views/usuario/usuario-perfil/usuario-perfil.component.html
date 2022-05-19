@@ -1,8 +1,8 @@
-<div class="card rounded shadow-sm m-3 p-3">
+<div class="card border-0 rounded shadow-sm m-3 p-3">
   <form [formGroup]="form">
     <div class="row p-3">
       <div class="col-lg-3 pt-1" id="imagem-usuario">
-        <div class="card mb-3">
+        <div class="card mb-3 border-0" id="row-card-sombra" >
           <div class="form-group">
             <input type="file" #file (change)="onFileChange($event)" class="form-control is-invalid" style="display: none;">
           </div>

@@ -5,7 +5,7 @@ import { FormGroupTypeSafe, FormBuilderTypeSafe } from 'angular-typesafe-reactiv
 import { PerdaEquipamento } from '../../models/PerdaEquipamento';
 import { PerdaService } from '../../services/perda/perda.service';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { MensagemRequisicao } from '../../helpers/MensagemRequisicao';
+import { MensagemRequisicao } from '../../helpers/MensagemRequisicaoHelper';
 
 @Component({
   selector: 'app-perda',

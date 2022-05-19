@@ -9,7 +9,7 @@ export class MenuService {
     const menu = [
       { name: 'home', path: './home', children: [] },
       {
-        name: 'dashboard',
+        name: 'Dashboard',
         path: './dashboard',
         children: [
           {
@@ -105,6 +105,10 @@ export class MenuService {
           {
             name: 'Relatório de Perdas',
             path: './relatorio-de-perda',
+          },
+          {
+            name: 'Leitura de QR Code',
+            path: './qr-code',
           }
         ]
       },

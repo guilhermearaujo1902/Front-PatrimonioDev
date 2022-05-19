@@ -1,8 +1,4 @@
-@font-face {
-  font-family: 'Roboto-Black';
-  src: url('../assets/font/Roboto-Black.otf') format("truetype");
-  font-weight:300;
-}
+@import '../scss/fonts.scss';
 
 .texto-destaque{
   font-family: 'Roboto-Black';
@@ -10,6 +6,7 @@
   border-width: 3px;
   word-wrap: normal;
   padding-bottom: 3px;
+  color: black;
   border-radius: 3px;
   line-height: 2;
 }
