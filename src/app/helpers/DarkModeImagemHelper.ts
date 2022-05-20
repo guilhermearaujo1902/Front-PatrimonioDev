@@ -25,7 +25,6 @@ export class DarkModeImagemHelper {
   private definirImagemDeAcordoComOModo(darkMode: string): void {
 
     let imagemNovoRegistro = document.getElementById(this.idCampoImagem);
-    debugger;
     if (darkMode == 'dark') {
       imagemNovoRegistro.setAttribute('src', this.caminhoImagemDark);
     } else {
