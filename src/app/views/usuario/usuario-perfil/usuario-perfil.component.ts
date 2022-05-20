@@ -60,7 +60,7 @@ export class UsuarioPerfilComponent implements OnInit {
         const { nodeName } = error.target as HTMLInputElement;
 
         if (nodeName.includes("IMG")) {
-          this.imagemUrl = "assets/img/sem-imagem.png";
+          this.atribuirCaminhoImagemPadraoPerfil()
         }
       },
       true
@@ -127,7 +127,7 @@ export class UsuarioPerfilComponent implements OnInit {
   private tratarUrlImagem(url: string): void {
     debugger;
     if (typeof url == "undefined" || url == null)
-      this.imagemUrl = "assets/img/sem-imagem.png";
+      this.atribuirCaminhoImagemPadraoPerfil()
     else this.imagemUrl = `${environment.apiUrlImage}/${url}`;
   }
 
@@ -195,5 +195,9 @@ export class UsuarioPerfilComponent implements OnInit {
         }
       )
       .add(() => this.spinner.hide("upload"));
+  }
+
+  private atribuirCaminhoImagemPadraoPerfil(): void {
+    this.imagemUrl = "assets/img/sem-imagem.png";
   }
 }
