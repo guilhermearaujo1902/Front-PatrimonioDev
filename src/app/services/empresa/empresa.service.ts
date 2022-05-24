@@ -33,7 +33,7 @@ export class EmpresaService {
   }
 
   public obterApenasUmaEmpresa(codigoEmpresa: number): Observable<Empresa> {
-    return this.api.get<Empresa>(`${this.baseUrl}/${codigoEmpresa}`).pipe(take(1));;
+    return this.api.get<Empresa>(`${this.baseUrl}/${codigoEmpresa}`).pipe(take(1));
   }
 
   public atualizarEmpresa(empresa: Empresa): Observable<Empresa>{

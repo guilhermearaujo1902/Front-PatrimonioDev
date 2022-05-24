@@ -25,8 +25,6 @@ export class QrCodeComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    configurarTooltips();
-
     this.scanner.camerasFound.subscribe((devices: MediaDeviceInfo[]) => {
       this.hasDevices = true;
       this.availableDevices = devices;
