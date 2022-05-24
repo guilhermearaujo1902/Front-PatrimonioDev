@@ -4,19 +4,19 @@
       <div>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text" id="campo-filtro">Filtro:</div>
+            <div class="input-group-text tamanho-fonte" id="campo-filtro">Filtro:</div>
           </div>
-          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
+          <input type="text" placeholder="Buscar por registros" class="form-control tamanho-fonte" (input)="onChange($event)" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-sm-12 col-md-12 col-12">
-      <button class="btn btn-success mb-1" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
+      <button class="btn btn-success mb-1 tamanho-fonte" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
         <i class="fas fa-file-excel my-1" id="icone-excel"></i> Exportar para
         Excel
       </button>
       <button class="btn btn-outline-primary mb-1 ml-1 mr-1" routerLink="/dashboard/equipamento">
-        <b class=" ml-1 mr-1 ">Novo <i class="fa fa-plus-circle my-1"></i></b>
+        <b class=" ml-1 mr-1 tamanho-fonte">Novo <i class="fa fa-plus-circle my-1"></i></b>
       </button>
     </div>
   </div>
@@ -36,19 +36,19 @@
         <div class="font-small">{{ row.nomeCategoria}}</div>
       </td>
       <td *ngIf="isMobile">
-        <button class="btn btn-primary" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
+        <button class="btn btn-primary tamanho-fonte" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
           <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
           <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
           Expandir
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-warning btn-lg" (click)="detalheEquipamento(row.codigoTipoEquipamento)">
+        <button class="btn btn-warning btn-lg tamanho-fonte" (click)="detalheEquipamento(row.codigoTipoEquipamento)">
           Alterar
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoTipoEquipamento)">
+        <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoTipoEquipamento)">
           Excluir
         </button>
       </td>
@@ -58,7 +58,7 @@
 </div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a exclusão do equipamento de código {{equipamentoId}}?</p>
+    <p class="tamanho-fonte">Deseja confirmar a exclusão do equipamento de código {{equipamentoId}}?</p>
     <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
@@ -78,10 +78,10 @@
   <p>Fabricante: {{ row.nomeFabricante }}</p>
   <p>Categoria: {{ row.nomeCategoria }}</p>
 
-  <button class="btn btn-warning btn-lg mr-3" (click)="detalheEquipamento(row.codigoTipoEquipamento)">
+  <button class="btn btn-warning btn-lg mr-3 tamanho-fonte" (click)="detalheEquipamento(row.codigoTipoEquipamento)">
     Alterar
   </button>
-  <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoTipoEquipamento)">
+  <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoTipoEquipamento)">
     Excluir
   </button>
 </ng-template>

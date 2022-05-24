@@ -1,7 +1,7 @@
 <app-header [navbarBrandRouterLink]="['/dashboard']" [fixed]="true"
   [navbarBrandFull]="{src: 'assets/img/ps.png', width: 40, height: 40, alt: 'Patrimônio PS'}"
   [navbarBrandMinimized]="{src: 'assets/img/ps.png', width: 30, height: 30, alt: 'Patrimônio PS'}"
-  [sidebarToggler]=false [asideMenuToggler]=false [mobileAsideMenuToggler]=false id="menu-superior">
+  [sidebarToggler]=false [ngStyle]="" [asideMenuToggler]=false [mobileAsideMenuToggler]=false id="menu-superior">
 
   <ul class="nav navbar-nav ml-auto">
     <div class="mr-3">
@@ -32,10 +32,10 @@
         <ol class="breadcrumb" id="breadcrumb-color">
           <li class="breadcrumb-item" *ngFor="let item of breadcrumbList; let i = index"
             [class.active]="i===breadcrumbList.length-1">
-            <a [routerLink]="item.path" *ngIf="i!==breadcrumbList.length-1">
+            <a [routerLink]="item.path" id="breadcrumb-color__span-pagina-anterior" *ngIf="i!==breadcrumbList.length-1">
               {{ item.name }}
             </a>
-            <span *ngIf="i===breadcrumbList.length-1" id="span-color">{{ item.name }}</span>
+            <span *ngIf="i===breadcrumbList.length-1" id="breadcrumb-color__span-pagina-atual">{{ item.name }}</span>
           </li>
         </ol>
       </div>
@@ -46,7 +46,7 @@
 </div>
 
 <app-footer id="footer-background">
-  <p class="pt-3">Copyright &copy; {{anoAtual}} Patrimônio PS</p>
+  <p class="pt-3 tamanho-fonte">Copyright &copy; {{anoAtual}} Patrimônio PS</p>
 </app-footer>
 
 <ng-template #template>

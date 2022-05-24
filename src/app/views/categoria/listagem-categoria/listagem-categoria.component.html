@@ -1,60 +1,50 @@
-
 <div class="card border-0 rounded shadow-sm p-3 m-5">
   <div class="row">
     <div class="col-lg-8 col-sm-12 col-md-12">
       <div>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text" id="campo-filtro">Filtro:</div>
+            <div class="input-group-text tamanho-fonte" id="campo-filtro">Filtro:</div>
           </div>
-          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
+          <input type="text" placeholder="Buscar por registros" class="form-control tamanho-fonte"
+            (input)="onChange($event)" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-sm-12 col-md-12 col-12">
-      <button class="btn btn-success mb-1" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
+      <button class="btn btn-success mb-1 tamanho-fonte" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
         <i class="fas fa-file-excel my-1" id="icone-excel"></i> Exportar para
         Excel
       </button>
       <button class="btn btn-outline-primary mb-1 ml-1 mr-1" routerLink="/dashboard/categoria">
-        <b class=" ml-1 mr-1 ">Novo <i class="fa fa-plus-circle my-1"></i></b>
+        <b class=" ml-1 mr-1 tamanho-fonte">Novo <i class="fa fa-plus-circle my-1"></i></b>
       </button>
     </div>
   </div>
-  <ngx-table
-  [data]="data"
-  [configuration]="configuracao"
-  [columns]="colunas"
-  [noResultsTemplate]="mensagemSemCadastro"
-  [summaryTemplate]="summaryTemplateRef"
-  [detailsTemplate]="detailsTemplate"
-
-  #table>
-  <ng-template let-row let-index="index">
-    <td *ngIf="!isMobile">
-      <div class="font-small">{{ row.codigoCategoria }}</div>
-    </td>
-    <td>
-      <span class="font-small">{{ row.descricao }}</span>
-    </td>
-    <td *ngIf="isMobile">
-      <button
-        class="btn btn-primary"
-        id="expandButton-{{ index }}"
-        (click)="onRowClickEvent($event, index)"
-      >
-        <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
-        <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
-        Expandir
-      </button>
-    </td>
-    <td *ngIf="!isMobile">
-      <button class="btn btn-warning btn-lg mr-3" (click)="detalheCategoria(row.codigoCategoria)">
-        Alterar
-      </button>
+  <ngx-table [data]="data" [configuration]="configuracao" [columns]="colunas" [noResultsTemplate]="mensagemSemCadastro"
+    [summaryTemplate]="summaryTemplateRef" [detailsTemplate]="detailsTemplate" #table>
+    <ng-template let-row let-index="index">
+      <td *ngIf="!isMobile">
+        <div class="font-small">{{ row.codigoCategoria }}</div>
+      </td>
+      <td>
+        <span class="font-small">{{ row.descricao }}</span>
+      </td>
+      <td *ngIf="isMobile">
+        <button class="btn btn-primary tamanho-fonte" id="expandButton-{{ index }}"
+          (click)="onRowClickEvent($event, index)">
+          <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+          <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
+          Expandir
+        </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoCategoria)">
+        <button class="btn btn-warning btn-lg mr-3 tamanho-fonte" (click)="detalheCategoria(row.codigoCategoria)">
+          Alterar
+        </button>
+      </td>
+      <td *ngIf="!isMobile">
+        <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoCategoria)">
           Excluir
         </button>
       </td>
@@ -64,7 +54,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a deleção da categoria de código {{codigoCategoria}}?</p>
+    <p class="tamanho-fonte">Deseja confirmar a deleção da categoria de código {{codigoCategoria}}?</p>
     <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
@@ -80,18 +70,18 @@
   </td>
 </ng-template>
 <ng-template #detailsTemplate let-row>
-  <button
-    class="btn btn-warning btn-lg"
-    (click)="detalheCategoria(row.codigoCategoria)"
-  >
+  <button class="btn btn-warning btn-lg tamanho-fonte" (click)="detalheCategoria(row.codigoCategoria)">
     Alterar
-</button>
-<button
-class="btn btn-danger btn-lg"
-(click)="abrirModal($event, template, row.codigoCategoria)"
->
-Excluir
-</button>
+  </button>
+  <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoCategoria)">
+    Excluir
+  </button>
 </ng-template>
-<ngx-spinner name="buscando" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Buscando... </p></ngx-spinner>
-<ngx-spinner name="excluindo" bdColor = "rgba(0, 0, 0, 0.8)" size = "medium" color = "#fff" type = "ball-clip-rotate" [fullScreen] = "true"><p style="color: white" > Excluindo... </p></ngx-spinner>
+<ngx-spinner name="buscando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"
+  [fullScreen]="true">
+  <p style="color: white"> Buscando... </p>
+</ngx-spinner>
+<ngx-spinner name="excluindo" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"
+  [fullScreen]="true">
+  <p style="color: white"> Excluindo... </p>
+</ngx-spinner>

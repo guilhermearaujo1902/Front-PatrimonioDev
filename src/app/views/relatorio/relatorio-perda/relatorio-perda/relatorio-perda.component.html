@@ -3,13 +3,13 @@
     <div class="flex-fill pr-3">
       <div class="input-group mb-2">
         <div class="input-group-prepend">
-          <div class="input-group-text" id="campo-filtro">Filtro: </div>
+          <div class="input-group-text tamanho-fonte" id="campo-filtro">Filtro: </div>
         </div>
-        <input type="text" placeholder="Buscar por perdas" class="form-control" (input)="onChange($event)" />
+        <input type="text" placeholder="Buscar por perdas" class="form-control tamanho-fonte" (input)="onChange($event)" />
       </div>
     </div>
     <div class="ml-1" *ngIf="ehAdministrador">
-      <button class="btn btn-success mb-1" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1"
+      <button class="btn btn-success mb-1 tamanho-fonte" (click)="exportarParaExcel()"> <i class="fa fa-file-excel-o my-1"
           id="icone-excel"></i> Exportar para Excel</button>
     </div>
   </div>

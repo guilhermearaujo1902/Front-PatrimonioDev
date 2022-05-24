@@ -4,19 +4,19 @@
       <div>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text" id="campo-filtro">Filtro:</div>
+            <div class="input-group-text tamanho-fonte" id="campo-filtro">Filtro:</div>
           </div>
-          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
+          <input type="text" placeholder="Buscar por registros" class="form-control tamanho-fonte" (input)="onChange($event)" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-sm-12 col-md-12 col-12">
-      <button class="btn btn-success mb-1" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
+      <button class="btn btn-success mb-1 tamanho-fonte" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
         <i class="fas fa-file-excel my-1" id="icone-excel"></i> Exportar para
         Excel
       </button>
       <button class="btn btn-outline-primary mb-1 ml-1 mr-1" routerLink="/dashboard/patrimonio">
-        <b class=" ml-1 mr-1 ">Novo <i class="fa fa-plus-circle my-1"></i></b>
+        <b class=" ml-1 mr-1 tamanho-fonte">Novo <i class="fa fa-plus-circle my-1"></i></b>
       </button>
     </div>
   </div>
@@ -42,35 +42,35 @@
         <span class="font-small">{{ row.nomeFuncionario }}</span>
       </td>
       <td *ngIf="isMobile">
-        <button class="btn btn-primary" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
+        <button class="btn btn-primary tamanho-fonte" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
           <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
           <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
           Expandir
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-warning btn-lg" role="button"
+        <button class="btn btn-warning btn-lg tamanho-fonte" role="button"
           (click)="detalhePatrimonio(row.codigoPatrimonio, row.serviceTag)">
           Alterar
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-danger btn-lg" role="button"
+        <button class="btn btn-danger btn-lg tamanho-fonte" role="button"
           (click)="abrirModal($event, template, row.codigoPatrimonio)">
           Excluir
         </button>
       </td>
       <td *ngIf="!isMobile">
         <div class="btn-group">
-          <button type="button" class="btn btn-secondary btn-lg">Ações</button>
+          <button type="button" class="btn btn-secondary btn-lg tamanho-fonte">Ações</button>
           <button type="button" class="btn btn-secondary btn-lg dropdown-toggle dropdown-toggle-split"
             data-toggle="dropdown" aria-expanded="false">
           </button>
           <div class="dropdown-menu">
-            <a class="dropdown-item" role="button" data-toggle="modal"
+            <a class="dropdown-item tamanho-fonte" role="button" data-toggle="modal"
               (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#modalPerda">Declarar Perda</a>
             <div class="dropdown-divider"></div>
-            <a class="dropdown-item"
+            <a class="dropdown-item tamanho-fonte"
               (click)="cadastrarMovimentacao(row.codigoPatrimonio, row.tipoEquipamento, row.nomeFuncionario)"
               role="button">Cadastrar Mov.</a>
             <a class="dropdown-item" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov.</a>
@@ -82,7 +82,7 @@
 </div>
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a exclusão do patrimônio de código {{patrimonioId}}?</p>
+    <p class="tamanho-fonte">Deseja confirmar a deleção do patrimônio de código {{patrimonioId}}?</p>
     <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
@@ -101,26 +101,26 @@
   <p>Código: {{row.codigoPatrimonio}}</p>
   <p>Situação do equipamento: {{obterDescricaoEnum(row.situacaoEquipamento)}}</p>
   <p>Modelo: {{row.modelo}}</p>
-  <button class="btn btn-warning btn-lg mr-1" role="button"
+  <button class="btn btn-warning btn-lg mr-1 tamanho-fonte" role="button"
     (click)="detalhePatrimonio(row.codigoPatrimonio, row.serviceTag)">
     Alterar
   </button>
-  <button class="btn btn-danger btn-lg mr-1" (click)="abrirModal($event, template, row.codigoPatrimonio)">
+  <button class="btn btn-danger tamanho-fonte btn-lg mr-1 tamanho-fonte" (click)="abrirModal($event, template, row.codigoPatrimonio)">
     Excluir
   </button>
   <div class="btn-group mt-1">
-    <button type="button" class="btn btn-secondary btn-lg">Ações</button>
+    <button type="button" class="btn btn-secondary btn-lg tamanho-fonte">Ações</button>
     <button type="button" class="btn btn-secondary btn-lg dropdown-toggle dropdown-toggle-split"
       data-toggle="dropdown" aria-expanded="false">
     </button>
     <div class="dropdown-menu">
-      <a class="dropdown-item" role="button" data-toggle="modal"
+      <a class="dropdown-item tamanho-fonte" role="button" data-toggle="modal"
         (click)="atribuirCodigoPatrimonio(row.codigoPatrimonio)" data-target="#modalPerda">Declarar Perda</a>
       <div class="dropdown-divider"></div>
-      <a class="dropdown-item"
+      <a class="dropdown-item tamanho-fonte"
         (click)="cadastrarMovimentacao(row.codigoPatrimonio, row.tipoEquipamento, row.nomeFuncionario)"
         role="button">Cadastrar Mov.</a>
-      <a class="dropdown-item" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov.</a>
+      <a class="dropdown-item tamanho-fonte" (click)="listarTodasAsMovimentacoes(row.codigoPatrimonio)" role="button">Listar Mov.</a>
     </div>
   </div>
 

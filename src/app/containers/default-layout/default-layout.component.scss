@@ -1,4 +1,5 @@
 @import "../../../scss/fonts.scss";
+@import "../../../scss/style-base.scss";
 
 .backgroud-menu-superior{
   background-color: var(--color-background-breadcrumb);
@@ -8,23 +9,28 @@
   @extend .backgroud-menu-superior;
 }
 
-
 .main .container-fluid{
   padding: 0 0;
 
   #breadcrumb-color{
-    @extend .backgroud-menu-superior;
     border: none;
-    #span-color{
+    @extend .backgroud-menu-superior;
+
+    #breadcrumb-color__span-pagina-anterior{
+      @extend .tamanho-fonte;
+    }
+
+    #breadcrumb-color__span-pagina-atual{
       color: var(--color-contraste);
       font-family: 'Omnes';
       font-weight: 500;
+      @extend .tamanho-fonte;
     }
   }
 }
 
 #texto-perfil{
-  font-size: medium;
+  @extend .tamanho-fonte;
   font-family: 'brandon';
   cursor: pointer;
   color: var(--color-contraste);

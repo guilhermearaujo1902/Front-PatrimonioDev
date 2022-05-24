@@ -4,19 +4,19 @@
       <div>
         <div class="input-group mb-2">
           <div class="input-group-prepend">
-            <div class="input-group-text" id="campo-filtro">Filtro:</div>
+            <div class="input-group-text tamanho-fonte" id="campo-filtro">Filtro:</div>
           </div>
-          <input type="text" placeholder="Buscar por registros" class="form-control" (input)="onChange($event)" />
+          <input type="text" placeholder="Buscar por registros" class="form-control tamanho-fonte" (input)="onChange($event)" />
         </div>
       </div>
     </div>
     <div class="col-lg-4 col-sm-12 col-md-12 col-12">
-      <button class="btn btn-success mb-1" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
+      <button class="btn btn-success mb-1 tamanho-fonte" *ngIf="ehAdministrador" (click)="exportarParaExcel()">
         <i class="fas fa-file-excel my-1" id="icone-excel"></i> Exportar para
         Excel
       </button>
       <button class="btn btn-outline-primary mb-1 ml-1 mr-1" routerLink="/dashboard/fabricante">
-        <b class=" ml-1 mr-1 ">Novo <i class="fa fa-plus-circle my-1"></i></b>
+        <b class=" ml-1 mr-1 tamanho-fonte">Novo <i class="fa fa-plus-circle my-1"></i></b>
       </button>
     </div>
   </div>
@@ -30,19 +30,19 @@
         <span class="font-small">{{ row.nomeFabricante }}</span>
       </td>
       <td *ngIf="isMobile">
-        <button class="btn btn-primary" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
+        <button class="btn btn-primary tamanho-fonte" id="expandButton-{{ index }}" (click)="onRowClickEvent($event, index)">
           <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
           <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
           Expandir
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-warning btn-lg" (click)="detalheFabricante(row.codigoFabricante)">
+        <button class="btn btn-warning btn-lg tamanho-fonte" (click)="detalheFabricante(row.codigoFabricante)">
           Alterar
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoFabricante)">
+        <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoFabricante)">
           Excluir
         </button>
       </td>
@@ -52,7 +52,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p>Deseja confirmar a exclusão do fabricante de código {{codigoFabricante}}?</p>
+    <p class="tamanho-fonte">Deseja confirmar a exclusão do fabricante de código {{codigoFabricante}}?</p>
     <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
@@ -68,10 +68,10 @@
   </td>
 </ng-template>
 <ng-template #detailsTemplate let-row>
-  <button class="btn btn-warning btn-lg mr-3" (click)="detalheFabricante(row.codigoFabricante)">
+  <button class="btn btn-warning btn-lg mr-3 tamanho-fonte" (click)="detalheFabricante(row.codigoFabricante)">
     Alterar
   </button>
-  <button class="btn btn-danger btn-lg" (click)="abrirModal($event, template, row.codigoFabricante)">
+  <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoFabricante)">
     Excluir
   </button>
 </ng-template>

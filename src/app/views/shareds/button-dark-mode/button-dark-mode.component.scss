@@ -12,14 +12,14 @@ body {
   border-radius: 50px;
   position: relative;
   transition: 0.4s;
-  background: url("https://raw.githubusercontent.com/RuchiVS/image-upload/main/moon.png")
+  background: url("../../../../assets/img/moon.png")
     no-repeat center #212121;
   background-size: 20px;
   cursor: pointer;
 }
 
 .toggle-button:checked {
-  background: url("https://raw.githubusercontent.com/RuchiVS/image-upload/main/sun.png")
+  background: url("../../../../assets/img/sun.png")
     no-repeat center #ffffff;
   background-size: 20px;
   box-shadow: 5px 5px 38px -10px #000000;
