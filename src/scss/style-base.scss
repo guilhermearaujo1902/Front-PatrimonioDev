@@ -14,3 +14,29 @@
 .tamanho-fonte{
   font-size: 16px !important;
 }
+
+.botao-alterar{
+  @extend .base-alterar-excluir-expandir;
+  background-color: #FFC107;
+}
+
+.botao-excluir{
+  @extend .base-alterar-excluir-expandir;
+  background-color: #F86C6B;
+}
+
+.botao-expandir{
+  @extend .base-alterar-excluir-expandir;
+  background-color: #009AE0;
+}
+
+.base-alterar-excluir-expandir{
+  @extend .tamanho-fonte;
+  border-radius: 5px;
+  color: white !important;
+  font-family: 'Roboto-Regular';
+  cursor: pointer;
+}
+
+
+

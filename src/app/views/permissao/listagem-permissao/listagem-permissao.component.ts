@@ -151,8 +151,8 @@ export class ListarpermissaoComponent implements OnInit {
       { key: 'codigoUsuarioPermissao', title: 'Código' },
       { key: 'descricaoPermissao', title: 'Nome' },
       { key: 'ativo', title: 'Situação' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Desativar' },
     ];
   }
 

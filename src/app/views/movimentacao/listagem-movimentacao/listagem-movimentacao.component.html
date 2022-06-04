@@ -27,7 +27,7 @@
                 <p>Código movimentação: <span class="item-movimentacao">{{row.codigoMovimentacao}}</span></p>
                 <p>Data apropriação: <span class="item-movimentacao">{{row.dataApropriacao | date: 'medium'}}</span></p>
                 <p>Data devolução: <span class="item-movimentacao">{{row.dataDevolucao | date: 'medium' }}</span></p>
-                <p>Movimentação realizada por: <span class="item-movimentacao">{{row.nomeUsuario}}</span></p>
+                <p>Movimentação realizada por: <span class="item-movimentacao">{{row.nomeUsuario | uppercase}} </span></p>
                 <p>Situação do patrimônio: <span
                     class="item-movimentacao">{{obterDescricaoEnum(+row.movimentacaoDoEquipamento)}}</span></p>
 
