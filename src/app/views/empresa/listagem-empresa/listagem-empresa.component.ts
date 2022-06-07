@@ -155,8 +155,8 @@ export class ListagemEmpresaComponent implements OnInit {
       { key: 'nomeFantasia', title: 'Nome Fantasia' },
       { key: 'empresaoPadraoImpressao', title: 'Empresa Impressão' },
       { key: 'cnpj', title: 'CNPJ' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Excluir' },
     ];
   }
 

@@ -153,8 +153,8 @@ export class ListarsetorComponent implements OnInit {
     return [
       { key: 'codigoSetor', title: 'Código' },
       { key: 'nome', title: 'Nome' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Excluir' },
     ];
   }
 

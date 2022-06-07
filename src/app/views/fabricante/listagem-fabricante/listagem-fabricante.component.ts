@@ -145,8 +145,8 @@ export class ListagemfabricanteComponent implements OnInit {
     return [
       { key: 'codigoFabricante', title: 'Código' },
       { key: 'nomeFabricante', title: 'Nome' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Excluir' },
     ];
   }
   private checkView(): void {

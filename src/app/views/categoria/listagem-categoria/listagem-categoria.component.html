@@ -31,21 +31,21 @@
         <span class="font-small">{{ row.descricao }}</span>
       </td>
       <td *ngIf="isMobile">
-        <button class="btn btn-primary tamanho-fonte" id="expandButton-{{ index }}"
+        <button class="btn botao-expandir" id="expandButton-{{ index }}"
           (click)="onRowClickEvent($event, index)">
-          <i class="icon icon-arrow-left" *ngIf="!toggledRows.has(index)"></i>
-          <i class="icon icon-arrow-down" *ngIf="toggledRows.has(index)"></i>
+          <i class="fa fa-arrow-left" *ngIf="!toggledRows.has(index)"></i>
+          <i class="fa fa-arrow-down" *ngIf="toggledRows.has(index)"></i>
           Expandir
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-warning btn-lg mr-3 tamanho-fonte" (click)="detalheCategoria(row.codigoCategoria)">
-          Alterar
+        <button title="Botão para editar registro" class="btn botao-alterar btn-lg mr-3" (click)="detalheCategoria(row.codigoCategoria)">
+          <i class="fa fa-edit"></i>
         </button>
       </td>
       <td *ngIf="!isMobile">
-        <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoCategoria)">
-          Excluir
+        <button title="Botão para excluir categoria" class="btn botao-excluir btn-lg" (click)="abrirModal($event, template, row.codigoCategoria)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
         </button>
       </td>
     </ng-template>
@@ -54,7 +54,7 @@
 
 <ng-template #template>
   <div class="modal-body text-center">
-    <p class="tamanho-fonte">Deseja confirmar a deleção da categoria de código {{codigoCategoria}}?</p>
+    <p class="tamanho-fonte">Deseja confirmar a <strong>deleção</strong> da categoria de código {{codigoCategoria}}?</p>
     <button type="button" class="btn btn-default" (click)="confirmar()">Sim</button>
     <button type="button" class="btn btn-primary" (click)="recusar()">Não</button>
   </div>
@@ -70,11 +70,11 @@
   </td>
 </ng-template>
 <ng-template #detailsTemplate let-row>
-  <button class="btn btn-warning btn-lg tamanho-fonte" (click)="detalheCategoria(row.codigoCategoria)">
-    Alterar
+  <button title="Botão para editar registro" class="btn botao-alterar btn-lg" (click)="detalheCategoria(row.codigoCategoria)">
+    <i class="fa fa-edit"></i>
   </button>
-  <button class="btn btn-danger btn-lg tamanho-fonte" (click)="abrirModal($event, template, row.codigoCategoria)">
-    Excluir
+  <button title="Botão para excluir categoria"  class="btn botao-excluir btn-lg" (click)="abrirModal($event, template, row.codigoCategoria)">
+    <i class="fa fa-trash" aria-hidden="true"></i>
   </button>
 </ng-template>
 <ngx-spinner name="buscando" bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="ball-clip-rotate"

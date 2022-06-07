@@ -144,8 +144,8 @@ export class ListagemCategoriaComponent implements OnInit {
     return [
       { key: 'codigoCategoria', title: 'Código', width: '3%' },
       { key: 'descricao', title: 'Descrição' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Excluir' },
     ];
   }
   private checkView(): void {

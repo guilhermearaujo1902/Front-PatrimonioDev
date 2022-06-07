@@ -155,8 +155,8 @@ export class ListagemequipamentoComponent implements OnInit {
       { key: 'tipoEquipamento', title: 'Descrição' },
       { key: 'nomeFabricante', title: 'Fabricante' },
       { key: 'nomeFabricante', title: 'Categoria' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Excluir' },
     ];
   }
 

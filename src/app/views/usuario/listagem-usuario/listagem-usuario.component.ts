@@ -74,8 +74,8 @@ export class ListagemUsuarioComponent implements OnInit {
       { key: 'codigoUsuario', title: 'Código', width: '3%' },
       { key: 'nome', title: 'Nome' },
       { key: 'email', title: 'E-mail' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Desativar' },
     ];
   }
 

@@ -179,9 +179,9 @@ export class ListarpatrimonioComponent implements OnInit {
       { key: 'situacaoEquipamento', title: 'Situação', width: '12%' },
       { key: 'tipoEquipamento', title: 'Equipamento', width: '5%' },
       { key: 'nomeFuncionario', title: 'Funcionário' },
-      { key: '', title: '' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Excluir' },
+      { key: '', title: 'Ações' },
     ];
   }
 

@@ -156,8 +156,8 @@ export class ListagemFuncionarioComponent implements OnInit {
       { key: 'nomeFuncionario', title: 'Nome' },
       { key: 'ativo', title: 'Ativo' },
       { key: 'observacao', title: 'Observação' },
-      { key: '', title: '' },
-      { key: '', title: '' },
+      { key: '', title: 'Editar' },
+      { key: '', title: 'Desativar' },
     ];
   }
 
