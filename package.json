@@ -54,6 +54,7 @@
     "angularx-qrcode": "^11.0.0",
     "angularx-social-login": "^3.5.7",
     "bootstrap": "^4.6.0",
+    "chart.js": "^3.2.0",
     "classlist.js": "^1.1.20150312",
     "core-js": "^3.9.1",
     "crypto-js": "^4.1.1",
