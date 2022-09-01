@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { LocalStorageChave } from '@nvs-enum/movimentacao-equipamento';
+import { LocalStorageChave } from '@nvs-enum/local-storage-chave';
 
 @Injectable({
   providedIn: 'root'
