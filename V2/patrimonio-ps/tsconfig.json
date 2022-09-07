@@ -24,7 +24,9 @@
     ],
     "paths": {
       "@nvs-services/*": ["src/app/services/*"],
-      "@nvs-enum/*": ["src/app/models/enum/*"]
+      "@nvs-enum/*": ["src/app/models/enum/*"],
+      "@nvs-models/*": ["src/app/models/*"]
+
     },
   },
   "angularCompilerOptions": {

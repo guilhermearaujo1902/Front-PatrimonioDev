@@ -3,4 +3,3 @@ export enum LocalStorageChave {
     DarkMode = 2,
     LembrarMe = 3
   }
-  

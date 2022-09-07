@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { CriptografiaService } from '@nvs-services/criptografia/criptografia.service';
 import { Observable } from 'rxjs';
 import { IApi } from '../../models/interfaces/IApi';
-import { EncryptDecryptService } from './../encrypt-decrypt/encrypt-decrypt.service';
 import { TokenService } from './../token/token.service';
 
 @Injectable()
@@ -11,7 +11,7 @@ export class ApiService implements IApi {
   private readonly options: any;
 
  //TODO: Passar para o service token
-  constructor(private http: HttpClient, private encriptar: EncryptDecryptService, private token: TokenService) {
+  constructor(private http: HttpClient, private encriptar: CriptografiaService, private token: TokenService) {
 
     this.options = {
         'Content-type': 'application/json'
